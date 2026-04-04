@@ -1,0 +1,961 @@
+department,category,line_item,month,budget_amount,cost_center,approval_threshold
+Engineering,Personnel,Base Salaries - Senior Engineers,2025-01,238712.65,ENG-401,25000
+Engineering,Personnel,Base Salaries - Senior Engineers,2025-02,232331.6,ENG-401,25000
+Engineering,Personnel,Base Salaries - Senior Engineers,2025-03,240827.81,ENG-401,25000
+Engineering,Personnel,Base Salaries - Senior Engineers,2025-04,241729.96,ENG-401,25000
+Engineering,Personnel,Base Salaries - Senior Engineers,2025-05,228008.35,ENG-401,25000
+Engineering,Personnel,Base Salaries - Senior Engineers,2025-06,231087.39,ENG-401,25000
+Engineering,Personnel,Base Salaries - Senior Engineers,2025-07,237873.31,ENG-401,25000
+Engineering,Personnel,Base Salaries - Senior Engineers,2025-08,235765.99,ENG-401,25000
+Engineering,Personnel,Base Salaries - Senior Engineers,2025-09,237186.94,ENG-401,25000
+Engineering,Personnel,Base Salaries - Senior Engineers,2025-10,233218.69,ENG-401,25000
+Engineering,Personnel,Base Salaries - Senior Engineers,2025-11,241439.7,ENG-401,25000
+Engineering,Personnel,Base Salaries - Senior Engineers,2025-12,240957.55,ENG-401,25000
+Engineering,Personnel,Base Salaries - Junior Engineers,2025-01,127117.65,ENG-401,25000
+Engineering,Personnel,Base Salaries - Junior Engineers,2025-02,129812.07,ENG-401,25000
+Engineering,Personnel,Base Salaries - Junior Engineers,2025-03,128137.01,ENG-401,25000
+Engineering,Personnel,Base Salaries - Junior Engineers,2025-04,124768.26,ENG-401,25000
+Engineering,Personnel,Base Salaries - Junior Engineers,2025-05,127886.26,ENG-401,25000
+Engineering,Personnel,Base Salaries - Junior Engineers,2025-06,124515.4,ENG-401,25000
+Engineering,Personnel,Base Salaries - Junior Engineers,2025-07,129180.39,ENG-401,25000
+Engineering,Personnel,Base Salaries - Junior Engineers,2025-08,126823.24,ENG-401,25000
+Engineering,Personnel,Base Salaries - Junior Engineers,2025-09,126480.63,ENG-401,25000
+Engineering,Personnel,Base Salaries - Junior Engineers,2025-10,125221.12,ENG-401,25000
+Engineering,Personnel,Base Salaries - Junior Engineers,2025-11,130054.03,ENG-401,25000
+Engineering,Personnel,Base Salaries - Junior Engineers,2025-12,126557.65,ENG-401,25000
+Engineering,Personnel,Contractor Fees,2025-01,79959.11,ENG-401,25000
+Engineering,Personnel,Contractor Fees,2025-02,80082.01,ENG-401,25000
+Engineering,Personnel,Contractor Fees,2025-03,81508.61,ENG-401,25000
+Engineering,Personnel,Contractor Fees,2025-04,81239.46,ENG-401,25000
+Engineering,Personnel,Contractor Fees,2025-05,81315.74,ENG-401,25000
+Engineering,Personnel,Contractor Fees,2025-06,81344.91,ENG-401,25000
+Engineering,Personnel,Contractor Fees,2025-07,84104.48,ENG-401,25000
+Engineering,Personnel,Contractor Fees,2025-08,79994.45,ENG-401,25000
+Engineering,Personnel,Contractor Fees,2025-09,79823.75,ENG-401,25000
+Engineering,Personnel,Contractor Fees,2025-10,79337.38,ENG-401,25000
+Engineering,Personnel,Contractor Fees,2025-11,81643.57,ENG-401,25000
+Engineering,Personnel,Contractor Fees,2025-12,82471.03,ENG-401,25000
+Engineering,Infrastructure,Cloud Hosting (AWS/GCP),2025-01,106806.04,ENG-401,25000
+Engineering,Infrastructure,Cloud Hosting (AWS/GCP),2025-02,105251.22,ENG-401,25000
+Engineering,Infrastructure,Cloud Hosting (AWS/GCP),2025-03,105284.79,ENG-401,25000
+Engineering,Infrastructure,Cloud Hosting (AWS/GCP),2025-04,108442.92,ENG-401,25000
+Engineering,Infrastructure,Cloud Hosting (AWS/GCP),2025-05,108641.31,ENG-401,25000
+Engineering,Infrastructure,Cloud Hosting (AWS/GCP),2025-06,108212.89,ENG-401,25000
+Engineering,Infrastructure,Cloud Hosting (AWS/GCP),2025-07,105625.14,ENG-401,25000
+Engineering,Infrastructure,Cloud Hosting (AWS/GCP),2025-08,107547.06,ENG-401,25000
+Engineering,Infrastructure,Cloud Hosting (AWS/GCP),2025-09,107299.82,ENG-401,25000
+Engineering,Infrastructure,Cloud Hosting (AWS/GCP),2025-10,107518.21,ENG-401,25000
+Engineering,Infrastructure,Cloud Hosting (AWS/GCP),2025-11,108915.73,ENG-401,25000
+Engineering,Infrastructure,Cloud Hosting (AWS/GCP),2025-12,107528.72,ENG-401,25000
+Engineering,Software,Software Licenses,2025-01,34824.86,ENG-401,25000
+Engineering,Software,Software Licenses,2025-02,34404.77,ENG-401,25000
+Engineering,Software,Software Licenses,2025-03,34557.01,ENG-401,25000
+Engineering,Software,Software Licenses,2025-04,34792.13,ENG-401,25000
+Engineering,Software,Software Licenses,2025-05,33357.02,ENG-401,25000
+Engineering,Software,Software Licenses,2025-06,34138.67,ENG-401,25000
+Engineering,Software,Software Licenses,2025-07,34035.11,ENG-401,25000
+Engineering,Software,Software Licenses,2025-08,33919.32,ENG-401,25000
+Engineering,Software,Software Licenses,2025-09,34169.26,ENG-401,25000
+Engineering,Software,Software Licenses,2025-10,35385.61,ENG-401,25000
+Engineering,Software,Software Licenses,2025-11,33763.36,ENG-401,25000
+Engineering,Software,Software Licenses,2025-12,35023.7,ENG-401,25000
+Engineering,Software,Dev Tools & CI/CD,2025-01,15099.1,ENG-401,25000
+Engineering,Software,Dev Tools & CI/CD,2025-02,15520.35,ENG-401,25000
+Engineering,Software,Dev Tools & CI/CD,2025-03,15675.86,ENG-401,25000
+Engineering,Software,Dev Tools & CI/CD,2025-04,15808.19,ENG-401,25000
+Engineering,Software,Dev Tools & CI/CD,2025-05,15847.26,ENG-401,25000
+Engineering,Software,Dev Tools & CI/CD,2025-06,15872.92,ENG-401,25000
+Engineering,Software,Dev Tools & CI/CD,2025-07,15516.02,ENG-401,25000
+Engineering,Software,Dev Tools & CI/CD,2025-08,15480.52,ENG-401,25000
+Engineering,Software,Dev Tools & CI/CD,2025-09,15893.12,ENG-401,25000
+Engineering,Software,Dev Tools & CI/CD,2025-10,15565.22,ENG-401,25000
+Engineering,Software,Dev Tools & CI/CD,2025-11,15226.35,ENG-401,25000
+Engineering,Software,Dev Tools & CI/CD,2025-12,15270.85,ENG-401,25000
+Engineering,Equipment,Hardware & Equipment,2025-01,29137.49,ENG-401,25000
+Engineering,Equipment,Hardware & Equipment,2025-02,29978.48,ENG-401,25000
+Engineering,Equipment,Hardware & Equipment,2025-03,29767.89,ENG-401,25000
+Engineering,Equipment,Hardware & Equipment,2025-04,30093.25,ENG-401,25000
+Engineering,Equipment,Hardware & Equipment,2025-05,29429.69,ENG-401,25000
+Engineering,Equipment,Hardware & Equipment,2025-06,29777.45,ENG-401,25000
+Engineering,Equipment,Hardware & Equipment,2025-07,30054.73,ENG-401,25000
+Engineering,Equipment,Hardware & Equipment,2025-08,29499.68,ENG-401,25000
+Engineering,Equipment,Hardware & Equipment,2025-09,29954.51,ENG-401,25000
+Engineering,Equipment,Hardware & Equipment,2025-10,29290.37,ENG-401,25000
+Engineering,Equipment,Hardware & Equipment,2025-11,29467.8,ENG-401,25000
+Engineering,Equipment,Hardware & Equipment,2025-12,29456.71,ENG-401,25000
+Engineering,Training,Conference & Training,2025-01,24754.28,ENG-401,25000
+Engineering,Training,Conference & Training,2025-02,19698.33,ENG-401,25000
+Engineering,Training,Conference & Training,2025-03,15460.15,ENG-401,25000
+Engineering,Training,Conference & Training,2025-04,17561.89,ENG-401,25000
+Engineering,Training,Conference & Training,2025-05,23635.09,ENG-401,25000
+Engineering,Training,Conference & Training,2025-06,19682.55,ENG-401,25000
+Engineering,Training,Conference & Training,2025-07,13837.56,ENG-401,25000
+Engineering,Training,Conference & Training,2025-08,15575.93,ENG-401,25000
+Engineering,Training,Conference & Training,2025-09,21277.49,ENG-401,25000
+Engineering,Training,Conference & Training,2025-10,19477.23,ENG-401,25000
+Engineering,Training,Conference & Training,2025-11,16964.99,ENG-401,25000
+Engineering,Training,Conference & Training,2025-12,15154.97,ENG-401,25000
+Engineering,Personnel,Recruiting Fees,2025-01,36151.01,ENG-401,25000
+Engineering,Personnel,Recruiting Fees,2025-02,36392.71,ENG-401,25000
+Engineering,Personnel,Recruiting Fees,2025-03,37430.23,ENG-401,25000
+Engineering,Personnel,Recruiting Fees,2025-04,36460.86,ENG-401,25000
+Engineering,Personnel,Recruiting Fees,2025-05,36852.48,ENG-401,25000
+Engineering,Personnel,Recruiting Fees,2025-06,38098.23,ENG-401,25000
+Engineering,Personnel,Recruiting Fees,2025-07,36868.75,ENG-401,25000
+Engineering,Personnel,Recruiting Fees,2025-08,37681.06,ENG-401,25000
+Engineering,Personnel,Recruiting Fees,2025-09,36439.97,ENG-401,25000
+Engineering,Personnel,Recruiting Fees,2025-10,36980.76,ENG-401,25000
+Engineering,Personnel,Recruiting Fees,2025-11,36427.78,ENG-401,25000
+Engineering,Personnel,Recruiting Fees,2025-12,36881.54,ENG-401,25000
+Engineering,Supplies,Office Supplies,2025-01,5744.95,ENG-401,25000
+Engineering,Supplies,Office Supplies,2025-02,5454.81,ENG-401,25000
+Engineering,Supplies,Office Supplies,2025-03,5699.09,ENG-401,25000
+Engineering,Supplies,Office Supplies,2025-04,5676.86,ENG-401,25000
+Engineering,Supplies,Office Supplies,2025-05,5582.86,ENG-401,25000
+Engineering,Supplies,Office Supplies,2025-06,5486.6,ENG-401,25000
+Engineering,Supplies,Office Supplies,2025-07,5658.15,ENG-401,25000
+Engineering,Supplies,Office Supplies,2025-08,5590.17,ENG-401,25000
+Engineering,Supplies,Office Supplies,2025-09,5676.29,ENG-401,25000
+Engineering,Supplies,Office Supplies,2025-10,5652.47,ENG-401,25000
+Engineering,Supplies,Office Supplies,2025-11,5831.0,ENG-401,25000
+Engineering,Supplies,Office Supplies,2025-12,5622.95,ENG-401,25000
+Engineering,Events,Team Events,2025-01,3648.75,ENG-401,25000
+Engineering,Events,Team Events,2025-02,5233.7,ENG-401,25000
+Engineering,Events,Team Events,2025-03,7482.78,ENG-401,25000
+Engineering,Events,Team Events,2025-04,9183.02,ENG-401,25000
+Engineering,Events,Team Events,2025-05,7574.43,ENG-401,25000
+Engineering,Events,Team Events,2025-06,6002.54,ENG-401,25000
+Engineering,Events,Team Events,2025-07,3834.02,ENG-401,25000
+Engineering,Events,Team Events,2025-08,5091.01,ENG-401,25000
+Engineering,Events,Team Events,2025-09,9561.08,ENG-401,25000
+Engineering,Events,Team Events,2025-10,10967.91,ENG-401,25000
+Engineering,Events,Team Events,2025-11,8870.3,ENG-401,25000
+Engineering,Events,Team Events,2025-12,4346.92,ENG-401,25000
+Engineering,Software,Security Audit Services,2025-01,15097.71,ENG-401,25000
+Engineering,Software,Security Audit Services,2025-02,14842.07,ENG-401,25000
+Engineering,Software,Security Audit Services,2025-03,14469.79,ENG-401,25000
+Engineering,Software,Security Audit Services,2025-04,14605.52,ENG-401,25000
+Engineering,Software,Security Audit Services,2025-05,15001.81,ENG-401,25000
+Engineering,Software,Security Audit Services,2025-06,15158.23,ENG-401,25000
+Engineering,Software,Security Audit Services,2025-07,15503.69,ENG-401,25000
+Engineering,Software,Security Audit Services,2025-08,15777.15,ENG-401,25000
+Engineering,Software,Security Audit Services,2025-09,15031.9,ENG-401,25000
+Engineering,Software,Security Audit Services,2025-10,14613.29,ENG-401,25000
+Engineering,Software,Security Audit Services,2025-11,14272.63,ENG-401,25000
+Engineering,Software,Security Audit Services,2025-12,14988.16,ENG-401,25000
+Engineering,Software,QA Automation Tools,2025-01,11001.51,ENG-401,25000
+Engineering,Software,QA Automation Tools,2025-02,11090.43,ENG-401,25000
+Engineering,Software,QA Automation Tools,2025-03,11046.43,ENG-401,25000
+Engineering,Software,QA Automation Tools,2025-04,11151.84,ENG-401,25000
+Engineering,Software,QA Automation Tools,2025-05,11421.76,ENG-401,25000
+Engineering,Software,QA Automation Tools,2025-06,11218.46,ENG-401,25000
+Engineering,Software,QA Automation Tools,2025-07,11147.85,ENG-401,25000
+Engineering,Software,QA Automation Tools,2025-08,10951.69,ENG-401,25000
+Engineering,Software,QA Automation Tools,2025-09,10808.76,ENG-401,25000
+Engineering,Software,QA Automation Tools,2025-10,11074.56,ENG-401,25000
+Engineering,Software,QA Automation Tools,2025-11,11171.3,ENG-401,25000
+Engineering,Software,QA Automation Tools,2025-12,11578.76,ENG-401,25000
+Engineering,Services,Technical Documentation,2025-01,9399.43,ENG-401,25000
+Engineering,Services,Technical Documentation,2025-02,9559.26,ENG-401,25000
+Engineering,Services,Technical Documentation,2025-03,9281.38,ENG-401,25000
+Engineering,Services,Technical Documentation,2025-04,9152.82,ENG-401,25000
+Engineering,Services,Technical Documentation,2025-05,9194.04,ENG-401,25000
+Engineering,Services,Technical Documentation,2025-06,9239.02,ENG-401,25000
+Engineering,Services,Technical Documentation,2025-07,9774.09,ENG-401,25000
+Engineering,Services,Technical Documentation,2025-08,9220.99,ENG-401,25000
+Engineering,Services,Technical Documentation,2025-09,9532.22,ENG-401,25000
+Engineering,Services,Technical Documentation,2025-10,9205.7,ENG-401,25000
+Engineering,Services,Technical Documentation,2025-11,9549.67,ENG-401,25000
+Engineering,Services,Technical Documentation,2025-12,9447.18,ENG-401,25000
+Engineering,Personnel,On-Call Compensation,2025-01,22205.22,ENG-401,25000
+Engineering,Personnel,On-Call Compensation,2025-02,22256.84,ENG-401,25000
+Engineering,Personnel,On-Call Compensation,2025-03,21983.29,ENG-401,25000
+Engineering,Personnel,On-Call Compensation,2025-04,22473.73,ENG-401,25000
+Engineering,Personnel,On-Call Compensation,2025-05,22072.3,ENG-401,25000
+Engineering,Personnel,On-Call Compensation,2025-06,21728.99,ENG-401,25000
+Engineering,Personnel,On-Call Compensation,2025-07,21705.68,ENG-401,25000
+Engineering,Personnel,On-Call Compensation,2025-08,22351.89,ENG-401,25000
+Engineering,Personnel,On-Call Compensation,2025-09,22978.49,ENG-401,25000
+Engineering,Personnel,On-Call Compensation,2025-10,22346.28,ENG-401,25000
+Engineering,Personnel,On-Call Compensation,2025-11,22222.15,ENG-401,25000
+Engineering,Personnel,On-Call Compensation,2025-12,22402.34,ENG-401,25000
+Engineering,Infrastructure,Data Storage & Backup,2025-01,44781.59,ENG-401,25000
+Engineering,Infrastructure,Data Storage & Backup,2025-02,43833.15,ENG-401,25000
+Engineering,Infrastructure,Data Storage & Backup,2025-03,43283.0,ENG-401,25000
+Engineering,Infrastructure,Data Storage & Backup,2025-04,44607.27,ENG-401,25000
+Engineering,Infrastructure,Data Storage & Backup,2025-05,44015.9,ENG-401,25000
+Engineering,Infrastructure,Data Storage & Backup,2025-06,44982.13,ENG-401,25000
+Engineering,Infrastructure,Data Storage & Backup,2025-07,43801.6,ENG-401,25000
+Engineering,Infrastructure,Data Storage & Backup,2025-08,42572.91,ENG-401,25000
+Engineering,Infrastructure,Data Storage & Backup,2025-09,42447.49,ENG-401,25000
+Engineering,Infrastructure,Data Storage & Backup,2025-10,45082.65,ENG-401,25000
+Engineering,Infrastructure,Data Storage & Backup,2025-11,45146.14,ENG-401,25000
+Engineering,Infrastructure,Data Storage & Backup,2025-12,43484.98,ENG-401,25000
+Sales,Personnel,Base Salaries - Account Executives,2025-01,176511.81,SAL-201,15000
+Sales,Personnel,Base Salaries - Account Executives,2025-02,183074.09,SAL-201,15000
+Sales,Personnel,Base Salaries - Account Executives,2025-03,173936.68,SAL-201,15000
+Sales,Personnel,Base Salaries - Account Executives,2025-04,174692.01,SAL-201,15000
+Sales,Personnel,Base Salaries - Account Executives,2025-05,180163.64,SAL-201,15000
+Sales,Personnel,Base Salaries - Account Executives,2025-06,176471.19,SAL-201,15000
+Sales,Personnel,Base Salaries - Account Executives,2025-07,177856.78,SAL-201,15000
+Sales,Personnel,Base Salaries - Account Executives,2025-08,177293.55,SAL-201,15000
+Sales,Personnel,Base Salaries - Account Executives,2025-09,179075.92,SAL-201,15000
+Sales,Personnel,Base Salaries - Account Executives,2025-10,182882.12,SAL-201,15000
+Sales,Personnel,Base Salaries - Account Executives,2025-11,178197.26,SAL-201,15000
+Sales,Personnel,Base Salaries - Account Executives,2025-12,180165.81,SAL-201,15000
+Sales,Personnel,Base Salaries - SDRs,2025-01,71309.39,SAL-201,15000
+Sales,Personnel,Base Salaries - SDRs,2025-02,74285.88,SAL-201,15000
+Sales,Personnel,Base Salaries - SDRs,2025-03,73104.31,SAL-201,15000
+Sales,Personnel,Base Salaries - SDRs,2025-04,72545.76,SAL-201,15000
+Sales,Personnel,Base Salaries - SDRs,2025-05,73052.37,SAL-201,15000
+Sales,Personnel,Base Salaries - SDRs,2025-06,73861.44,SAL-201,15000
+Sales,Personnel,Base Salaries - SDRs,2025-07,75720.43,SAL-201,15000
+Sales,Personnel,Base Salaries - SDRs,2025-08,72385.77,SAL-201,15000
+Sales,Personnel,Base Salaries - SDRs,2025-09,74403.89,SAL-201,15000
+Sales,Personnel,Base Salaries - SDRs,2025-10,73638.29,SAL-201,15000
+Sales,Personnel,Base Salaries - SDRs,2025-11,73871.03,SAL-201,15000
+Sales,Personnel,Base Salaries - SDRs,2025-12,75849.6,SAL-201,15000
+Sales,Compensation,Commission Payments,2025-01,120166.16,SAL-201,15000
+Sales,Compensation,Commission Payments,2025-02,129247.03,SAL-201,15000
+Sales,Compensation,Commission Payments,2025-03,160349.63,SAL-201,15000
+Sales,Compensation,Commission Payments,2025-04,117231.9,SAL-201,15000
+Sales,Compensation,Commission Payments,2025-05,125316.41,SAL-201,15000
+Sales,Compensation,Commission Payments,2025-06,161626.76,SAL-201,15000
+Sales,Compensation,Commission Payments,2025-07,119306.51,SAL-201,15000
+Sales,Compensation,Commission Payments,2025-08,123149.94,SAL-201,15000
+Sales,Compensation,Commission Payments,2025-09,161137.77,SAL-201,15000
+Sales,Compensation,Commission Payments,2025-10,119429.33,SAL-201,15000
+Sales,Compensation,Commission Payments,2025-11,132217.99,SAL-201,15000
+Sales,Compensation,Commission Payments,2025-12,166884.35,SAL-201,15000
+Sales,Software,CRM Software,2025-01,19224.57,SAL-201,15000
+Sales,Software,CRM Software,2025-02,19445.92,SAL-201,15000
+Sales,Software,CRM Software,2025-03,18985.88,SAL-201,15000
+Sales,Software,CRM Software,2025-04,19327.27,SAL-201,15000
+Sales,Software,CRM Software,2025-05,19681.79,SAL-201,15000
+Sales,Software,CRM Software,2025-06,20030.02,SAL-201,15000
+Sales,Software,CRM Software,2025-07,19273.14,SAL-201,15000
+Sales,Software,CRM Software,2025-08,19302.45,SAL-201,15000
+Sales,Software,CRM Software,2025-09,18718.39,SAL-201,15000
+Sales,Software,CRM Software,2025-10,19494.7,SAL-201,15000
+Sales,Software,CRM Software,2025-11,19142.75,SAL-201,15000
+Sales,Software,CRM Software,2025-12,19351.23,SAL-201,15000
+Sales,Travel,Travel - Client Visits,2025-01,32506.42,SAL-201,15000
+Sales,Travel,Travel - Client Visits,2025-02,42459.8,SAL-201,15000
+Sales,Travel,Travel - Client Visits,2025-03,50165.53,SAL-201,15000
+Sales,Travel,Travel - Client Visits,2025-04,55055.78,SAL-201,15000
+Sales,Travel,Travel - Client Visits,2025-05,49279.51,SAL-201,15000
+Sales,Travel,Travel - Client Visits,2025-06,36839.7,SAL-201,15000
+Sales,Travel,Travel - Client Visits,2025-07,27737.9,SAL-201,15000
+Sales,Travel,Travel - Client Visits,2025-08,34302.21,SAL-201,15000
+Sales,Travel,Travel - Client Visits,2025-09,55014.22,SAL-201,15000
+Sales,Travel,Travel - Client Visits,2025-10,55390.97,SAL-201,15000
+Sales,Travel,Travel - Client Visits,2025-11,51610.4,SAL-201,15000
+Sales,Travel,Travel - Client Visits,2025-12,38071.64,SAL-201,15000
+Sales,Entertainment,Entertainment & Meals,2025-01,16320.4,SAL-201,15000
+Sales,Entertainment,Entertainment & Meals,2025-02,15463.65,SAL-201,15000
+Sales,Entertainment,Entertainment & Meals,2025-03,15697.61,SAL-201,15000
+Sales,Entertainment,Entertainment & Meals,2025-04,16020.25,SAL-201,15000
+Sales,Entertainment,Entertainment & Meals,2025-05,15912.17,SAL-201,15000
+Sales,Entertainment,Entertainment & Meals,2025-06,15656.32,SAL-201,15000
+Sales,Entertainment,Entertainment & Meals,2025-07,15732.78,SAL-201,15000
+Sales,Entertainment,Entertainment & Meals,2025-08,15341.22,SAL-201,15000
+Sales,Entertainment,Entertainment & Meals,2025-09,15699.86,SAL-201,15000
+Sales,Entertainment,Entertainment & Meals,2025-10,15690.95,SAL-201,15000
+Sales,Entertainment,Entertainment & Meals,2025-11,15848.25,SAL-201,15000
+Sales,Entertainment,Entertainment & Meals,2025-12,15599.79,SAL-201,15000
+Sales,Events,Trade Show Fees,2025-01,17816.45,SAL-201,15000
+Sales,Events,Trade Show Fees,2025-02,25210.48,SAL-201,15000
+Sales,Events,Trade Show Fees,2025-03,35409.73,SAL-201,15000
+Sales,Events,Trade Show Fees,2025-04,42658.01,SAL-201,15000
+Sales,Events,Trade Show Fees,2025-05,35337.53,SAL-201,15000
+Sales,Events,Trade Show Fees,2025-06,28240.05,SAL-201,15000
+Sales,Events,Trade Show Fees,2025-07,17395.29,SAL-201,15000
+Sales,Events,Trade Show Fees,2025-08,24866.41,SAL-201,15000
+Sales,Events,Trade Show Fees,2025-09,45800.71,SAL-201,15000
+Sales,Events,Trade Show Fees,2025-10,55166.67,SAL-201,15000
+Sales,Events,Trade Show Fees,2025-11,43692.95,SAL-201,15000
+Sales,Events,Trade Show Fees,2025-12,21343.44,SAL-201,15000
+Sales,Software,Sales Enablement Tools,2025-01,12867.25,SAL-201,15000
+Sales,Software,Sales Enablement Tools,2025-02,12775.96,SAL-201,15000
+Sales,Software,Sales Enablement Tools,2025-03,13377.95,SAL-201,15000
+Sales,Software,Sales Enablement Tools,2025-04,13135.33,SAL-201,15000
+Sales,Software,Sales Enablement Tools,2025-05,13192.14,SAL-201,15000
+Sales,Software,Sales Enablement Tools,2025-06,12610.75,SAL-201,15000
+Sales,Software,Sales Enablement Tools,2025-07,13309.04,SAL-201,15000
+Sales,Software,Sales Enablement Tools,2025-08,13185.42,SAL-201,15000
+Sales,Software,Sales Enablement Tools,2025-09,12776.47,SAL-201,15000
+Sales,Software,Sales Enablement Tools,2025-10,12943.44,SAL-201,15000
+Sales,Software,Sales Enablement Tools,2025-11,13135.58,SAL-201,15000
+Sales,Software,Sales Enablement Tools,2025-12,13080.38,SAL-201,15000
+Sales,Services,Lead Database Subscriptions,2025-01,25881.21,SAL-201,15000
+Sales,Services,Lead Database Subscriptions,2025-02,25979.45,SAL-201,15000
+Sales,Services,Lead Database Subscriptions,2025-03,25902.14,SAL-201,15000
+Sales,Services,Lead Database Subscriptions,2025-04,26112.77,SAL-201,15000
+Sales,Services,Lead Database Subscriptions,2025-05,26799.49,SAL-201,15000
+Sales,Services,Lead Database Subscriptions,2025-06,24696.96,SAL-201,15000
+Sales,Services,Lead Database Subscriptions,2025-07,25910.01,SAL-201,15000
+Sales,Services,Lead Database Subscriptions,2025-08,26125.24,SAL-201,15000
+Sales,Services,Lead Database Subscriptions,2025-09,26187.45,SAL-201,15000
+Sales,Services,Lead Database Subscriptions,2025-10,25839.69,SAL-201,15000
+Sales,Services,Lead Database Subscriptions,2025-11,25118.67,SAL-201,15000
+Sales,Services,Lead Database Subscriptions,2025-12,26204.11,SAL-201,15000
+Sales,Services,Proposal Design Services,2025-01,7552.19,SAL-201,15000
+Sales,Services,Proposal Design Services,2025-02,7076.06,SAL-201,15000
+Sales,Services,Proposal Design Services,2025-03,7426.12,SAL-201,15000
+Sales,Services,Proposal Design Services,2025-04,7252.04,SAL-201,15000
+Sales,Services,Proposal Design Services,2025-05,7291.05,SAL-201,15000
+Sales,Services,Proposal Design Services,2025-06,7146.28,SAL-201,15000
+Sales,Services,Proposal Design Services,2025-07,7251.17,SAL-201,15000
+Sales,Services,Proposal Design Services,2025-08,7489.81,SAL-201,15000
+Sales,Services,Proposal Design Services,2025-09,7385.07,SAL-201,15000
+Sales,Services,Proposal Design Services,2025-10,7552.92,SAL-201,15000
+Sales,Services,Proposal Design Services,2025-11,7471.9,SAL-201,15000
+Sales,Services,Proposal Design Services,2025-12,7364.11,SAL-201,15000
+Sales,Infrastructure,Demo Environment Hosting,2025-01,12522.03,SAL-201,15000
+Sales,Infrastructure,Demo Environment Hosting,2025-02,12206.24,SAL-201,15000
+Sales,Infrastructure,Demo Environment Hosting,2025-03,12300.37,SAL-201,15000
+Sales,Infrastructure,Demo Environment Hosting,2025-04,12028.23,SAL-201,15000
+Sales,Infrastructure,Demo Environment Hosting,2025-05,12116.1,SAL-201,15000
+Sales,Infrastructure,Demo Environment Hosting,2025-06,11931.22,SAL-201,15000
+Sales,Infrastructure,Demo Environment Hosting,2025-07,12339.48,SAL-201,15000
+Sales,Infrastructure,Demo Environment Hosting,2025-08,11814.85,SAL-201,15000
+Sales,Infrastructure,Demo Environment Hosting,2025-09,12289.33,SAL-201,15000
+Sales,Infrastructure,Demo Environment Hosting,2025-10,12053.86,SAL-201,15000
+Sales,Infrastructure,Demo Environment Hosting,2025-11,12383.44,SAL-201,15000
+Sales,Infrastructure,Demo Environment Hosting,2025-12,12281.71,SAL-201,15000
+Sales,Communication,Phone & Communication,2025-01,8524.5,SAL-201,15000
+Sales,Communication,Phone & Communication,2025-02,8345.21,SAL-201,15000
+Sales,Communication,Phone & Communication,2025-03,7966.4,SAL-201,15000
+Sales,Communication,Phone & Communication,2025-04,8213.99,SAL-201,15000
+Sales,Communication,Phone & Communication,2025-05,8032.2,SAL-201,15000
+Sales,Communication,Phone & Communication,2025-06,8139.74,SAL-201,15000
+Sales,Communication,Phone & Communication,2025-07,8473.6,SAL-201,15000
+Sales,Communication,Phone & Communication,2025-08,8329.87,SAL-201,15000
+Sales,Communication,Phone & Communication,2025-09,8110.03,SAL-201,15000
+Sales,Communication,Phone & Communication,2025-10,8058.24,SAL-201,15000
+Sales,Communication,Phone & Communication,2025-11,8230.39,SAL-201,15000
+Sales,Communication,Phone & Communication,2025-12,8024.88,SAL-201,15000
+Sales,Travel,Territory Development,2025-01,13495.55,SAL-201,15000
+Sales,Travel,Territory Development,2025-02,17697.25,SAL-201,15000
+Sales,Travel,Territory Development,2025-03,21992.52,SAL-201,15000
+Sales,Travel,Territory Development,2025-04,23735.51,SAL-201,15000
+Sales,Travel,Territory Development,2025-05,18646.15,SAL-201,15000
+Sales,Travel,Territory Development,2025-06,15728.5,SAL-201,15000
+Sales,Travel,Territory Development,2025-07,11741.89,SAL-201,15000
+Sales,Travel,Territory Development,2025-08,13792.4,SAL-201,15000
+Sales,Travel,Territory Development,2025-09,22190.67,SAL-201,15000
+Sales,Travel,Territory Development,2025-10,22482.34,SAL-201,15000
+Sales,Travel,Territory Development,2025-11,21241.71,SAL-201,15000
+Sales,Travel,Territory Development,2025-12,15818.09,SAL-201,15000
+Sales,Training,Sales Training Programs,2025-01,17603.32,SAL-201,15000
+Sales,Training,Sales Training Programs,2025-02,14396.11,SAL-201,15000
+Sales,Training,Sales Training Programs,2025-03,11269.08,SAL-201,15000
+Sales,Training,Sales Training Programs,2025-04,12798.09,SAL-201,15000
+Sales,Training,Sales Training Programs,2025-05,16588.39,SAL-201,15000
+Sales,Training,Sales Training Programs,2025-06,14210.92,SAL-201,15000
+Sales,Training,Sales Training Programs,2025-07,9997.5,SAL-201,15000
+Sales,Training,Sales Training Programs,2025-08,11238.77,SAL-201,15000
+Sales,Training,Sales Training Programs,2025-09,15453.78,SAL-201,15000
+Sales,Training,Sales Training Programs,2025-10,14058.94,SAL-201,15000
+Sales,Training,Sales Training Programs,2025-11,12367.7,SAL-201,15000
+Sales,Training,Sales Training Programs,2025-12,11153.66,SAL-201,15000
+Sales,Compensation,Incentive Programs,2025-01,24405.32,SAL-201,15000
+Sales,Compensation,Incentive Programs,2025-02,26118.75,SAL-201,15000
+Sales,Compensation,Incentive Programs,2025-03,33782.28,SAL-201,15000
+Sales,Compensation,Incentive Programs,2025-04,23961.74,SAL-201,15000
+Sales,Compensation,Incentive Programs,2025-05,25855.2,SAL-201,15000
+Sales,Compensation,Incentive Programs,2025-06,34101.32,SAL-201,15000
+Sales,Compensation,Incentive Programs,2025-07,24115.94,SAL-201,15000
+Sales,Compensation,Incentive Programs,2025-08,25493.75,SAL-201,15000
+Sales,Compensation,Incentive Programs,2025-09,33254.01,SAL-201,15000
+Sales,Compensation,Incentive Programs,2025-10,24893.41,SAL-201,15000
+Sales,Compensation,Incentive Programs,2025-11,25925.92,SAL-201,15000
+Sales,Compensation,Incentive Programs,2025-12,34000.3,SAL-201,15000
+Sales,Software,Contract Management Tools,2025-01,9518.7,SAL-201,15000
+Sales,Software,Contract Management Tools,2025-02,9515.89,SAL-201,15000
+Sales,Software,Contract Management Tools,2025-03,9462.05,SAL-201,15000
+Sales,Software,Contract Management Tools,2025-04,9793.99,SAL-201,15000
+Sales,Software,Contract Management Tools,2025-05,9319.93,SAL-201,15000
+Sales,Software,Contract Management Tools,2025-06,8983.34,SAL-201,15000
+Sales,Software,Contract Management Tools,2025-07,9658.6,SAL-201,15000
+Sales,Software,Contract Management Tools,2025-08,9272.67,SAL-201,15000
+Sales,Software,Contract Management Tools,2025-09,9378.52,SAL-201,15000
+Sales,Software,Contract Management Tools,2025-10,9603.44,SAL-201,15000
+Sales,Software,Contract Management Tools,2025-11,9058.44,SAL-201,15000
+Sales,Software,Contract Management Tools,2025-12,9124.07,SAL-201,15000
+Marketing,Personnel,Base Salaries,2025-01,126417.46,MKT-301,20000
+Marketing,Personnel,Base Salaries,2025-02,128525.72,MKT-301,20000
+Marketing,Personnel,Base Salaries,2025-03,131748.33,MKT-301,20000
+Marketing,Personnel,Base Salaries,2025-04,131969.18,MKT-301,20000
+Marketing,Personnel,Base Salaries,2025-05,131321.63,MKT-301,20000
+Marketing,Personnel,Base Salaries,2025-06,126909.86,MKT-301,20000
+Marketing,Personnel,Base Salaries,2025-07,124566.01,MKT-301,20000
+Marketing,Personnel,Base Salaries,2025-08,130741.97,MKT-301,20000
+Marketing,Personnel,Base Salaries,2025-09,129367.72,MKT-301,20000
+Marketing,Personnel,Base Salaries,2025-10,131799.92,MKT-301,20000
+Marketing,Personnel,Base Salaries,2025-11,132433.5,MKT-301,20000
+Marketing,Personnel,Base Salaries,2025-12,130961.09,MKT-301,20000
+Marketing,Services,Contractor & Agency Fees,2025-01,62138.86,MKT-301,20000
+Marketing,Services,Contractor & Agency Fees,2025-02,61488.93,MKT-301,20000
+Marketing,Services,Contractor & Agency Fees,2025-03,61857.22,MKT-301,20000
+Marketing,Services,Contractor & Agency Fees,2025-04,60345.7,MKT-301,20000
+Marketing,Services,Contractor & Agency Fees,2025-05,60988.46,MKT-301,20000
+Marketing,Services,Contractor & Agency Fees,2025-06,61449.22,MKT-301,20000
+Marketing,Services,Contractor & Agency Fees,2025-07,62212.8,MKT-301,20000
+Marketing,Services,Contractor & Agency Fees,2025-08,60726.33,MKT-301,20000
+Marketing,Services,Contractor & Agency Fees,2025-09,61846.33,MKT-301,20000
+Marketing,Services,Contractor & Agency Fees,2025-10,60882.9,MKT-301,20000
+Marketing,Services,Contractor & Agency Fees,2025-11,61064.44,MKT-301,20000
+Marketing,Services,Contractor & Agency Fees,2025-12,62223.8,MKT-301,20000
+Marketing,Advertising,Digital Advertising,2025-01,79729.93,MKT-301,20000
+Marketing,Advertising,Digital Advertising,2025-02,90997.67,MKT-301,20000
+Marketing,Advertising,Digital Advertising,2025-03,100722.98,MKT-301,20000
+Marketing,Advertising,Digital Advertising,2025-04,108850.95,MKT-301,20000
+Marketing,Advertising,Digital Advertising,2025-05,102391.92,MKT-301,20000
+Marketing,Advertising,Digital Advertising,2025-06,94820.24,MKT-301,20000
+Marketing,Advertising,Digital Advertising,2025-07,82566.86,MKT-301,20000
+Marketing,Advertising,Digital Advertising,2025-08,93789.55,MKT-301,20000
+Marketing,Advertising,Digital Advertising,2025-09,116667.34,MKT-301,20000
+Marketing,Advertising,Digital Advertising,2025-10,127867.53,MKT-301,20000
+Marketing,Advertising,Digital Advertising,2025-11,134753.41,MKT-301,20000
+Marketing,Advertising,Digital Advertising,2025-12,117271.05,MKT-301,20000
+Marketing,Content,Content Production,2025-01,35381.74,MKT-301,20000
+Marketing,Content,Content Production,2025-02,34725.18,MKT-301,20000
+Marketing,Content,Content Production,2025-03,34896.82,MKT-301,20000
+Marketing,Content,Content Production,2025-04,34270.91,MKT-301,20000
+Marketing,Content,Content Production,2025-05,34689.35,MKT-301,20000
+Marketing,Content,Content Production,2025-06,35063.79,MKT-301,20000
+Marketing,Content,Content Production,2025-07,35884.27,MKT-301,20000
+Marketing,Content,Content Production,2025-08,36532.1,MKT-301,20000
+Marketing,Content,Content Production,2025-09,34340.39,MKT-301,20000
+Marketing,Content,Content Production,2025-10,35594.13,MKT-301,20000
+Marketing,Content,Content Production,2025-11,34581.7,MKT-301,20000
+Marketing,Content,Content Production,2025-12,35651.96,MKT-301,20000
+Marketing,Events,Event Sponsorships,2025-01,23575.53,MKT-301,20000
+Marketing,Events,Event Sponsorships,2025-02,31880.71,MKT-301,20000
+Marketing,Events,Event Sponsorships,2025-03,48152.7,MKT-301,20000
+Marketing,Events,Event Sponsorships,2025-04,56043.57,MKT-301,20000
+Marketing,Events,Event Sponsorships,2025-05,46770.2,MKT-301,20000
+Marketing,Events,Event Sponsorships,2025-06,37010.84,MKT-301,20000
+Marketing,Events,Event Sponsorships,2025-07,23328.19,MKT-301,20000
+Marketing,Events,Event Sponsorships,2025-08,33375.7,MKT-301,20000
+Marketing,Events,Event Sponsorships,2025-09,61224.89,MKT-301,20000
+Marketing,Events,Event Sponsorships,2025-10,71378.62,MKT-301,20000
+Marketing,Events,Event Sponsorships,2025-11,57140.64,MKT-301,20000
+Marketing,Events,Event Sponsorships,2025-12,29114.21,MKT-301,20000
+Marketing,Services,PR & Communications,2025-01,25854.86,MKT-301,20000
+Marketing,Services,PR & Communications,2025-02,25264.38,MKT-301,20000
+Marketing,Services,PR & Communications,2025-03,26589.0,MKT-301,20000
+Marketing,Services,PR & Communications,2025-04,25860.74,MKT-301,20000
+Marketing,Services,PR & Communications,2025-05,26613.66,MKT-301,20000
+Marketing,Services,PR & Communications,2025-06,26232.95,MKT-301,20000
+Marketing,Services,PR & Communications,2025-07,25965.05,MKT-301,20000
+Marketing,Services,PR & Communications,2025-08,26214.93,MKT-301,20000
+Marketing,Services,PR & Communications,2025-09,27049.16,MKT-301,20000
+Marketing,Services,PR & Communications,2025-10,27114.75,MKT-301,20000
+Marketing,Services,PR & Communications,2025-11,26069.46,MKT-301,20000
+Marketing,Services,PR & Communications,2025-12,26116.74,MKT-301,20000
+Marketing,Software,Marketing Automation Software,2025-01,16914.75,MKT-301,20000
+Marketing,Software,Marketing Automation Software,2025-02,16278.28,MKT-301,20000
+Marketing,Software,Marketing Automation Software,2025-03,16668.64,MKT-301,20000
+Marketing,Software,Marketing Automation Software,2025-04,16549.77,MKT-301,20000
+Marketing,Software,Marketing Automation Software,2025-05,16662.29,MKT-301,20000
+Marketing,Software,Marketing Automation Software,2025-06,16282.35,MKT-301,20000
+Marketing,Software,Marketing Automation Software,2025-07,16031.92,MKT-301,20000
+Marketing,Software,Marketing Automation Software,2025-08,15871.83,MKT-301,20000
+Marketing,Software,Marketing Automation Software,2025-09,16188.29,MKT-301,20000
+Marketing,Software,Marketing Automation Software,2025-10,16406.44,MKT-301,20000
+Marketing,Software,Marketing Automation Software,2025-11,16461.24,MKT-301,20000
+Marketing,Software,Marketing Automation Software,2025-12,17199.88,MKT-301,20000
+Marketing,Software,Analytics Tools,2025-01,11456.26,MKT-301,20000
+Marketing,Software,Analytics Tools,2025-02,10992.66,MKT-301,20000
+Marketing,Software,Analytics Tools,2025-03,11286.28,MKT-301,20000
+Marketing,Software,Analytics Tools,2025-04,11117.08,MKT-301,20000
+Marketing,Software,Analytics Tools,2025-05,11144.59,MKT-301,20000
+Marketing,Software,Analytics Tools,2025-06,11249.88,MKT-301,20000
+Marketing,Software,Analytics Tools,2025-07,11347.13,MKT-301,20000
+Marketing,Software,Analytics Tools,2025-08,11132.28,MKT-301,20000
+Marketing,Software,Analytics Tools,2025-09,11446.81,MKT-301,20000
+Marketing,Software,Analytics Tools,2025-10,10952.35,MKT-301,20000
+Marketing,Software,Analytics Tools,2025-11,11209.75,MKT-301,20000
+Marketing,Software,Analytics Tools,2025-12,11790.65,MKT-301,20000
+Marketing,Creative,Brand Assets & Design,2025-01,22416.23,MKT-301,20000
+Marketing,Creative,Brand Assets & Design,2025-02,22956.36,MKT-301,20000
+Marketing,Creative,Brand Assets & Design,2025-03,22357.52,MKT-301,20000
+Marketing,Creative,Brand Assets & Design,2025-04,22575.89,MKT-301,20000
+Marketing,Creative,Brand Assets & Design,2025-05,22291.32,MKT-301,20000
+Marketing,Creative,Brand Assets & Design,2025-06,22240.61,MKT-301,20000
+Marketing,Creative,Brand Assets & Design,2025-07,21968.76,MKT-301,20000
+Marketing,Creative,Brand Assets & Design,2025-08,22508.72,MKT-301,20000
+Marketing,Creative,Brand Assets & Design,2025-09,21936.6,MKT-301,20000
+Marketing,Creative,Brand Assets & Design,2025-10,22613.74,MKT-301,20000
+Marketing,Creative,Brand Assets & Design,2025-11,22801.07,MKT-301,20000
+Marketing,Creative,Brand Assets & Design,2025-12,22480.26,MKT-301,20000
+Marketing,Software,Social Media Management,2025-01,7407.35,MKT-301,20000
+Marketing,Software,Social Media Management,2025-02,7517.64,MKT-301,20000
+Marketing,Software,Social Media Management,2025-03,7404.01,MKT-301,20000
+Marketing,Software,Social Media Management,2025-04,7589.4,MKT-301,20000
+Marketing,Software,Social Media Management,2025-05,7177.12,MKT-301,20000
+Marketing,Software,Social Media Management,2025-06,7399.99,MKT-301,20000
+Marketing,Software,Social Media Management,2025-07,7153.37,MKT-301,20000
+Marketing,Software,Social Media Management,2025-08,7227.24,MKT-301,20000
+Marketing,Software,Social Media Management,2025-09,7653.22,MKT-301,20000
+Marketing,Software,Social Media Management,2025-10,7583.38,MKT-301,20000
+Marketing,Software,Social Media Management,2025-11,7342.8,MKT-301,20000
+Marketing,Software,Social Media Management,2025-12,7226.13,MKT-301,20000
+Marketing,Software,SEO/SEM Tools,2025-01,8803.47,MKT-301,20000
+Marketing,Software,SEO/SEM Tools,2025-02,9256.61,MKT-301,20000
+Marketing,Software,SEO/SEM Tools,2025-03,9811.35,MKT-301,20000
+Marketing,Software,SEO/SEM Tools,2025-04,9439.73,MKT-301,20000
+Marketing,Software,SEO/SEM Tools,2025-05,9253.6,MKT-301,20000
+Marketing,Software,SEO/SEM Tools,2025-06,9445.38,MKT-301,20000
+Marketing,Software,SEO/SEM Tools,2025-07,9066.17,MKT-301,20000
+Marketing,Software,SEO/SEM Tools,2025-08,9302.68,MKT-301,20000
+Marketing,Software,SEO/SEM Tools,2025-09,9376.95,MKT-301,20000
+Marketing,Software,SEO/SEM Tools,2025-10,9342.22,MKT-301,20000
+Marketing,Software,SEO/SEM Tools,2025-11,9506.35,MKT-301,20000
+Marketing,Software,SEO/SEM Tools,2025-12,9422.84,MKT-301,20000
+Marketing,Software,Webinar Platform,2025-01,5725.52,MKT-301,20000
+Marketing,Software,Webinar Platform,2025-02,5572.21,MKT-301,20000
+Marketing,Software,Webinar Platform,2025-03,5751.45,MKT-301,20000
+Marketing,Software,Webinar Platform,2025-04,5834.07,MKT-301,20000
+Marketing,Software,Webinar Platform,2025-05,5540.37,MKT-301,20000
+Marketing,Software,Webinar Platform,2025-06,5549.69,MKT-301,20000
+Marketing,Software,Webinar Platform,2025-07,5800.94,MKT-301,20000
+Marketing,Software,Webinar Platform,2025-08,5628.38,MKT-301,20000
+Marketing,Software,Webinar Platform,2025-09,5808.63,MKT-301,20000
+Marketing,Software,Webinar Platform,2025-10,5599.99,MKT-301,20000
+Marketing,Software,Webinar Platform,2025-11,5814.42,MKT-301,20000
+Marketing,Software,Webinar Platform,2025-12,5664.86,MKT-301,20000
+Marketing,Supplies,Print Materials,2025-01,3819.63,MKT-301,20000
+Marketing,Supplies,Print Materials,2025-02,3918.92,MKT-301,20000
+Marketing,Supplies,Print Materials,2025-03,3772.51,MKT-301,20000
+Marketing,Supplies,Print Materials,2025-04,3728.47,MKT-301,20000
+Marketing,Supplies,Print Materials,2025-05,3765.91,MKT-301,20000
+Marketing,Supplies,Print Materials,2025-06,3834.38,MKT-301,20000
+Marketing,Supplies,Print Materials,2025-07,3681.0,MKT-301,20000
+Marketing,Supplies,Print Materials,2025-08,3848.45,MKT-301,20000
+Marketing,Supplies,Print Materials,2025-09,3759.05,MKT-301,20000
+Marketing,Supplies,Print Materials,2025-10,3887.23,MKT-301,20000
+Marketing,Supplies,Print Materials,2025-11,3618.04,MKT-301,20000
+Marketing,Supplies,Print Materials,2025-12,3740.22,MKT-301,20000
+Marketing,Services,Market Research,2025-01,18882.54,MKT-301,20000
+Marketing,Services,Market Research,2025-02,19218.75,MKT-301,20000
+Marketing,Services,Market Research,2025-03,19638.46,MKT-301,20000
+Marketing,Services,Market Research,2025-04,19471.62,MKT-301,20000
+Marketing,Services,Market Research,2025-05,19442.64,MKT-301,20000
+Marketing,Services,Market Research,2025-06,19479.45,MKT-301,20000
+Marketing,Services,Market Research,2025-07,19621.16,MKT-301,20000
+Marketing,Services,Market Research,2025-08,19147.5,MKT-301,20000
+Marketing,Services,Market Research,2025-09,19817.93,MKT-301,20000
+Marketing,Services,Market Research,2025-10,19800.66,MKT-301,20000
+Marketing,Services,Market Research,2025-11,19692.15,MKT-301,20000
+Marketing,Services,Market Research,2025-12,19759.18,MKT-301,20000
+Marketing,Supplies,Swag & Promotional Items,2025-01,10344.3,MKT-301,20000
+Marketing,Supplies,Swag & Promotional Items,2025-02,10701.88,MKT-301,20000
+Marketing,Supplies,Swag & Promotional Items,2025-03,10265.42,MKT-301,20000
+Marketing,Supplies,Swag & Promotional Items,2025-04,10220.18,MKT-301,20000
+Marketing,Supplies,Swag & Promotional Items,2025-05,10128.36,MKT-301,20000
+Marketing,Supplies,Swag & Promotional Items,2025-06,10071.03,MKT-301,20000
+Marketing,Supplies,Swag & Promotional Items,2025-07,10027.39,MKT-301,20000
+Marketing,Supplies,Swag & Promotional Items,2025-08,10100.54,MKT-301,20000
+Marketing,Supplies,Swag & Promotional Items,2025-09,10268.8,MKT-301,20000
+Marketing,Supplies,Swag & Promotional Items,2025-10,10352.09,MKT-301,20000
+Marketing,Supplies,Swag & Promotional Items,2025-11,10293.85,MKT-301,20000
+Marketing,Supplies,Swag & Promotional Items,2025-12,10125.89,MKT-301,20000
+Marketing,Creative,Photography & Video,2025-01,15176.74,MKT-301,20000
+Marketing,Creative,Photography & Video,2025-02,15128.8,MKT-301,20000
+Marketing,Creative,Photography & Video,2025-03,14860.73,MKT-301,20000
+Marketing,Creative,Photography & Video,2025-04,14713.66,MKT-301,20000
+Marketing,Creative,Photography & Video,2025-05,15071.86,MKT-301,20000
+Marketing,Creative,Photography & Video,2025-06,14964.38,MKT-301,20000
+Marketing,Creative,Photography & Video,2025-07,14476.55,MKT-301,20000
+Marketing,Creative,Photography & Video,2025-08,14888.06,MKT-301,20000
+Marketing,Creative,Photography & Video,2025-09,14986.46,MKT-301,20000
+Marketing,Creative,Photography & Video,2025-10,14640.07,MKT-301,20000
+Marketing,Creative,Photography & Video,2025-11,14964.94,MKT-301,20000
+Marketing,Creative,Photography & Video,2025-12,14474.55,MKT-301,20000
+Operations,Personnel,Base Salaries,2025-01,105624.2,OPS-501,10000
+Operations,Personnel,Base Salaries,2025-02,105442.66,OPS-501,10000
+Operations,Personnel,Base Salaries,2025-03,102355.45,OPS-501,10000
+Operations,Personnel,Base Salaries,2025-04,103622.81,OPS-501,10000
+Operations,Personnel,Base Salaries,2025-05,97916.59,OPS-501,10000
+Operations,Personnel,Base Salaries,2025-06,100495.81,OPS-501,10000
+Operations,Personnel,Base Salaries,2025-07,102270.55,OPS-501,10000
+Operations,Personnel,Base Salaries,2025-08,100669.09,OPS-501,10000
+Operations,Personnel,Base Salaries,2025-09,104344.87,OPS-501,10000
+Operations,Personnel,Base Salaries,2025-10,106984.44,OPS-501,10000
+Operations,Personnel,Base Salaries,2025-11,100454.12,OPS-501,10000
+Operations,Personnel,Base Salaries,2025-12,101151.92,OPS-501,10000
+Operations,Facilities,Facilities & Rent,2025-01,72606.97,OPS-501,10000
+Operations,Facilities,Facilities & Rent,2025-02,74595.27,OPS-501,10000
+Operations,Facilities,Facilities & Rent,2025-03,70499.93,OPS-501,10000
+Operations,Facilities,Facilities & Rent,2025-04,72626.61,OPS-501,10000
+Operations,Facilities,Facilities & Rent,2025-05,74899.05,OPS-501,10000
+Operations,Facilities,Facilities & Rent,2025-06,69879.32,OPS-501,10000
+Operations,Facilities,Facilities & Rent,2025-07,70415.09,OPS-501,10000
+Operations,Facilities,Facilities & Rent,2025-08,71654.41,OPS-501,10000
+Operations,Facilities,Facilities & Rent,2025-09,71514.24,OPS-501,10000
+Operations,Facilities,Facilities & Rent,2025-10,73441.15,OPS-501,10000
+Operations,Facilities,Facilities & Rent,2025-11,72615.95,OPS-501,10000
+Operations,Facilities,Facilities & Rent,2025-12,69701.25,OPS-501,10000
+Operations,Facilities,Utilities,2025-01,13192.94,OPS-501,10000
+Operations,Facilities,Utilities,2025-02,12907.5,OPS-501,10000
+Operations,Facilities,Utilities,2025-03,13391.18,OPS-501,10000
+Operations,Facilities,Utilities,2025-04,12894.43,OPS-501,10000
+Operations,Facilities,Utilities,2025-05,12892.07,OPS-501,10000
+Operations,Facilities,Utilities,2025-06,13199.66,OPS-501,10000
+Operations,Facilities,Utilities,2025-07,13257.58,OPS-501,10000
+Operations,Facilities,Utilities,2025-08,13175.36,OPS-501,10000
+Operations,Facilities,Utilities,2025-09,12618.11,OPS-501,10000
+Operations,Facilities,Utilities,2025-10,13198.85,OPS-501,10000
+Operations,Facilities,Utilities,2025-11,12788.21,OPS-501,10000
+Operations,Facilities,Utilities,2025-12,13119.78,OPS-501,10000
+Operations,Insurance,Insurance,2025-01,18985.22,OPS-501,10000
+Operations,Insurance,Insurance,2025-02,19716.1,OPS-501,10000
+Operations,Insurance,Insurance,2025-03,19226.42,OPS-501,10000
+Operations,Insurance,Insurance,2025-04,19040.37,OPS-501,10000
+Operations,Insurance,Insurance,2025-05,19820.65,OPS-501,10000
+Operations,Insurance,Insurance,2025-06,19636.11,OPS-501,10000
+Operations,Insurance,Insurance,2025-07,19301.7,OPS-501,10000
+Operations,Insurance,Insurance,2025-08,20108.84,OPS-501,10000
+Operations,Insurance,Insurance,2025-09,19369.45,OPS-501,10000
+Operations,Insurance,Insurance,2025-10,19554.22,OPS-501,10000
+Operations,Insurance,Insurance,2025-11,19646.77,OPS-501,10000
+Operations,Insurance,Insurance,2025-12,19299.48,OPS-501,10000
+Operations,Maintenance,Equipment Maintenance,2025-01,26278.64,OPS-501,10000
+Operations,Maintenance,Equipment Maintenance,2025-02,25755.58,OPS-501,10000
+Operations,Maintenance,Equipment Maintenance,2025-03,25819.01,OPS-501,10000
+Operations,Maintenance,Equipment Maintenance,2025-04,26742.82,OPS-501,10000
+Operations,Maintenance,Equipment Maintenance,2025-05,25491.53,OPS-501,10000
+Operations,Maintenance,Equipment Maintenance,2025-06,24777.08,OPS-501,10000
+Operations,Maintenance,Equipment Maintenance,2025-07,26872.09,OPS-501,10000
+Operations,Maintenance,Equipment Maintenance,2025-08,27360.68,OPS-501,10000
+Operations,Maintenance,Equipment Maintenance,2025-09,25822.32,OPS-501,10000
+Operations,Maintenance,Equipment Maintenance,2025-10,25024.89,OPS-501,10000
+Operations,Maintenance,Equipment Maintenance,2025-11,25871.67,OPS-501,10000
+Operations,Maintenance,Equipment Maintenance,2025-12,25884.31,OPS-501,10000
+Operations,Logistics,Shipping & Logistics,2025-01,47136.94,OPS-501,10000
+Operations,Logistics,Shipping & Logistics,2025-02,46263.03,OPS-501,10000
+Operations,Logistics,Shipping & Logistics,2025-03,47865.12,OPS-501,10000
+Operations,Logistics,Shipping & Logistics,2025-04,47813.03,OPS-501,10000
+Operations,Logistics,Shipping & Logistics,2025-05,45902.46,OPS-501,10000
+Operations,Logistics,Shipping & Logistics,2025-06,47978.34,OPS-501,10000
+Operations,Logistics,Shipping & Logistics,2025-07,49259.19,OPS-501,10000
+Operations,Logistics,Shipping & Logistics,2025-08,47479.4,OPS-501,10000
+Operations,Logistics,Shipping & Logistics,2025-09,46997.44,OPS-501,10000
+Operations,Logistics,Shipping & Logistics,2025-10,47182.28,OPS-501,10000
+Operations,Logistics,Shipping & Logistics,2025-11,47898.9,OPS-501,10000
+Operations,Logistics,Shipping & Logistics,2025-12,45678.87,OPS-501,10000
+Operations,Supplies,Warehouse Supplies,2025-01,10317.14,OPS-501,10000
+Operations,Supplies,Warehouse Supplies,2025-02,10203.03,OPS-501,10000
+Operations,Supplies,Warehouse Supplies,2025-03,10663.37,OPS-501,10000
+Operations,Supplies,Warehouse Supplies,2025-04,10247.51,OPS-501,10000
+Operations,Supplies,Warehouse Supplies,2025-05,10626.36,OPS-501,10000
+Operations,Supplies,Warehouse Supplies,2025-06,10056.33,OPS-501,10000
+Operations,Supplies,Warehouse Supplies,2025-07,10404.11,OPS-501,10000
+Operations,Supplies,Warehouse Supplies,2025-08,10349.02,OPS-501,10000
+Operations,Supplies,Warehouse Supplies,2025-09,10104.6,OPS-501,10000
+Operations,Supplies,Warehouse Supplies,2025-10,10319.82,OPS-501,10000
+Operations,Supplies,Warehouse Supplies,2025-11,10532.71,OPS-501,10000
+Operations,Supplies,Warehouse Supplies,2025-12,10216.74,OPS-501,10000
+Operations,Vehicles,Fleet Management,2025-01,18848.19,OPS-501,10000
+Operations,Vehicles,Fleet Management,2025-02,19501.48,OPS-501,10000
+Operations,Vehicles,Fleet Management,2025-03,19156.24,OPS-501,10000
+Operations,Vehicles,Fleet Management,2025-04,19374.76,OPS-501,10000
+Operations,Vehicles,Fleet Management,2025-05,19476.5,OPS-501,10000
+Operations,Vehicles,Fleet Management,2025-06,18842.84,OPS-501,10000
+Operations,Vehicles,Fleet Management,2025-07,18877.96,OPS-501,10000
+Operations,Vehicles,Fleet Management,2025-08,19696.42,OPS-501,10000
+Operations,Vehicles,Fleet Management,2025-09,19304.39,OPS-501,10000
+Operations,Vehicles,Fleet Management,2025-10,18507.66,OPS-501,10000
+Operations,Vehicles,Fleet Management,2025-11,19814.55,OPS-501,10000
+Operations,Vehicles,Fleet Management,2025-12,19614.6,OPS-501,10000
+Operations,Compliance,Health & Safety,2025-01,7368.28,OPS-501,10000
+Operations,Compliance,Health & Safety,2025-02,7278.13,OPS-501,10000
+Operations,Compliance,Health & Safety,2025-03,7599.95,OPS-501,10000
+Operations,Compliance,Health & Safety,2025-04,7527.23,OPS-501,10000
+Operations,Compliance,Health & Safety,2025-05,7831.2,OPS-501,10000
+Operations,Compliance,Health & Safety,2025-06,7537.82,OPS-501,10000
+Operations,Compliance,Health & Safety,2025-07,7532.96,OPS-501,10000
+Operations,Compliance,Health & Safety,2025-08,7450.04,OPS-501,10000
+Operations,Compliance,Health & Safety,2025-09,7597.11,OPS-501,10000
+Operations,Compliance,Health & Safety,2025-10,7568.45,OPS-501,10000
+Operations,Compliance,Health & Safety,2025-11,7662.13,OPS-501,10000
+Operations,Compliance,Health & Safety,2025-12,7397.06,OPS-501,10000
+Operations,Quality,Quality Control,2025-01,14778.51,OPS-501,10000
+Operations,Quality,Quality Control,2025-02,14765.48,OPS-501,10000
+Operations,Quality,Quality Control,2025-03,15144.12,OPS-501,10000
+Operations,Quality,Quality Control,2025-04,15355.1,OPS-501,10000
+Operations,Quality,Quality Control,2025-05,14771.52,OPS-501,10000
+Operations,Quality,Quality Control,2025-06,14781.68,OPS-501,10000
+Operations,Quality,Quality Control,2025-07,15001.98,OPS-501,10000
+Operations,Quality,Quality Control,2025-08,14835.06,OPS-501,10000
+Operations,Quality,Quality Control,2025-09,15192.2,OPS-501,10000
+Operations,Quality,Quality Control,2025-10,14236.93,OPS-501,10000
+Operations,Quality,Quality Control,2025-11,14661.84,OPS-501,10000
+Operations,Quality,Quality Control,2025-12,14675.04,OPS-501,10000
+Operations,Services,Vendor Management,2025-01,11570.26,OPS-501,10000
+Operations,Services,Vendor Management,2025-02,11899.49,OPS-501,10000
+Operations,Services,Vendor Management,2025-03,11911.26,OPS-501,10000
+Operations,Services,Vendor Management,2025-04,12084.53,OPS-501,10000
+Operations,Services,Vendor Management,2025-05,12403.41,OPS-501,10000
+Operations,Services,Vendor Management,2025-06,12073.87,OPS-501,10000
+Operations,Services,Vendor Management,2025-07,11883.19,OPS-501,10000
+Operations,Services,Vendor Management,2025-08,12119.51,OPS-501,10000
+Operations,Services,Vendor Management,2025-09,12387.93,OPS-501,10000
+Operations,Services,Vendor Management,2025-10,11896.5,OPS-501,10000
+Operations,Services,Vendor Management,2025-11,11912.37,OPS-501,10000
+Operations,Services,Vendor Management,2025-12,12268.87,OPS-501,10000
+Operations,Software,Process Automation Tools,2025-01,16484.97,OPS-501,10000
+Operations,Software,Process Automation Tools,2025-02,16772.76,OPS-501,10000
+Operations,Software,Process Automation Tools,2025-03,16553.81,OPS-501,10000
+Operations,Software,Process Automation Tools,2025-04,16790.7,OPS-501,10000
+Operations,Software,Process Automation Tools,2025-05,16215.55,OPS-501,10000
+Operations,Software,Process Automation Tools,2025-06,16554.33,OPS-501,10000
+Operations,Software,Process Automation Tools,2025-07,16488.56,OPS-501,10000
+Operations,Software,Process Automation Tools,2025-08,16155.67,OPS-501,10000
+Operations,Software,Process Automation Tools,2025-09,16040.56,OPS-501,10000
+Operations,Software,Process Automation Tools,2025-10,16785.43,OPS-501,10000
+Operations,Software,Process Automation Tools,2025-11,16442.11,OPS-501,10000
+Operations,Software,Process Automation Tools,2025-12,16219.79,OPS-501,10000
+Operations,Software,Customer Support Platform,2025-01,13914.85,OPS-501,10000
+Operations,Software,Customer Support Platform,2025-02,14256.2,OPS-501,10000
+Operations,Software,Customer Support Platform,2025-03,13305.72,OPS-501,10000
+Operations,Software,Customer Support Platform,2025-04,13524.35,OPS-501,10000
+Operations,Software,Customer Support Platform,2025-05,13684.34,OPS-501,10000
+Operations,Software,Customer Support Platform,2025-06,14349.09,OPS-501,10000
+Operations,Software,Customer Support Platform,2025-07,14020.46,OPS-501,10000
+Operations,Software,Customer Support Platform,2025-08,14155.62,OPS-501,10000
+Operations,Software,Customer Support Platform,2025-09,13623.75,OPS-501,10000
+Operations,Software,Customer Support Platform,2025-10,13629.5,OPS-501,10000
+Operations,Software,Customer Support Platform,2025-11,14066.53,OPS-501,10000
+Operations,Software,Customer Support Platform,2025-12,13957.92,OPS-501,10000
+Operations,Logistics,Returns Processing,2025-01,7531.76,OPS-501,10000
+Operations,Logistics,Returns Processing,2025-02,7422.04,OPS-501,10000
+Operations,Logistics,Returns Processing,2025-03,7491.44,OPS-501,10000
+Operations,Logistics,Returns Processing,2025-04,7473.56,OPS-501,10000
+Operations,Logistics,Returns Processing,2025-05,7565.89,OPS-501,10000
+Operations,Logistics,Returns Processing,2025-06,7570.24,OPS-501,10000
+Operations,Logistics,Returns Processing,2025-07,7208.64,OPS-501,10000
+Operations,Logistics,Returns Processing,2025-08,7115.16,OPS-501,10000
+Operations,Logistics,Returns Processing,2025-09,7599.26,OPS-501,10000
+Operations,Logistics,Returns Processing,2025-10,7626.97,OPS-501,10000
+Operations,Logistics,Returns Processing,2025-11,7297.93,OPS-501,10000
+Operations,Logistics,Returns Processing,2025-12,7172.88,OPS-501,10000
+Operations,Software,Inventory Management System,2025-01,11205.48,OPS-501,10000
+Operations,Software,Inventory Management System,2025-02,11391.53,OPS-501,10000
+Operations,Software,Inventory Management System,2025-03,11585.4,OPS-501,10000
+Operations,Software,Inventory Management System,2025-04,11298.81,OPS-501,10000
+Operations,Software,Inventory Management System,2025-05,11100.19,OPS-501,10000
+Operations,Software,Inventory Management System,2025-06,10983.57,OPS-501,10000
+Operations,Software,Inventory Management System,2025-07,11185.89,OPS-501,10000
+Operations,Software,Inventory Management System,2025-08,11116.4,OPS-501,10000
+Operations,Software,Inventory Management System,2025-09,10956.3,OPS-501,10000
+Operations,Software,Inventory Management System,2025-10,11641.57,OPS-501,10000
+Operations,Software,Inventory Management System,2025-11,11582.62,OPS-501,10000
+Operations,Software,Inventory Management System,2025-12,11437.43,OPS-501,10000
+Operations,Personnel,Temporary Staffing,2025-01,28269.59,OPS-501,10000
+Operations,Personnel,Temporary Staffing,2025-02,29292.49,OPS-501,10000
+Operations,Personnel,Temporary Staffing,2025-03,29168.42,OPS-501,10000
+Operations,Personnel,Temporary Staffing,2025-04,29054.91,OPS-501,10000
+Operations,Personnel,Temporary Staffing,2025-05,29519.81,OPS-501,10000
+Operations,Personnel,Temporary Staffing,2025-06,29165.97,OPS-501,10000
+Operations,Personnel,Temporary Staffing,2025-07,29226.25,OPS-501,10000
+Operations,Personnel,Temporary Staffing,2025-08,29166.86,OPS-501,10000
+Operations,Personnel,Temporary Staffing,2025-09,28996.3,OPS-501,10000
+Operations,Personnel,Temporary Staffing,2025-10,27772.64,OPS-501,10000
+Operations,Personnel,Temporary Staffing,2025-11,28848.17,OPS-501,10000
+Operations,Personnel,Temporary Staffing,2025-12,28479.63,OPS-501,10000
+Finance,Personnel,Base Salaries,2025-01,91220.38,FIN-601,30000
+Finance,Personnel,Base Salaries,2025-02,96765.59,FIN-601,30000
+Finance,Personnel,Base Salaries,2025-03,96853.92,FIN-601,30000
+Finance,Personnel,Base Salaries,2025-04,96161.58,FIN-601,30000
+Finance,Personnel,Base Salaries,2025-05,94094.51,FIN-601,30000
+Finance,Personnel,Base Salaries,2025-06,96145.49,FIN-601,30000
+Finance,Personnel,Base Salaries,2025-07,93639.23,FIN-601,30000
+Finance,Personnel,Base Salaries,2025-08,93996.37,FIN-601,30000
+Finance,Personnel,Base Salaries,2025-09,91569.32,FIN-601,30000
+Finance,Personnel,Base Salaries,2025-10,94359.97,FIN-601,30000
+Finance,Personnel,Base Salaries,2025-11,93729.73,FIN-601,30000
+Finance,Personnel,Base Salaries,2025-12,91177.67,FIN-601,30000
+Finance,Services,Audit & Compliance,2025-01,28770.51,FIN-601,30000
+Finance,Services,Audit & Compliance,2025-02,28754.08,FIN-601,30000
+Finance,Services,Audit & Compliance,2025-03,29835.4,FIN-601,30000
+Finance,Services,Audit & Compliance,2025-04,29315.07,FIN-601,30000
+Finance,Services,Audit & Compliance,2025-05,28806.59,FIN-601,30000
+Finance,Services,Audit & Compliance,2025-06,28943.3,FIN-601,30000
+Finance,Services,Audit & Compliance,2025-07,28825.47,FIN-601,30000
+Finance,Services,Audit & Compliance,2025-08,28683.12,FIN-601,30000
+Finance,Services,Audit & Compliance,2025-09,28176.52,FIN-601,30000
+Finance,Services,Audit & Compliance,2025-10,28712.99,FIN-601,30000
+Finance,Services,Audit & Compliance,2025-11,28370.25,FIN-601,30000
+Finance,Services,Audit & Compliance,2025-12,28079.82,FIN-601,30000
+Finance,Services,Legal Services,2025-01,38447.46,FIN-601,30000
+Finance,Services,Legal Services,2025-02,38356.15,FIN-601,30000
+Finance,Services,Legal Services,2025-03,36698.35,FIN-601,30000
+Finance,Services,Legal Services,2025-04,37964.95,FIN-601,30000
+Finance,Services,Legal Services,2025-05,38816.23,FIN-601,30000
+Finance,Services,Legal Services,2025-06,38864.58,FIN-601,30000
+Finance,Services,Legal Services,2025-07,38839.17,FIN-601,30000
+Finance,Services,Legal Services,2025-08,38087.95,FIN-601,30000
+Finance,Services,Legal Services,2025-09,37415.11,FIN-601,30000
+Finance,Services,Legal Services,2025-10,37233.46,FIN-601,30000
+Finance,Services,Legal Services,2025-11,38320.64,FIN-601,30000
+Finance,Services,Legal Services,2025-12,38347.03,FIN-601,30000
+Finance,Services,Tax Advisory,2025-01,20044.8,FIN-601,30000
+Finance,Services,Tax Advisory,2025-02,19971.58,FIN-601,30000
+Finance,Services,Tax Advisory,2025-03,19489.99,FIN-601,30000
+Finance,Services,Tax Advisory,2025-04,19055.39,FIN-601,30000
+Finance,Services,Tax Advisory,2025-05,19416.95,FIN-601,30000
+Finance,Services,Tax Advisory,2025-06,19626.57,FIN-601,30000
+Finance,Services,Tax Advisory,2025-07,19462.69,FIN-601,30000
+Finance,Services,Tax Advisory,2025-08,19315.81,FIN-601,30000
+Finance,Services,Tax Advisory,2025-09,19640.5,FIN-601,30000
+Finance,Services,Tax Advisory,2025-10,19344.7,FIN-601,30000
+Finance,Services,Tax Advisory,2025-11,19296.2,FIN-601,30000
+Finance,Services,Tax Advisory,2025-12,19663.39,FIN-601,30000
+Finance,Software,ERP Software,2025-01,25857.09,FIN-601,30000
+Finance,Software,ERP Software,2025-02,26193.93,FIN-601,30000
+Finance,Software,ERP Software,2025-03,26209.1,FIN-601,30000
+Finance,Software,ERP Software,2025-04,25472.64,FIN-601,30000
+Finance,Software,ERP Software,2025-05,25815.78,FIN-601,30000
+Finance,Software,ERP Software,2025-06,26816.23,FIN-601,30000
+Finance,Software,ERP Software,2025-07,25460.84,FIN-601,30000
+Finance,Software,ERP Software,2025-08,24963.18,FIN-601,30000
+Finance,Software,ERP Software,2025-09,25096.02,FIN-601,30000
+Finance,Software,ERP Software,2025-10,26081.84,FIN-601,30000
+Finance,Software,ERP Software,2025-11,26082.78,FIN-601,30000
+Finance,Software,ERP Software,2025-12,26005.35,FIN-601,30000
+Finance,Software,Financial Reporting Tools,2025-01,11454.91,FIN-601,30000
+Finance,Software,Financial Reporting Tools,2025-02,10585.51,FIN-601,30000
+Finance,Software,Financial Reporting Tools,2025-03,11271.89,FIN-601,30000
+Finance,Software,Financial Reporting Tools,2025-04,11532.58,FIN-601,30000
+Finance,Software,Financial Reporting Tools,2025-05,10931.09,FIN-601,30000
+Finance,Software,Financial Reporting Tools,2025-06,11098.38,FIN-601,30000
+Finance,Software,Financial Reporting Tools,2025-07,11014.94,FIN-601,30000
+Finance,Software,Financial Reporting Tools,2025-08,10983.3,FIN-601,30000
+Finance,Software,Financial Reporting Tools,2025-09,11110.36,FIN-601,30000
+Finance,Software,Financial Reporting Tools,2025-10,11502.61,FIN-601,30000
+Finance,Software,Financial Reporting Tools,2025-11,11594.3,FIN-601,30000
+Finance,Software,Financial Reporting Tools,2025-12,11108.19,FIN-601,30000
+Finance,Fees,Banking Fees,2025-01,7733.85,FIN-601,30000
+Finance,Fees,Banking Fees,2025-02,7455.3,FIN-601,30000
+Finance,Fees,Banking Fees,2025-03,7711.3,FIN-601,30000
+Finance,Fees,Banking Fees,2025-04,7436.1,FIN-601,30000
+Finance,Fees,Banking Fees,2025-05,7469.53,FIN-601,30000
+Finance,Fees,Banking Fees,2025-06,7504.46,FIN-601,30000
+Finance,Fees,Banking Fees,2025-07,7923.65,FIN-601,30000
+Finance,Fees,Banking Fees,2025-08,7576.84,FIN-601,30000
+Finance,Fees,Banking Fees,2025-09,7344.62,FIN-601,30000
+Finance,Fees,Banking Fees,2025-10,7594.38,FIN-601,30000
+Finance,Fees,Banking Fees,2025-11,7396.09,FIN-601,30000
+Finance,Fees,Banking Fees,2025-12,7377.03,FIN-601,30000
+Finance,Insurance,Insurance Premiums,2025-01,22679.78,FIN-601,30000
+Finance,Insurance,Insurance Premiums,2025-02,22288.85,FIN-601,30000
+Finance,Insurance,Insurance Premiums,2025-03,22399.11,FIN-601,30000
+Finance,Insurance,Insurance Premiums,2025-04,22281.23,FIN-601,30000
+Finance,Insurance,Insurance Premiums,2025-05,22424.95,FIN-601,30000
+Finance,Insurance,Insurance Premiums,2025-06,22464.32,FIN-601,30000
+Finance,Insurance,Insurance Premiums,2025-07,21412.08,FIN-601,30000
+Finance,Insurance,Insurance Premiums,2025-08,22571.96,FIN-601,30000
+Finance,Insurance,Insurance Premiums,2025-09,21837.51,FIN-601,30000
+Finance,Insurance,Insurance Premiums,2025-10,21632.46,FIN-601,30000
+Finance,Insurance,Insurance Premiums,2025-11,22248.98,FIN-601,30000
+Finance,Insurance,Insurance Premiums,2025-12,22312.41,FIN-601,30000
+Finance,Services,Payroll Processing,2025-01,11965.04,FIN-601,30000
+Finance,Services,Payroll Processing,2025-02,12335.0,FIN-601,30000
+Finance,Services,Payroll Processing,2025-03,11807.63,FIN-601,30000
+Finance,Services,Payroll Processing,2025-04,12034.58,FIN-601,30000
+Finance,Services,Payroll Processing,2025-05,11991.4,FIN-601,30000
+Finance,Services,Payroll Processing,2025-06,12122.03,FIN-601,30000
+Finance,Services,Payroll Processing,2025-07,12201.0,FIN-601,30000
+Finance,Services,Payroll Processing,2025-08,11888.75,FIN-601,30000
+Finance,Services,Payroll Processing,2025-09,12309.09,FIN-601,30000
+Finance,Services,Payroll Processing,2025-10,12148.62,FIN-601,30000
+Finance,Services,Payroll Processing,2025-11,11674.22,FIN-601,30000
+Finance,Services,Payroll Processing,2025-12,11658.05,FIN-601,30000
+Finance,Services,Accounts Receivable Services,2025-01,9356.03,FIN-601,30000
+Finance,Services,Accounts Receivable Services,2025-02,9316.98,FIN-601,30000
+Finance,Services,Accounts Receivable Services,2025-03,9338.98,FIN-601,30000
+Finance,Services,Accounts Receivable Services,2025-04,9353.1,FIN-601,30000
+Finance,Services,Accounts Receivable Services,2025-05,9400.55,FIN-601,30000
+Finance,Services,Accounts Receivable Services,2025-06,9535.7,FIN-601,30000
+Finance,Services,Accounts Receivable Services,2025-07,9150.37,FIN-601,30000
+Finance,Services,Accounts Receivable Services,2025-08,9138.98,FIN-601,30000
+Finance,Services,Accounts Receivable Services,2025-09,9153.7,FIN-601,30000
+Finance,Services,Accounts Receivable Services,2025-10,9412.41,FIN-601,30000
+Finance,Services,Accounts Receivable Services,2025-11,9591.35,FIN-601,30000
+Finance,Services,Accounts Receivable Services,2025-12,9277.6,FIN-601,30000
+Finance,Services,Treasury Management,2025-01,14162.41,FIN-601,30000
+Finance,Services,Treasury Management,2025-02,14400.26,FIN-601,30000
+Finance,Services,Treasury Management,2025-03,14659.95,FIN-601,30000
+Finance,Services,Treasury Management,2025-04,14742.04,FIN-601,30000
+Finance,Services,Treasury Management,2025-05,14786.57,FIN-601,30000
+Finance,Services,Treasury Management,2025-06,14919.84,FIN-601,30000
+Finance,Services,Treasury Management,2025-07,14815.38,FIN-601,30000
+Finance,Services,Treasury Management,2025-08,15221.21,FIN-601,30000
+Finance,Services,Treasury Management,2025-09,14706.77,FIN-601,30000
+Finance,Services,Treasury Management,2025-10,14651.22,FIN-601,30000
+Finance,Services,Treasury Management,2025-11,15051.12,FIN-601,30000
+Finance,Services,Treasury Management,2025-12,14450.46,FIN-601,30000
+Finance,Communication,Investor Relations,2025-01,7533.26,FIN-601,30000
+Finance,Communication,Investor Relations,2025-02,7490.33,FIN-601,30000
+Finance,Communication,Investor Relations,2025-03,7452.96,FIN-601,30000
+Finance,Communication,Investor Relations,2025-04,7712.45,FIN-601,30000
+Finance,Communication,Investor Relations,2025-05,7381.98,FIN-601,30000
+Finance,Communication,Investor Relations,2025-06,7783.01,FIN-601,30000
+Finance,Communication,Investor Relations,2025-07,7441.3,FIN-601,30000
+Finance,Communication,Investor Relations,2025-08,7284.09,FIN-601,30000
+Finance,Communication,Investor Relations,2025-09,7485.45,FIN-601,30000
+Finance,Communication,Investor Relations,2025-10,7314.1,FIN-601,30000
+Finance,Communication,Investor Relations,2025-11,7362.61,FIN-601,30000
+Finance,Communication,Investor Relations,2025-12,7534.36,FIN-601,30000
+Finance,Events,Board Meeting Costs,2025-01,2856.39,FIN-601,30000
+Finance,Events,Board Meeting Costs,2025-02,3905.79,FIN-601,30000
+Finance,Events,Board Meeting Costs,2025-03,5761.58,FIN-601,30000
+Finance,Events,Board Meeting Costs,2025-04,6936.96,FIN-601,30000
+Finance,Events,Board Meeting Costs,2025-05,5812.3,FIN-601,30000
+Finance,Events,Board Meeting Costs,2025-06,4567.86,FIN-601,30000
+Finance,Events,Board Meeting Costs,2025-07,2902.03,FIN-601,30000
+Finance,Events,Board Meeting Costs,2025-08,3806.23,FIN-601,30000
+Finance,Events,Board Meeting Costs,2025-09,7298.3,FIN-601,30000
+Finance,Events,Board Meeting Costs,2025-10,8328.04,FIN-601,30000
+Finance,Events,Board Meeting Costs,2025-11,6796.17,FIN-601,30000
+Finance,Events,Board Meeting Costs,2025-12,3351.26,FIN-601,30000
+Finance,Compliance,Regulatory Filing Fees,2025-01,4667.77,FIN-601,30000
+Finance,Compliance,Regulatory Filing Fees,2025-02,4859.63,FIN-601,30000
+Finance,Compliance,Regulatory Filing Fees,2025-03,4667.44,FIN-601,30000
+Finance,Compliance,Regulatory Filing Fees,2025-04,4722.09,FIN-601,30000
+Finance,Compliance,Regulatory Filing Fees,2025-05,4661.58,FIN-601,30000
+Finance,Compliance,Regulatory Filing Fees,2025-06,4690.43,FIN-601,30000
+Finance,Compliance,Regulatory Filing Fees,2025-07,4683.9,FIN-601,30000
+Finance,Compliance,Regulatory Filing Fees,2025-08,4725.33,FIN-601,30000
+Finance,Compliance,Regulatory Filing Fees,2025-09,4792.48,FIN-601,30000
+Finance,Compliance,Regulatory Filing Fees,2025-10,4837.64,FIN-601,30000
+Finance,Compliance,Regulatory Filing Fees,2025-11,4712.33,FIN-601,30000
+Finance,Compliance,Regulatory Filing Fees,2025-12,4738.55,FIN-601,30000
+Finance,Software,Risk Management Tools,2025-01,10046.64,FIN-601,30000
+Finance,Software,Risk Management Tools,2025-02,10265.26,FIN-601,30000
+Finance,Software,Risk Management Tools,2025-03,10476.72,FIN-601,30000
+Finance,Software,Risk Management Tools,2025-04,10461.43,FIN-601,30000
+Finance,Software,Risk Management Tools,2025-05,10326.85,FIN-601,30000
+Finance,Software,Risk Management Tools,2025-06,10465.64,FIN-601,30000
+Finance,Software,Risk Management Tools,2025-07,10384.27,FIN-601,30000
+Finance,Software,Risk Management Tools,2025-08,10530.2,FIN-601,30000
+Finance,Software,Risk Management Tools,2025-09,10342.84,FIN-601,30000
+Finance,Software,Risk Management Tools,2025-10,10210.18,FIN-601,30000
+Finance,Software,Risk Management Tools,2025-11,10352.4,FIN-601,30000
+Finance,Software,Risk Management Tools,2025-12,9680.61,FIN-601,30000
+Finance,Services,Internal Audit,2025-01,16685.13,FIN-601,30000
+Finance,Services,Internal Audit,2025-02,15350.1,FIN-601,30000
+Finance,Services,Internal Audit,2025-03,15987.58,FIN-601,30000
+Finance,Services,Internal Audit,2025-04,16707.94,FIN-601,30000
+Finance,Services,Internal Audit,2025-05,16716.48,FIN-601,30000
+Finance,Services,Internal Audit,2025-06,16173.38,FIN-601,30000
+Finance,Services,Internal Audit,2025-07,16322.51,FIN-601,30000
+Finance,Services,Internal Audit,2025-08,17012.21,FIN-601,30000
+Finance,Services,Internal Audit,2025-09,16398.04,FIN-601,30000
+Finance,Services,Internal Audit,2025-10,17301.11,FIN-601,30000
+Finance,Services,Internal Audit,2025-11,16557.7,FIN-601,30000
+Finance,Services,Internal Audit,2025-12,16693.46,FIN-601,30000

@@ -1,0 +1,772 @@
+{
+  "scenarios": [
+    {
+      "id": "reduce_marketing_15",
+      "label": "Reduce Marketing Spend by 15%",
+      "description": "What happens when we cut the marketing budget by 15%?",
+      "input_changes": [
+        {
+          "kpi": "marketing_spend",
+          "change_pct": -15
+        }
+      ],
+      "cascade": [
+        {
+          "kpi": "marketing_spend",
+          "baseline": 8.5,
+          "change_pct": -15.0,
+          "projected": 7.22,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "mqls_per_month",
+          "baseline": 1200,
+          "change_pct": -9.75,
+          "projected": 1083.0,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "brand_awareness",
+          "baseline": 62.0,
+          "change_pct": -6.0,
+          "projected": 58.28,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "cac",
+          "baseline": 8500,
+          "change_pct": 4.5,
+          "projected": 8882.5,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "pipeline_value",
+          "baseline": 45.0,
+          "change_pct": -5.36,
+          "projected": 42.59,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "win_rate",
+          "baseline": 28.0,
+          "change_pct": 0.8,
+          "projected": 28.23,
+          "lag_months": 0,
+          "sigma": 0
+        }
+      ],
+      "quarterly": {
+        "q1": [
+          {
+            "kpi": "marketing_spend",
+            "change_pct": -15.0,
+            "projected": 7.22
+          },
+          {
+            "kpi": "mqls_per_month",
+            "change_pct": -9.75,
+            "projected": 1083.0
+          },
+          {
+            "kpi": "brand_awareness",
+            "change_pct": -6.0,
+            "projected": 58.28
+          },
+          {
+            "kpi": "cac",
+            "change_pct": 4.5,
+            "projected": 8882.5
+          },
+          {
+            "kpi": "pipeline_value",
+            "change_pct": -5.36,
+            "projected": 42.59
+          },
+          {
+            "kpi": "win_rate",
+            "change_pct": 0.8,
+            "projected": 28.23
+          }
+        ],
+        "q2": [
+          {
+            "kpi": "marketing_spend",
+            "change_pct": -15.0,
+            "projected": 7.22
+          },
+          {
+            "kpi": "mqls_per_month",
+            "change_pct": -9.75,
+            "projected": 1083.0
+          },
+          {
+            "kpi": "brand_awareness",
+            "change_pct": -6.0,
+            "projected": 58.28
+          },
+          {
+            "kpi": "cac",
+            "change_pct": 4.5,
+            "projected": 8882.5
+          },
+          {
+            "kpi": "pipeline_value",
+            "change_pct": -5.36,
+            "projected": 42.59
+          },
+          {
+            "kpi": "win_rate",
+            "change_pct": 0.8,
+            "projected": 28.23
+          }
+        ],
+        "q4": [
+          {
+            "kpi": "marketing_spend",
+            "change_pct": -15.0,
+            "projected": 7.22
+          },
+          {
+            "kpi": "mqls_per_month",
+            "change_pct": -9.75,
+            "projected": 1083.0
+          },
+          {
+            "kpi": "brand_awareness",
+            "change_pct": -6.0,
+            "projected": 58.28
+          },
+          {
+            "kpi": "cac",
+            "change_pct": 4.5,
+            "projected": 8882.5
+          },
+          {
+            "kpi": "pipeline_value",
+            "change_pct": -5.36,
+            "projected": 42.59
+          },
+          {
+            "kpi": "win_rate",
+            "change_pct": 0.8,
+            "projected": 28.23
+          }
+        ]
+      },
+      "narrative": "Negative impacts: mqls_per_month (-9.8%), brand_awareness (-6.0%), pipeline_value (-5.4%). Positive impacts: cac (+4.5%), win_rate (+0.8%)."
+    },
+    {
+      "id": "delay_engineering_hiring",
+      "label": "Delay Engineering Hiring by One Quarter",
+      "description": "What happens when we freeze engineering hiring for a quarter?",
+      "input_changes": [
+        {
+          "kpi": "eng_headcount",
+          "change_pct": -12
+        }
+      ],
+      "cascade": [
+        {
+          "kpi": "eng_headcount",
+          "baseline": 85,
+          "change_pct": -12.0,
+          "projected": 74.8,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "feature_velocity",
+          "baseline": 12,
+          "change_pct": -3.6,
+          "projected": 11.57,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "product_nps",
+          "baseline": 42,
+          "change_pct": -1.44,
+          "projected": 41.4,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "platform_uptime",
+          "baseline": 99.7,
+          "change_pct": 0.36,
+          "projected": 100.06,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "win_rate",
+          "baseline": 28.0,
+          "change_pct": -0.36,
+          "projected": 27.9,
+          "lag_months": 0,
+          "sigma": 0
+        }
+      ],
+      "quarterly": {
+        "q1": [
+          {
+            "kpi": "eng_headcount",
+            "change_pct": -12.0,
+            "projected": 74.8
+          },
+          {
+            "kpi": "feature_velocity",
+            "change_pct": -3.6,
+            "projected": 11.57
+          },
+          {
+            "kpi": "product_nps",
+            "change_pct": -1.44,
+            "projected": 41.4
+          },
+          {
+            "kpi": "platform_uptime",
+            "change_pct": 0.36,
+            "projected": 100.06
+          },
+          {
+            "kpi": "win_rate",
+            "change_pct": -0.36,
+            "projected": 27.9
+          }
+        ],
+        "q2": [
+          {
+            "kpi": "eng_headcount",
+            "change_pct": -12.0,
+            "projected": 74.8
+          },
+          {
+            "kpi": "feature_velocity",
+            "change_pct": -3.6,
+            "projected": 11.57
+          },
+          {
+            "kpi": "product_nps",
+            "change_pct": -1.44,
+            "projected": 41.4
+          },
+          {
+            "kpi": "platform_uptime",
+            "change_pct": 0.36,
+            "projected": 100.06
+          },
+          {
+            "kpi": "win_rate",
+            "change_pct": -0.36,
+            "projected": 27.9
+          }
+        ],
+        "q4": [
+          {
+            "kpi": "eng_headcount",
+            "change_pct": -12.0,
+            "projected": 74.8
+          },
+          {
+            "kpi": "feature_velocity",
+            "change_pct": -3.6,
+            "projected": 11.57
+          },
+          {
+            "kpi": "product_nps",
+            "change_pct": -1.44,
+            "projected": 41.4
+          },
+          {
+            "kpi": "platform_uptime",
+            "change_pct": 0.36,
+            "projected": 100.06
+          },
+          {
+            "kpi": "win_rate",
+            "change_pct": -0.36,
+            "projected": 27.9
+          }
+        ]
+      },
+      "narrative": "Negative impacts: feature_velocity (-3.6%), product_nps (-1.4%), win_rate (-0.4%). Positive impacts: platform_uptime (+0.4%)."
+    },
+    {
+      "id": "accelerate_collections",
+      "label": "Accelerate Collections (DSO -10 days)",
+      "description": "What happens when we reduce days sales outstanding by 10 days?",
+      "input_changes": [
+        {
+          "kpi": "dso",
+          "change_absolute": -10
+        }
+      ],
+      "cascade": [
+        {
+          "kpi": "dso",
+          "baseline": 48,
+          "change_pct": -20.83,
+          "projected": 38.0,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "free_cash_flow",
+          "baseline": 12.0,
+          "change_pct": 5.83,
+          "projected": 12.7,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "eng_headcount",
+          "baseline": 85,
+          "change_pct": 1.46,
+          "projected": 86.24,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "marketing_spend",
+          "baseline": 8.5,
+          "change_pct": 1.17,
+          "projected": 8.6,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "feature_velocity",
+          "baseline": 12,
+          "change_pct": 0.44,
+          "projected": 12.05,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "mqls_per_month",
+          "baseline": 1200,
+          "change_pct": 0.76,
+          "projected": 1209.1,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "brand_awareness",
+          "baseline": 62.0,
+          "change_pct": 0.47,
+          "projected": 62.29,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "cac",
+          "baseline": 8500,
+          "change_pct": -0.35,
+          "projected": 8470.25,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "product_nps",
+          "baseline": 42,
+          "change_pct": 0.18,
+          "projected": 42.07,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "platform_uptime",
+          "baseline": 99.7,
+          "change_pct": -0.04,
+          "projected": 99.66,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "pipeline_value",
+          "baseline": 45.0,
+          "change_pct": 0.42,
+          "projected": 45.19,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "win_rate",
+          "baseline": 28.0,
+          "change_pct": -0.02,
+          "projected": 27.99,
+          "lag_months": 0,
+          "sigma": 0
+        }
+      ],
+      "quarterly": {
+        "q1": [
+          {
+            "kpi": "dso",
+            "change_pct": -20.83,
+            "projected": 38.0
+          },
+          {
+            "kpi": "free_cash_flow",
+            "change_pct": 5.83,
+            "projected": 12.7
+          },
+          {
+            "kpi": "eng_headcount",
+            "change_pct": 1.46,
+            "projected": 86.24
+          },
+          {
+            "kpi": "marketing_spend",
+            "change_pct": 1.17,
+            "projected": 8.6
+          },
+          {
+            "kpi": "feature_velocity",
+            "change_pct": 0.44,
+            "projected": 12.05
+          },
+          {
+            "kpi": "mqls_per_month",
+            "change_pct": 0.76,
+            "projected": 1209.1
+          },
+          {
+            "kpi": "brand_awareness",
+            "change_pct": 0.47,
+            "projected": 62.29
+          },
+          {
+            "kpi": "cac",
+            "change_pct": -0.35,
+            "projected": 8470.25
+          },
+          {
+            "kpi": "product_nps",
+            "change_pct": 0.18,
+            "projected": 42.07
+          },
+          {
+            "kpi": "platform_uptime",
+            "change_pct": -0.04,
+            "projected": 99.66
+          },
+          {
+            "kpi": "pipeline_value",
+            "change_pct": 0.42,
+            "projected": 45.19
+          },
+          {
+            "kpi": "win_rate",
+            "change_pct": -0.02,
+            "projected": 27.99
+          }
+        ],
+        "q2": [
+          {
+            "kpi": "dso",
+            "change_pct": -20.83,
+            "projected": 38.0
+          },
+          {
+            "kpi": "free_cash_flow",
+            "change_pct": 5.83,
+            "projected": 12.7
+          },
+          {
+            "kpi": "eng_headcount",
+            "change_pct": 1.46,
+            "projected": 86.24
+          },
+          {
+            "kpi": "marketing_spend",
+            "change_pct": 1.17,
+            "projected": 8.6
+          },
+          {
+            "kpi": "feature_velocity",
+            "change_pct": 0.44,
+            "projected": 12.05
+          },
+          {
+            "kpi": "mqls_per_month",
+            "change_pct": 0.76,
+            "projected": 1209.1
+          },
+          {
+            "kpi": "brand_awareness",
+            "change_pct": 0.47,
+            "projected": 62.29
+          },
+          {
+            "kpi": "cac",
+            "change_pct": -0.35,
+            "projected": 8470.25
+          },
+          {
+            "kpi": "product_nps",
+            "change_pct": 0.18,
+            "projected": 42.07
+          },
+          {
+            "kpi": "platform_uptime",
+            "change_pct": -0.04,
+            "projected": 99.66
+          },
+          {
+            "kpi": "pipeline_value",
+            "change_pct": 0.42,
+            "projected": 45.19
+          },
+          {
+            "kpi": "win_rate",
+            "change_pct": -0.02,
+            "projected": 27.99
+          }
+        ],
+        "q4": [
+          {
+            "kpi": "dso",
+            "change_pct": -20.83,
+            "projected": 38.0
+          },
+          {
+            "kpi": "free_cash_flow",
+            "change_pct": 5.83,
+            "projected": 12.7
+          },
+          {
+            "kpi": "eng_headcount",
+            "change_pct": 1.46,
+            "projected": 86.24
+          },
+          {
+            "kpi": "marketing_spend",
+            "change_pct": 1.17,
+            "projected": 8.6
+          },
+          {
+            "kpi": "feature_velocity",
+            "change_pct": 0.44,
+            "projected": 12.05
+          },
+          {
+            "kpi": "mqls_per_month",
+            "change_pct": 0.76,
+            "projected": 1209.1
+          },
+          {
+            "kpi": "brand_awareness",
+            "change_pct": 0.47,
+            "projected": 62.29
+          },
+          {
+            "kpi": "cac",
+            "change_pct": -0.35,
+            "projected": 8470.25
+          },
+          {
+            "kpi": "product_nps",
+            "change_pct": 0.18,
+            "projected": 42.07
+          },
+          {
+            "kpi": "platform_uptime",
+            "change_pct": -0.04,
+            "projected": 99.66
+          },
+          {
+            "kpi": "pipeline_value",
+            "change_pct": 0.42,
+            "projected": 45.19
+          },
+          {
+            "kpi": "win_rate",
+            "change_pct": -0.02,
+            "projected": 27.99
+          }
+        ]
+      },
+      "narrative": "Negative impacts: cac (-0.3%), platform_uptime (-0.0%), win_rate (-0.0%). Positive impacts: free_cash_flow (+5.8%), eng_headcount (+1.5%), marketing_spend (+1.2%)."
+    },
+    {
+      "id": "cut_operations_10",
+      "label": "Cut Operations Budget by 10%",
+      "description": "What happens when we reduce the operations budget by 10%?",
+      "input_changes": [
+        {
+          "kpi": "ops_budget",
+          "change_pct": -10
+        }
+      ],
+      "cascade": [
+        {
+          "kpi": "ops_budget",
+          "baseline": 12.0,
+          "change_pct": -10.0,
+          "projected": 10.8,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "fulfillment_rate",
+          "baseline": 96.5,
+          "change_pct": -7.0,
+          "projected": 89.75,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "csat",
+          "baseline": 4.2,
+          "change_pct": -5.6,
+          "projected": 3.96,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "churn_rate",
+          "baseline": 1.8,
+          "change_pct": 2.8,
+          "projected": 1.85,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "pipeline_value",
+          "baseline": 45.0,
+          "change_pct": -0.98,
+          "projected": 44.56,
+          "lag_months": 0,
+          "sigma": 0
+        },
+        {
+          "kpi": "win_rate",
+          "baseline": 28.0,
+          "change_pct": 0.15,
+          "projected": 28.04,
+          "lag_months": 0,
+          "sigma": 0
+        }
+      ],
+      "quarterly": {
+        "q1": [
+          {
+            "kpi": "ops_budget",
+            "change_pct": -10.0,
+            "projected": 10.8
+          },
+          {
+            "kpi": "fulfillment_rate",
+            "change_pct": -7.0,
+            "projected": 89.75
+          },
+          {
+            "kpi": "csat",
+            "change_pct": -5.6,
+            "projected": 3.96
+          },
+          {
+            "kpi": "churn_rate",
+            "change_pct": 2.8,
+            "projected": 1.85
+          },
+          {
+            "kpi": "pipeline_value",
+            "change_pct": -0.98,
+            "projected": 44.56
+          },
+          {
+            "kpi": "win_rate",
+            "change_pct": 0.15,
+            "projected": 28.04
+          }
+        ],
+        "q2": [
+          {
+            "kpi": "ops_budget",
+            "change_pct": -10.0,
+            "projected": 10.8
+          },
+          {
+            "kpi": "fulfillment_rate",
+            "change_pct": -7.0,
+            "projected": 89.75
+          },
+          {
+            "kpi": "csat",
+            "change_pct": -5.6,
+            "projected": 3.96
+          },
+          {
+            "kpi": "churn_rate",
+            "change_pct": 2.8,
+            "projected": 1.85
+          },
+          {
+            "kpi": "pipeline_value",
+            "change_pct": -0.98,
+            "projected": 44.56
+          },
+          {
+            "kpi": "win_rate",
+            "change_pct": 0.15,
+            "projected": 28.04
+          }
+        ],
+        "q4": [
+          {
+            "kpi": "ops_budget",
+            "change_pct": -10.0,
+            "projected": 10.8
+          },
+          {
+            "kpi": "fulfillment_rate",
+            "change_pct": -7.0,
+            "projected": 89.75
+          },
+          {
+            "kpi": "csat",
+            "change_pct": -5.6,
+            "projected": 3.96
+          },
+          {
+            "kpi": "churn_rate",
+            "change_pct": 2.8,
+            "projected": 1.85
+          },
+          {
+            "kpi": "pipeline_value",
+            "change_pct": -0.98,
+            "projected": 44.56
+          },
+          {
+            "kpi": "win_rate",
+            "change_pct": 0.15,
+            "projected": 28.04
+          }
+        ]
+      },
+      "narrative": "Negative impacts: fulfillment_rate (-7.0%), csat (-5.6%), pipeline_value (-1.0%). Positive impacts: churn_rate (+2.8%), win_rate (+0.1%)."
+    },
+    {
+      "id": "custom",
+      "label": "Custom Scenario",
+      "description": "User-defined scenario \u2014 adjust any division's input and watch the cascade.",
+      "input_changes": [],
+      "cascade": [],
+      "quarterly": {
+        "q1": [],
+        "q2": [],
+        "q4": []
+      },
+      "narrative": ""
+    }
+  ]
+}
