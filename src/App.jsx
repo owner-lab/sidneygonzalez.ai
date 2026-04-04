@@ -5,9 +5,12 @@ import Section from '@/components/layout/Section'
 import ScrollReveal from '@/components/animation/ScrollReveal'
 import MeshGradient from '@/components/animation/MeshGradient'
 import Button from '@/components/ui/Button'
-import { HERO } from '@/config/constants'
+import useLenisScroll from '@/hooks/useLenisScroll'
+import { HERO, SOCIAL } from '@/config/constants'
 
 export default function App() {
+  const scrollTo = useLenisScroll()
+
   return (
     <ReactLenis root options={{ lerp: 0.1, duration: 1.2, smoothWheel: true }}>
       <Navbar />
@@ -25,8 +28,16 @@ export default function App() {
             </p>
             <p className="mt-3 text-sm text-text-muted">{HERO.supporting}</p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Button>Explore Projects</Button>
-              <Button variant="secondary">View on GitHub</Button>
+              <Button onClick={() => scrollTo('#projects')}>
+                Explore Projects
+              </Button>
+              <a
+                href={SOCIAL.github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button variant="secondary">View on GitHub</Button>
+              </a>
             </div>
           </ScrollReveal>
         </Section>

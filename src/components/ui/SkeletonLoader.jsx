@@ -8,7 +8,7 @@ export default function SkeletonLoader({ className = '', lines = 3 }) {
       {Array.from({ length: lines }, (_, i) => (
         <div
           key={i}
-          className="h-4 rounded bg-bg-elevated"
+          className="h-4 rounded bg-bg-hover"
           style={{ width: `${100 - i * 15}%` }}
         />
       ))}

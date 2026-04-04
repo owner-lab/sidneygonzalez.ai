@@ -29,7 +29,7 @@ export default function Slider({
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="h-1 w-full cursor-pointer appearance-none rounded-full bg-bg-elevated accent-accent-blue"
+        className="h-1 w-full cursor-pointer appearance-none rounded-full bg-bg-hover accent-accent-blue"
       />
     </div>
   )

@@ -9,7 +9,7 @@ export default function Toggle({ label, checked, onChange, className = '' }) {
         aria-checked={checked}
         onClick={() => onChange(!checked)}
         className={`relative h-6 w-11 rounded-full transition-colors ${
-          checked ? 'bg-accent-blue' : 'bg-bg-elevated'
+          checked ? 'bg-accent-blue' : 'bg-bg-hover'
         }`}
       >
         <span

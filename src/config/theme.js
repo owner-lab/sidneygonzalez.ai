@@ -2,8 +2,8 @@ export const colors = {
   bg: {
     primary: '#0A0A0F',
     secondary: '#111118',
-    tertiary: '#1E1E2E',
-    elevated: '#252538',
+    surface: '#1E1E2E',
+    hover: '#252538',
   },
   accent: {
     blue: '#0068FF',

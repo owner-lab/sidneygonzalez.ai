@@ -2,7 +2,7 @@ const variants = {
   primary:
     'bg-accent-blue text-white hover:bg-accent-blue/90 shadow-lg shadow-accent-blue/25',
   secondary:
-    'border border-border bg-bg-elevated text-text-primary hover:bg-bg-tertiary',
+    'border border-border-subtle bg-bg-hover text-text-primary hover:bg-bg-surface',
   ghost: 'text-text-secondary hover:text-text-primary hover:bg-white/5',
 }
 
