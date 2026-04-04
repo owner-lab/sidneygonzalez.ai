@@ -107,12 +107,31 @@ LINE_ITEMS = {
 
 # Seasonal multipliers per category
 SEASONAL = {
-    "Personnel": [1.0] * 12,  # flat
+    # Personnel: mid-year raise cycle (Jul), Q4 bonus accrual, Jan benefits reset
+    "Personnel": [1.03, 0.98, 1.00, 1.00, 1.00, 1.02, 1.08, 1.02, 1.00, 1.00, 1.02, 1.10],
     "Compensation": [0.85, 0.9, 1.15, 0.85, 0.9, 1.15, 0.85, 0.9, 1.15, 0.85, 0.9, 1.15],  # quarter-end
     "Travel": [0.7, 0.9, 1.1, 1.2, 1.0, 0.8, 0.6, 0.7, 1.1, 1.2, 1.1, 0.8],
     "Events": [0.5, 0.7, 1.0, 1.2, 1.0, 0.8, 0.5, 0.7, 1.3, 1.5, 1.2, 0.6],
     "Training": [1.3, 1.0, 0.8, 0.9, 1.2, 1.0, 0.7, 0.8, 1.1, 1.0, 0.9, 0.8],
     "Advertising": [0.8, 0.9, 1.0, 1.1, 1.0, 0.9, 0.8, 0.9, 1.1, 1.2, 1.3, 1.1],
+}
+
+# Items with monthly growth trends (cloud costs, subscription creep)
+GROWTH_ITEMS = {
+        "Cloud Hosting (AWS/GCP)": 0.025,      # ~2.5%/month usage growth
+        "Data Storage & Backup": 0.02,          # storage grows steadily
+        "Software Licenses": 0.01,              # seat expansion
+        "Digital Advertising": 0.015,           # campaign scaling
+        "Marketing Automation Software": 0.01,
+    }
+
+# Items with step changes (raise cycle, new hires)
+# (month_index, multiplier) — represents mid-year raise or headcount change
+STEP_ITEMS = {
+    "Base Salaries - Senior Engineers": [(6, 1.04)],   # July raise cycle: 4% bump
+    "Base Salaries - Junior Engineers": [(6, 1.04)],
+    "Base Salaries - Account Executives": [(6, 1.035)],
+    "Base Salaries - SDRs": [(6, 1.035)],
 }
 
 
@@ -126,11 +145,27 @@ def generate_budget():
             monthly_base = annual_base / 12
             seasonal = SEASONAL.get(category, [1.0] * 12)
 
+            # Growth trend for this item
+            monthly_growth = GROWTH_ITEMS.get(name, 0)
+
+            # Step changes for this item
+            steps = STEP_ITEMS.get(name, [])
+            step_multiplier = 1.0
+
             for i, month in enumerate(months):
-                # Non-round amount with seasonal adjustment
-                factor = seasonal[i] * RNG.normal(1.0, 0.02)
+                # Apply step changes (permanent after trigger month)
+                for step_month, step_mult in steps:
+                    if i >= step_month:
+                        step_multiplier = step_mult
+
+                # Growth compound
+                growth_factor = (1 + monthly_growth) ** i
+
+                # Seasonal + growth + step + noise
+                factor = seasonal[i] * growth_factor * step_multiplier * RNG.normal(1.0, 0.03)
                 amount = round(monthly_base * factor, 2)
-                # Ensure non-round: add cents if divisible by 1000
+
+                # Ensure non-round
                 if amount % 1000 == 0:
                     amount += RNG.uniform(1, 999)
                     amount = round(amount, 2)

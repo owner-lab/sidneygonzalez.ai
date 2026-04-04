@@ -76,7 +76,7 @@ def inject():
     wc["date"] = pd.to_datetime(wc["date"]).dt.strftime("%d-%b-%Y")
     wc = inject_division_names(wc)
     wc = inject_missing_values(wc,
-        ["current_ratio", "dio", "net_working_capital", "inventory"], rate=0.12)
+        ["current_ratio", "dio", "net_working_capital", "inventory", "cash_balance"], rate=0.12)
     wc = inject_duplicates(wc, 0)  # No dupes in WC (total 2+1+0 = 3 across files)
     wc.to_csv(os.path.join(PUBLIC_DATA, "corporate_working_capital_raw.csv"), index=False)
     print(f"Working capital raw: {len(wc)} rows (format: DD-Mon-YYYY)")

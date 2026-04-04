@@ -1,4 +1,11 @@
-"""Generate monthly P&L data for 3 divisions over 24 months."""
+"""Generate monthly P&L data for 3 divisions over 24 months.
+
+Key realism features:
+- AR(1) revenue momentum (lag-1 autocorrelation ~0.7-0.9)
+- GM drift (slow multi-month trend from deal mix / pricing changes)
+- OpEx spike months (big hires, restructuring, one-time costs)
+- Revenue surprises (big deal close, lost contract)
+"""
 
 import sys
 import os
@@ -11,6 +18,10 @@ from constants import DIVISIONS, START_DATE, NUM_MONTHS, RNG
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "output")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
+# AR(1) momentum coefficient: how much last month's deviation carries forward
+# 0.75 means 75% of last month's over/under-performance persists
+MOMENTUM = 0.75
+
 
 def generate_pnl():
     rows = []
@@ -20,40 +31,46 @@ def generate_pnl():
         monthly_base = div["annual_revenue"] / 12
         seasonality = div["seasonality"]
 
-        # Surprise revenue months: 2-3 per division (big deal close, lost contract, etc.)
+        # Surprise revenue months: 2-3 per division
         surprise_months = RNG.choice(range(NUM_MONTHS), size=3, replace=False)
         surprise_factors = RNG.uniform(0.85, 1.18, size=3)
 
-        # OpEx spike months: 2-3 per division (big hire wave, one-time costs, restructuring)
+        # OpEx spike months: 2-3 per division
         opex_spike_months = RNG.choice(
             [m for m in range(NUM_MONTHS) if m not in surprise_months],
             size=3, replace=False
         )
         opex_spike_factors = RNG.uniform(1.15, 1.40, size=3)
 
-        # GM drift: margin shifts over time (deal mix changes, pricing pressure)
-        # Creates a slow multi-month trend rather than pure random walk
+        # GM drift: slow multi-month trend
         gm_drift = np.cumsum(RNG.normal(0, 0.003, size=NUM_MONTHS))
+
+        # Revenue momentum state: tracks deviation from expected
+        prev_deviation = 0.0
 
         for i, date in enumerate(dates):
             month_idx = date.month - 1
             year_offset = i / 12
 
-            # Base revenue with growth
+            # Expected revenue (deterministic baseline)
             growth_factor = (1 + div["growth_rate"]) ** year_offset
             seasonal_factor = seasonality[month_idx]
-            noise = RNG.normal(1.0, 0.035)
+            expected_revenue = monthly_base * growth_factor * seasonal_factor
 
-            revenue = monthly_base * growth_factor * seasonal_factor * noise
+            # AR(1) momentum: carry forward portion of last month's deviation
+            # plus fresh innovation noise
+            innovation = RNG.normal(0, 0.025)
+            deviation = MOMENTUM * prev_deviation + innovation
 
-            # Apply surprise
+            # Apply surprise on top
             if i in surprise_months:
                 idx = list(surprise_months).index(i)
-                revenue *= surprise_factors[idx]
+                deviation += (surprise_factors[idx] - 1.0)
 
-            revenue = round(revenue, 2)
+            revenue = round(expected_revenue * (1 + deviation), 2)
+            prev_deviation = deviation
 
-            # COGS: wider noise + drift for realistic GM variance (target 3-4pp stdev)
+            # COGS: wider noise + drift
             margin_noise = RNG.normal(0, 0.025)
             gross_margin = div["gross_margin_target"] + margin_noise + gm_drift[i]
             gross_margin = np.clip(gross_margin, 0.38, 0.72)
@@ -61,15 +78,13 @@ def generate_pnl():
             gross_profit = round(revenue - cogs, 2)
             gross_margin_pct = round(gross_profit / revenue * 100, 2)
 
-            # OpEx: wider base noise + spike events
+            # OpEx with spike events
             rd_noise = RNG.normal(1.0, 0.04)
             sga_noise = RNG.normal(1.0, 0.06)
 
-            # Apply OpEx spike (big hire, restructuring charge, one-time cost)
             if i in opex_spike_months:
                 spike_idx = list(opex_spike_months).index(i)
                 spike = opex_spike_factors[spike_idx]
-                # Spike hits either R&D or SGA, not both (more realistic)
                 if RNG.random() > 0.5:
                     rd_noise *= spike
                 else:

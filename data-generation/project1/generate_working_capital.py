@@ -1,4 +1,10 @@
-"""Generate monthly working capital metrics derived from clean P&L."""
+"""Generate monthly working capital metrics derived from clean P&L.
+
+Key realism features:
+- DSO spikes when revenue dips (customers slow-pay in tough months)
+- DPO rises when cash is tight (company stretches payables)
+- Cumulative cash balance tracked month-over-month
+"""
 
 import sys
 import os
@@ -10,30 +16,59 @@ from constants import DIVISIONS, RNG
 
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "output")
 PNL_PATH = os.path.join(OUTPUT_DIR, "corporate_pnl_clean.csv")
+CF_PATH = os.path.join(OUTPUT_DIR, "corporate_cashflow_clean.csv")
 
 
 def generate_working_capital():
     pnl = pd.read_csv(PNL_PATH)
     pnl["date"] = pd.to_datetime(pnl["date"])
+
+    # Load cash flow for cumulative balance tracking
+    cf = pd.read_csv(CF_PATH)
+    cf["date"] = pd.to_datetime(cf["date"])
+
     rows = []
 
     for div_key, div in DIVISIONS.items():
-        div_data = pnl[pnl["division"] == div["label"]].sort_values("date").reset_index(drop=True)
+        div_pnl = pnl[pnl["division"] == div["label"]].sort_values("date").reset_index(drop=True)
+        div_cf = cf[cf["division"] == div["label"]].sort_values("date").reset_index(drop=True)
 
-        for i, row in div_data.iterrows():
+        # Compute revenue MoM change for stress linkage
+        rev_series = div_pnl["revenue"].values
+        rev_mom_pct = np.zeros(len(rev_series))
+        for j in range(1, len(rev_series)):
+            rev_mom_pct[j] = (rev_series[j] - rev_series[j-1]) / rev_series[j-1]
+
+        # Starting cash balance
+        cumulative_cash = div["annual_revenue"] * 0.08  # ~1 month of revenue as starting cash
+
+        for i, row in div_pnl.iterrows():
             date = row["date"]
             revenue = row["revenue"]
             cogs = row["cogs"]
 
-            # DSO drifts: rises in Q4 (customers delay), drops in Q1
+            # --- DSO: stress-linked to revenue performance ---
             q4_bump = 5 if date.month in [10, 11, 12] else 0
             q1_dip = -3 if date.month in [1, 2] else 0
-            dso = round(div["dso_target"] + q4_bump + q1_dip + RNG.normal(0, 2.5), 1)
+
+            # Bad revenue month -> DSO spikes (customers also stressed, or
+            # company shipped less so AR is older on average)
+            stress_bump = 0
+            if i > 0 and rev_mom_pct[i] < -0.05:
+                stress_bump = abs(rev_mom_pct[i]) * 40  # -10% rev -> +4 day DSO spike
+
+            dso = round(div["dso_target"] + q4_bump + q1_dip + stress_bump + RNG.normal(0, 2.5), 1)
             dso = max(10, dso)
 
-            dpo = round(div["dpo_target"] + RNG.normal(0, 2), 1)
+            # --- DPO: rises when cash is tight ---
+            cash_tight = 0
+            if i < len(div_cf) and div_cf.iloc[i]["operating_cash_flow"] < 0:
+                cash_tight = RNG.uniform(3, 8)  # stretch payables when OCF negative
+
+            dpo = round(div["dpo_target"] + cash_tight + RNG.normal(0, 2), 1)
             dpo = max(15, dpo)
 
+            # DIO
             dio = round(div["dio_target"] + RNG.normal(0, max(1, div["dio_target"] * 0.15)), 1)
             dio = max(0, dio)
 
@@ -44,9 +79,12 @@ def generate_working_capital():
 
             cash_conversion_cycle = round(dso + dio - dpo, 1)
 
-            # Current assets/liabilities (simplified)
-            cash_balance = round(revenue * RNG.uniform(0.08, 0.15), 2)
-            current_assets = round(accounts_receivable + inventory + cash_balance, 2)
+            # Cumulative cash balance from cash flow
+            if i < len(div_cf):
+                cumulative_cash += div_cf.iloc[i]["net_cash_flow"]
+            cumulative_cash = max(0, cumulative_cash)
+
+            current_assets = round(accounts_receivable + inventory + cumulative_cash, 2)
 
             short_term_debt = round(revenue * RNG.uniform(0.02, 0.06), 2)
             current_liabilities = round(accounts_payable + short_term_debt, 2)
@@ -64,6 +102,7 @@ def generate_working_capital():
                 "dpo": dpo,
                 "dio": dio,
                 "cash_conversion_cycle": cash_conversion_cycle,
+                "cash_balance": round(cumulative_cash, 2),
                 "current_assets": current_assets,
                 "current_liabilities": current_liabilities,
                 "current_ratio": current_ratio,

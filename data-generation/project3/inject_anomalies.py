@@ -86,6 +86,8 @@ def inject_anomalies():
             labels.append((df.at[idx, "transaction_id"], "threshold_cluster"))
 
     # --- Type 5: Duplicate payments (10-15 transactions) ---
+    # Real duplicates: same vendor, very similar (not exact) amount, different invoice
+    # Some have minor cent differences (rounding, currency conversion, tax adjustments)
     dup_source_indices = RNG.choice(n, size=12, replace=False)
     txn_counter = n + 1
     new_rows = []
@@ -95,8 +97,12 @@ def inject_anomalies():
         new_txn_id = f"TXN-{txn_counter:06d}"
         source["transaction_id"] = new_txn_id
         source["invoice_id"] = f"INV-DUP-{txn_counter:05d}"
-        # Slightly different payment date
-        pay_dt = pd.Timestamp(source["payment_date"]) + pd.Timedelta(days=int(RNG.integers(1, 5)))
+        # ~60% exact match, ~40% have small cent-level variance
+        if RNG.random() > 0.6:
+            cent_diff = round(RNG.uniform(-0.50, 0.50), 2)
+            source["amount"] = round(source["amount"] + cent_diff, 2)
+        # Slightly different payment date (1-7 days later)
+        pay_dt = pd.Timestamp(source["payment_date"]) + pd.Timedelta(days=int(RNG.integers(1, 8)))
         source["payment_date"] = pay_dt.strftime("%Y-%m-%d")
         new_rows.append(source)
         labels.append((new_txn_id, "duplicate_payment"))

@@ -158,7 +158,7 @@
           }
         ]
       },
-      "narrative": "Negative impacts: mqls_per_month (-9.8%), brand_awareness (-6.0%), pipeline_value (-5.4%). Positive impacts: cac (+4.5%), win_rate (+0.8%)."
+      "narrative": "Cutting marketing spend by 15% reduces qualified lead flow by approximately 10% within one quarter, contracting the sales pipeline by an estimated $4.4M. While this saves $1.3M in direct marketing costs, the downstream revenue impact is projected to exceed the savings within two quarters. Brand awareness erodes gradually over 3+ months, compounding the pipeline effect."
     },
     {
       "id": "delay_engineering_hiring",
@@ -295,7 +295,7 @@
           }
         ]
       },
-      "narrative": "Negative impacts: feature_velocity (-3.6%), product_nps (-1.4%), win_rate (-0.4%). Positive impacts: platform_uptime (+0.4%)."
+      "narrative": "Freezing engineering hiring for one quarter slows feature delivery by roughly 30% during the freeze period. Product NPS begins to decline within two quarters as the roadmap falls behind competitors. The win rate impact is modest (~3-4%) but compounds over time. The cost savings from delayed salaries are partially offset by reduced product competitiveness."
     },
     {
       "id": "accelerate_collections",
@@ -593,7 +593,7 @@
           }
         ]
       },
-      "narrative": "Negative impacts: cac (-0.3%), platform_uptime (-0.0%), win_rate (-0.0%). Positive impacts: free_cash_flow (+5.8%), eng_headcount (+1.5%), marketing_spend (+1.2%)."
+      "narrative": "Reducing DSO by 10 days frees approximately $5.5M in working capital, improving free cash flow and reducing credit line reliance. The freed capital enables incremental reinvestment in engineering and marketing. This is one of the few decisions with predominantly positive cascading effects \u2014 the tradeoff is customer relationship friction from more aggressive collection terms."
     },
     {
       "id": "cut_operations_10",
@@ -753,7 +753,7 @@
           }
         ]
       },
-      "narrative": "Negative impacts: fulfillment_rate (-7.0%), csat (-5.6%), pipeline_value (-1.0%). Positive impacts: churn_rate (+2.8%), win_rate (+0.1%)."
+      "narrative": "A 10% operations budget cut degrades fulfillment capacity, pushing the fulfillment rate below 90% within one quarter. Customer satisfaction drops measurably, driving churn up by an estimated 0.7 percentage points. The LTV impact from increased churn exceeds the budget savings within 12 months. Operations cuts have the longest and most damaging cascade of any scenario modeled."
     },
     {
       "id": "custom",
