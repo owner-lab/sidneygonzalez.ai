@@ -33,17 +33,28 @@ def inject_anomalies():
         labels.append((df.at[idx, "transaction_id"], "seasonal_spike"))
 
     # --- Type 2: One-time events (10-15 transactions) ---
+    # Unusual but plausible vendors per category (one-time events like
+    # emergency repairs, legal settlements, expedited orders)
+    ONETIME_VENDORS = {
+        "Personnel": ["Robert Half International", "Kforce Staffing"],
+        "Infrastructure": ["Rackspace Emergency Support", "AWS Professional Services"],
+        "Software": ["Emergency License Renewal LLC", "Rapid Deploy Software Inc"],
+        "Travel": ["NetJets Inc", "Wheels Up Partners"],
+        "Services": ["Morrison Legal Partners", "Quinn Emanuel Trial Lawyers"],
+        "Maintenance": ["Emergency Repair Services Inc", "24/7 Industrial Maintenance"],
+        "Logistics": ["UPS Expedited Freight", "FedEx Priority Overnight"],
+        "Facilities": ["ServiceMaster Restore", "BELFOR Property Restoration"],
+        "Events": ["Last-Minute Events LLC", "Pinnacle Conference Services"],
+        "Training": ["Executive Leadership Institute", "Wharton Executive Education"],
+    }
     onetime_indices = RNG.choice(n, size=12, replace=False)
-    unusual_vendors = [
-        "Morrison Legal Partners", "Apex Crisis Management LLC",
-        "Meridian Equipment Leasing", "Quantum Security Consultants",
-        "Pinnacle Relocation Services", "Sterling Data Recovery Inc",
-    ]
     for idx in onetime_indices:
         if idx in spike_selected:
             continue
+        category = df.at[idx, "category"]
+        vendor_pool = ONETIME_VENDORS.get(category, ["Apex Emergency Services LLC"])
         df.at[idx, "amount"] = df.at[idx, "amount"] * RNG.uniform(2.0, 5.0)
-        df.at[idx, "vendor"] = RNG.choice(unusual_vendors)
+        df.at[idx, "vendor"] = RNG.choice(vendor_pool)
         labels.append((df.at[idx, "transaction_id"], "one_time_event"))
 
     # --- Type 3: Trending overspends (15-25 transactions) ---

@@ -17,7 +17,8 @@ DIVISIONS = {
         "aliases": ["Div A", "Division A", "div_a", "Enterprise Software"],
         "annual_revenue": 90_000_000,
         "gross_margin_target": 0.62,
-        "seasonality": [0.87, 0.90, 0.95, 0.99, 1.00, 1.02, 1.01, 0.98, 1.03, 1.05, 1.08, 1.18],
+        #                Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov   Dec
+        "seasonality": [0.91, 0.93, 0.96, 0.99, 1.00, 1.01, 1.00, 0.98, 1.02, 1.05, 1.07, 1.14],
         "growth_rate": 0.10,
         "rd_pct": 0.18,
         "sga_pct": 0.22,
