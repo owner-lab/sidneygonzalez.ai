@@ -15,11 +15,11 @@ DIVISIONS = {
     "enterprise_software": {
         "label": "Enterprise Software",
         "aliases": ["Div A", "Division A", "div_a", "Enterprise Software"],
-        "annual_revenue": 90_000_000,
+        "annual_revenue": 85_000_000,  # ~$85M base, grows to ~$95M in Y2
         "gross_margin_target": 0.62,
         #                Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov   Dec
         "seasonality": [0.91, 0.93, 0.96, 0.99, 1.00, 1.01, 1.00, 0.98, 1.02, 1.05, 1.07, 1.14],
-        "growth_rate": 0.10,
+        "growth_rate": 0.08,  # 8% -> ~12-14% YoY with momentum (McKinsey Rule of 40 mid-market median)
         "rd_pct": 0.18,
         "sga_pct": 0.22,
         "depreciation_pct": 0.03,
@@ -32,7 +32,7 @@ DIVISIONS = {
     "professional_services": {
         "label": "Professional Services",
         "aliases": ["Div B", "Division B", "div_b", "Professional Services"],
-        "annual_revenue": 60_000_000,
+        "annual_revenue": 58_000_000,  # ~$58M base, grows to ~$63M in Y2
         "gross_margin_target": 0.48,
         "seasonality": [0.92, 0.95, 0.98, 1.00, 1.02, 1.01, 0.99, 0.97, 1.01, 1.03, 1.05, 1.10],
         "growth_rate": 0.08,
@@ -48,7 +48,7 @@ DIVISIONS = {
     "cloud_infrastructure": {
         "label": "Cloud Infrastructure",
         "aliases": ["Div C", "Division C", "div_c", "Cloud Infrastructure"],
-        "annual_revenue": 50_000_000,
+        "annual_revenue": 48_000_000,  # ~$48M base, grows to ~$54M in Y2
         "gross_margin_target": 0.58,
         "seasonality": [0.90, 0.93, 0.97, 1.00, 1.02, 1.03, 1.02, 1.00, 1.01, 1.04, 1.06, 1.12],
         "growth_rate": 0.12,

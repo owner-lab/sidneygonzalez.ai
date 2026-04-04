@@ -31,9 +31,10 @@ def generate_pnl():
         monthly_base = div["annual_revenue"] / 12
         seasonality = div["seasonality"]
 
-        # Surprise revenue months: 2-3 per division
-        surprise_months = RNG.choice(range(NUM_MONTHS), size=3, replace=False)
-        surprise_factors = RNG.uniform(0.85, 1.18, size=3)
+        # Surprise revenue months: 1-2 per division (big deal close, lost contract)
+        # Tunguz SaaS seasonality: subscription models smooth MoM; >12% MoM rare
+        surprise_months = RNG.choice(range(2, NUM_MONTHS - 1), size=2, replace=False)
+        surprise_factors = RNG.uniform(0.91, 1.10, size=2)  # ±9-10% max
 
         # OpEx spike months: 2-3 per division
         opex_spike_months = RNG.choice(

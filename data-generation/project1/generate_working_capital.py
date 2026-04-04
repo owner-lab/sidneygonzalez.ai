@@ -51,11 +51,12 @@ def generate_working_capital():
             q4_bump = 5 if date.month in [10, 11, 12] else 0
             q1_dip = -3 if date.month in [1, 2] else 0
 
-            # Bad revenue month -> DSO spikes (customers also stressed, or
-            # company shipped less so AR is older on average)
+            # Bad revenue month -> DSO spikes (JPMorgan Working Capital Index 2024:
+            # DSO reached 5-year high of 54.1d as customers delayed payments;
+            # PwC Working Capital Study shows 5-15 day spikes during downturns)
             stress_bump = 0
-            if i > 0 and rev_mom_pct[i] < -0.05:
-                stress_bump = abs(rev_mom_pct[i]) * 40  # -10% rev -> +4 day DSO spike
+            if i > 0 and rev_mom_pct[i] < -0.02:  # trigger on any >2% decline
+                stress_bump = abs(rev_mom_pct[i]) * 80  # -5% rev -> +4d, -10% rev -> +8d DSO spike
 
             dso = round(div["dso_target"] + q4_bump + q1_dip + stress_bump + RNG.normal(0, 2.5), 1)
             dso = max(10, dso)
