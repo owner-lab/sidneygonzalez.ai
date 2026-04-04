@@ -30,7 +30,7 @@ export default [
       ],
       'no-unused-vars': [
         'warn',
-        { varsIgnorePattern: '^[A-Z_]', argsIgnorePattern: '^_' },
+        { varsIgnorePattern: '^[A-Z_]|^motion$', argsIgnorePattern: '^_' },
       ],
     },
   },
