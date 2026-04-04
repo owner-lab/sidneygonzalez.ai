@@ -54,9 +54,15 @@ def generate_working_capital():
             # Bad revenue month -> DSO spikes (JPMorgan Working Capital Index 2024:
             # DSO reached 5-year high of 54.1d as customers delayed payments;
             # PwC Working Capital Study shows 5-15 day spikes during downturns)
+            #
+            # Services divisions have lower thresholds — even small revenue
+            # dips indicate utilization drops, which slow collections as
+            # clients renegotiate payment timelines on reduced scopes
+            stress_threshold = -0.01 if div_key == "professional_services" else -0.02
+            stress_multiplier = 120 if div_key == "professional_services" else 80
             stress_bump = 0
-            if i > 0 and rev_mom_pct[i] < -0.02:  # trigger on any >2% decline
-                stress_bump = abs(rev_mom_pct[i]) * 80  # -5% rev -> +4d, -10% rev -> +8d DSO spike
+            if i > 0 and rev_mom_pct[i] < stress_threshold:
+                stress_bump = abs(rev_mom_pct[i]) * stress_multiplier
 
             dso = round(div["dso_target"] + q4_bump + q1_dip + stress_bump + RNG.normal(0, 2.5), 1)
             dso = max(10, dso)
