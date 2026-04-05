@@ -4,6 +4,7 @@ import PyodideStatus from '@/components/ui/PyodideStatus'
 import LoadingSpinner from '@/components/ui/LoadingSpinner'
 import PyodideFallback from '@/components/ui/PyodideFallback'
 import usePyodide from '@/python/usePyodide'
+import CommandCenterProject from '@/projects/command-center/CommandCenterProject'
 
 const STATUS_MAP = {
   idle: 'offline',
@@ -42,9 +43,12 @@ export default function Projects() {
             <PyodideFallback error={error} />
           </div>
         )}
-
-        {/* Project cards will be added in Phases 4-6 */}
       </ScrollReveal>
+
+      {/* Project 1: Executive Command Center */}
+      <CommandCenterProject />
+
+      {/* Projects 2 and 3 will be added in Phases 5-6 */}
     </Section>
   )
 }

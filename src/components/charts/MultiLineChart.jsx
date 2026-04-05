@@ -1,0 +1,112 @@
+import {
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ReferenceLine,
+} from 'recharts'
+import useMediaQuery from '@/hooks/useMediaQuery'
+
+const AXIS_STYLE = {
+  fontFamily: '"JetBrains Mono", monospace',
+  fontSize: 11,
+  fill: '#94A3B8',
+}
+
+function CustomTooltip({ active, payload, label, unit }) {
+  if (!active || !payload?.length) return null
+  return (
+    <div className="glass-panel rounded-lg px-3 py-2 text-xs">
+      <p className="mb-1 font-medium text-text-primary">{label}</p>
+      {payload.map((entry) => (
+        <p key={entry.dataKey} style={{ color: entry.color }}>
+          {entry.name}: {entry.value?.toFixed(1)}{unit}
+        </p>
+      ))}
+    </div>
+  )
+}
+
+export default function MultiLineChart({
+  data,
+  lineKeys,
+  xKey = 'month',
+  thresholds = [],
+  formatY,
+  height = 350,
+  unit = '',
+}) {
+  const isMobile = useMediaQuery('(max-width: 768px)')
+  const chartHeight = isMobile ? 250 : height
+
+  if (!data || data.length === 0) return null
+
+  const tickFormatter = (val) => {
+    if (typeof val === 'string' && val.match(/^\d{4}-\d{2}$/)) {
+      const [y, m] = val.split('-')
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+      return `${months[parseInt(m) - 1]} ${y.slice(2)}`
+    }
+    return val
+  }
+
+  return (
+    <div role="img" aria-label="Working capital efficiency trend chart">
+      <ResponsiveContainer width="100%" height={chartHeight}>
+        <LineChart data={data} margin={{ top: 5, right: 15, bottom: 5, left: 5 }}>
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+          <XAxis
+            dataKey={xKey}
+            tick={AXIS_STYLE}
+            tickFormatter={tickFormatter}
+            interval={isMobile ? 2 : 0}
+            angle={isMobile ? -45 : 0}
+            textAnchor={isMobile ? 'end' : 'middle'}
+          />
+          <YAxis
+            tick={AXIS_STYLE}
+            tickFormatter={formatY || ((v) => `${v}`)}
+            width={45}
+          />
+          <Tooltip content={<CustomTooltip unit={unit} />} />
+          <Legend wrapperStyle={{ fontSize: 11, fontFamily: 'Inter' }} />
+
+          {thresholds.map((t) => (
+            <ReferenceLine
+              key={t.label}
+              y={t.value}
+              stroke={t.color || '#94A3B8'}
+              strokeDasharray="6 4"
+              label={{
+                value: t.label,
+                position: 'right',
+                fill: t.color || '#94A3B8',
+                fontSize: 10,
+              }}
+            />
+          ))}
+
+          {lineKeys.map(({ key, color, label }) => (
+            <Line
+              key={key}
+              type="monotone"
+              dataKey={key}
+              name={label}
+              stroke={color}
+              strokeWidth={2}
+              dot={{ r: 2, fill: color }}
+              activeDot={{ r: 5 }}
+            />
+          ))}
+        </LineChart>
+      </ResponsiveContainer>
+      <span className="sr-only">
+        Line chart showing working capital metrics over time with benchmark thresholds
+      </span>
+    </div>
+  )
+}

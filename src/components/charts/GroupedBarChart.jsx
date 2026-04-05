@@ -1,0 +1,98 @@
+import {
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+} from 'recharts'
+import { formatCompact } from '@/utils/formatters'
+import useMediaQuery from '@/hooks/useMediaQuery'
+
+const AXIS_STYLE = {
+  fontFamily: '"JetBrains Mono", monospace',
+  fontSize: 11,
+  fill: '#94A3B8',
+}
+
+function CustomTooltip({ active, payload, label }) {
+  if (!active || !payload?.length) return null
+  return (
+    <div className="glass-panel rounded-lg px-3 py-2 text-xs">
+      <p className="mb-1 font-medium text-text-primary">{label}</p>
+      {payload.map((entry) => (
+        <p key={entry.dataKey} style={{ color: entry.color }}>
+          {entry.name}: {formatCompact(entry.value)}
+        </p>
+      ))}
+    </div>
+  )
+}
+
+export default function GroupedBarChart({
+  data,
+  dataKeys,
+  xKey = 'month',
+  stacked = false,
+  formatY,
+  height = 350,
+  onBarClick,
+}) {
+  const isMobile = useMediaQuery('(max-width: 768px)')
+  const chartHeight = isMobile ? 250 : height
+
+  if (!data || data.length === 0) return null
+
+  const tickFormatter = (val) => {
+    if (typeof val === 'string' && val.match(/^\d{4}-\d{2}$/)) {
+      const [y, m] = val.split('-')
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+      return `${months[parseInt(m) - 1]} ${y.slice(2)}`
+    }
+    return val
+  }
+
+  return (
+    <div role="img" aria-label="Revenue by division bar chart">
+      <ResponsiveContainer width="100%" height={chartHeight}>
+        <BarChart data={data} margin={{ top: 5, right: 5, bottom: 5, left: 5 }}>
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+          <XAxis
+            dataKey={xKey}
+            tick={AXIS_STYLE}
+            tickFormatter={tickFormatter}
+            interval={isMobile ? 2 : 0}
+            angle={isMobile ? -45 : 0}
+            textAnchor={isMobile ? 'end' : 'middle'}
+          />
+          <YAxis
+            tick={AXIS_STYLE}
+            tickFormatter={formatY || formatCompact}
+            width={65}
+          />
+          <Tooltip content={<CustomTooltip />} />
+          <Legend
+            wrapperStyle={{ fontSize: 11, fontFamily: 'Inter' }}
+          />
+          {dataKeys.map(({ key, color, label }) => (
+            <Bar
+              key={key}
+              dataKey={key}
+              name={label}
+              fill={color}
+              stackId={stacked ? 'stack' : undefined}
+              radius={[2, 2, 0, 0]}
+              cursor="pointer"
+              onClick={onBarClick ? (entry) => onBarClick(key, entry) : undefined}
+            />
+          ))}
+        </BarChart>
+      </ResponsiveContainer>
+      <span className="sr-only">
+        Bar chart showing revenue breakdown by business division over time
+      </span>
+    </div>
+  )
+}
