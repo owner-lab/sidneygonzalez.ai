@@ -5,6 +5,8 @@ import LoadingSpinner from '@/components/ui/LoadingSpinner'
 import PyodideFallback from '@/components/ui/PyodideFallback'
 import usePyodide from '@/python/usePyodide'
 import CommandCenterProject from '@/projects/command-center/CommandCenterProject'
+import DecisionImpactProject from '@/projects/decision-impact/DecisionImpactProject'
+import VarianceEngineProject from '@/projects/variance-engine/VarianceEngineProject'
 
 const STATUS_MAP = {
   idle: 'offline',
@@ -48,7 +50,11 @@ export default function Projects() {
       {/* Project 1: Executive Command Center */}
       <CommandCenterProject />
 
-      {/* Projects 2 and 3 will be added in Phases 5-6 */}
+      {/* Project 2: Decision Impact Analyzer */}
+      <DecisionImpactProject />
+
+      {/* Project 3: Variance & Anomaly Engine */}
+      <VarianceEngineProject />
     </Section>
   )
 }
