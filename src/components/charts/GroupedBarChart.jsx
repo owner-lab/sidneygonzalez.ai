@@ -10,12 +10,7 @@ import {
 } from 'recharts'
 import { formatCompact } from '@/utils/formatters'
 import useMediaQuery from '@/hooks/useMediaQuery'
-
-const AXIS_STYLE = {
-  fontFamily: '"JetBrains Mono", monospace',
-  fontSize: 11,
-  fill: '#94A3B8',
-}
+import { getRechartsAxisStyle, getGridStroke } from '@/config/chartTheme'
 
 function CustomTooltip({ active, payload, label }) {
   if (!active || !payload?.length) return null
@@ -45,6 +40,9 @@ export default function GroupedBarChart({
 
   if (!data || data.length === 0) return null
 
+  const axisStyle = getRechartsAxisStyle(isMobile)
+  const gridStroke = getGridStroke()
+
   const tickFormatter = (val) => {
     if (typeof val === 'string' && val.match(/^\d{4}-\d{2}$/)) {
       const [y, m] = val.split('-')
@@ -54,22 +52,27 @@ export default function GroupedBarChart({
     return val
   }
 
+  // Smart interval: show all labels for short lists, thin for long time series
+  const interval = isMobile
+    ? (data.length > 12 ? 4 : 0)
+    : (data.length > 12 ? 2 : 0)
+
   return (
     <div role="img" aria-label="Revenue by division bar chart">
       <ResponsiveContainer width="100%" height={chartHeight}>
         <BarChart data={data} margin={{ top: 5, right: 5, bottom: 5, left: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+          <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
           <XAxis
             dataKey={xKey}
-            tick={{ ...AXIS_STYLE, fontSize: isMobile ? 9 : 11 }}
+            tick={axisStyle}
             tickFormatter={tickFormatter}
-            interval={isMobile && data.length > 12 ? 4 : 0}
-            angle={isMobile ? -45 : 0}
-            textAnchor={isMobile ? 'end' : 'middle'}
-            height={isMobile ? 55 : 30}
+            interval={interval}
+            angle={isMobile || data.length > 12 ? -45 : 0}
+            textAnchor={isMobile || data.length > 12 ? 'end' : 'middle'}
+            height={isMobile || data.length > 12 ? 55 : 30}
           />
           <YAxis
-            tick={AXIS_STYLE}
+            tick={axisStyle}
             tickFormatter={formatY || formatCompact}
             width={65}
           />

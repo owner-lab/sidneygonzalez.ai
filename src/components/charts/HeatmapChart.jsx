@@ -1,20 +1,7 @@
 import { ResponsiveHeatMap } from '@nivo/heatmap'
 import useMediaQuery from '@/hooks/useMediaQuery'
-
-const NIVO_THEME = {
-  text: { fill: '#94A3B8', fontFamily: '"JetBrains Mono", monospace', fontSize: 11 },
-  tooltip: {
-    container: {
-      background: 'rgba(17, 17, 24, 0.9)',
-      border: '1px solid rgba(255,255,255,0.08)',
-      borderRadius: '8px',
-      padding: '8px 12px',
-      fontSize: '12px',
-      color: '#E2E8F0',
-      backdropFilter: 'blur(12px)',
-    },
-  },
-}
+import useIsDark from '@/hooks/useIsDark'
+import { getNivoTheme, getHeatmapNeutral, getAxisColor } from '@/config/chartTheme'
 
 function DefaultTooltip({ cell }) {
   return (
@@ -38,9 +25,14 @@ export default function HeatmapChart({
   maxValue,
 }) {
   const isMobile = useMediaQuery('(max-width: 1024px)')
+  const isDark = useIsDark()
   const chartHeight = isMobile ? 300 : height
 
   if (!data || data.length === 0) return null
+
+  const nivoTheme = getNivoTheme()
+  const neutral = getHeatmapNeutral()
+  const axisColor = getAxisColor()
 
   return (
     <div
@@ -51,23 +43,24 @@ export default function HeatmapChart({
     >
       <div style={{ height: chartHeight, minWidth: isMobile ? 700 : 'auto' }}>
         <ResponsiveHeatMap
+          key={isDark ? 'd' : 'l'}
           data={data}
           margin={{ top: 30, right: 20, bottom: 10, left: 120 }}
           forceSquare={false}
           colors={{
             type: 'diverging',
-            colors: ['#4AF6C3', '#1E1E2E', '#FF433D'],
+            colors: ['#4AF6C3', neutral, '#FF433D'],
             divergeAt: 0.5,
             minValue: minValue ?? -30,
             maxValue: maxValue ?? 30,
           }}
-          emptyColor="#1E1E2E"
+          emptyColor={neutral}
           borderWidth={1}
-          borderColor="rgba(255,255,255,0.06)"
+          borderColor="var(--color-border-subtle)"
           enableLabels={true}
           labelTextColor={({ value }) => {
-            if (value === null || value === undefined) return '#64748B'
-            return Math.abs(value) > 15 ? '#E2E8F0' : '#94A3B8'
+            if (value === null || value === undefined) return axisColor
+            return Math.abs(value) > 15 ? (isDark ? '#E2E8F0' : '#0F172A') : axisColor
           }}
           label={({ value }) => {
             if (value === null || value === undefined) return ''
@@ -85,7 +78,7 @@ export default function HeatmapChart({
           cellHoverOthersOpacity={0.4}
           tooltip={tooltip || DefaultTooltip}
           onClick={onClick}
-          theme={NIVO_THEME}
+          theme={nivoTheme}
           animate={true}
           motionConfig="gentle"
         />

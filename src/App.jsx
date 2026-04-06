@@ -7,15 +7,20 @@ import Projects from '@/sections/Projects'
 import BuildLog from '@/sections/BuildLog'
 import Contact from '@/sections/Contact'
 import usePyodide from '@/python/usePyodide'
+import useTheme from '@/hooks/useTheme'
 
 export default function App() {
   // Initialize Pyodide on page load (deferred — starts after hero paint)
-  // Singleton: calling usePyodide() here and in child components shares one worker
   usePyodide()
+
+  const { preference, setTheme } = useTheme()
 
   return (
     <ReactLenis root options={{ lerp: 0.1, duration: 1.2, smoothWheel: true }}>
-      <Navbar />
+      <Navbar
+        themePreference={preference}
+        onChangeTheme={setTheme}
+      />
       <main>
         <Hero />
         <About />

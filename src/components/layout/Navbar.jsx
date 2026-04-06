@@ -3,8 +3,9 @@ import { motion, AnimatePresence } from 'motion/react'
 import { NAV_LINKS } from '@/config/constants'
 import useLenisScroll from '@/hooks/useLenisScroll'
 import useMediaQuery from '@/hooks/useMediaQuery'
+import ThemeToggle from '@/components/ui/ThemeToggle'
 
-export default function Navbar() {
+export default function Navbar({ themePreference, onChangeTheme }) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const scrollTo = useLenisScroll()
@@ -46,20 +47,23 @@ export default function Navbar() {
           SG
         </a>
 
-        {/* Desktop nav */}
-        <ul className="hidden gap-8 md:flex">
-          {NAV_LINKS.map(({ label, href }) => (
-            <li key={href}>
-              <a
-                href={href}
-                onClick={(e) => handleNavClick(e, href)}
-                className="text-sm text-text-secondary transition-colors hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/50 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
-              >
-                {label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        {/* Desktop nav + theme toggle */}
+        <div className="hidden items-center gap-6 md:flex">
+          <ul className="flex gap-8">
+            {NAV_LINKS.map(({ label, href }) => (
+              <li key={href}>
+                <a
+                  href={href}
+                  onClick={(e) => handleNavClick(e, href)}
+                  className="text-sm text-text-secondary transition-colors hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/50 focus-visible:ring-offset-2"
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <ThemeToggle preference={themePreference} onChangeTheme={onChangeTheme} />
+        </div>
 
         {/* Mobile hamburger */}
         <button
@@ -108,6 +112,9 @@ export default function Navbar() {
                 </li>
               ))}
             </ul>
+            <div className="border-t border-border-subtle px-4 py-3">
+              <ThemeToggle preference={themePreference} onChangeTheme={onChangeTheme} />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

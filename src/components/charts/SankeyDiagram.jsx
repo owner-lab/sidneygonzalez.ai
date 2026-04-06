@@ -1,21 +1,8 @@
 import { useMemo } from 'react'
 import { ResponsiveSankey } from '@nivo/sankey'
 import useMediaQuery from '@/hooks/useMediaQuery'
-
-const NIVO_THEME = {
-  text: { fill: '#94A3B8', fontFamily: '"JetBrains Mono", monospace', fontSize: 11 },
-  tooltip: {
-    container: {
-      background: 'rgba(17, 17, 24, 0.9)',
-      border: '1px solid rgba(255,255,255,0.08)',
-      borderRadius: '8px',
-      padding: '8px 12px',
-      fontSize: '12px',
-      color: '#E2E8F0',
-      backdropFilter: 'blur(12px)',
-    },
-  },
-}
+import useIsDark from '@/hooks/useIsDark'
+import { getNivoTheme, getAxisColor } from '@/config/chartTheme'
 
 const DEFAULT_NODE_COLOR = '#64748B'
 
@@ -39,6 +26,7 @@ export default function SankeyDiagram({
   height = 450,
 }) {
   const isMobile = useMediaQuery('(max-width: 1024px)')
+  const isDark = useIsDark()
   const chartHeight = isMobile ? 350 : height
 
   // Build highlighted link key set
@@ -69,7 +57,6 @@ export default function SankeyDiagram({
         return { ...link, startColor: color, endColor: color }
       }
       if (hasHighlights) {
-        // Dim unaffected links
         return { ...link, startColor: 'rgba(148,163,184,0.08)', endColor: 'rgba(148,163,184,0.08)' }
       }
       return link
@@ -80,6 +67,9 @@ export default function SankeyDiagram({
 
   if (!coloredData || coloredData.links.length === 0) return null
 
+  const nivoTheme = getNivoTheme()
+  const axisColor = getAxisColor()
+
   return (
     <div
       role="img"
@@ -89,6 +79,7 @@ export default function SankeyDiagram({
     >
       <div style={{ height: chartHeight, minWidth: isMobile ? 700 : 'auto' }}>
         <ResponsiveSankey
+          key={isDark ? 'd' : 'l'}
           data={coloredData}
           margin={{ top: 20, right: isMobile ? 90 : 140, bottom: 20, left: isMobile ? 60 : 20 }}
           align="justify"
@@ -113,8 +104,8 @@ export default function SankeyDiagram({
           labelPosition="outside"
           labelOrientation="horizontal"
           labelPadding={isMobile ? 6 : 12}
-          labelTextColor="#94A3B8"
-          theme={isMobile ? { ...NIVO_THEME, text: { ...NIVO_THEME.text, fontSize: 9 } } : NIVO_THEME}
+          labelTextColor={axisColor}
+          theme={isMobile ? { ...nivoTheme, text: { ...nivoTheme.text, fontSize: 9 } } : nivoTheme}
           animate={true}
           motionConfig="gentle"
         />

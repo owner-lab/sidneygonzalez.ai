@@ -1,6 +1,8 @@
 import { ResponsiveBar } from '@nivo/bar'
 import { formatCompact } from '@/utils/formatters'
 import useMediaQuery from '@/hooks/useMediaQuery'
+import useIsDark from '@/hooks/useIsDark'
+import { getNivoTheme } from '@/config/chartTheme'
 
 /**
  * Waterfall chart using Nivo stacked bars.
@@ -23,7 +25,6 @@ function buildWaterfallData(items) {
 
   for (const item of items) {
     if (item.type === 'total') {
-      // Total bar starts from 0
       data.push({
         label: item.label,
         spacer: item.value >= 0 ? 0 : item.value,
@@ -44,7 +45,7 @@ function buildWaterfallData(items) {
       } else {
         data.push({
           label: item.label,
-          spacer: runningTotal + value, // offset down by the negative amount
+          spacer: runningTotal + value,
           positive: 0,
           negative: Math.abs(value),
           rawValue: value,
@@ -57,42 +58,25 @@ function buildWaterfallData(items) {
   return data
 }
 
-const NIVO_THEME = {
-  text: { fill: '#94A3B8', fontFamily: '"JetBrains Mono", monospace', fontSize: 11 },
-  grid: { line: { stroke: 'rgba(255,255,255,0.05)' } },
-  axis: {
-    ticks: { text: { fill: '#94A3B8', fontFamily: '"JetBrains Mono", monospace', fontSize: 11 } },
-    legend: { text: { fill: '#94A3B8', fontFamily: 'Inter', fontSize: 12 } },
-  },
-  tooltip: {
-    container: {
-      background: 'rgba(17, 17, 24, 0.9)',
-      border: '1px solid rgba(255,255,255,0.08)',
-      borderRadius: '8px',
-      padding: '8px 12px',
-      fontSize: '12px',
-      color: '#E2E8F0',
-      backdropFilter: 'blur(12px)',
-    },
-  },
-}
-
 export default function WaterfallChart({
   data,
   height = 350,
   formatValue,
 }) {
   const isMobile = useMediaQuery('(max-width: 1024px)')
+  const isDark = useIsDark()
   const chartHeight = isMobile ? 250 : height
 
   if (!data || data.length === 0) return null
 
   const waterfallData = buildWaterfallData(data)
   const fmt = formatValue || formatCompact
+  const nivoTheme = getNivoTheme()
 
   return (
     <div role="img" aria-label="Cash flow waterfall chart" style={{ height: chartHeight }}>
       <ResponsiveBar
+        key={isDark ? 'd' : 'l'}
         data={waterfallData}
         keys={['spacer', 'positive', 'negative']}
         indexBy="label"
@@ -128,7 +112,7 @@ export default function WaterfallChart({
             </span>
           </div>
         )}
-        theme={NIVO_THEME}
+        theme={nivoTheme}
         animate={true}
         motionConfig="gentle"
       />

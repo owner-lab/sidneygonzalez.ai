@@ -10,12 +10,7 @@ import {
   ReferenceLine,
 } from 'recharts'
 import useMediaQuery from '@/hooks/useMediaQuery'
-
-const AXIS_STYLE = {
-  fontFamily: '"JetBrains Mono", monospace',
-  fontSize: 11,
-  fill: '#94A3B8',
-}
+import { getRechartsAxisStyle, getGridStroke } from '@/config/chartTheme'
 
 function CustomTooltip({ active, payload, label, unit }) {
   if (!active || !payload?.length) return null
@@ -45,6 +40,9 @@ export default function MultiLineChart({
 
   if (!data || data.length === 0) return null
 
+  const axisStyle = getRechartsAxisStyle(isMobile)
+  const gridStroke = getGridStroke()
+
   const tickFormatter = (val) => {
     if (typeof val === 'string' && val.match(/^\d{4}-\d{2}$/)) {
       const [y, m] = val.split('-')
@@ -58,18 +56,18 @@ export default function MultiLineChart({
     <div role="img" aria-label="Working capital efficiency trend chart">
       <ResponsiveContainer width="100%" height={chartHeight}>
         <LineChart data={data} margin={{ top: 5, right: isMobile ? 10 : 15, bottom: 5, left: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+          <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
           <XAxis
             dataKey={xKey}
-            tick={{ ...AXIS_STYLE, fontSize: isMobile ? 9 : 11 }}
+            tick={axisStyle}
             tickFormatter={tickFormatter}
-            interval={isMobile ? 5 : 0}
-            angle={isMobile ? -55 : 0}
-            textAnchor={isMobile ? 'end' : 'middle'}
-            height={isMobile ? 60 : 30}
+            interval={isMobile ? 5 : (data.length > 12 ? 2 : 0)}
+            angle={isMobile ? -55 : (data.length > 12 ? -45 : 0)}
+            textAnchor={isMobile || data.length > 12 ? 'end' : 'middle'}
+            height={isMobile || data.length > 12 ? 60 : 30}
           />
           <YAxis
-            tick={AXIS_STYLE}
+            tick={axisStyle}
             tickFormatter={formatY || ((v) => `${v}`)}
             width={45}
           />
