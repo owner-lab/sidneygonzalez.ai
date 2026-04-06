@@ -148,7 +148,6 @@ export default function DecisionImpactProject() {
       if (status !== 'ready') return
 
       setIsComputing(true)
-      setCustomResult(null)
 
       try {
         const result = await runPython(engineCode, {

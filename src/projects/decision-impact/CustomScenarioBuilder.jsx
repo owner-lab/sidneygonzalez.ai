@@ -2,7 +2,6 @@ import { useState } from 'react'
 import GlassPanel from '@/components/ui/GlassPanel'
 import Slider from '@/components/ui/Slider'
 import Button from '@/components/ui/Button'
-import LoadingSpinner from '@/components/ui/LoadingSpinner'
 
 // Only expose input KPIs that make sense for executive decisions
 const ADJUSTABLE_KPIS = [
@@ -59,15 +58,10 @@ export default function CustomScenarioBuilder({
 
   return (
     <GlassPanel className="mt-6">
-      <div className="mb-4 flex items-center justify-between">
+      <div className="mb-4">
         <h4 className="text-xs font-semibold uppercase tracking-wider text-text-muted">
           Custom Scenario Builder
         </h4>
-        {hasChanges && (
-          <Button variant="ghost" className="text-xs" onClick={handleReset}>
-            Reset
-          </Button>
-        )}
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
@@ -97,12 +91,18 @@ export default function CustomScenarioBuilder({
         >
           {isComputing ? 'Computing...' : 'Run Scenario'}
         </Button>
+        <Button
+          variant="ghost"
+          className={`text-xs ${!hasChanges ? 'pointer-events-none opacity-30' : ''}`}
+          onClick={handleReset}
+        >
+          Reset
+        </Button>
         {!pyodideReady && (
           <span className="text-xs text-text-muted">
             Waiting for Python runtime...
           </span>
         )}
-        {isComputing && <LoadingSpinner progress={50} />}
       </div>
     </GlassPanel>
   )
