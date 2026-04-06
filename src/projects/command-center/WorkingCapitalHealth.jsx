@@ -35,7 +35,7 @@ function FormulaBlock() {
   return (
     <div
       ref={ref}
-      className="mt-4 flex flex-wrap items-center gap-2 rounded-lg bg-bg-surface/50 px-4 py-3 text-sm text-text-secondary"
+      className="mt-4 flex flex-wrap items-center gap-2 overflow-x-auto rounded-lg bg-bg-surface/50 px-3 py-3 text-xs text-text-secondary sm:px-4 sm:text-sm"
     />
   )
 }

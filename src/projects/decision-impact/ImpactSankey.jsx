@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import ChartContainer from '@/components/charts/ChartContainer'
 import SankeyDiagram from '@/components/charts/SankeyDiagram'
+import useMediaQuery from '@/hooks/useMediaQuery'
 
 // Division → color for Sankey nodes
 const DIVISION_COLORS = {
@@ -9,6 +10,29 @@ const DIVISION_COLORS = {
   'Engineering & Product': '#A78BFA',
   Operations: '#4AF6C3',
   Finance: '#06B6D4',
+}
+
+// Short labels for mobile
+const SHORT_LABELS = {
+  pipeline_value: 'Pipeline',
+  win_rate: 'Win Rate',
+  avg_deal_size: 'Deal Size',
+  sales_cycle_days: 'Sales Cycle',
+  marketing_spend: 'Mkt Spend',
+  mqls_per_month: 'MQLs',
+  cac: 'CAC',
+  brand_awareness: 'Brand',
+  eng_headcount: 'Eng HC',
+  feature_velocity: 'Features',
+  platform_uptime: 'Uptime',
+  product_nps: 'NPS',
+  ops_budget: 'Ops Budget',
+  fulfillment_rate: 'Fulfillment',
+  csat: 'CSAT',
+  churn_rate: 'Churn',
+  dso: 'DSO',
+  operating_margin: 'Op Margin',
+  free_cash_flow: 'FCF',
 }
 
 const LEGEND_ITEMS = Object.entries(DIVISION_COLORS)
@@ -20,13 +44,16 @@ export default function ImpactSankey({
   affectedLinks,
   loading,
 }) {
+  const isMobile = useMediaQuery('(max-width: 768px)')
+
   // Build Sankey data with readable labels
   const sankeyData = useMemo(() => {
     if (!orgModel?.sankey) return null
 
+    const labels = isMobile ? SHORT_LABELS : kpiLabels
     const nodes = orgModel.sankey.nodes.map((n) => ({
       ...n,
-      label: kpiLabels[n.id] || n.id,
+      label: labels[n.id] || kpiLabels[n.id] || n.id,
     }))
 
     // Sankey link values must be positive
@@ -37,7 +64,7 @@ export default function ImpactSankey({
     }))
 
     return { nodes, links }
-  }, [orgModel, kpiLabels])
+  }, [orgModel, kpiLabels, isMobile])
 
   // Build node color map from division membership
   const nodeColorMap = useMemo(() => {

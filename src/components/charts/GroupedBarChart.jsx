@@ -61,11 +61,12 @@ export default function GroupedBarChart({
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
           <XAxis
             dataKey={xKey}
-            tick={AXIS_STYLE}
+            tick={{ ...AXIS_STYLE, fontSize: isMobile ? 9 : 11 }}
             tickFormatter={tickFormatter}
-            interval={isMobile ? 2 : 0}
-            angle={isMobile ? -45 : 0}
+            interval={isMobile ? 4 : 0}
+            angle={isMobile ? -55 : 0}
             textAnchor={isMobile ? 'end' : 'middle'}
+            height={isMobile ? 60 : 30}
           />
           <YAxis
             tick={AXIS_STYLE}
@@ -74,7 +75,8 @@ export default function GroupedBarChart({
           />
           <Tooltip content={<CustomTooltip />} />
           <Legend
-            wrapperStyle={{ fontSize: 11, fontFamily: 'Inter' }}
+            wrapperStyle={{ fontSize: isMobile ? 9 : 11, fontFamily: 'Inter' }}
+            iconSize={isMobile ? 8 : 14}
           />
           {dataKeys.map(({ key, color, label }) => (
             <Bar

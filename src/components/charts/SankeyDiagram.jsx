@@ -112,9 +112,9 @@ export default function SankeyDiagram({
           label={(node) => node.label || node.id}
           labelPosition="outside"
           labelOrientation="horizontal"
-          labelPadding={12}
+          labelPadding={isMobile ? 6 : 12}
           labelTextColor="#94A3B8"
-          theme={NIVO_THEME}
+          theme={isMobile ? { ...NIVO_THEME, text: { ...NIVO_THEME.text, fontSize: 9 } } : NIVO_THEME}
           animate={true}
           motionConfig="gentle"
         />

@@ -62,10 +62,11 @@ export default function VarianceTimeSeries({ data, loading }) {
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
               <XAxis
                 dataKey="month"
-                tick={AXIS_STYLE}
-                interval={isMobile ? 2 : 0}
-                angle={isMobile ? -45 : 0}
+                tick={{ ...AXIS_STYLE, fontSize: isMobile ? 9 : 11 }}
+                interval={isMobile ? 3 : 0}
+                angle={isMobile ? -55 : 0}
                 textAnchor={isMobile ? 'end' : 'middle'}
+                height={isMobile ? 55 : 30}
               />
               <YAxis
                 tick={AXIS_STYLE}
@@ -73,7 +74,10 @@ export default function VarianceTimeSeries({ data, loading }) {
                 width={65}
               />
               <Tooltip content={<CustomTooltip />} />
-              <Legend wrapperStyle={{ fontSize: 11, fontFamily: 'Inter' }} />
+              <Legend
+                wrapperStyle={{ fontSize: isMobile ? 9 : 11, fontFamily: 'Inter' }}
+                iconSize={isMobile ? 8 : 14}
+              />
               <Line
                 type="monotone"
                 dataKey="budget"
