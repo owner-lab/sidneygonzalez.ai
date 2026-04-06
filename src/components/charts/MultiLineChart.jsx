@@ -55,7 +55,7 @@ export default function MultiLineChart({
   return (
     <div role="img" aria-label="Working capital efficiency trend chart">
       <ResponsiveContainer width="100%" height={chartHeight}>
-        <LineChart data={data} margin={{ top: 5, right: isMobile ? 10 : 15, bottom: 5, left: 5 }}>
+        <LineChart data={data} margin={{ top: 5, right: isMobile ? 10 : 20, bottom: 5, left: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
           <XAxis
             dataKey={xKey}
@@ -83,16 +83,6 @@ export default function MultiLineChart({
               y={t.value}
               stroke={t.color || '#94A3B8'}
               strokeDasharray="6 4"
-              label={
-                isMobile
-                  ? null
-                  : {
-                      value: t.label,
-                      position: 'right',
-                      fill: t.color || '#94A3B8',
-                      fontSize: 10,
-                    }
-              }
             />
           ))}
 

@@ -56,15 +56,15 @@ export default function VarianceTimeSeries({ data, loading }) {
       {chartData && chartData.length > 0 && (
         <div role="img" aria-label="Monthly budget vs actual trend with anomaly markers">
           <ResponsiveContainer width="100%" height={chartHeight}>
-            <ComposedChart data={chartData} margin={{ top: 5, right: 15, bottom: 5, left: 5 }}>
+            <ComposedChart data={chartData} margin={{ top: 5, right: 15, bottom: 20, left: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
               <XAxis
                 dataKey="month"
                 tick={axisStyle}
-                interval={isMobile ? 3 : 0}
-                angle={isMobile ? -55 : 0}
-                textAnchor={isMobile ? 'end' : 'middle'}
-                height={isMobile ? 55 : 30}
+                interval={isMobile ? 3 : 1}
+                angle={-45}
+                textAnchor="end"
+                height={55}
               />
               <YAxis
                 tick={axisStyle}

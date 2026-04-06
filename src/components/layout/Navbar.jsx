@@ -29,8 +29,8 @@ export default function Navbar({ themePreference, onChangeTheme }) {
 
   return (
     <motion.nav
-      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
-        scrolled ? 'glass-panel rounded-none' : 'bg-transparent'
+      className={`fixed top-0 z-50 w-full border border-transparent transition-all duration-300 ${
+        scrolled ? 'navbar-glass' : 'bg-transparent'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}

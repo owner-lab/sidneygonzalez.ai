@@ -101,6 +101,15 @@
     border-radius: 1rem;
     transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
   }
+
+  /* Navbar scrolled state — only transitions color/bg/blur, no border-radius reset needed */
+  .navbar-glass {
+    background: var(--glass-bg);
+    border-color: var(--glass-border);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    box-shadow: var(--glass-shadow);
+  }
 }
 
 @layer utilities {

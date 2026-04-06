@@ -15,11 +15,11 @@ function DataTable({ rows, title, titleColor, highlightIssues = false }) {
   const cols = Object.keys(rows[0])
 
   return (
-    <div className="flex-1">
+    <div className="min-w-0 flex-1">
       <h4 className={`mb-2 text-xs font-semibold uppercase tracking-wider ${titleColor}`}>
         {title}
       </h4>
-      <div className="overflow-x-auto rounded-lg border border-border-subtle">
+      <div className="overflow-x-auto rounded-lg border border-border-subtle" data-lenis-prevent>
         <table className="w-full text-left font-mono text-xs">
           <thead>
             <tr className="border-b border-border-subtle bg-bg-surface/50">

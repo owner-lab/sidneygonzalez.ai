@@ -34,6 +34,7 @@ export default function GroupedBarChart({
   formatY,
   height = 350,
   onBarClick,
+  rotateLabels: rotateLabelsOverride,
 }) {
   const isMobile = useMediaQuery('(max-width: 1024px)')
   const chartHeight = isMobile ? 250 : height
@@ -54,22 +55,25 @@ export default function GroupedBarChart({
 
   // Smart interval: show all labels for short lists, thin for long time series
   const interval = isMobile
-    ? (data.length > 12 ? 4 : 0)
-    : (data.length > 12 ? 2 : 0)
+    ? (data.length > 8 ? Math.ceil(data.length / 6) - 1 : 0)
+    : (data.length > 18 ? 2 : data.length > 8 ? 1 : 0)
+  const rotateLabels = rotateLabelsOverride !== undefined
+    ? rotateLabelsOverride
+    : (isMobile || data.length > 8)
 
   return (
     <div role="img" aria-label="Revenue by division bar chart">
       <ResponsiveContainer width="100%" height={chartHeight}>
-        <BarChart data={data} margin={{ top: 5, right: 5, bottom: 5, left: 5 }}>
+        <BarChart data={data} margin={{ top: 5, right: 5, bottom: rotateLabels ? 20 : 5, left: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
           <XAxis
             dataKey={xKey}
             tick={axisStyle}
             tickFormatter={tickFormatter}
             interval={interval}
-            angle={isMobile || data.length > 12 ? -45 : 0}
-            textAnchor={isMobile || data.length > 12 ? 'end' : 'middle'}
-            height={isMobile || data.length > 12 ? 55 : 30}
+            angle={rotateLabels ? -45 : 0}
+            textAnchor={rotateLabels ? 'end' : 'middle'}
+            height={rotateLabels ? 55 : 30}
           />
           <YAxis
             tick={axisStyle}
@@ -78,7 +82,7 @@ export default function GroupedBarChart({
           />
           <Tooltip content={<CustomTooltip />} />
           <Legend
-            wrapperStyle={{ fontSize: isMobile ? 9 : 11, fontFamily: 'Inter' }}
+            wrapperStyle={{ fontSize: isMobile ? 9 : 11, fontFamily: 'Inter', paddingTop: 12 }}
             iconSize={isMobile ? 8 : 14}
           />
           {dataKeys.map(({ key, color, label }) => (

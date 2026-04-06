@@ -112,15 +112,9 @@ export default function VarianceEngineProject() {
 
   const filteredAnomalies = useMemo(() => {
     if (!fullData.anomalies) return []
-    let filtered = fullData.anomalies
-    if (department !== 'All') {
-      filtered = filtered.filter((a) => a.department === department)
-    }
-    if (anomalyType !== 'All') {
-      filtered = filtered.filter((a) => a.type === anomalyType)
-    }
-    return filtered
-  }, [fullData, department, anomalyType])
+    if (department === 'All') return fullData.anomalies
+    return fullData.anomalies.filter((a) => a.department === department)
+  }, [fullData, department])
 
   const filteredSummary = useMemo(() => {
     if (department === 'All') {
@@ -172,8 +166,6 @@ export default function VarianceEngineProject() {
         <VarianceControls
           department={department}
           onDepartmentChange={setDepartment}
-          anomalyType={anomalyType}
-          onAnomalyTypeChange={setAnomalyType}
         />
 
         <VarianceSummary data={filteredSummary} loading={isLoading} />
@@ -192,7 +184,11 @@ export default function VarianceEngineProject() {
           <VarianceTimeSeries data={filteredTimeSeries} loading={isLoading} />
         </div>
 
-        <AnomalyTable anomalies={filteredAnomalies} />
+        <AnomalyTable
+          anomalies={filteredAnomalies}
+          anomalyType={anomalyType}
+          onAnomalyTypeChange={setAnomalyType}
+        />
       </ProjectLayout>
     </div>
   )

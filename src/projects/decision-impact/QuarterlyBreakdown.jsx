@@ -11,7 +11,7 @@ function QuarterColumn({ quarterKey, kpis, kpiLabels }) {
   const { label, subtitle } = QUARTER_LABELS[quarterKey]
   // Only show KPIs new to this quarter (not already visible in prior quarter)
   return (
-    <div className="flex-1">
+    <div className="min-w-0 flex-1">
       <div className="mb-3">
         <span className="text-sm font-semibold text-text-primary">{label}</span>
         <p className="text-xs text-text-muted">{subtitle}</p>
@@ -25,9 +25,9 @@ function QuarterColumn({ quarterKey, kpis, kpiLabels }) {
             return (
               <div
                 key={kpi.kpi}
-                className="flex items-center justify-between rounded-md bg-bg-surface/50 px-2.5 py-1.5"
+                className="flex items-start justify-between gap-2 rounded-md bg-bg-surface/50 px-2.5 py-1.5"
               >
-                <span className="text-xs text-text-secondary">
+                <span className="min-w-0 flex-1 text-xs leading-tight text-text-secondary">
                   {kpiLabels[kpi.kpi] || kpi.kpi}
                 </span>
                 <Badge color={isPositive ? 'green' : 'red'}>

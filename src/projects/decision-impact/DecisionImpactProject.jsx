@@ -148,7 +148,6 @@ export default function DecisionImpactProject() {
       if (status !== 'ready') return
 
       setIsComputing(true)
-      setCustomResult(null)
 
       try {
         const result = await runPython(engineCode, {
@@ -190,6 +189,16 @@ export default function DecisionImpactProject() {
           onSelect={setActiveScenarioId}
         />
 
+        {isCustom && (
+          <CustomScenarioBuilder
+            orgModel={orgModel}
+            kpiLabels={KPI_LABELS}
+            pyodideReady={status === 'ready'}
+            isComputing={isComputing}
+            onRun={handleRunCustom}
+          />
+        )}
+
         <ImpactSankey
           orgModel={orgModel}
           kpiLabels={KPI_LABELS}
@@ -199,7 +208,7 @@ export default function DecisionImpactProject() {
         />
 
         {displayCascade && displayCascade.length > 0 && (
-          <div className="mt-6 grid gap-6 lg:grid-cols-2">
+          <div className="mt-6 flex flex-col gap-6">
             <CascadeTable
               cascade={displayCascade}
               kpiLabels={KPI_LABELS}
@@ -216,16 +225,6 @@ export default function DecisionImpactProject() {
           <ExecutiveNarrative
             narrative={narrative}
             scenarioLabel={activeScenario?.label}
-          />
-        )}
-
-        {isCustom && (
-          <CustomScenarioBuilder
-            orgModel={orgModel}
-            kpiLabels={KPI_LABELS}
-            pyodideReady={status === 'ready'}
-            isComputing={isComputing}
-            onRun={handleRunCustom}
           />
         )}
       </ProjectLayout>

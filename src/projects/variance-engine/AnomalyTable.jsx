@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import GlassPanel from '@/components/ui/GlassPanel'
 import Badge from '@/components/ui/Badge'
+import Button from '@/components/ui/Button'
 import { formatVariance } from '@/utils/formatters'
 
 const TYPE_BADGES = {
@@ -11,10 +12,23 @@ const TYPE_BADGES = {
   one_time_event: { label: 'One-Time', color: 'green' },
 }
 
-export default function AnomalyTable({ anomalies }) {
+const ANOMALY_TYPES = [
+  { key: 'All', label: 'All Types' },
+  { key: 'trending_overspend', label: 'Trending' },
+  { key: 'seasonal_spike', label: 'Seasonal' },
+  { key: 'threshold_cluster', label: 'Threshold' },
+  { key: 'duplicate_payment', label: 'Duplicate' },
+  { key: 'one_time_event', label: 'One-Time' },
+]
+
+export default function AnomalyTable({ anomalies, anomalyType = 'All', onAnomalyTypeChange }) {
   const [expandedIdx, setExpandedIdx] = useState(null)
 
   if (!anomalies || anomalies.length === 0) return null
+
+  const displayed = anomalyType === 'All'
+    ? anomalies
+    : anomalies.filter((a) => a.type === anomalyType)
 
   return (
     <GlassPanel className="mt-6">
@@ -22,10 +36,25 @@ export default function AnomalyTable({ anomalies }) {
         <h4 className="text-xs font-semibold uppercase tracking-wider text-text-muted">
           Detected Anomalies
         </h4>
-        <span className="text-xs text-text-muted">{anomalies.length} flagged</span>
+        <span className="text-xs text-text-muted">{displayed.length} flagged</span>
       </div>
 
-      <div className="max-h-[400px] overflow-auto">
+      {onAnomalyTypeChange && (
+        <div className="mb-3 flex flex-wrap gap-1.5">
+          {ANOMALY_TYPES.map(({ key, label }) => (
+            <Button
+              key={key}
+              variant={anomalyType === key ? 'secondary' : 'ghost'}
+              className="text-xs"
+              onClick={() => onAnomalyTypeChange(key)}
+            >
+              {label}
+            </Button>
+          ))}
+        </div>
+      )}
+
+      <div className="max-h-[400px] overflow-auto" data-lenis-prevent>
         <table className="w-full text-left text-xs">
           <thead className="sticky top-0 bg-bg-secondary">
             <tr className="border-b border-border-subtle text-text-muted">
@@ -38,7 +67,13 @@ export default function AnomalyTable({ anomalies }) {
             </tr>
           </thead>
           <tbody>
-            {anomalies.map((a, i) => {
+            {displayed.length === 0 ? (
+              <tr>
+                <td colSpan={6} className="py-6 text-center text-xs text-text-muted">
+                  No anomalies match this filter
+                </td>
+              </tr>
+            ) : displayed.map((a, i) => {
               const badge = TYPE_BADGES[a.type] || { label: a.type, color: 'blue' }
               const isExpanded = expandedIdx === i
 
@@ -72,13 +107,13 @@ export default function AnomalyTable({ anomalies }) {
       </div>
 
       {/* Expanded explanation */}
-      {expandedIdx !== null && anomalies[expandedIdx] && (
+      {expandedIdx !== null && displayed[expandedIdx] && (
         <div className="mt-3 rounded-lg bg-bg-surface/50 px-4 py-3">
           <p className="text-xs font-medium text-text-muted">
-            {anomalies[expandedIdx].line_item} — {anomalies[expandedIdx].department}
+            {displayed[expandedIdx].line_item} — {displayed[expandedIdx].department}
           </p>
           <p className="mt-1 text-sm leading-relaxed text-text-secondary">
-            {anomalies[expandedIdx].explanation}
+            {displayed[expandedIdx].explanation}
           </p>
         </div>
       )}

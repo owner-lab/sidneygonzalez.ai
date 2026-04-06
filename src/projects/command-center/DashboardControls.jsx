@@ -1,5 +1,4 @@
 import Button from '@/components/ui/Button'
-import Toggle from '@/components/ui/Toggle'
 import GlassPanel from '@/components/ui/GlassPanel'
 
 const DIVISIONS = [
@@ -16,8 +15,6 @@ export default function DashboardControls({
   onDivisionChange,
   period,
   onPeriodChange,
-  showRawData,
-  onShowRawDataChange,
 }) {
   return (
     <GlassPanel className="mb-6 flex flex-col gap-4 p-3 lg:flex-row lg:items-center lg:justify-between">
@@ -54,13 +51,6 @@ export default function DashboardControls({
           </Button>
         ))}
       </div>
-
-      {/* Raw data toggle */}
-      <Toggle
-        label="See the Raw Data"
-        checked={showRawData}
-        onChange={onShowRawDataChange}
-      />
     </GlassPanel>
   )
 }

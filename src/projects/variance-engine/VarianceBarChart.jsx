@@ -19,6 +19,7 @@ export default function VarianceBarChart({ data, loading }) {
         dataKeys={DATA_KEYS}
         xKey="department"
         height={300}
+        rotateLabels
       />
     </ChartContainer>
   )
