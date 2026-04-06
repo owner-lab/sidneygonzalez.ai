@@ -24,7 +24,7 @@ export default function DivisionalPnL({ data, selectedDivision, loading }) {
         data={data}
         dataKeys={dataKeys}
         xKey="month"
-        height={300}
+        height={360}
       />
     </ChartContainer>
   )

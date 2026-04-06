@@ -82,7 +82,7 @@ export default function GroupedBarChart({
           />
           <Tooltip content={<CustomTooltip />} />
           <Legend
-            wrapperStyle={{ fontSize: isMobile ? 9 : 11, fontFamily: 'Inter' }}
+            wrapperStyle={{ fontSize: isMobile ? 9 : 11, fontFamily: 'Inter', paddingTop: 12 }}
             iconSize={isMobile ? 8 : 14}
           />
           {dataKeys.map(({ key, color, label }) => (
