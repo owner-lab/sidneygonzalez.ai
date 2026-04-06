@@ -24,6 +24,7 @@ export default function Slider({
       <input
         id={id}
         type="range"
+        aria-label={label}
         min={min}
         max={max}
         step={step}

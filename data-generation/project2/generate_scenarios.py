@@ -47,58 +47,57 @@ def topological_sort(edges):
 def propagate(model, baselines, input_changes):
     """Forward-propagate input changes through the DAG.
     Returns dict of {kpi_id: {change_pct, baseline, projected, lag_months, sigma}}.
+    Cumulative lags track how long the full cascade takes to reach each KPI.
     """
     edges = model["interdependencies"]
     graph = defaultdict(list)
     for edge in edges:
         graph[edge["from_kpi"]].append(edge)
 
+    input_kpis = set()
     changes = {}
+    cumulative_lags = {}
+    max_sigmas = {}
+
     for ic in input_changes:
         kpi = ic["kpi"]
+        input_kpis.add(kpi)
+        cumulative_lags[kpi] = 0
+        max_sigmas[kpi] = 0
         if "change_pct" in ic:
             changes[kpi] = ic["change_pct"] / 100.0
         elif "change_absolute" in ic:
             changes[kpi] = ic["change_absolute"] / baselines.get(kpi, 1)
 
     order = topological_sort(edges)
+
+    # Forward-propagate changes AND cumulative lags through the DAG
+    for node in order:
+        if node not in changes:
+            continue
+        for edge in graph.get(node, []):
+            target = edge["to_kpi"]
+            delta = changes[node] * edge["coefficient"]
+            changes[target] = changes.get(target, 0) + delta
+            # Cumulative lag = parent lag + edge lag
+            new_lag = cumulative_lags.get(node, 0) + edge["lag_months"]
+            cumulative_lags[target] = max(cumulative_lags.get(target, 0), new_lag)
+            max_sigmas[target] = max(max_sigmas.get(target, 0), edge.get("sigma", 0))
+
+    # Build results
     results = {}
-
     for node in order:
-        if node in changes:
-            baseline = baselines.get(node, 0)
-            results[node] = {
-                "kpi": node,
-                "baseline": baseline,
-                "change_pct": round(changes[node] * 100, 2),
-                "projected": round(baseline * (1 + changes[node]), 2),
-                "lag_months": 0,
-                "sigma": 0,
-            }
-            for edge in graph.get(node, []):
-                target = edge["to_kpi"]
-                delta = changes[node] * edge["coefficient"]
-                changes[target] = changes.get(target, 0) + delta
-
-    # Collect results for non-input KPIs that were affected
-    for node in order:
-        if node in changes and node not in results:
-            baseline = baselines.get(node, 0)
-            # Find max lag in the path to this node
-            max_lag = max(
-                (e["lag_months"] for e in edges if e["to_kpi"] == node), default=0
-            )
-            max_sigma = max(
-                (e.get("sigma", 0) for e in edges if e["to_kpi"] == node), default=0
-            )
-            results[node] = {
-                "kpi": node,
-                "baseline": baseline,
-                "change_pct": round(changes[node] * 100, 2),
-                "projected": round(baseline * (1 + changes[node]), 2),
-                "lag_months": max_lag,
-                "sigma": max_sigma,
-            }
+        if node not in changes:
+            continue
+        baseline = baselines.get(node, 0)
+        results[node] = {
+            "kpi": node,
+            "baseline": baseline,
+            "change_pct": round(changes[node] * 100, 2),
+            "projected": round(baseline * (1 + changes[node]), 2),
+            "lag_months": cumulative_lags.get(node, 0),
+            "sigma": max_sigmas.get(node, 0),
+        }
 
     return results
 
