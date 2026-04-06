@@ -57,13 +57,14 @@ export default function SankeyDiagram({
         return { ...link, startColor: color, endColor: color }
       }
       if (hasHighlights) {
-        return { ...link, startColor: 'rgba(148,163,184,0.08)', endColor: 'rgba(148,163,184,0.08)' }
+        const dimColor = isDark ? 'rgba(148,163,184,0.08)' : 'rgba(148,163,184,0.15)'
+        return { ...link, startColor: dimColor, endColor: dimColor }
       }
       return link
     })
 
     return { nodes: data.nodes, links }
-  }, [data, hasHighlights, highlightSet])
+  }, [data, hasHighlights, highlightSet, isDark])
 
   if (!coloredData || coloredData.links.length === 0) return null
 
@@ -81,7 +82,7 @@ export default function SankeyDiagram({
         <ResponsiveSankey
           key={isDark ? 'd' : 'l'}
           data={coloredData}
-          margin={{ top: 20, right: isMobile ? 90 : 140, bottom: 20, left: isMobile ? 60 : 20 }}
+          margin={{ top: 20, right: isMobile ? 90 : 140, bottom: 20, left: isMobile ? 60 : 80 }}
           align="justify"
           sort="auto"
           nodeOpacity={1}
@@ -90,7 +91,7 @@ export default function SankeyDiagram({
           nodeSpacing={18}
           nodeBorderWidth={0}
           nodeBorderRadius={3}
-          linkOpacity={hasHighlights ? 0.7 : 0.25}
+          linkOpacity={hasHighlights ? 0.7 : isDark ? 0.25 : 0.4}
           linkHoverOthersOpacity={0.1}
           linkContract={2}
           linkBlendMode="normal"
