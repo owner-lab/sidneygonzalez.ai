@@ -37,7 +37,7 @@ export default function HeatmapChart({
   minValue,
   maxValue,
 }) {
-  const isMobile = useMediaQuery('(max-width: 768px)')
+  const isMobile = useMediaQuery('(max-width: 1024px)')
   const chartHeight = isMobile ? 300 : height
 
   if (!data || data.length === 0) return null

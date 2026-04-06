@@ -39,7 +39,7 @@ function CustomTooltip({ active, payload, label }) {
 }
 
 export default function VarianceTimeSeries({ data, loading }) {
-  const isMobile = useMediaQuery('(max-width: 768px)')
+  const isMobile = useMediaQuery('(max-width: 1024px)')
   const chartHeight = isMobile ? 250 : 300
 
   // Add anomaly marker value (null if no anomaly, actual value if anomaly)

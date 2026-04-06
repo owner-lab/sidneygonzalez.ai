@@ -82,7 +82,7 @@ export default function WaterfallChart({
   height = 350,
   formatValue,
 }) {
-  const isMobile = useMediaQuery('(max-width: 768px)')
+  const isMobile = useMediaQuery('(max-width: 1024px)')
   const chartHeight = isMobile ? 250 : height
 
   if (!data || data.length === 0) return null
@@ -119,13 +119,7 @@ export default function WaterfallChart({
           tickPadding: 8,
           tickRotation: isMobile ? -35 : 0,
         }}
-        enableLabel={!isMobile}
-        label={({ id, data: d }) => {
-          if (id === 'spacer') return ''
-          return fmt(d.rawValue)
-        }}
-        labelSkipWidth={30}
-        labelTextColor="#E2E8F0"
+        enableLabel={false}
         tooltip={({ data: d }) => (
           <div className="glass-panel rounded-lg px-3 py-2 text-xs">
             <span className="font-medium text-text-primary">{d.label}: </span>

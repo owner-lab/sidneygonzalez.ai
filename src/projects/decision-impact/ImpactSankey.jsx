@@ -1,8 +1,6 @@
 import { useMemo } from 'react'
 import ChartContainer from '@/components/charts/ChartContainer'
 import SankeyDiagram from '@/components/charts/SankeyDiagram'
-import useMediaQuery from '@/hooks/useMediaQuery'
-
 // Division → color for Sankey nodes
 const DIVISION_COLORS = {
   Sales: '#0068FF',
@@ -44,16 +42,13 @@ export default function ImpactSankey({
   affectedLinks,
   loading,
 }) {
-  const isMobile = useMediaQuery('(max-width: 768px)')
-
   // Build Sankey data with readable labels
   const sankeyData = useMemo(() => {
     if (!orgModel?.sankey) return null
 
-    const labels = isMobile ? SHORT_LABELS : kpiLabels
     const nodes = orgModel.sankey.nodes.map((n) => ({
       ...n,
-      label: labels[n.id] || kpiLabels[n.id] || n.id,
+      label: SHORT_LABELS[n.id] || kpiLabels[n.id] || n.id,
     }))
 
     // Sankey link values must be positive
@@ -64,7 +59,7 @@ export default function ImpactSankey({
     }))
 
     return { nodes, links }
-  }, [orgModel, kpiLabels, isMobile])
+  }, [orgModel, kpiLabels])
 
   // Build node color map from division membership
   const nodeColorMap = useMemo(() => {
