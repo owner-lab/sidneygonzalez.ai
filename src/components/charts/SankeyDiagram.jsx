@@ -87,10 +87,10 @@ export default function SankeyDiagram({
       style={{ height: chartHeight }}
       className={isMobile ? 'overflow-x-auto' : ''}
     >
-      <div style={{ height: chartHeight, minWidth: isMobile ? 600 : 'auto' }}>
+      <div style={{ height: chartHeight, minWidth: isMobile ? 700 : 'auto' }}>
         <ResponsiveSankey
           data={coloredData}
-          margin={{ top: 20, right: isMobile ? 100 : 140, bottom: 20, left: isMobile ? 10 : 20 }}
+          margin={{ top: 20, right: isMobile ? 90 : 140, bottom: 20, left: isMobile ? 60 : 20 }}
           align="justify"
           sort="auto"
           nodeOpacity={1}

@@ -63,10 +63,10 @@ export default function GroupedBarChart({
             dataKey={xKey}
             tick={{ ...AXIS_STYLE, fontSize: isMobile ? 9 : 11 }}
             tickFormatter={tickFormatter}
-            interval={isMobile ? 4 : 0}
-            angle={isMobile ? -55 : 0}
+            interval={isMobile && data.length > 12 ? 4 : 0}
+            angle={isMobile ? -45 : 0}
             textAnchor={isMobile ? 'end' : 'middle'}
-            height={isMobile ? 60 : 30}
+            height={isMobile ? 55 : 30}
           />
           <YAxis
             tick={AXIS_STYLE}

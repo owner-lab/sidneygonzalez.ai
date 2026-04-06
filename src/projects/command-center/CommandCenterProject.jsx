@@ -199,13 +199,17 @@ export default function CommandCenterProject() {
 
         <WorkingCapitalHealth data={filteredWC} loading={isLoading} />
 
-        {showRawData && (
+        <div
+          className={`overflow-hidden transition-all duration-300 ease-out ${
+            showRawData ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
           <RawDataViewer
             rawSample={fullData.raw_sample}
             cleanSample={fullData.clean_sample}
             validationReport={fullData.validation_report}
           />
-        )}
+        </div>
       </ProjectLayout>
     </div>
   )

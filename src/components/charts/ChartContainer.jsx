@@ -24,7 +24,7 @@ export default function ChartContainer({
         </div>
       )}
 
-      <div style={{ minHeight: height }} className="relative">
+      <div style={{ minHeight: loading ? height : 'auto' }} className="relative">
         {loading ? (
           <SkeletonLoader lines={6} />
         ) : error ? (
