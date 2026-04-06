@@ -1,7 +1,7 @@
 import MetricCard from '@/components/ui/MetricCard'
 import SparkLine from '@/components/charts/SparkLine'
 import SkeletonLoader from '@/components/ui/SkeletonLoader'
-import { formatVariance, formatCompact } from '@/utils/formatters'
+import { formatVariance, formatCount } from '@/utils/formatters'
 
 export default function VarianceSummary({ data, loading }) {
   if (loading || !data) {
@@ -41,7 +41,7 @@ export default function VarianceSummary({ data, loading }) {
 
       <MetricCard
         label="Transactions Analyzed"
-        value={formatCompact(data.transactions_analyzed)}
+        value={formatCount(data.transactions_analyzed)}
         change={`${data.raw_counts?.vendors || 256}+ vendors`}
         changeType="neutral"
       />

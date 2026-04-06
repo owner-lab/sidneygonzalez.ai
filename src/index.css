@@ -79,7 +79,7 @@
   }
 
   ::selection {
-    @apply bg-accent-blue/30 text-white;
+    @apply bg-accent-blue/30 text-text-primary;
   }
 
   /* Financial data: tabular numerals for aligned columns */

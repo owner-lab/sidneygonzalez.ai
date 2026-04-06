@@ -5,7 +5,8 @@ import GlassPanel from './GlassPanel'
 const PIPELINE_TABS = ['Ingest', 'Clean', 'Transform', 'Analyze', 'Visualize']
 
 export default function CodeToggle({ isOpen, onClose, tabs = PIPELINE_TABS, codeByTab = {} }) {
-  const [activeTab, setActiveTab] = useState(tabs[0])
+  const activeTabs = Object.keys(codeByTab).length > 0 ? Object.keys(codeByTab) : tabs
+  const [activeTab, setActiveTab] = useState(activeTabs[0])
 
   // Close on Escape key
   useEffect(() => {
@@ -62,7 +63,7 @@ export default function CodeToggle({ isOpen, onClose, tabs = PIPELINE_TABS, code
               </div>
 
               <div className="flex gap-1 border-b border-border-subtle py-2">
-                {tabs.map((tab) => (
+                {activeTabs.map((tab) => (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
