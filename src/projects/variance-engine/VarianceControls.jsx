@@ -26,7 +26,7 @@ export default function VarianceControls({
   onAnomalyTypeChange,
 }) {
   return (
-    <GlassPanel className="mb-6 flex flex-col gap-4 p-3 md:flex-row md:items-center md:justify-between">
+    <GlassPanel className="mb-6 flex flex-col gap-4 p-3 lg:flex-row lg:items-center lg:justify-between">
       {/* Department filter */}
       <div className="flex flex-wrap gap-1.5">
         {DEPARTMENTS.map(({ key, label }) => (

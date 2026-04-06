@@ -40,7 +40,7 @@ export default function MultiLineChart({
   height = 350,
   unit = '',
 }) {
-  const isMobile = useMediaQuery('(max-width: 768px)')
+  const isMobile = useMediaQuery('(max-width: 1024px)')
   const chartHeight = isMobile ? 250 : height
 
   if (!data || data.length === 0) return null

@@ -38,7 +38,7 @@ export default function SankeyDiagram({
   nodeColorMap = {},
   height = 450,
 }) {
-  const isMobile = useMediaQuery('(max-width: 768px)')
+  const isMobile = useMediaQuery('(max-width: 1024px)')
   const chartHeight = isMobile ? 350 : height
 
   // Build highlighted link key set

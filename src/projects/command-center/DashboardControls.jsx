@@ -20,7 +20,7 @@ export default function DashboardControls({
   onShowRawDataChange,
 }) {
   return (
-    <GlassPanel className="mb-6 flex flex-col gap-4 p-3 md:flex-row md:items-center md:justify-between">
+    <GlassPanel className="mb-6 flex flex-col gap-4 p-3 lg:flex-row lg:items-center lg:justify-between">
       {/* Division selector */}
       <div className="flex flex-wrap gap-1.5">
         {DIVISIONS.map(({ key, label, color }) => (
