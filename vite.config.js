@@ -19,7 +19,7 @@ export default defineConfig({
           if (id.includes('node_modules/react-dom') || id.includes('node_modules/react/')) {
             return 'vendor'
           }
-          if (id.includes('node_modules/motion') || id.includes('node_modules/gsap') || id.includes('node_modules/lenis')) {
+          if (id.includes('node_modules/motion') || id.includes('node_modules/lenis')) {
             return 'animation'
           }
           if (id.includes('node_modules/recharts') || id.includes('node_modules/d3-')) {

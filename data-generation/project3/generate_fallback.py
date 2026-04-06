@@ -70,9 +70,16 @@ merged["anomaly_flag"] = iso.fit_predict(features) == -1
 
 thresholds = dict(zip(budget["department"], budget["approval_threshold"]))
 
+_MONTH_NAMES = ["January","February","March","April","May","June",
+                "July","August","September","October","November","December"]
+def _fmt_month(m):
+    y, mo = m.split("-")
+    return f"{_MONTH_NAMES[int(mo)-1]} {y}"
+
 anomaly_rows = []
 for idx, row in merged[merged["anomaly_flag"]].iterrows():
     dept, item, month = row["department"], row["line_item"], row["month"]
+    month_label = _fmt_month(month)
     var_pct, actual, budget_amt = row["variance_pct"], row["actual"], row["budget_amount"]
     var_abs = row["variance_abs"]
 
@@ -100,7 +107,7 @@ for idx, row in merged[merged["anomaly_flag"]].iterrows():
             "budget": round(float(budget_amt), 2), "actual": round(float(actual), 2),
             "variance_abs": round(float(var_abs), 2), "variance_pct": round(float(var_pct), 1),
             "type": "duplicate_payment", "severity": "high",
-            "explanation": f"Potential duplicate: {item} in {month} shows transactions with matching vendor and near-identical amounts. Total excess: ${abs(var_abs):,.0f}.",
+            "explanation": f"Potential duplicate: {item} in {month_label} shows transactions with matching vendor and near-identical amounts. Total excess: ${abs(var_abs):,.0f}.",
         })
         continue
 
@@ -126,13 +133,13 @@ for idx, row in merged[merged["anomaly_flag"]].iterrows():
             continue
 
     month_num = int(row["month_num"])
-    if month_num in [10, 11, 12, 1, 2] and abs(var_pct) > 40:
+    if month_num in [10, 11, 12, 1, 2] and 40 < abs(var_pct) <= 200:
         anomaly_rows.append({
             "department": dept, "line_item": item, "month": month,
             "budget": round(float(budget_amt), 2), "actual": round(float(actual), 2),
             "variance_abs": round(float(var_abs), 2), "variance_pct": round(float(var_pct), 1),
             "type": "seasonal_spike", "severity": "medium",
-            "explanation": f"Seasonal spike: {item} in {dept} exceeded budget by {abs(var_pct):.0f}% in {month}.",
+            "explanation": f"Seasonal spike: {item} in {dept} exceeded budget by {abs(var_pct):.0f}% in {month_label}.",
         })
         continue
 
@@ -140,8 +147,8 @@ for idx, row in merged[merged["anomaly_flag"]].iterrows():
         "department": dept, "line_item": item, "month": month,
         "budget": round(float(budget_amt), 2), "actual": round(float(actual), 2),
         "variance_abs": round(float(var_abs), 2), "variance_pct": round(float(var_pct), 1),
-        "type": "one_time_event", "severity": "low",
-        "explanation": f"Unusual activity: {item} in {dept} was ${abs(var_abs):,.0f} {'over' if var_pct > 0 else 'under'} budget ({abs(var_pct):.0f}%) in {month}.",
+        "type": "one_time_event", "severity": "low" if abs(var_pct) < 100 else "high",
+        "explanation": f"Unusual activity: {item} in {dept} was ${abs(var_abs):,.0f} {'over' if var_pct > 0 else 'under'} budget ({abs(var_pct):.0f}%) in {month_label}.",
     })
 
 # --- Stage 5: Output ---

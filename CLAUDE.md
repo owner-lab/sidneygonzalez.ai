@@ -25,7 +25,7 @@ Single-page React portfolio at sidneygonzalez.ai demonstrating financial intelli
 
 ## Tech Stack
 
-- React 18 (Vite + SWC) / Tailwind CSS 3.x / Motion v12 / GSAP + ScrollTrigger
+- React 18 (Vite + SWC) / Tailwind CSS 3.x / Motion v12
 - Lenis smooth scroll / Recharts + Nivo / KaTeX / Pyodide in Web Worker
 - Fonts: Space Grotesk (display), Inter (body), JetBrains Mono (code/data)
 - Deployed to Cloudflare Pages
