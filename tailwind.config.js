@@ -1,14 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
         bg: {
-          primary: '#0A0A0F',
-          secondary: '#111118',
-          surface: '#1E1E2E',
-          hover: '#252538',
+          primary: 'rgb(var(--color-bg-primary) / <alpha-value>)',
+          secondary: 'rgb(var(--color-bg-secondary) / <alpha-value>)',
+          surface: 'rgb(var(--color-bg-surface) / <alpha-value>)',
+          hover: 'rgb(var(--color-bg-hover) / <alpha-value>)',
         },
         accent: {
           blue: '#0068FF',
@@ -18,18 +19,18 @@ export default {
           purple: '#A78BFA',
         },
         text: {
-          primary: '#E2E8F0',
-          secondary: '#94A3B8',
-          muted: '#64748B',
+          primary: 'rgb(var(--color-text-primary) / <alpha-value>)',
+          secondary: 'rgb(var(--color-text-secondary) / <alpha-value>)',
+          muted: 'rgb(var(--color-text-muted) / <alpha-value>)',
         },
         border: {
-          subtle: 'rgba(255, 255, 255, 0.08)',
-          medium: 'rgba(255, 255, 255, 0.15)',
+          subtle: 'var(--color-border-subtle)',
+          medium: 'var(--color-border-medium)',
         },
         impact: {
           positive: '#4AF6C3',
           negative: '#FF433D',
-          neutral: '#94A3B8',
+          neutral: 'rgb(var(--color-text-muted) / <alpha-value>)',
           warning: '#FB8B1E',
         },
       },

@@ -4,11 +4,34 @@
 
 @layer base {
   :root {
-    /* Glassmorphism tokens */
-    --glass-bg: rgba(17, 17, 24, 0.6);
-    --glass-border: rgba(255, 255, 255, 0.08);
+    /* Light mode palette (RGB channels for Tailwind alpha support) */
+    --color-bg-primary: 255 255 255;
+    --color-bg-secondary: 248 250 252;
+    --color-bg-surface: 241 245 249;
+    --color-bg-hover: 226 232 240;
+    --color-text-primary: 15 23 42;
+    --color-text-secondary: 71 85 105;
+    --color-text-muted: 148 163 184;
+
+    /* Border (full rgba — not split into channels) */
+    --color-border-subtle: rgba(0, 0, 0, 0.08);
+    --color-border-medium: rgba(0, 0, 0, 0.12);
+
+    /* Glassmorphism */
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(0, 0, 0, 0.08);
     --glass-blur: 20px;
-    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+
+    /* Chart tokens */
+    --chart-grid: rgba(0, 0, 0, 0.06);
+    --chart-axis: 100 116 139;
+    --chart-tooltip-bg: rgba(255, 255, 255, 0.95);
+    --chart-tooltip-border: rgba(0, 0, 0, 0.08);
+    --chart-tooltip-text: 15 23 42;
+
+    /* Heatmap neutral midpoint */
+    --heatmap-neutral: #F1F5F9;
 
     /* Section spacing */
     --section-padding-y: clamp(4rem, 10vh, 8rem);
@@ -20,9 +43,35 @@
     --duration-slow: 0.8s;
   }
 
+  .dark {
+    --color-bg-primary: 10 10 15;
+    --color-bg-secondary: 17 17 24;
+    --color-bg-surface: 30 30 46;
+    --color-bg-hover: 37 37 56;
+    --color-text-primary: 226 232 240;
+    --color-text-secondary: 148 163 184;
+    --color-text-muted: 100 116 139;
+
+    --color-border-subtle: rgba(255, 255, 255, 0.08);
+    --color-border-medium: rgba(255, 255, 255, 0.15);
+
+    --glass-bg: rgba(17, 17, 24, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+    --chart-grid: rgba(255, 255, 255, 0.05);
+    --chart-axis: 148 163 184;
+    --chart-tooltip-bg: rgba(17, 17, 24, 0.9);
+    --chart-tooltip-border: rgba(255, 255, 255, 0.08);
+    --chart-tooltip-text: 226 232 240;
+
+    --heatmap-neutral: #1E1E2E;
+  }
+
   html {
     @apply bg-bg-primary text-text-primary antialiased;
     font-family: 'Inter', system-ui, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
   }
 
   body {
@@ -50,6 +99,7 @@
     -webkit-backdrop-filter: blur(var(--glass-blur));
     box-shadow: var(--glass-shadow);
     border-radius: 1rem;
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
   }
 }
 

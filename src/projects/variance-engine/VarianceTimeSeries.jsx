@@ -12,12 +12,7 @@ import {
 import { formatCompact } from '@/utils/formatters'
 import useMediaQuery from '@/hooks/useMediaQuery'
 import ChartContainer from '@/components/charts/ChartContainer'
-
-const AXIS_STYLE = {
-  fontFamily: '"JetBrains Mono", monospace',
-  fontSize: 11,
-  fill: '#94A3B8',
-}
+import { getRechartsAxisStyle, getGridStroke } from '@/config/chartTheme'
 
 function CustomTooltip({ active, payload, label }) {
   if (!active || !payload?.length) return null
@@ -42,6 +37,9 @@ export default function VarianceTimeSeries({ data, loading }) {
   const isMobile = useMediaQuery('(max-width: 1024px)')
   const chartHeight = isMobile ? 250 : 300
 
+  const axisStyle = getRechartsAxisStyle(isMobile)
+  const gridStroke = getGridStroke()
+
   // Add anomaly marker value (null if no anomaly, actual value if anomaly)
   const chartData = data?.map((d) => ({
     ...d,
@@ -59,17 +57,17 @@ export default function VarianceTimeSeries({ data, loading }) {
         <div role="img" aria-label="Monthly budget vs actual trend with anomaly markers">
           <ResponsiveContainer width="100%" height={chartHeight}>
             <ComposedChart data={chartData} margin={{ top: 5, right: 15, bottom: 5, left: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+              <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
               <XAxis
                 dataKey="month"
-                tick={{ ...AXIS_STYLE, fontSize: isMobile ? 9 : 11 }}
+                tick={axisStyle}
                 interval={isMobile ? 3 : 0}
                 angle={isMobile ? -55 : 0}
                 textAnchor={isMobile ? 'end' : 'middle'}
                 height={isMobile ? 55 : 30}
               />
               <YAxis
-                tick={AXIS_STYLE}
+                tick={axisStyle}
                 tickFormatter={formatCompact}
                 width={65}
               />
