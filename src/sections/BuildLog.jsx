@@ -46,6 +46,20 @@ const DECISIONS = [
     tag: 'shipped',
     tagColor: 'green',
   },
+  {
+    title: 'Why the Custom Scenario Builder Runs Live Python',
+    rationale:
+      'Static preset scenarios tell the story. The builder proves the model actually works. Visitors tune marketing spend, engineering headcount, and operations budget, then watch the 16-edge DAG propagate their inputs in real time — the same Python engine that powers the presets, running on demand in-browser.',
+    tag: 'shipped',
+    tagColor: 'green',
+  },
+  {
+    title: 'Why Smooth Scroll Requires a Contract',
+    rationale:
+      'Lenis intercepts all scroll events at the window level — that\'s the price of physics-based, buttery-smooth scroll behavior. Every scrollable sub-container (data tables, code panels, chart overflow) must declare data-lenis-prevent or Lenis steals the scroll and the element appears frozen. Modal overlays pause Lenis entirely instead. Global scroll ownership traded for a consistent feel — deliberate, not accidental.',
+    tag: 'shipped',
+    tagColor: 'green',
+  },
 ]
 
 export default function BuildLog() {
