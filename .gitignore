@@ -33,5 +33,8 @@ venv/
 *.sln
 *.sw?
 
+# Data generation intermediate files
+data-generation/**/output/
+
 # Cache
 .cache

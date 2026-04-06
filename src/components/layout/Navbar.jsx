@@ -70,7 +70,7 @@ export default function Navbar() {
         >
           <motion.span
             className="block h-0.5 w-6 bg-text-primary"
-            animate={mobileOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+            animate={mobileOpen ? { rotate: 45, y: 4 } : { rotate: 0, y: 0 }}
           />
           <motion.span
             className="block h-0.5 w-6 bg-text-primary"
@@ -79,7 +79,7 @@ export default function Navbar() {
           <motion.span
             className="block h-0.5 w-6 bg-text-primary"
             animate={
-              mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }
+              mobileOpen ? { rotate: -45, y: -4 } : { rotate: 0, y: 0 }
             }
           />
         </button>
@@ -101,7 +101,7 @@ export default function Navbar() {
                   <a
                     href={href}
                     onClick={(e) => handleNavClick(e, href)}
-                    className="block rounded-lg px-4 py-3 text-sm text-text-secondary transition-colors hover:bg-bg-elevated hover:text-text-primary"
+                    className="block rounded-lg px-4 py-3 text-sm text-text-secondary transition-colors hover:bg-bg-hover hover:text-text-primary"
                   >
                     {label}
                   </a>

@@ -7,8 +7,8 @@ export default {
         bg: {
           primary: '#0A0A0F',
           secondary: '#111118',
-          tertiary: '#1E1E2E',
-          elevated: '#252538',
+          surface: '#1E1E2E',
+          hover: '#252538',
         },
         accent: {
           blue: '#0068FF',
@@ -23,9 +23,8 @@ export default {
           muted: '#64748B',
         },
         border: {
-          subtle: 'rgba(255, 255, 255, 0.06)',
-          DEFAULT: 'rgba(255, 255, 255, 0.1)',
-          strong: 'rgba(255, 255, 255, 0.2)',
+          subtle: 'rgba(255, 255, 255, 0.08)',
+          medium: 'rgba(255, 255, 255, 0.15)',
         },
         impact: {
           positive: '#4AF6C3',
