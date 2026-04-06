@@ -96,7 +96,7 @@ export default function WaterfallChart({
         data={waterfallData}
         keys={['spacer', 'positive', 'negative']}
         indexBy="label"
-        margin={{ top: 20, right: 20, bottom: 40, left: 70 }}
+        margin={{ top: 20, right: isMobile ? 10 : 20, bottom: isMobile ? 50 : 40, left: isMobile ? 50 : 70 }}
         padding={0.3}
         layout="vertical"
         colors={({ id }) => {
@@ -107,17 +107,19 @@ export default function WaterfallChart({
         borderWidth={0}
         enableGridX={false}
         enableGridY={true}
-        gridYValues={5}
+        gridYValues={isMobile ? 3 : 5}
         axisLeft={{
           tickSize: 0,
-          tickPadding: 8,
+          tickPadding: 4,
           format: fmt,
+          tickValues: isMobile ? 3 : 5,
         }}
         axisBottom={{
           tickSize: 0,
           tickPadding: 8,
+          tickRotation: isMobile ? -35 : 0,
         }}
-        enableLabel={true}
+        enableLabel={!isMobile}
         label={({ id, data: d }) => {
           if (id === 'spacer') return ''
           return fmt(d.rawValue)
