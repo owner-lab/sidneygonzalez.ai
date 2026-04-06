@@ -56,10 +56,13 @@ function splitEngineTabs(code) {
   const names = ['Parse Model', 'Propagate', 'Output']
   let nameIdx = 0
 
-  for (const section of sections) {
-    if (section.includes('STAGE') && nameIdx < names.length) {
-      stages[names[nameIdx]] = section.trim()
+  for (let i = 0; i < sections.length; i++) {
+    if (sections[i].includes('STAGE') && nameIdx < names.length) {
+      const stageHeader = sections[i].trim()
+      const stageCode = i + 1 < sections.length ? sections[i + 1].trim() : ''
+      stages[names[nameIdx]] = stageHeader + '\n\n' + stageCode
       nameIdx++
+      i++
     }
   }
 

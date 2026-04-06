@@ -15,7 +15,7 @@ export const NAV_LINKS = [
 
 export const SOCIAL = {
   github: 'https://github.com/owner-lab/sidneygonzalez.ai',
-  linkedin: 'https://linkedin.com/in/sidneygonzalez',
+  linkedin: 'https://www.linkedin.com/in/sidney-gonzalez-784034158/',
   email: 'mailto:hello@sidneygonzalez.ai',
 }
 
