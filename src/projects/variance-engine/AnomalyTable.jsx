@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import GlassPanel from '@/components/ui/GlassPanel'
 import Badge from '@/components/ui/Badge'
+import Button from '@/components/ui/Button'
 import { formatVariance } from '@/utils/formatters'
 
 const TYPE_BADGES = {
@@ -11,7 +12,16 @@ const TYPE_BADGES = {
   one_time_event: { label: 'One-Time', color: 'green' },
 }
 
-export default function AnomalyTable({ anomalies }) {
+const ANOMALY_TYPES = [
+  { key: 'All', label: 'All Types' },
+  { key: 'trending_overspend', label: 'Trending' },
+  { key: 'seasonal_spike', label: 'Seasonal' },
+  { key: 'threshold_cluster', label: 'Threshold' },
+  { key: 'duplicate_payment', label: 'Duplicate' },
+  { key: 'one_time_event', label: 'One-Time' },
+]
+
+export default function AnomalyTable({ anomalies, anomalyType = 'All', onAnomalyTypeChange }) {
   const [expandedIdx, setExpandedIdx] = useState(null)
 
   if (!anomalies || anomalies.length === 0) return null
@@ -24,6 +34,21 @@ export default function AnomalyTable({ anomalies }) {
         </h4>
         <span className="text-xs text-text-muted">{anomalies.length} flagged</span>
       </div>
+
+      {onAnomalyTypeChange && (
+        <div className="mb-3 flex flex-wrap gap-1.5">
+          {ANOMALY_TYPES.map(({ key, label }) => (
+            <Button
+              key={key}
+              variant={anomalyType === key ? 'secondary' : 'ghost'}
+              className="text-xs"
+              onClick={() => onAnomalyTypeChange(key)}
+            >
+              {label}
+            </Button>
+          ))}
+        </div>
+      )}
 
       <div className="max-h-[400px] overflow-auto">
         <table className="w-full text-left text-xs">

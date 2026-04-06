@@ -172,8 +172,6 @@ export default function VarianceEngineProject() {
         <VarianceControls
           department={department}
           onDepartmentChange={setDepartment}
-          anomalyType={anomalyType}
-          onAnomalyTypeChange={setAnomalyType}
         />
 
         <VarianceSummary data={filteredSummary} loading={isLoading} />
@@ -192,7 +190,11 @@ export default function VarianceEngineProject() {
           <VarianceTimeSeries data={filteredTimeSeries} loading={isLoading} />
         </div>
 
-        <AnomalyTable anomalies={filteredAnomalies} />
+        <AnomalyTable
+          anomalies={filteredAnomalies}
+          anomalyType={anomalyType}
+          onAnomalyTypeChange={setAnomalyType}
+        />
       </ProjectLayout>
     </div>
   )

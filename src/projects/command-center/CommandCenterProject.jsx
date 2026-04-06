@@ -178,8 +178,6 @@ export default function CommandCenterProject() {
           onDivisionChange={setDivision}
           period={period}
           onPeriodChange={setPeriod}
-          showRawData={showRawData}
-          onShowRawDataChange={setShowRawData}
         />
 
         <ExecutiveSummary data={filteredSummary} loading={isLoading} />
@@ -198,16 +196,29 @@ export default function CommandCenterProject() {
 
         <WorkingCapitalHealth data={filteredWC} loading={isLoading} />
 
-        <div
-          className={`overflow-hidden transition-all duration-300 ease-out ${
-            showRawData ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
-          }`}
-        >
-          <RawDataViewer
-            rawSample={fullData.raw_sample}
-            cleanSample={fullData.clean_sample}
-            validationReport={fullData.validation_report}
-          />
+        <div className="mt-6">
+          <button
+            onClick={() => setShowRawData((v) => !v)}
+            className="mb-4 flex items-center gap-2 text-xs font-medium text-text-muted transition-colors hover:text-text-secondary"
+          >
+            <span
+              className={`inline-block transition-transform duration-200 ${showRawData ? 'rotate-90' : ''}`}
+            >
+              ▶
+            </span>
+            See the Raw Data
+          </button>
+          <div
+            className={`overflow-hidden transition-all duration-300 ease-out ${
+              showRawData ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
+            }`}
+          >
+            <RawDataViewer
+              rawSample={fullData.raw_sample}
+              cleanSample={fullData.clean_sample}
+              validationReport={fullData.validation_report}
+            />
+          </div>
         </div>
       </ProjectLayout>
     </div>
