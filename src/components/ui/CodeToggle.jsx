@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useLenis } from 'lenis/react'
 import { motion, AnimatePresence } from 'motion/react'
 import GlassPanel from './GlassPanel'
 
@@ -7,6 +8,7 @@ const PIPELINE_TABS = ['Ingest', 'Clean', 'Transform', 'Analyze', 'Visualize']
 export default function CodeToggle({ isOpen, onClose, tabs = PIPELINE_TABS, codeByTab = {} }) {
   const activeTabs = Object.keys(codeByTab).length > 0 ? Object.keys(codeByTab) : tabs
   const [activeTab, setActiveTab] = useState(activeTabs[0])
+  const lenis = useLenis()
 
   // Close on Escape key
   useEffect(() => {
@@ -16,15 +18,20 @@ export default function CodeToggle({ isOpen, onClose, tabs = PIPELINE_TABS, code
     return () => document.removeEventListener('keydown', handleEsc)
   }, [isOpen, onClose])
 
-  // Lock body scroll when open
+  // Lock body scroll + stop Lenis when open
   useEffect(() => {
     if (isOpen) {
+      lenis?.stop()
       document.body.style.overflow = 'hidden'
     } else {
+      lenis?.start()
       document.body.style.overflow = ''
     }
-    return () => { document.body.style.overflow = '' }
-  }, [isOpen])
+    return () => {
+      lenis?.start()
+      document.body.style.overflow = ''
+    }
+  }, [isOpen, lenis])
 
   return (
     <AnimatePresence>
@@ -78,7 +85,7 @@ export default function CodeToggle({ isOpen, onClose, tabs = PIPELINE_TABS, code
                 ))}
               </div>
 
-              <div className="flex-1 overflow-auto py-4">
+              <div className="flex-1 overflow-auto overscroll-contain py-4">
                 <pre className="font-mono text-xs leading-relaxed text-text-secondary">
                   <code>
                     {codeByTab[activeTab] ||
