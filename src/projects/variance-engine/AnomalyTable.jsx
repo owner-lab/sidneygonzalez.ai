@@ -54,7 +54,7 @@ export default function AnomalyTable({ anomalies, anomalyType = 'All', onAnomaly
         </div>
       )}
 
-      <div className="max-h-[400px] overflow-auto">
+      <div className="max-h-[400px] overflow-auto" data-lenis-prevent>
         <table className="w-full text-left text-xs">
           <thead className="sticky top-0 bg-bg-secondary">
             <tr className="border-b border-border-subtle text-text-muted">
