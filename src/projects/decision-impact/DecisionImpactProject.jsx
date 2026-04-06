@@ -190,6 +190,16 @@ export default function DecisionImpactProject() {
           onSelect={setActiveScenarioId}
         />
 
+        {isCustom && (
+          <CustomScenarioBuilder
+            orgModel={orgModel}
+            kpiLabels={KPI_LABELS}
+            pyodideReady={status === 'ready'}
+            isComputing={isComputing}
+            onRun={handleRunCustom}
+          />
+        )}
+
         <ImpactSankey
           orgModel={orgModel}
           kpiLabels={KPI_LABELS}
@@ -216,16 +226,6 @@ export default function DecisionImpactProject() {
           <ExecutiveNarrative
             narrative={narrative}
             scenarioLabel={activeScenario?.label}
-          />
-        )}
-
-        {isCustom && (
-          <CustomScenarioBuilder
-            orgModel={orgModel}
-            kpiLabels={KPI_LABELS}
-            pyodideReady={status === 'ready'}
-            isComputing={isComputing}
-            onRun={handleRunCustom}
           />
         )}
       </ProjectLayout>
