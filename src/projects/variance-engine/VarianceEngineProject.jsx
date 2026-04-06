@@ -112,15 +112,9 @@ export default function VarianceEngineProject() {
 
   const filteredAnomalies = useMemo(() => {
     if (!fullData.anomalies) return []
-    let filtered = fullData.anomalies
-    if (department !== 'All') {
-      filtered = filtered.filter((a) => a.department === department)
-    }
-    if (anomalyType !== 'All') {
-      filtered = filtered.filter((a) => a.type === anomalyType)
-    }
-    return filtered
-  }, [fullData, department, anomalyType])
+    if (department === 'All') return fullData.anomalies
+    return fullData.anomalies.filter((a) => a.department === department)
+  }, [fullData, department])
 
   const filteredSummary = useMemo(() => {
     if (department === 'All') {

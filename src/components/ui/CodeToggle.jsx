@@ -86,7 +86,7 @@ export default function CodeToggle({ isOpen, onClose, tabs = PIPELINE_TABS, code
               </div>
 
               <div className="flex-1 overflow-y-auto overscroll-contain py-4">
-                <pre className="overflow-x-auto font-mono text-xs leading-relaxed text-text-secondary">
+                <pre className="whitespace-pre-wrap break-words font-mono text-xs leading-relaxed text-text-secondary">
                   <code>
                     {codeByTab[activeTab] ||
                       `# ${activeTab} stage\n# Code will be added when project is built.`}

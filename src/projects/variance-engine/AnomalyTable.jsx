@@ -26,13 +26,17 @@ export default function AnomalyTable({ anomalies, anomalyType = 'All', onAnomaly
 
   if (!anomalies || anomalies.length === 0) return null
 
+  const displayed = anomalyType === 'All'
+    ? anomalies
+    : anomalies.filter((a) => a.type === anomalyType)
+
   return (
     <GlassPanel className="mt-6">
       <div className="mb-3 flex items-center justify-between">
         <h4 className="text-xs font-semibold uppercase tracking-wider text-text-muted">
           Detected Anomalies
         </h4>
-        <span className="text-xs text-text-muted">{anomalies.length} flagged</span>
+        <span className="text-xs text-text-muted">{displayed.length} flagged</span>
       </div>
 
       {onAnomalyTypeChange && (
@@ -63,7 +67,13 @@ export default function AnomalyTable({ anomalies, anomalyType = 'All', onAnomaly
             </tr>
           </thead>
           <tbody>
-            {anomalies.map((a, i) => {
+            {displayed.length === 0 ? (
+              <tr>
+                <td colSpan={6} className="py-6 text-center text-xs text-text-muted">
+                  No anomalies match this filter
+                </td>
+              </tr>
+            ) : displayed.map((a, i) => {
               const badge = TYPE_BADGES[a.type] || { label: a.type, color: 'blue' }
               const isExpanded = expandedIdx === i
 
@@ -97,13 +107,13 @@ export default function AnomalyTable({ anomalies, anomalyType = 'All', onAnomaly
       </div>
 
       {/* Expanded explanation */}
-      {expandedIdx !== null && anomalies[expandedIdx] && (
+      {expandedIdx !== null && displayed[expandedIdx] && (
         <div className="mt-3 rounded-lg bg-bg-surface/50 px-4 py-3">
           <p className="text-xs font-medium text-text-muted">
-            {anomalies[expandedIdx].line_item} — {anomalies[expandedIdx].department}
+            {displayed[expandedIdx].line_item} — {displayed[expandedIdx].department}
           </p>
           <p className="mt-1 text-sm leading-relaxed text-text-secondary">
-            {anomalies[expandedIdx].explanation}
+            {displayed[expandedIdx].explanation}
           </p>
         </div>
       )}

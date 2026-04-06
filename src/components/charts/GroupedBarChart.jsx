@@ -54,8 +54,9 @@ export default function GroupedBarChart({
 
   // Smart interval: show all labels for short lists, thin for long time series
   const interval = isMobile
-    ? (data.length > 12 ? 4 : 0)
-    : (data.length > 12 ? 2 : 0)
+    ? (data.length > 8 ? Math.ceil(data.length / 6) - 1 : 0)
+    : (data.length > 18 ? 2 : data.length > 8 ? 1 : 0)
+  const rotateLabels = isMobile || data.length > 8
 
   return (
     <div role="img" aria-label="Revenue by division bar chart">
@@ -67,9 +68,9 @@ export default function GroupedBarChart({
             tick={axisStyle}
             tickFormatter={tickFormatter}
             interval={interval}
-            angle={isMobile || data.length > 12 ? -45 : 0}
-            textAnchor={isMobile || data.length > 12 ? 'end' : 'middle'}
-            height={isMobile || data.length > 12 ? 55 : 30}
+            angle={rotateLabels ? -45 : 0}
+            textAnchor={rotateLabels ? 'end' : 'middle'}
+            height={rotateLabels ? 55 : 30}
           />
           <YAxis
             tick={axisStyle}
