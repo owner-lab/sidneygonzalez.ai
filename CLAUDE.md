@@ -37,6 +37,23 @@ Colors, fonts, and glassmorphism tokens are defined in:
 - `src/config/theme.js` — JS-accessible tokens
 - `tailwind.config.js` — Tailwind theme extensions
 
+## Lenis Scroll Rules
+
+The site uses Lenis smooth scroll (`<ReactLenis root>` in `App.jsx`), which intercepts ALL scroll events at the `window` level in JavaScript. This bypasses native CSS overflow on any element.
+
+**Rule:** Every scrollable container — `overflow-auto`, `overflow-y-auto`, `overflow-x-auto` — must have `data-lenis-prevent` on it, or Lenis will steal the scroll and the container will appear frozen.
+
+```jsx
+// Correct — Lenis yields to native scroll when hovering this element
+<div className="overflow-x-auto" data-lenis-prevent>
+<div className="max-h-[400px] overflow-y-auto" data-lenis-prevent>
+
+// Wrong — Lenis intercepts, element appears unscrollable
+<div className="overflow-x-auto">
+```
+
+**Exception:** Modal overlays (e.g. `CodeToggle`) should call `lenis.stop()` / `lenis.start()` instead, since they lock the entire page scroll rather than isolating a sub-container.
+
 ## Data Integrity
 
 All synthetic datasets must pass `validate_realism.py` before being used in any project UI. If data looks fake, the project looks fake. Data generation scripts live in `data-generation/`.
