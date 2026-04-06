@@ -34,6 +34,7 @@ export default function GroupedBarChart({
   formatY,
   height = 350,
   onBarClick,
+  rotateLabels: rotateLabelsOverride,
 }) {
   const isMobile = useMediaQuery('(max-width: 1024px)')
   const chartHeight = isMobile ? 250 : height
@@ -56,12 +57,14 @@ export default function GroupedBarChart({
   const interval = isMobile
     ? (data.length > 8 ? Math.ceil(data.length / 6) - 1 : 0)
     : (data.length > 18 ? 2 : data.length > 8 ? 1 : 0)
-  const rotateLabels = isMobile || data.length > 8
+  const rotateLabels = rotateLabelsOverride !== undefined
+    ? rotateLabelsOverride
+    : (isMobile || data.length > 8)
 
   return (
     <div role="img" aria-label="Revenue by division bar chart">
       <ResponsiveContainer width="100%" height={chartHeight}>
-        <BarChart data={data} margin={{ top: 5, right: 5, bottom: 5, left: 5 }}>
+        <BarChart data={data} margin={{ top: 5, right: 5, bottom: rotateLabels ? 20 : 5, left: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
           <XAxis
             dataKey={xKey}
