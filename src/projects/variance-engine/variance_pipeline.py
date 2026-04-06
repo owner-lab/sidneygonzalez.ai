@@ -110,12 +110,20 @@ merged['anomaly_flag'] = iso.fit_predict(features) == -1
 # Approval thresholds for threshold-clustering detection
 thresholds = dict(zip(budget['department'], budget['approval_threshold']))
 
+# Human-readable month formatter
+_MONTH_NAMES = ['January','February','March','April','May','June',
+                'July','August','September','October','November','December']
+def _fmt_month(m):
+    y, mo = m.split('-')
+    return f"{_MONTH_NAMES[int(mo)-1]} {y}"
+
 # Categorize anomalies with human-readable explanations
 anomaly_rows = []
 for idx, row in merged[merged['anomaly_flag']].iterrows():
     dept = row['department']
     item = row['line_item']
     month = row['month']
+    month_label = _fmt_month(month)
     var_pct = row['variance_pct']
     actual = row['actual']
     budget_amt = row['budget_amount']
@@ -154,7 +162,7 @@ for idx, row in merged[merged['anomaly_flag']].iterrows():
             'type': 'duplicate_payment',
             'severity': 'high',
             'explanation': (
-                f"Potential duplicate: {item} in {month} shows transactions with "
+                f"Potential duplicate: {item} in {month_label} shows transactions with "
                 f"matching vendor and near-identical amounts. "
                 f"Total excess: ${abs(var_abs):,.0f}."
             ),
@@ -188,9 +196,9 @@ for idx, row in merged[merged['anomaly_flag']].iterrows():
             })
             continue
 
-    # Rule 4: Seasonal spike (Q4/Q1 with high variance)
+    # Rule 4: Seasonal spike (Q4/Q1, moderate variance — not extreme one-offs)
     month_num = row['month_num']
-    if month_num in [10, 11, 12, 1, 2] and abs(var_pct) > 40:
+    if month_num in [10, 11, 12, 1, 2] and 40 < abs(var_pct) <= 200:
         anomaly_rows.append({
             'department': dept, 'line_item': item, 'month': month,
             'budget': round(budget_amt, 2), 'actual': round(actual, 2),
@@ -199,23 +207,23 @@ for idx, row in merged[merged['anomaly_flag']].iterrows():
             'severity': 'medium',
             'explanation': (
                 f"Seasonal spike: {item} in {dept} exceeded budget "
-                f"by {abs(var_pct):.0f}% in {month}. "
+                f"by {abs(var_pct):.0f}% in {month_label}. "
                 f"Q4/Q1 patterns suggest year-end procurement surge."
             ),
         })
         continue
 
-    # Rule 5: One-time event (default)
+    # Rule 5: One-time event (default — isolated spike or extreme variance)
     anomaly_rows.append({
         'department': dept, 'line_item': item, 'month': month,
         'budget': round(budget_amt, 2), 'actual': round(actual, 2),
         'variance_abs': round(var_abs, 2), 'variance_pct': round(var_pct, 1),
         'type': 'one_time_event',
-        'severity': 'low',
+        'severity': 'low' if abs(var_pct) < 100 else 'high',
         'explanation': (
             f"Unusual activity: {item} in {dept} was "
             f"${abs(var_abs):,.0f} {'over' if var_pct > 0 else 'under'} "
-            f"budget ({abs(var_pct):.0f}%) in {month}."
+            f"budget ({abs(var_pct):.0f}%) in {month_label}."
         ),
     })
 

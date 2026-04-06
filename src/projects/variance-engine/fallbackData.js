@@ -463,9 +463,9 @@ export const FALLBACK_DATA = {
       "actual": 266704.26,
       "variance_abs": 231646.14,
       "variance_pct": 660.7,
-      "type": "seasonal_spike",
-      "severity": "medium",
-      "explanation": "Seasonal spike: Software Licenses in Engineering exceeded budget by 661% in 2025-01."
+      "type": "one_time_event",
+      "severity": "high",
+      "explanation": "Unusual activity: Software Licenses in Engineering was $231,646 over budget (661%) in January 2025."
     },
     {
       "department": "Finance",
@@ -476,8 +476,8 @@ export const FALLBACK_DATA = {
       "variance_abs": 174743.67,
       "variance_pct": 694.6,
       "type": "one_time_event",
-      "severity": "low",
-      "explanation": "Unusual activity: ERP Software in Finance was $174,744 over budget (695%) in 2025-07."
+      "severity": "high",
+      "explanation": "Unusual activity: ERP Software in Finance was $174,744 over budget (695%) in July 2025."
     },
     {
       "department": "Finance",
@@ -488,8 +488,8 @@ export const FALLBACK_DATA = {
       "variance_abs": 155231.94,
       "variance_pct": 511.4,
       "type": "one_time_event",
-      "severity": "low",
-      "explanation": "Unusual activity: Audit & Compliance in Finance was $155,232 over budget (511%) in 2025-03."
+      "severity": "high",
+      "explanation": "Unusual activity: Audit & Compliance in Finance was $155,232 over budget (511%) in March 2025."
     },
     {
       "department": "Operations",
@@ -644,8 +644,8 @@ export const FALLBACK_DATA = {
       "variance_abs": 62448.08,
       "variance_pct": 102.2,
       "type": "one_time_event",
-      "severity": "low",
-      "explanation": "Unusual activity: Event Sponsorships in Marketing was $62,448 over budget (102%) in 2025-09."
+      "severity": "high",
+      "explanation": "Unusual activity: Event Sponsorships in Marketing was $62,448 over budget (102%) in September 2025."
     },
     {
       "department": "Finance",
@@ -656,8 +656,8 @@ export const FALLBACK_DATA = {
       "variance_abs": 47765.03,
       "variance_pct": 212.7,
       "type": "one_time_event",
-      "severity": "low",
-      "explanation": "Unusual activity: Insurance Premiums in Finance was $47,765 over budget (213%) in 2025-03."
+      "severity": "high",
+      "explanation": "Unusual activity: Insurance Premiums in Finance was $47,765 over budget (213%) in March 2025."
     },
     {
       "department": "Finance",
@@ -667,9 +667,9 @@ export const FALLBACK_DATA = {
       "actual": 69559.83,
       "variance_abs": 47228.71,
       "variance_pct": 211.5,
-      "type": "seasonal_spike",
-      "severity": "medium",
-      "explanation": "Seasonal spike: Insurance Premiums in Finance exceeded budget by 211% in 2025-12."
+      "type": "one_time_event",
+      "severity": "high",
+      "explanation": "Unusual activity: Insurance Premiums in Finance was $47,229 over budget (211%) in December 2025."
     },
     {
       "department": "Finance",
@@ -680,8 +680,8 @@ export const FALLBACK_DATA = {
       "variance_abs": 46409.73,
       "variance_pct": 205.7,
       "type": "one_time_event",
-      "severity": "low",
-      "explanation": "Unusual activity: Insurance Premiums in Finance was $46,410 over budget (206%) in 2025-06."
+      "severity": "high",
+      "explanation": "Unusual activity: Insurance Premiums in Finance was $46,410 over budget (206%) in June 2025."
     },
     {
       "department": "Finance",
@@ -692,8 +692,8 @@ export const FALLBACK_DATA = {
       "variance_abs": 44474.22,
       "variance_pct": 205.7,
       "type": "one_time_event",
-      "severity": "low",
-      "explanation": "Unusual activity: Insurance Premiums in Finance was $44,474 over budget (206%) in 2025-09."
+      "severity": "high",
+      "explanation": "Unusual activity: Insurance Premiums in Finance was $44,474 over budget (206%) in September 2025."
     },
     {
       "department": "Operations",
@@ -703,9 +703,9 @@ export const FALLBACK_DATA = {
       "actual": 61715.15,
       "variance_abs": 42536.76,
       "variance_pct": 221.8,
-      "type": "seasonal_spike",
-      "severity": "medium",
-      "explanation": "Seasonal spike: Insurance in Operations exceeded budget by 222% in 2025-12."
+      "type": "one_time_event",
+      "severity": "high",
+      "explanation": "Unusual activity: Insurance in Operations was $42,537 over budget (222%) in December 2025."
     },
     {
       "department": "Operations",
@@ -716,8 +716,8 @@ export const FALLBACK_DATA = {
       "variance_abs": 42066.01,
       "variance_pct": 213.7,
       "type": "one_time_event",
-      "severity": "low",
-      "explanation": "Unusual activity: Insurance in Operations was $42,066 over budget (214%) in 2025-06."
+      "severity": "high",
+      "explanation": "Unusual activity: Insurance in Operations was $42,066 over budget (214%) in June 2025."
     },
     {
       "department": "Operations",
@@ -728,8 +728,8 @@ export const FALLBACK_DATA = {
       "variance_abs": 41706.79,
       "variance_pct": 216.3,
       "type": "one_time_event",
-      "severity": "low",
-      "explanation": "Unusual activity: Insurance in Operations was $41,707 over budget (216%) in 2025-09."
+      "severity": "high",
+      "explanation": "Unusual activity: Insurance in Operations was $41,707 over budget (216%) in September 2025."
     },
     {
       "department": "Marketing",
@@ -752,8 +752,8 @@ export const FALLBACK_DATA = {
       "variance_abs": 38680.51,
       "variance_pct": 202.8,
       "type": "one_time_event",
-      "severity": "low",
-      "explanation": "Unusual activity: Insurance in Operations was $38,681 over budget (203%) in 2025-03."
+      "severity": "high",
+      "explanation": "Unusual activity: Insurance in Operations was $38,681 over budget (203%) in March 2025."
     },
     {
       "department": "Engineering",
@@ -765,7 +765,7 @@ export const FALLBACK_DATA = {
       "variance_pct": 30.0,
       "type": "one_time_event",
       "severity": "low",
-      "explanation": "Unusual activity: Cloud Hosting (AWS/GCP) in Engineering was $36,957 over budget (30%) in 2025-06."
+      "explanation": "Unusual activity: Cloud Hosting (AWS/GCP) in Engineering was $36,957 over budget (30%) in June 2025."
     },
     {
       "department": "Marketing",
@@ -873,7 +873,7 @@ export const FALLBACK_DATA = {
       "variance_pct": 81.2,
       "type": "seasonal_spike",
       "severity": "medium",
-      "explanation": "Seasonal spike: Hardware & Equipment in Engineering exceeded budget by 81% in 2025-11."
+      "explanation": "Seasonal spike: Hardware & Equipment in Engineering exceeded budget by 81% in November 2025."
     },
     {
       "department": "Engineering",
@@ -933,7 +933,7 @@ export const FALLBACK_DATA = {
       "variance_pct": 67.7,
       "type": "seasonal_spike",
       "severity": "medium",
-      "explanation": "Seasonal spike: Marketing Automation Software in Marketing exceeded budget by 68% in 2025-12."
+      "explanation": "Seasonal spike: Marketing Automation Software in Marketing exceeded budget by 68% in December 2025."
     },
     {
       "department": "Sales",
@@ -957,7 +957,7 @@ export const FALLBACK_DATA = {
       "variance_pct": 54.5,
       "type": "seasonal_spike",
       "severity": "medium",
-      "explanation": "Seasonal spike: Insurance in Operations exceeded budget by 55% in 2025-02."
+      "explanation": "Seasonal spike: Insurance in Operations exceeded budget by 55% in February 2025."
     },
     {
       "department": "Operations",
@@ -981,7 +981,7 @@ export const FALLBACK_DATA = {
       "variance_pct": 45.0,
       "type": "seasonal_spike",
       "severity": "medium",
-      "explanation": "Seasonal spike: Insurance in Operations exceeded budget by 45% in 2025-01."
+      "explanation": "Seasonal spike: Insurance in Operations exceeded budget by 45% in January 2025."
     },
     {
       "department": "Operations",
@@ -1029,7 +1029,7 @@ export const FALLBACK_DATA = {
       "variance_pct": 63.1,
       "type": "seasonal_spike",
       "severity": "medium",
-      "explanation": "Seasonal spike: Inventory Management System in Operations exceeded budget by 63% in 2025-02."
+      "explanation": "Seasonal spike: Inventory Management System in Operations exceeded budget by 63% in February 2025."
     }
   ],
   "raw_counts": {

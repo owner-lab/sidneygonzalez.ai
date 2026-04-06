@@ -18,8 +18,7 @@ Each project demonstrates the full pipeline: messy data in, clean insight out â€
 |-------|-----------|
 | Framework | React 18 (Vite) |
 | Styling | Tailwind CSS 3.x |
-| Animation | Motion v12 + GSAP + ScrollTrigger |
-| Smooth Scroll | Lenis |
+| Animation | Motion v12 + Lenis smooth scroll |
 | Charts | Recharts + Nivo |
 | Math | KaTeX |
 | Python Runtime | Pyodide (Web Worker) |

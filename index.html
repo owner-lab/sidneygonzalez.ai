@@ -43,8 +43,29 @@
       content="https://sidneygonzalez.ai/og-image.png"
     />
 
+    <!-- SEO -->
+    <link rel="canonical" href="https://sidneygonzalez.ai" />
+    <meta name="theme-color" content="#0A0A0F" />
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/og-image.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Sidney Gonzalez",
+        "jobTitle": "Financial Analyst",
+        "url": "https://sidneygonzalez.ai",
+        "sameAs": [
+          "https://github.com/owner-lab/sidneygonzalez.ai",
+          "https://linkedin.com/in/sidneygonzalez"
+        ],
+        "description": "Financial analyst who builds intelligence systems connecting raw corporate data to executive decision-making."
+      }
+    </script>
 
     <!-- Preload critical font weight -->
     <link
@@ -62,6 +83,7 @@
     />
   </head>
   <body>
+    <a href="#projects" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-bg-surface focus:px-4 focus:py-2 focus:text-sm focus:text-text-primary focus:ring-2 focus:ring-accent-blue">Skip to projects</a>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

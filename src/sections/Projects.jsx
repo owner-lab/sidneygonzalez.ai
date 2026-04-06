@@ -1,5 +1,6 @@
 import Section from '@/components/layout/Section'
 import ScrollReveal from '@/components/animation/ScrollReveal'
+import GlassPanel from '@/components/ui/GlassPanel'
 import PyodideStatus from '@/components/ui/PyodideStatus'
 import LoadingSpinner from '@/components/ui/LoadingSpinner'
 import PyodideFallback from '@/components/ui/PyodideFallback'
@@ -14,6 +15,30 @@ const STATUS_MAP = {
   ready: 'live',
   error: 'offline',
 }
+
+const STACK_ITEMS = [
+  {
+    number: '01',
+    title: 'Command Center',
+    subtitle: 'See the data',
+    color: 'text-accent-blue',
+    border: 'border-accent-blue/30',
+  },
+  {
+    number: '02',
+    title: 'Decision Analyzer',
+    subtitle: 'Model the decision',
+    color: 'text-accent-green',
+    border: 'border-accent-green/30',
+  },
+  {
+    number: '03',
+    title: 'Variance Engine',
+    subtitle: 'Find the anomaly',
+    color: 'text-accent-red',
+    border: 'border-accent-red/30',
+  },
+]
 
 export default function Projects() {
   const { status, progress, progressLabel, error } = usePyodide()
@@ -45,6 +70,39 @@ export default function Projects() {
             <PyodideFallback error={error} />
           </div>
         )}
+      </ScrollReveal>
+
+      {/* Intelligence Stack diagram */}
+      <ScrollReveal delay={0.2}>
+        <div className="mb-12 mt-8">
+          <p className="mb-4 text-center text-xs font-semibold uppercase tracking-widest text-text-muted">
+            Corporate Intelligence Stack
+          </p>
+          <div className="grid gap-3 sm:grid-cols-3">
+            {STACK_ITEMS.map((item) => (
+              <GlassPanel
+                key={item.number}
+                className={`border ${item.border} text-center`}
+              >
+                <span className={`text-xs font-bold ${item.color}`}>
+                  {item.number}
+                </span>
+                <p className="mt-1 text-sm font-semibold text-text-primary">
+                  {item.title}
+                </p>
+                <p className="mt-0.5 text-xs text-text-muted">
+                  {item.subtitle}
+                </p>
+              </GlassPanel>
+            ))}
+          </div>
+          {/* Connectors (desktop only) */}
+          <div className="mt-3 hidden items-center sm:flex">
+            <div className="h-px flex-1 bg-gradient-to-r from-accent-blue/40 to-accent-green/40" />
+            <span className="mx-3 text-[10px] text-text-muted">data flows →</span>
+            <div className="h-px flex-1 bg-gradient-to-r from-accent-green/40 to-accent-red/40" />
+          </div>
+        </div>
       </ScrollReveal>
 
       {/* Project 1: Executive Command Center */}
