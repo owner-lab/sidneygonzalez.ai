@@ -172,60 +172,60 @@ export default function DecisionImpactProject() {
 
   return (
     <ProjectLayout
-        id="decision-impact"
-        number={2}
-        title="Decision Impact Analyzer"
-        subtitle="Every Decision Has a Second-Order Effect"
-        question="If I cut the marketing budget by 15%, what happens to pipeline value in Q2? If I freeze engineering hiring, when does product NPS start to decline? How do these cascading effects connect across divisions?"
-        badges={BADGES}
-        pyodideStatus={STATUS_MAP[status] || 'offline'}
-        codeByTab={ENGINE_TABS}
-        limitations={LIMITATIONS}
-      >
-        <ScenarioSelector
-          scenarios={scenarios}
-          activeId={activeScenarioId}
-          onSelect={setActiveScenarioId}
-        />
+      id="decision-impact"
+      number={2}
+      title="Decision Impact Analyzer"
+      subtitle="Every Decision Has a Second-Order Effect"
+      question="If I cut the marketing budget by 15%, what happens to pipeline value in Q2? If I freeze engineering hiring, when does product NPS start to decline? How do these cascading effects connect across divisions?"
+      badges={BADGES}
+      pyodideStatus={STATUS_MAP[status] || 'offline'}
+      codeByTab={ENGINE_TABS}
+      limitations={LIMITATIONS}
+    >
+      <ScenarioSelector
+        scenarios={scenarios}
+        activeId={activeScenarioId}
+        onSelect={setActiveScenarioId}
+      />
 
-        {isCustom && (
-          <CustomScenarioBuilder
-            orgModel={orgModel}
-            kpiLabels={KPI_LABELS}
-            pyodideReady={status === 'ready'}
-            isComputing={isComputing}
-            onRun={handleRunCustom}
-          />
-        )}
-
-        <ImpactSankey
+      {isCustom && (
+        <CustomScenarioBuilder
           orgModel={orgModel}
           kpiLabels={KPI_LABELS}
-          kpiDivisions={KPI_DIVISIONS}
-          affectedLinks={affectedLinks}
-          loading={false}
+          pyodideReady={status === 'ready'}
+          isComputing={isComputing}
+          onRun={handleRunCustom}
         />
+      )}
 
-        {displayCascade && displayCascade.length > 0 && (
-          <div className="mt-6 flex flex-col gap-6">
-            <CascadeTable
-              cascade={displayCascade}
-              kpiLabels={KPI_LABELS}
-              kpiUnits={kpiUnits}
-            />
-            <QuarterlyBreakdown
-              quarterly={displayQuarterly}
-              kpiLabels={KPI_LABELS}
-            />
-          </div>
-        )}
+      <ImpactSankey
+        orgModel={orgModel}
+        kpiLabels={KPI_LABELS}
+        kpiDivisions={KPI_DIVISIONS}
+        affectedLinks={affectedLinks}
+        loading={false}
+      />
 
-        {narrative && (
-          <ExecutiveNarrative
-            narrative={narrative}
-            scenarioLabel={activeScenario?.label}
+      {displayCascade && displayCascade.length > 0 && (
+        <div className="mt-6 flex flex-col gap-6">
+          <CascadeTable
+            cascade={displayCascade}
+            kpiLabels={KPI_LABELS}
+            kpiUnits={kpiUnits}
           />
-        )}
+          <QuarterlyBreakdown
+            quarterly={displayQuarterly}
+            kpiLabels={KPI_LABELS}
+          />
+        </div>
+      )}
+
+      {narrative && (
+        <ExecutiveNarrative
+          narrative={narrative}
+          scenarioLabel={activeScenario?.label}
+        />
+      )}
     </ProjectLayout>
   )
 }
