@@ -1,3 +1,4 @@
+import { lazy, Suspense, useEffect } from 'react'
 import Section from '@/components/layout/Section'
 import ScrollReveal from '@/components/animation/ScrollReveal'
 import GlassPanel from '@/components/ui/GlassPanel'
@@ -5,9 +6,29 @@ import PyodideStatus from '@/components/ui/PyodideStatus'
 import LoadingSpinner from '@/components/ui/LoadingSpinner'
 import PyodideFallback from '@/components/ui/PyodideFallback'
 import usePyodide from '@/python/usePyodide'
-import CommandCenterProject from '@/projects/command-center/CommandCenterProject'
-import DecisionImpactProject from '@/projects/decision-impact/DecisionImpactProject'
-import VarianceEngineProject from '@/projects/variance-engine/VarianceEngineProject'
+
+// Lazy-load heavy project bundles (Recharts + Nivo ~226KB gzip) so initial
+// paint is fast. Chunks are preloaded on idle so they're ready before scroll.
+const CommandCenterProject = lazy(
+  () => import('@/projects/command-center/CommandCenterProject')
+)
+const DecisionImpactProject = lazy(
+  () => import('@/projects/decision-impact/DecisionImpactProject')
+)
+const VarianceEngineProject = lazy(
+  () => import('@/projects/variance-engine/VarianceEngineProject')
+)
+
+function ProjectFallback({ title }) {
+  return (
+    <div className="flex min-h-[500px] items-center justify-center">
+      <div className="flex items-center gap-2 text-sm text-text-muted">
+        <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent-blue" />
+        Loading {title}…
+      </div>
+    </div>
+  )
+}
 
 const STATUS_MAP = {
   idle: 'offline',
@@ -42,6 +63,22 @@ const STACK_ITEMS = [
 
 export default function Projects() {
   const { status, progress, progressLabel, error } = usePyodide()
+
+  // Preload project chunks after initial paint so they're cached by the time
+  // the user scrolls down. Uses requestIdleCallback with a setTimeout fallback.
+  useEffect(() => {
+    const preload = () => {
+      import('@/projects/command-center/CommandCenterProject')
+      import('@/projects/decision-impact/DecisionImpactProject')
+      import('@/projects/variance-engine/VarianceEngineProject')
+    }
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      const id = window.requestIdleCallback(preload, { timeout: 2000 })
+      return () => window.cancelIdleCallback?.(id)
+    }
+    const id = setTimeout(preload, 600)
+    return () => clearTimeout(id)
+  }, [])
 
   return (
     <Section id="projects">
@@ -106,13 +143,19 @@ export default function Projects() {
       </ScrollReveal>
 
       {/* Project 1: Executive Command Center */}
-      <CommandCenterProject />
+      <Suspense fallback={<ProjectFallback title="Command Center" />}>
+        <CommandCenterProject />
+      </Suspense>
 
       {/* Project 2: Decision Impact Analyzer */}
-      <DecisionImpactProject />
+      <Suspense fallback={<ProjectFallback title="Decision Impact Analyzer" />}>
+        <DecisionImpactProject />
+      </Suspense>
 
       {/* Project 3: Variance & Anomaly Engine */}
-      <VarianceEngineProject />
+      <Suspense fallback={<ProjectFallback title="Variance Engine" />}>
+        <VarianceEngineProject />
+      </Suspense>
     </Section>
   )
 }

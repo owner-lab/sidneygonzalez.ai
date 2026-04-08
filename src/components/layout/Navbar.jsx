@@ -8,6 +8,7 @@ import ThemeToggle from '@/components/ui/ThemeToggle'
 export default function Navbar({ themePreference, onChangeTheme }) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('hero')
   const scrollTo = useLenisScroll()
   const isDesktop = useMediaQuery('(min-width: 768px)')
 
@@ -20,6 +21,28 @@ export default function Navbar({ themePreference, onChangeTheme }) {
   useEffect(() => {
     if (isDesktop) setMobileOpen(false)
   }, [isDesktop])
+
+  // Scrollspy: highlight the nav link for whichever section is currently in view.
+  useEffect(() => {
+    const ids = NAV_LINKS.map((l) => l.href.slice(1))
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter(Boolean)
+    if (sections.length === 0) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Pick the topmost intersecting section
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+        if (visible[0]) setActiveSection(visible[0].target.id)
+      },
+      { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
+    )
+    sections.forEach((s) => observer.observe(s))
+    return () => observer.disconnect()
+  }, [])
 
   const handleNavClick = (e, href) => {
     e.preventDefault()
@@ -50,24 +73,32 @@ export default function Navbar({ themePreference, onChangeTheme }) {
         {/* Desktop nav + theme toggle */}
         <div className="hidden items-center gap-6 md:flex">
           <ul className="flex gap-8">
-            {NAV_LINKS.map(({ label, href }) => (
-              <li key={href}>
-                <a
-                  href={href}
-                  onClick={(e) => handleNavClick(e, href)}
-                  className="text-sm text-text-secondary transition-colors hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/50 focus-visible:ring-offset-2"
-                >
-                  {label}
-                </a>
-              </li>
-            ))}
+            {NAV_LINKS.map(({ label, href }) => {
+              const isActive = activeSection === href.slice(1)
+              return (
+                <li key={href}>
+                  <a
+                    href={href}
+                    onClick={(e) => handleNavClick(e, href)}
+                    aria-current={isActive ? 'page' : undefined}
+                    className={`text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/50 focus-visible:ring-offset-2 ${
+                      isActive
+                        ? 'text-text-primary'
+                        : 'text-text-secondary hover:text-text-primary'
+                    }`}
+                  >
+                    {label}
+                  </a>
+                </li>
+              )
+            })}
           </ul>
           <ThemeToggle preference={themePreference} onChangeTheme={onChangeTheme} />
         </div>
 
         {/* Mobile hamburger */}
         <button
-          className="flex flex-col gap-1.5 md:hidden"
+          className="flex flex-col gap-1.5 rounded p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/50 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-expanded={mobileOpen}
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
@@ -105,7 +136,7 @@ export default function Navbar({ themePreference, onChangeTheme }) {
                   <a
                     href={href}
                     onClick={(e) => handleNavClick(e, href)}
-                    className="block rounded-lg px-4 py-3 text-sm text-text-secondary transition-colors hover:bg-bg-hover hover:text-text-primary"
+                    className="block rounded-lg px-4 py-3 text-sm text-text-secondary transition-colors hover:bg-bg-hover hover:text-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/50"
                   >
                     {label}
                   </a>

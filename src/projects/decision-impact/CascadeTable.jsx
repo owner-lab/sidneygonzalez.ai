@@ -22,7 +22,7 @@ export default function CascadeTable({ cascade, kpiLabels, kpiUnits }) {
       <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-text-muted">
         Impact Cascade
       </h4>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto" data-lenis-prevent>
         <table className="w-full text-left text-xs">
           <thead>
             <tr className="border-b border-border-subtle text-text-muted">
