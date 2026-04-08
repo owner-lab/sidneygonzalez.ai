@@ -4,7 +4,7 @@ const variants = {
   secondary:
     'border border-border-subtle bg-bg-hover text-text-primary hover:bg-bg-surface',
   ghost:
-    'border border-border-subtle/60 bg-transparent text-text-secondary hover:bg-bg-hover/50 hover:text-text-primary',
+    'border border-border-subtle bg-bg-surface/60 text-text-secondary hover:bg-bg-hover hover:text-text-primary',
 }
 
 export default function Button({

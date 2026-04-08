@@ -129,6 +129,12 @@
   .text-gradient-green {
     @apply bg-gradient-to-r from-accent-green to-accent-blue bg-clip-text text-transparent;
   }
+
+  /* Horizontal scroll affordance — right-edge fade mask */
+  .scroll-fade-right {
+    mask-image: linear-gradient(to right, black calc(100% - 32px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 32px), transparent 100%);
+  }
 }
 
 /* Data update flash animation */

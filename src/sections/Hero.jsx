@@ -50,7 +50,7 @@ export default function Hero() {
   const v = reduced ? noMotion : null
 
   return (
-    <Section id="hero" className="relative flex min-h-screen items-center">
+    <Section id="hero" className="relative flex min-h-[85vh] items-center sm:min-h-screen">
       <motion.div
         className="absolute inset-0 -z-10"
         initial={{ opacity: 0 }}
