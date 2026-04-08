@@ -97,7 +97,10 @@ export default function CodeToggle({ isOpen, onClose, tabs = PIPELINE_TABS, code
                 ))}
               </div>
 
-              <div className="flex-1 overflow-y-auto overscroll-contain py-4">
+              <div
+                className="flex-1 overflow-y-auto overscroll-contain py-4"
+                data-lenis-prevent
+              >
                 <pre className="whitespace-pre-wrap break-words font-mono text-xs leading-relaxed text-text-secondary">
                   <code>
                     {codeByTab[activeTab] ||
