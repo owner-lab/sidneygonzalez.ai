@@ -18,7 +18,7 @@ export default function MetricCard({
       <span className="text-xs font-medium uppercase tracking-wider text-text-muted">
         {label}
       </span>
-      <span className="metric-value font-display text-2xl font-semibold text-text-primary">
+      <span className="metric-value font-display text-2xl font-semibold leading-tight text-text-primary">
         {value}
       </span>
       {change !== undefined && (

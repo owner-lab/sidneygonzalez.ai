@@ -3,7 +3,8 @@ const variants = {
     'bg-accent-blue text-white hover:bg-accent-blue/90 shadow-lg shadow-accent-blue/25',
   secondary:
     'border border-border-subtle bg-bg-hover text-text-primary hover:bg-bg-surface',
-  ghost: 'text-text-secondary hover:text-text-primary hover:bg-bg-hover/50',
+  ghost:
+    'border border-border-subtle bg-bg-surface/60 text-text-secondary hover:bg-bg-hover hover:text-text-primary',
 }
 
 export default function Button({

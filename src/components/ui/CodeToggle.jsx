@@ -49,23 +49,35 @@ export default function CodeToggle({ isOpen, onClose, tabs = PIPELINE_TABS, code
           />
           {/* Slide-out panel */}
           <motion.div
-            className="fixed inset-y-0 right-0 z-40 w-full max-w-lg"
+            className="fixed inset-y-0 right-0 z-[60] w-full lg:z-40 lg:max-w-lg"
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
           >
-            <GlassPanel className="flex h-full flex-col rounded-none rounded-l-xl pt-20">
+            <GlassPanel className="flex h-full flex-col rounded-none px-6 pt-6 lg:rounded-l-xl lg:pt-20">
               <div className="flex items-center justify-between border-b border-border-subtle pb-4">
                 <h3 className="font-display text-sm font-semibold text-text-primary">
                   View Code
                 </h3>
                 <button
                   onClick={onClose}
-                  className="text-text-muted transition-colors hover:text-text-primary"
+                  className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-lg text-text-muted transition-colors hover:bg-bg-hover/50 hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/50"
                   aria-label="Close code panel"
                 >
-                  &times;
+                  <svg
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M5 5l10 10M15 5L5 15"
+                      stroke="currentColor"
+                      strokeWidth="1.75"
+                      strokeLinecap="round"
+                    />
+                  </svg>
                 </button>
               </div>
 

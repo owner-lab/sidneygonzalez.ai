@@ -19,7 +19,7 @@ function DataTable({ rows, title, titleColor, highlightIssues = false }) {
       <h4 className={`mb-2 text-xs font-semibold uppercase tracking-wider ${titleColor}`}>
         {title}
       </h4>
-      <div className="overflow-x-auto rounded-lg border border-border-subtle" data-lenis-prevent>
+      <div className="scroll-fade-right overflow-x-auto rounded-lg border border-border-subtle" data-lenis-prevent>
         <table className="w-full text-left font-mono text-xs">
           <thead>
             <tr className="border-b border-border-subtle bg-bg-surface/50">
