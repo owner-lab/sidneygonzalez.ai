@@ -45,7 +45,8 @@
 
     <!-- SEO -->
     <link rel="canonical" href="https://sidneygonzalez.ai" />
-    <meta name="theme-color" content="#0A0A0F" />
+    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0A0A0F" media="(prefers-color-scheme: dark)" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -83,7 +84,7 @@
     />
     <!-- Prevent flash of wrong theme -->
     <script>
-      (function(){var t=localStorage.getItem('theme');var d=t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme:dark)').matches);if(d)document.documentElement.classList.add('dark');var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',d?'#0A0A0F':'#FFFFFF')})()
+      (function(){var t=localStorage.getItem('theme');var d=t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme:dark)').matches);if(d)document.documentElement.classList.add('dark');document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute('content',d?'#0A0A0F':'#FFFFFF')})})()
     </script>
   </head>
   <body>

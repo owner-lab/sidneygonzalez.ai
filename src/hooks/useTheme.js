@@ -14,11 +14,11 @@ function applyTheme(preference) {
     document.documentElement.classList.remove('dark')
   }
 
-  // Update theme-color meta tag
-  const meta = document.querySelector('meta[name="theme-color"]')
-  if (meta) {
-    meta.setAttribute('content', isDark ? '#0A0A0F' : '#FFFFFF')
-  }
+  // Update theme-color meta tags (both media-scoped entries)
+  const color = isDark ? '#0A0A0F' : '#FFFFFF'
+  document
+    .querySelectorAll('meta[name="theme-color"]')
+    .forEach((m) => m.setAttribute('content', color))
 
   return isDark
 }

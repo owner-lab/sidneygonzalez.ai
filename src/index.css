@@ -41,6 +41,7 @@
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     --duration-normal: 0.5s;
     --duration-slow: 0.8s;
+    color-scheme: light;
   }
 
   .dark {
@@ -66,6 +67,7 @@
     --chart-tooltip-text: 226 232 240;
 
     --heatmap-neutral: #1E1E2E;
+    color-scheme: dark;
   }
 
   html {
