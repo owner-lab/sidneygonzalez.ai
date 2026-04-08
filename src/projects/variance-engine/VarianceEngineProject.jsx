@@ -151,7 +151,7 @@ export default function VarianceEngineProject() {
   const isLoading = status === 'loading'
 
   return (
-    <div ref={flashRef} className="mt-12">
+    <div ref={flashRef}>
       <ProjectLayout
         id="variance-engine"
         number={3}

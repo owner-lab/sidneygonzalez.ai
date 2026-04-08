@@ -171,8 +171,7 @@ export default function DecisionImpactProject() {
   const isCustom = activeScenarioId === 'custom'
 
   return (
-    <div className="mt-12">
-      <ProjectLayout
+    <ProjectLayout
         id="decision-impact"
         number={2}
         title="Decision Impact Analyzer"
@@ -227,7 +226,6 @@ export default function DecisionImpactProject() {
             scenarioLabel={activeScenario?.label}
           />
         )}
-      </ProjectLayout>
-    </div>
+    </ProjectLayout>
   )
 }
