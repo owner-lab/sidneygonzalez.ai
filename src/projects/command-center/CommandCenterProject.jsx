@@ -161,7 +161,7 @@ export default function CommandCenterProject() {
   const isLoading = status === 'loading'
 
   return (
-    <div ref={flashRef} className="mt-12">
+    <div ref={flashRef}>
       <ProjectLayout
         id="command-center"
         number={1}
