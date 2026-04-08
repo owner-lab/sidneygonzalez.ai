@@ -54,12 +54,22 @@ export default function Contact() {
             </a>
             <div className="flex items-center gap-4 text-sm text-text-secondary">
               <a
+                href={SOCIAL.resume}
+                download
+                className="underline-offset-4 transition-colors hover:text-text-primary hover:underline"
+              >
+                Résumé
+              </a>
+              <span aria-hidden="true" className="text-text-muted">
+                ·
+              </span>
+              <a
                 href={SOCIAL.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline-offset-4 transition-colors hover:text-text-primary hover:underline"
               >
-                Résumé / LinkedIn
+                LinkedIn
               </a>
               <span aria-hidden="true" className="text-text-muted">
                 ·
