@@ -2,18 +2,18 @@ import GlassPanel from '@/components/ui/GlassPanel'
 import { CREDIBILITY_STATS } from './fallbackData'
 
 const ACCENT_TEXT = {
-  blue: 'text-accent-blue',
-  green: 'text-accent-green',
-  red: 'text-accent-red',
-  orange: 'text-accent-orange',
-  purple: 'text-accent-purple',
+  blue: 'text-accent-ink-blue',
+  green: 'text-accent-ink-green',
+  red: 'text-accent-ink-red',
+  orange: 'text-accent-ink-orange',
+  purple: 'text-accent-ink-purple',
 }
 
 export default function IdcCredibilityPanel() {
   return (
     <GlassPanel className="mt-6 border border-accent-orange/20 bg-accent-orange/5">
       <div className="mb-4">
-        <h4 className="text-xs font-semibold uppercase tracking-wider text-accent-orange">
+        <h4 className="text-xs font-semibold uppercase tracking-wider text-accent-ink-orange">
           Analyst context — IDC FutureScape 2026
         </h4>
         <p className="mt-1 text-sm leading-relaxed text-text-secondary">

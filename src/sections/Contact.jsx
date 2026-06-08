@@ -31,7 +31,7 @@ export default function Contact() {
           </p>
 
           <div className="mt-8 rounded-xl border border-border-subtle bg-bg-surface/50 p-6">
-            <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-accent-blue">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-accent-ink-blue">
               Working sample, on request
             </p>
             <p className="text-sm leading-relaxed text-text-secondary">

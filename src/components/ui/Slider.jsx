@@ -29,8 +29,8 @@ export default function Slider({
     : isZero
       ? 'text-text-muted'
       : isNeg
-        ? 'text-accent-orange'
-        : 'text-accent-blue'
+        ? 'text-accent-ink-orange'
+        : 'text-accent-ink-blue'
 
   // Zero tick only meaningful when 0 is strictly inside the range
   const showZeroTick = hasNegativeRange && zeroPct > 0 && zeroPct < 100
@@ -96,10 +96,10 @@ export default function Slider({
 
       {showRange && (
         <div className="flex justify-between" aria-hidden="true">
-          <span className="text-[9px] text-text-muted/60">
+          <span className="text-[9px] text-text-muted">
             {formatValue ? formatValue(min) : min}
           </span>
-          <span className="text-[9px] text-text-muted/60">
+          <span className="text-[9px] text-text-muted">
             {formatValue ? formatValue(max) : max}
           </span>
         </div>

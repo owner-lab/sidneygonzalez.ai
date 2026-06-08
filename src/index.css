@@ -11,7 +11,15 @@
     --color-bg-hover: 226 232 240;
     --color-text-primary: 15 23 42;
     --color-text-secondary: 71 85 105;
-    --color-text-muted: 148 163 184;
+    --color-text-muted: 90 102 120; /* darkened from slate-400 → WCAG AA on light surfaces */
+
+    /* Accent "ink" — darkened accents for TEXT use (the bright accents below stay
+       for fills/dots/borders). Light mode needs dark text for AA contrast. */
+    --accent-blue-ink: 0 82 204;
+    --accent-green-ink: 11 122 90;
+    --accent-red-ink: 200 30 30;
+    --accent-orange-ink: 158 84 0;
+    --accent-purple-ink: 106 69 199;
 
     /* Border (full rgba — not split into channels) */
     --color-border-subtle: rgba(0, 0, 0, 0.08);
@@ -58,7 +66,15 @@
     --color-bg-hover: 37 37 56;
     --color-text-primary: 226 232 240;
     --color-text-secondary: 148 163 184;
-    --color-text-muted: 100 116 139;
+    --color-text-muted: 130 143 166; /* lightened → WCAG AA on dark surfaces */
+
+    /* On dark backgrounds the bright accents already pass — use them as ink
+       (blue is lightened; it is the one accent too dark on black as text). */
+    --accent-blue-ink: 77 148 255;
+    --accent-green-ink: 74 246 195;
+    --accent-red-ink: 255 107 102;
+    --accent-orange-ink: 251 139 30;
+    --accent-purple-ink: 167 139 250;
 
     --color-border-subtle: rgba(255, 255, 255, 0.08);
     --color-border-medium: rgba(255, 255, 255, 0.15);

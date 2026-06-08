@@ -18,6 +18,14 @@ export default {
           orange: '#FB8B1E',
           purple: '#A78BFA',
         },
+        // Accent "ink" — theme-aware, AA-contrast accents for TEXT use.
+        'accent-ink': {
+          blue: 'rgb(var(--accent-blue-ink) / <alpha-value>)',
+          green: 'rgb(var(--accent-green-ink) / <alpha-value>)',
+          red: 'rgb(var(--accent-red-ink) / <alpha-value>)',
+          orange: 'rgb(var(--accent-orange-ink) / <alpha-value>)',
+          purple: 'rgb(var(--accent-purple-ink) / <alpha-value>)',
+        },
         text: {
           primary: 'rgb(var(--color-text-primary) / <alpha-value>)',
           secondary: 'rgb(var(--color-text-secondary) / <alpha-value>)',
@@ -27,11 +35,13 @@ export default {
           subtle: 'var(--color-border-subtle)',
           medium: 'var(--color-border-medium)',
         },
+        // Impact = financial +/- semantics, used as TEXT — point at the
+        // theme-aware inks so accounting numbers meet AA in light mode.
         impact: {
-          positive: '#4AF6C3',
-          negative: '#FF433D',
+          positive: 'rgb(var(--accent-green-ink) / <alpha-value>)',
+          negative: 'rgb(var(--accent-red-ink) / <alpha-value>)',
           neutral: 'rgb(var(--color-text-muted) / <alpha-value>)',
-          warning: '#FB8B1E',
+          warning: 'rgb(var(--accent-orange-ink) / <alpha-value>)',
         },
       },
       fontFamily: {
