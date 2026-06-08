@@ -194,7 +194,7 @@ async function main() {
                     fontSize: 18,
                     letterSpacing: '0.01em',
                   },
-                  children: 'Python · React · Pyodide · scikit-learn · Power BI · DAX',
+                  children: 'Python · Pyodide · React · scikit-learn · live AI ROI',
                 },
               },
               {
