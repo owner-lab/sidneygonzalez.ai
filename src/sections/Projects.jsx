@@ -18,6 +18,7 @@ const DecisionImpactProject = lazy(
 const VarianceEngineProject = lazy(
   () => import('@/projects/variance-engine/VarianceEngineProject')
 )
+const AiRoiProject = lazy(() => import('@/projects/ai-roi/AiRoiProject'))
 
 function ProjectFallback({ title }) {
   return (
@@ -59,6 +60,13 @@ const STACK_ITEMS = [
     color: 'text-accent-red',
     border: 'border-accent-red/30',
   },
+  {
+    number: '04',
+    title: 'AI Value Model',
+    subtitle: 'Prove the ROI',
+    color: 'text-accent-purple',
+    border: 'border-accent-purple/30',
+  },
 ]
 
 export default function Projects() {
@@ -71,6 +79,7 @@ export default function Projects() {
       import('@/projects/command-center/CommandCenterProject')
       import('@/projects/decision-impact/DecisionImpactProject')
       import('@/projects/variance-engine/VarianceEngineProject')
+      import('@/projects/ai-roi/AiRoiProject')
     }
     if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
       const id = window.requestIdleCallback(preload, { timeout: 2000 })
@@ -115,7 +124,7 @@ export default function Projects() {
           <p className="mb-4 text-center text-xs font-semibold uppercase tracking-widest text-text-muted">
             Corporate Intelligence Stack
           </p>
-          <div className="grid gap-3 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
             {STACK_ITEMS.map((item) => (
               <GlassPanel
                 key={item.number}
@@ -135,9 +144,9 @@ export default function Projects() {
           </div>
           {/* Connectors (desktop only) */}
           <div className="mt-3 hidden items-center sm:flex">
-            <div className="h-px flex-1 bg-gradient-to-r from-accent-blue/40 to-accent-green/40" />
+            <div className="h-px flex-1 bg-gradient-to-r from-accent-blue/40 via-accent-green/40 to-accent-red/40" />
             <span className="mx-3 text-[10px] text-text-muted">data flows →</span>
-            <div className="h-px flex-1 bg-gradient-to-r from-accent-green/40 to-accent-red/40" />
+            <div className="h-px flex-1 bg-gradient-to-r from-accent-red/40 to-accent-purple/40" />
           </div>
         </div>
       </ScrollReveal>
@@ -155,6 +164,11 @@ export default function Projects() {
       {/* Project 3: Variance & Anomaly Engine */}
       <Suspense fallback={<ProjectFallback title="Variance Engine" />}>
         <VarianceEngineProject />
+      </Suspense>
+
+      {/* Project 4: AI Business Value Model */}
+      <Suspense fallback={<ProjectFallback title="AI Value Model" />}>
+        <AiRoiProject />
       </Suspense>
     </Section>
   )

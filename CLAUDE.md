@@ -21,7 +21,7 @@ Single-page React portfolio at sidneygonzalez.ai demonstrating financial intelli
 - PR to `main` for approval
 - Conventional Commits (feat:, fix:, refactor:, docs:, chore:)
 - Do NOT include `Co-Authored-By` Claude lines in commits
-- Never reuse the same PR title across multiple pushes (Netlify snapshots per deploy preview)
+- Never reuse the same PR title across multiple pushes (Cloudflare Pages snapshots per deploy preview)
 
 ## Tech Stack
 

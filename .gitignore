@@ -38,3 +38,6 @@ data-generation/**/output/
 
 # Cache
 .cache
+
+# Research / reference material (not site content)
+docs/research/
