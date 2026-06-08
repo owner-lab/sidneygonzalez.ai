@@ -99,8 +99,9 @@ export default function Projects() {
           <PyodideStatus status={STATUS_MAP[status] || 'offline'} />
         </div>
         <p className="max-w-2xl text-text-secondary">
-          Every project answers the same question: What is your company trying
-          to tell you about the decisions you&apos;re making?
+          Four systems, one throughline: turn raw data and AI investment into
+          decisions you can defend — see the data, model the decision, find the
+          anomaly, prove the ROI.
         </p>
 
         {/* Pyodide loading state */}

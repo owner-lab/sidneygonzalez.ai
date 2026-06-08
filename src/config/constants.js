@@ -21,9 +21,9 @@ export const SOCIAL = {
 }
 
 export const HERO = {
-  title: 'Corporate Financial Analyst',
+  title: 'Financial Intelligence, Engineered',
   subtitle:
-    'I build the intelligence layer between raw corporate data and executive decision-making.',
+    'I build the systems that turn corporate data \u2014 and the AI you are investing in \u2014 into decisions the C-suite can defend.',
   supporting:
-    'Python \u00B7 Data Pipelines \u00B7 AI-Driven Reporting \u00B7 Cross-Functional Analytics',
+    'AI ROI Modeling \u00B7 Live Python Analytics \u00B7 Data Pipelines \u00B7 Defensible Measurement',
 }
