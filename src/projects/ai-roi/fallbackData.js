@@ -197,3 +197,51 @@ export const FALLBACK_RESULT = {
     { factor: 'Initial cost', low: 230.0, high: 296.0, swing: 66.0 },
   ],
 }
+
+// Industry-analyst context shown beside the model. These are FORWARD-LOOKING
+// predictions (not proven outcomes), each cited to its own distinct claim with
+// the source's exact region/timeframe qualifier preserved verbatim. IDC stats
+// are sourced to the publicly published FutureScape 2026 APJ excerpt; the
+// Gartner stat to its press release. URLs checked live June 2026.
+const IDC_DECK_URL =
+  'https://info.idc.com/rs/081-ATC-910/images/IDC-futurescape-2026-charting-the-agentic-future-excerpt-AP.pdf'
+const GARTNER_URL =
+  'https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027'
+
+export const CREDIBILITY_STATS = [
+  {
+    stat: '66%',
+    claim: 'of APJ CEOs believe AI will offer a chance to reinvent their business models within 3–5 years.',
+    source: 'IDC FutureScape 2026 (APJ)',
+    url: IDC_DECK_URL,
+    accent: 'blue',
+  },
+  {
+    stat: '50%',
+    claim: 'of AI apps/services will fail to progress beyond proof-of-concept by 2027 (APJ).',
+    source: 'IDC FutureScape 2026 (APJ)',
+    url: IDC_DECK_URL,
+    accent: 'red',
+  },
+  {
+    stat: '+15%',
+    claim: 'operating margin by 2029 for organizations that measure human–AI collaboration, vs. chasing AI productivity alone (APJ).',
+    source: 'IDC FutureScape 2026 (APJ)',
+    url: IDC_DECK_URL,
+    accent: 'green',
+  },
+  {
+    stat: '50%',
+    claim: 'of new economic value in APJ by 2030 will come from companies scaling their AI capabilities today.',
+    source: 'IDC FutureScape 2026 (APJ)',
+    url: IDC_DECK_URL,
+    accent: 'purple',
+  },
+  {
+    stat: '40%+',
+    claim: 'of agentic AI projects will be canceled by end of 2027 — escalating cost, unclear value, weak risk controls.',
+    source: 'Gartner (Jun 2025)',
+    url: GARTNER_URL,
+    accent: 'orange',
+  },
+]

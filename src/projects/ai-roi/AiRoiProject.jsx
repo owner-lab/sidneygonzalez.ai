@@ -8,6 +8,7 @@ import engineCode from './ai_roi_engine.py?raw'
 import { BENEFIT_PARAMS, DEFAULT_INPUTS, FALLBACK_RESULT } from './fallbackData'
 import RoiInputsPanel from './RoiInputsPanel'
 import RoiResults from './RoiResults'
+import IdcCredibilityPanel from './IdcCredibilityPanel'
 
 const STATUS_MAP = {
   idle: 'offline',
@@ -185,6 +186,8 @@ export default function AiRoiProject() {
       />
 
       <RoiResults result={result} flashKey={flashKey} />
+
+      <IdcCredibilityPanel />
     </ProjectLayout>
   )
 }
