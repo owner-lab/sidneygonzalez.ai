@@ -54,6 +54,13 @@ const DECISIONS = [
     tagColor: 'green',
   },
   {
+    title: 'Why the AI ROI Tool Is a Sensitivity Model, Not a Predictor',
+    rationale:
+      'A calculator that takes your value estimate and divides by cost is a spreadsheet in a Python costume — a CFO sees through it in seconds. So the AI Business Value Model is framed honestly: you supply the assumptions, it applies IDC\'s risk-adjusted ROI formula and surfaces what actually moves the number — the break-even ship-probability and a ±20% sensitivity tornado. The headline ROI recomputes live in Pyodide, never shadowed in JavaScript, so "View Code" shows the real math. Owning the model\'s limits is the credibility.',
+    tag: 'shipped',
+    tagColor: 'green',
+  },
+  {
     title: 'Why Smooth Scroll Requires a Contract',
     rationale:
       'Lenis intercepts all scroll events at the window level — that\'s the price of physics-based, buttery-smooth scroll behavior. Every scrollable sub-container (data tables, code panels, chart overflow) must declare data-lenis-prevent or Lenis steals the scroll and the element appears frozen. Modal overlays pause Lenis entirely instead. Global scroll ownership traded for a consistent feel — deliberate, not accidental.',
