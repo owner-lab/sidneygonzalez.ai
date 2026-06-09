@@ -1,17 +1,16 @@
-import { useState } from 'react'
 import GlassPanel from '@/components/ui/GlassPanel'
 import Slider from '@/components/ui/Slider'
 import Button from '@/components/ui/Button'
 import { BENEFIT_PARAMS, PRESETS } from './fallbackData'
 
 const numberFmt = new Intl.NumberFormat('en-US')
+// $1T guardrail — keeps the field tidy and the downstream math in scale no
+// matter what is typed (output is still made robust to any value separately).
+const MAX_MONEY = 1_000_000_000_000
 
 // Token-styled money input (no NumberInput primitive exists in the kit).
-// Shows comma-grouped value when blurred, raw digits while focused.
+// Live comma grouping so large figures read cleanly as they are typed.
 function MoneyInput({ id, label, tag, value, onChange, title }) {
-  const [focused, setFocused] = useState(false)
-  const display = focused ? String(value) : numberFmt.format(value)
-
   return (
     <div className="flex flex-col gap-1">
       <div className="flex min-w-0 items-center gap-1.5">
@@ -31,10 +30,11 @@ function MoneyInput({ id, label, tag, value, onChange, title }) {
           type="text"
           inputMode="numeric"
           aria-label={label}
-          value={display}
-          onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
-          onChange={(e) => onChange(Number(e.target.value.replace(/[^0-9]/g, '')) || 0)}
+          value={numberFmt.format(value)}
+          onChange={(e) => {
+            const digits = e.target.value.replace(/[^0-9]/g, '')
+            onChange(digits ? Math.min(Number(digits), MAX_MONEY) : 0)
+          }}
           className="metric-value w-full bg-transparent px-1.5 py-2 text-right text-sm tabular-nums text-text-primary outline-none"
         />
       </div>

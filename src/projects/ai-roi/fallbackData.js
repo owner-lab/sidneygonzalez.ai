@@ -171,6 +171,7 @@ export const FALLBACK_RESULT = {
   annual_cost: 800_000,
   years: 3,
   success_probability: 0.6,
+  cost_valid: true,
   raw_multiple: 6.0,
   risk_adjusted_multiple: 3.6,
   roi_pct: 260.0,

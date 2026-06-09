@@ -41,17 +41,22 @@ total_cost = initial_cost + annual_cost * years
 
 def roi_pct_for(annual_value=annual_value_income, ci=initial_cost,
                 ca=annual_cost, p=success_probability, yrs=years):
-    """Risk-adjusted ROI % for a given set of assumptions (used for sensitivity)."""
+    """Risk-adjusted ROI % for a given set of assumptions (used for sensitivity).
+    Returns None when total cost is non-positive — ROI is undefined there, not -100%."""
     income = annual_value * yrs
     cost = ci + ca * yrs
     if cost <= 0:
-        return 0.0
+        return None
     return ((income / cost) * p - 1.0) * 100.0
 
 
-raw_multiple = (value_income / total_cost) if total_cost > 0 else 0.0
-risk_adjusted_multiple = raw_multiple * success_probability
-roi_pct = (risk_adjusted_multiple - 1.0) * 100.0
+# ROI is only defined when there is a positive cost. With zero cost the multiple
+# is infinite, so we return null and let the UI show "n/a" rather than a bogus
+# -100%. Net value is still meaningful (it's just the risk-adjusted value income).
+cost_valid = total_cost > 0
+raw_multiple = (value_income / total_cost) if cost_valid else None
+risk_adjusted_multiple = (raw_multiple * success_probability) if cost_valid else None
+roi_pct = ((risk_adjusted_multiple - 1.0) * 100.0) if cost_valid else None
 net_value = value_income * success_probability - total_cost
 
 # Per-benefit contribution: Direct / Indirect split + share of value income.
@@ -81,7 +86,11 @@ payback_years = round(initial_cost / annual_net, 2) if annual_net > 0 else None
 # risk-adjusted value exactly covers cost.
 #   value_income × P* = total_cost   ->   P* = total_cost / value_income
 break_even_probability = (total_cost / value_income) if value_income > 0 else None
-break_even_feasible = break_even_probability is not None and break_even_probability <= 1.0
+break_even_feasible = (
+    cost_valid
+    and break_even_probability is not None
+    and break_even_probability <= 1.0
+)
 
 # One-at-a-time sensitivity (tornado): swing in ROI % when each driver moves ±20%,
 # holding everything else at its base value. This is what tells a CFO where the
@@ -91,6 +100,8 @@ sensitivity = []
 
 
 def add_factor(name, low_roi, high_roi):
+    if low_roi is None or high_roi is None:
+        return
     lo, hi = sorted([low_roi, high_roi])
     sensitivity.append({
         "factor": name,
@@ -136,9 +147,10 @@ result = {
     "annual_cost": round(annual_cost, 2),
     "years": years,
     "success_probability": round(success_probability, 4),
-    "raw_multiple": round(raw_multiple, 3),
-    "risk_adjusted_multiple": round(risk_adjusted_multiple, 3),
-    "roi_pct": round(roi_pct, 1),
+    "cost_valid": cost_valid,
+    "raw_multiple": round(raw_multiple, 3) if raw_multiple is not None else None,
+    "risk_adjusted_multiple": round(risk_adjusted_multiple, 3) if risk_adjusted_multiple is not None else None,
+    "roi_pct": round(roi_pct, 1) if roi_pct is not None else None,
     "net_value": round(net_value, 2),
     "break_even_probability": round(break_even_probability, 4) if break_even_probability is not None else None,
     "break_even_feasible": break_even_feasible,

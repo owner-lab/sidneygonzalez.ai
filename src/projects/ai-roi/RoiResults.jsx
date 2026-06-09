@@ -1,10 +1,37 @@
 import GlassPanel from '@/components/ui/GlassPanel'
 import MetricCard from '@/components/ui/MetricCard'
 import Badge from '@/components/ui/Badge'
-import { formatCompact, formatPercent, formatVariance } from '@/utils/formatters'
+import {
+  formatCompact,
+  formatCompactAccounting,
+  formatPercent,
+  formatRoiPercent,
+  formatMultiple,
+} from '@/utils/formatters'
+
+// Sensible payback text for any magnitude (avoids "~0 yrs" / off-scale values).
+function formatPayback(years) {
+  if (years == null || !Number.isFinite(years)) return null
+  if (years < 1 / 12) return 'Payback < 1 mo'
+  if (years < 1) return `Payback ~${Math.round(years * 12)} mo`
+  if (years > 50) return 'Payback > 50 yrs'
+  return `Payback ~${years.toFixed(1)} yrs`
+}
 
 function BreakEvenCard({ result }) {
-  const { break_even_feasible, break_even_probability, success_probability } = result
+  const { cost_valid, break_even_feasible, break_even_probability, success_probability } =
+    result
+
+  if (!cost_valid) {
+    return (
+      <MetricCard
+        label="Break-even ship odds"
+        value="—"
+        change="Add a cost to compute"
+        changeType="neutral"
+      />
+    )
+  }
 
   if (!break_even_feasible || break_even_probability == null) {
     return (
@@ -77,7 +104,18 @@ function ContributionTable({ perBenefit }) {
 }
 
 function SensitivityTornado({ sensitivity, base }) {
-  if (!sensitivity || sensitivity.length === 0) return null
+  if (!sensitivity || sensitivity.length === 0) {
+    return (
+      <GlassPanel>
+        <h4 className="mb-1 text-xs font-semibold uppercase tracking-wider text-text-muted">
+          What moves the ROI most
+        </h4>
+        <p className="text-xs text-text-muted">
+          Enter a positive cost to see which assumption the business case depends on most.
+        </p>
+      </GlassPanel>
+    )
+  }
 
   const lows = sensitivity.map((s) => s.low)
   const highs = sensitivity.map((s) => s.high)
@@ -93,7 +131,7 @@ function SensitivityTornado({ sensitivity, base }) {
       </h4>
       <p className="mb-4 text-xs text-text-muted">
         ROI swing if each driver alone moves ±20%. The longest bar is the assumption your
-        business case depends on most. Dashed line = current ROI ({formatPercent(base, 0)}).
+        business case depends on most. Dashed line = current ROI ({formatRoiPercent(base)}).
       </p>
 
       <div className="flex flex-col gap-3">
@@ -104,21 +142,19 @@ function SensitivityTornado({ sensitivity, base }) {
             <div key={s.factor} className="flex items-center gap-3">
               <span className="w-28 shrink-0 text-xs text-text-secondary">{s.factor}</span>
               <div className="relative h-6 flex-1 rounded bg-bg-hover/50">
-                {/* current-ROI reference line */}
                 <div
                   className="absolute top-0 h-full w-px bg-text-muted/50"
                   style={{ left: `${basePct}%` }}
                   aria-hidden="true"
                 />
-                {/* swing bar */}
                 <div
                   className="absolute top-1/2 h-3 -translate-y-1/2 rounded bg-accent-blue/70"
                   style={{ left: `${leftPct}%`, width: `${widthPct}%` }}
-                  title={`${formatPercent(s.low, 0)} → ${formatPercent(s.high, 0)}`}
+                  title={`${formatRoiPercent(s.low)} → ${formatRoiPercent(s.high)}`}
                 />
               </div>
-              <span className="metric-value w-24 shrink-0 text-right text-[11px] tabular-nums text-text-muted">
-                {formatPercent(s.low, 0)} / {formatPercent(s.high, 0)}
+              <span className="metric-value w-28 shrink-0 text-right text-[11px] tabular-nums text-text-muted">
+                {formatRoiPercent(s.low)} / {formatRoiPercent(s.high)}
               </span>
             </div>
           )
@@ -131,7 +167,9 @@ function SensitivityTornado({ sensitivity, base }) {
 export default function RoiResults({ result, flashKey }) {
   if (!result) return null
 
-  const roiPositive = result.roi_pct >= 0
+  const costValid = result.cost_valid
+  const roiKnown = result.roi_pct != null
+  const roiPositive = roiKnown && result.roi_pct >= 0
   const netPositive = result.net_value >= 0
 
   return (
@@ -142,12 +180,15 @@ export default function RoiResults({ result, flashKey }) {
           label="Risk-adjusted ROI"
           value={
             <span key={flashKey} className="data-flash">
-              {roiPositive ? '+' : ''}
-              {formatPercent(result.roi_pct, 0)}
+              {formatRoiPercent(result.roi_pct)}
             </span>
           }
-          change={`${result.risk_adjusted_multiple.toFixed(2)}× return on cost`}
-          changeType={roiPositive ? 'positive' : 'negative'}
+          change={
+            costValid
+              ? `${formatMultiple(result.risk_adjusted_multiple)} return on cost`
+              : 'Add a cost to compute ROI'
+          }
+          changeType={!roiKnown ? 'neutral' : roiPositive ? 'positive' : 'negative'}
         />
         <MetricCard
           label="AI business value income"
@@ -159,14 +200,10 @@ export default function RoiResults({ result, flashKey }) {
           label="Net value (risk-adjusted)"
           value={
             <span className={netPositive ? 'text-impact-positive' : 'text-impact-negative'}>
-              {formatVariance(result.net_value)}
+              {formatCompactAccounting(result.net_value)}
             </span>
           }
-          change={
-            result.payback_years != null
-              ? `Payback ~${result.payback_years} yrs`
-              : `Over ${result.years}-yr horizon`
-          }
+          change={formatPayback(result.payback_years) || `Over ${result.years}-yr horizon`}
           changeType={netPositive ? 'positive' : 'negative'}
         />
         <BreakEvenCard result={result} />
@@ -174,24 +211,35 @@ export default function RoiResults({ result, flashKey }) {
 
       {/* Raw vs risk-adjusted — makes IDC's success-probability multiplier explicit */}
       <GlassPanel>
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-text-secondary">
-          <span className="text-xs font-semibold uppercase tracking-wider text-text-muted">
-            IDC adjustment
-          </span>
-          <span className="metric-value tabular-nums text-text-primary">
-            {result.raw_multiple.toFixed(2)}×
-          </span>
-          <span className="text-text-muted">unadjusted</span>
-          <span className="text-text-muted">→ ×{formatPercent(result.success_probability * 100, 0)} success →</span>
-          <span className="metric-value tabular-nums text-text-primary">
-            {result.risk_adjusted_multiple.toFixed(2)}×
-          </span>
-          <span className="text-text-muted">risk-adjusted</span>
-        </div>
+        {costValid ? (
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-text-secondary">
+            <span className="text-xs font-semibold uppercase tracking-wider text-text-muted">
+              IDC adjustment
+            </span>
+            <span className="metric-value tabular-nums text-text-primary">
+              {formatMultiple(result.raw_multiple)}
+            </span>
+            <span className="text-text-muted">unadjusted</span>
+            <span className="text-text-muted">
+              → ×{formatPercent(result.success_probability * 100, 0)} success →
+            </span>
+            <span className="metric-value tabular-nums text-text-primary">
+              {formatMultiple(result.risk_adjusted_multiple)}
+            </span>
+            <span className="text-text-muted">risk-adjusted</span>
+          </div>
+        ) : (
+          <p className="text-sm text-text-secondary">
+            <span className="text-xs font-semibold uppercase tracking-wider text-text-muted">
+              IDC adjustment
+            </span>{' '}
+            — enter an initial or annual cost to compute the value-to-cost multiple.
+          </p>
+        )}
       </GlassPanel>
 
       <ContributionTable perBenefit={result.per_benefit} />
-      <SensitivityTornado sensitivity={result.sensitivity} base={result.roi_pct} />
+      <SensitivityTornado sensitivity={result.sensitivity} base={result.roi_pct ?? 0} />
     </div>
   )
 }
