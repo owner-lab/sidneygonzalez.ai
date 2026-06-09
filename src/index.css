@@ -30,6 +30,8 @@
     --glass-border: rgba(0, 0, 0, 0.08);
     --glass-blur: 20px;
     --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    /* Navbar needs higher opacity than panels so scrolled content stays legible */
+    --navbar-bg: rgba(255, 255, 255, 0.92);
 
     /* Chart tokens */
     --chart-grid: rgba(0, 0, 0, 0.06);
@@ -82,6 +84,7 @@
     --glass-bg: rgba(17, 17, 24, 0.6);
     --glass-border: rgba(255, 255, 255, 0.08);
     --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --navbar-bg: rgba(10, 10, 15, 0.85);
 
     --chart-grid: rgba(255, 255, 255, 0.05);
     --chart-axis: 148 163 184;
@@ -129,7 +132,7 @@
 
   /* Navbar scrolled state — only transitions color/bg/blur, no border-radius reset needed */
   .navbar-glass {
-    background: var(--glass-bg);
+    background: var(--navbar-bg);
     border-color: var(--glass-border);
     backdrop-filter: blur(var(--glass-blur));
     -webkit-backdrop-filter: blur(var(--glass-blur));

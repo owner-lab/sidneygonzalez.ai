@@ -114,26 +114,43 @@ export default function AiRoiProject() {
   const [result, setResult] = useState(FALLBACK_RESULT)
   const [flashKey, setFlashKey] = useState(0)
   const reqRef = useRef(0)
+  const lastRunRef = useRef(0)
+  const trailingRef = useRef(null)
+  const flashRef = useRef(null)
 
-  // Live recompute: debounce input changes, run real Python, and guard against
-  // out-of-order resolutions (usePyodide has no request cancellation). The prior
-  // result stays on screen the whole time — no skeleton flicker on recompute.
+  // Live recompute, throttled (~60ms) so the result cards track the sliders as
+  // you drag — still 100% real Python, just rate-limited. Out-of-order worker
+  // results are dropped via a request id, the prior result stays visible (no
+  // skeleton flicker), and the value flashes once on settle, not on every tick.
   useEffect(() => {
     if (status !== 'ready') return
-    const timer = setTimeout(() => {
+
+    const compute = () => {
+      lastRunRef.current = performance.now()
       const myId = ++reqRef.current
       runPython(engineCode, {
         params: { inputs_json: JSON.stringify(toPayload(inputs)) },
       })
         .then((res) => {
-          if (res && myId === reqRef.current) {
-            setResult(res)
-            setFlashKey((k) => k + 1)
-          }
+          if (res && myId === reqRef.current) setResult(res)
         })
         .catch((err) => console.error('AI ROI engine failed:', err))
-    }, 130)
-    return () => clearTimeout(timer)
+    }
+
+    const THROTTLE_MS = 60
+    const sinceLast = performance.now() - lastRunRef.current
+    clearTimeout(trailingRef.current)
+    if (sinceLast >= THROTTLE_MS) compute()
+    else trailingRef.current = setTimeout(compute, THROTTLE_MS - sinceLast)
+
+    // One flash once the interaction settles (avoids strobing during a drag).
+    clearTimeout(flashRef.current)
+    flashRef.current = setTimeout(() => setFlashKey((k) => k + 1), 260)
+
+    return () => {
+      clearTimeout(trailingRef.current)
+      clearTimeout(flashRef.current)
+    }
   }, [status, inputs, runPython])
 
   const onBenefitChange = useCallback((id, val) => {
