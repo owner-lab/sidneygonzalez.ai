@@ -5,10 +5,14 @@ export const SITE = {
   url: 'https://sidneygonzalez.ai',
 }
 
+// Anchor entries scroll within the Home one-pager (href = '#section'). The
+// route entry navigates to a separate page (to = '/path', route: true) and has
+// NO href — the Navbar branches render-vs-route on the `route` flag.
 export const NAV_LINKS = [
   { label: 'Home', href: '#hero' },
   { label: 'About', href: '#about' },
   { label: 'Projects', href: '#projects' },
+  { label: 'AI Value', to: '/ai', route: true },
   { label: 'Build Log', href: '#build-log' },
   { label: 'Contact', href: '#contact' },
 ]
