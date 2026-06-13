@@ -7,6 +7,8 @@ import GlassPanel from '@/components/ui/GlassPanel'
 import Button from '@/components/ui/Button'
 import AiValueModel from '@/features/ai-value-model/AiValueModel'
 import useLenisScroll from '@/hooks/useLenisScroll'
+import useDocumentMeta from '@/hooks/useDocumentMeta'
+import { SITE } from '@/config/constants'
 
 const container = {
   hidden: {},
@@ -62,6 +64,13 @@ const SYSTEMS = [
 ]
 
 export default function AiValueTest() {
+  useDocumentMeta({
+    title: 'The AI Value Test | Sidney Gonzalez',
+    description:
+      'A working test of AI economics for CIOs, CFOs, and Chief AI Officers — a live, risk-adjusted ROI model on IDC’s 2026 framework. Value is earned, not assumed.',
+    canonical: `${SITE.url}/ai`,
+  })
+
   const reduced = useReducedMotion()
   const scrollTo = useLenisScroll()
   const v = reduced ? noMotion : null
