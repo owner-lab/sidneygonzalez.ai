@@ -15,8 +15,13 @@ export default function Slider({
 
   const thumbPct = ((value - min) / (max - min)) * 100
   const zeroPct = ((0 - min) / (max - min)) * 100
-  const fillLeft = Math.min(thumbPct, zeroPct)
-  const fillWidth = Math.abs(thumbPct - zeroPct)
+  // Fill runs from the track's zero point to the thumb. Clamp the origin into
+  // [0,100] so ranges that don't include zero (e.g. Time horizon, 1–7 yrs) fill
+  // from the track edge instead of starting at a negative offset that overflows
+  // the bar (badly, at full width). Bipolar ranges keep their in-range zero.
+  const fillOrigin = Math.min(100, Math.max(0, zeroPct))
+  const fillLeft = Math.min(thumbPct, fillOrigin)
+  const fillWidth = Math.abs(thumbPct - fillOrigin)
 
   // Only apply directional coloring when range includes negative values
   const hasNegativeRange = min < 0
