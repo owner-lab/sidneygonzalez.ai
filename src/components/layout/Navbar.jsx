@@ -1,9 +1,64 @@
 import { useState, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
 import { NAV_LINKS } from '@/config/constants'
 import useLenisScroll from '@/hooks/useLenisScroll'
 import useMediaQuery from '@/hooks/useMediaQuery'
 import ThemeToggle from '@/components/ui/ThemeToggle'
+
+// One nav entry, rendered correctly for the current location:
+// - route entry (link.route)      → <Link to={link.to}>, active by pathname
+// - anchor entry on Home           → <a href> with preventDefault + Lenis scroll
+// - anchor entry off Home          → <Link to="/#section">, scrolled on arrival
+//   (Phase-4 hash-on-arrival handles the scroll; Lenis can't reach an unmounted node)
+function NavItem({
+  link,
+  onHome,
+  activeSection,
+  pathname,
+  scrollTo,
+  onNavigate,
+  baseClass,
+  activeClass,
+  inactiveClass,
+}) {
+  const isActive = link.route
+    ? pathname === link.to
+    : onHome && activeSection === link.href.slice(1)
+  const className = `${baseClass} ${isActive ? activeClass : inactiveClass}`
+  const ariaCurrent = isActive ? 'page' : undefined
+
+  if (link.route) {
+    return (
+      <Link to={link.to} onClick={onNavigate} aria-current={ariaCurrent} className={className}>
+        {link.label}
+      </Link>
+    )
+  }
+
+  if (onHome) {
+    return (
+      <a
+        href={link.href}
+        onClick={(e) => {
+          e.preventDefault()
+          scrollTo(link.href)
+          onNavigate?.()
+        }}
+        aria-current={ariaCurrent}
+        className={className}
+      >
+        {link.label}
+      </a>
+    )
+  }
+
+  return (
+    <Link to={`/${link.href}`} onClick={onNavigate} aria-current={ariaCurrent} className={className}>
+      {link.label}
+    </Link>
+  )
+}
 
 export default function Navbar({ themePreference, onChangeTheme }) {
   const [scrolled, setScrolled] = useState(false)
@@ -11,6 +66,8 @@ export default function Navbar({ themePreference, onChangeTheme }) {
   const [activeSection, setActiveSection] = useState('hero')
   const scrollTo = useLenisScroll()
   const isDesktop = useMediaQuery('(min-width: 768px)')
+  const { pathname } = useLocation()
+  const onHome = pathname === '/'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
@@ -22,9 +79,19 @@ export default function Navbar({ themePreference, onChangeTheme }) {
     if (isDesktop) setMobileOpen(false)
   }, [isDesktop])
 
-  // Scrollspy: highlight the nav link for whichever section is currently in view.
+  // Close the mobile drawer whenever the route changes.
   useEffect(() => {
-    const ids = NAV_LINKS.map((l) => l.href.slice(1))
+    setMobileOpen(false)
+  }, [pathname])
+
+  // Scrollspy: highlight the nav link for whichever section is in view.
+  // Navbar lives in Layout and never unmounts, so this must RE-RUN on pathname
+  // change — after /→/ai→/, Home remounts with fresh section nodes and a stale
+  // observer would hold detached ones. Only Home has the sections, so no-op
+  // elsewhere (the cleanup disconnects the prior observer first).
+  useEffect(() => {
+    if (pathname !== '/') return
+    const ids = NAV_LINKS.filter((l) => l.href).map((l) => l.href.slice(1))
     const sections = ids
       .map((id) => document.getElementById(id))
       .filter(Boolean)
@@ -32,7 +99,6 @@ export default function Navbar({ themePreference, onChangeTheme }) {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        // Pick the topmost intersecting section
         const visible = entries
           .filter((e) => e.isIntersecting)
           .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
@@ -42,13 +108,9 @@ export default function Navbar({ themePreference, onChangeTheme }) {
     )
     sections.forEach((s) => observer.observe(s))
     return () => observer.disconnect()
-  }, [])
+  }, [pathname])
 
-  const handleNavClick = (e, href) => {
-    e.preventDefault()
-    scrollTo(href)
-    setMobileOpen(false)
-  }
+  const closeMobile = () => setMobileOpen(false)
 
   return (
     <motion.nav
@@ -62,36 +124,46 @@ export default function Navbar({ themePreference, onChangeTheme }) {
       aria-label="Main navigation"
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a
-          href="#hero"
-          onClick={(e) => handleNavClick(e, '#hero')}
-          className="font-display text-lg font-semibold text-text-primary"
-        >
-          SG
-        </a>
+        {onHome ? (
+          <a
+            href="#hero"
+            onClick={(e) => {
+              e.preventDefault()
+              scrollTo('#hero')
+              closeMobile()
+            }}
+            className="font-display text-lg font-semibold text-text-primary"
+          >
+            SG
+          </a>
+        ) : (
+          <Link
+            to="/"
+            onClick={closeMobile}
+            className="font-display text-lg font-semibold text-text-primary"
+          >
+            SG
+          </Link>
+        )}
 
         {/* Desktop nav + theme toggle */}
         <div className="hidden items-center gap-6 md:flex">
           <ul className="flex gap-8">
-            {NAV_LINKS.map(({ label, href }) => {
-              const isActive = activeSection === href.slice(1)
-              return (
-                <li key={href}>
-                  <a
-                    href={href}
-                    onClick={(e) => handleNavClick(e, href)}
-                    aria-current={isActive ? 'page' : undefined}
-                    className={`text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/50 focus-visible:ring-offset-2 ${
-                      isActive
-                        ? 'text-text-primary'
-                        : 'text-text-secondary hover:text-text-primary'
-                    }`}
-                  >
-                    {label}
-                  </a>
-                </li>
-              )
-            })}
+            {NAV_LINKS.map((link) => (
+              <li key={link.label}>
+                <NavItem
+                  link={link}
+                  onHome={onHome}
+                  activeSection={activeSection}
+                  pathname={pathname}
+                  scrollTo={scrollTo}
+                  onNavigate={closeMobile}
+                  baseClass="text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/50 focus-visible:ring-offset-2"
+                  activeClass="text-text-primary"
+                  inactiveClass="text-text-secondary hover:text-text-primary"
+                />
+              </li>
+            ))}
           </ul>
           <ThemeToggle preference={themePreference} onChangeTheme={onChangeTheme} />
         </div>
@@ -131,15 +203,19 @@ export default function Navbar({ themePreference, onChangeTheme }) {
             transition={{ duration: 0.2 }}
           >
             <ul className="flex flex-col gap-1 p-4">
-              {NAV_LINKS.map(({ label, href }) => (
-                <li key={href}>
-                  <a
-                    href={href}
-                    onClick={(e) => handleNavClick(e, href)}
-                    className="block rounded-lg px-4 py-3 text-sm text-text-secondary transition-colors hover:bg-bg-hover hover:text-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/50"
-                  >
-                    {label}
-                  </a>
+              {NAV_LINKS.map((link) => (
+                <li key={link.label}>
+                  <NavItem
+                    link={link}
+                    onHome={onHome}
+                    activeSection={activeSection}
+                    pathname={pathname}
+                    scrollTo={scrollTo}
+                    onNavigate={closeMobile}
+                    baseClass="block rounded-lg px-4 py-3 text-sm transition-colors hover:bg-bg-hover hover:text-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/50"
+                    activeClass="text-text-primary"
+                    inactiveClass="text-text-secondary"
+                  />
                 </li>
               ))}
             </ul>

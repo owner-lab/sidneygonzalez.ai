@@ -1,0 +1,5 @@
+# SPA fallback for BrowserRouter — deep links / refreshes of client routes
+# (e.g. /ai) must serve index.html instead of 404ing. Cloudflare Pages serves
+# existing static files (/assets/*, /data/*, pyodide-worker.js, …) before
+# applying this catch-all rewrite, so real assets are unaffected.
+/*  /index.html  200

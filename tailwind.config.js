@@ -18,6 +18,14 @@ export default {
           orange: '#FB8B1E',
           purple: '#A78BFA',
         },
+        // Accent "ink" — theme-aware, AA-contrast accents for TEXT use.
+        'accent-ink': {
+          blue: 'rgb(var(--accent-blue-ink) / <alpha-value>)',
+          green: 'rgb(var(--accent-green-ink) / <alpha-value>)',
+          red: 'rgb(var(--accent-red-ink) / <alpha-value>)',
+          orange: 'rgb(var(--accent-orange-ink) / <alpha-value>)',
+          purple: 'rgb(var(--accent-purple-ink) / <alpha-value>)',
+        },
         text: {
           primary: 'rgb(var(--color-text-primary) / <alpha-value>)',
           secondary: 'rgb(var(--color-text-secondary) / <alpha-value>)',

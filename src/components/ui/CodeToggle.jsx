@@ -39,7 +39,7 @@ export default function CodeToggle({ isOpen, onClose, tabs = PIPELINE_TABS, code
         <>
           {/* Backdrop overlay */}
           <motion.div
-            className="fixed inset-0 z-30 bg-black/40"
+            className="fixed inset-0 z-30 bg-black/60"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -55,7 +55,7 @@ export default function CodeToggle({ isOpen, onClose, tabs = PIPELINE_TABS, code
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
           >
-            <GlassPanel className="flex h-full flex-col rounded-none px-6 pt-6 lg:rounded-l-xl lg:pt-20">
+            <GlassPanel className="flex h-full flex-col rounded-none bg-bg-secondary px-6 pt-6 lg:rounded-l-xl lg:pt-20">
               <div className="flex items-center justify-between border-b border-border-subtle pb-4">
                 <h3 className="font-display text-sm font-semibold text-text-primary">
                   View Code

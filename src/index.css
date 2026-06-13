@@ -13,6 +13,15 @@
     --color-text-secondary: 71 85 105;
     --color-text-muted: 148 163 184;
 
+    /* Accent "ink" — darkened accents for TEXT use (the bright accents in
+       tailwind.config stay for fills/dots/borders). Light mode needs dark
+       text for AA contrast. */
+    --accent-blue-ink: 0 82 204;
+    --accent-green-ink: 11 122 90;
+    --accent-red-ink: 200 30 30;
+    --accent-orange-ink: 158 84 0;
+    --accent-purple-ink: 106 69 199;
+
     /* Border (full rgba — not split into channels) */
     --color-border-subtle: rgba(0, 0, 0, 0.08);
     --color-border-medium: rgba(0, 0, 0, 0.12);
@@ -59,6 +68,14 @@
     --color-text-primary: 226 232 240;
     --color-text-secondary: 148 163 184;
     --color-text-muted: 100 116 139;
+
+    /* On dark backgrounds the bright accents already pass — use them as ink
+       (blue is lightened; it is the one accent too dark on black as text). */
+    --accent-blue-ink: 77 148 255;
+    --accent-green-ink: 74 246 195;
+    --accent-red-ink: 255 107 102;
+    --accent-orange-ink: 251 139 30;
+    --accent-purple-ink: 167 139 250;
 
     --color-border-subtle: rgba(255, 255, 255, 0.08);
     --color-border-medium: rgba(255, 255, 255, 0.15);
@@ -128,6 +145,13 @@
 
   .text-gradient-green {
     @apply bg-gradient-to-r from-accent-green to-accent-blue bg-clip-text text-transparent;
+  }
+
+  /* Luminous accent for the /ai page. Uses the theme-aware "ink" tokens so the
+     gradient text meets AA in light mode (dark purple→blue on white) and stays
+     bright in dark mode (the dark-mode ink values are the bright accents). */
+  .text-gradient-purple {
+    @apply bg-gradient-to-r from-accent-ink-purple to-accent-ink-blue bg-clip-text text-transparent;
   }
 
   /* Horizontal scroll affordance — right-edge fade mask */
