@@ -22,12 +22,12 @@ export default defineConfig({
           if (id.includes('node_modules/motion') || id.includes('node_modules/lenis')) {
             return 'animation'
           }
-          if (id.includes('node_modules/recharts') || id.includes('node_modules/d3-')) {
-            return 'charts-recharts'
-          }
-          if (id.includes('node_modules/@nivo')) {
-            return 'charts-nivo'
-          }
+          // Note: recharts/@nivo are intentionally NOT given named chunks. A named
+          // 'charts-nivo' chunk caused rolldown to allocate react-dom's code into it,
+          // so the eager 'vendor' shim statically imported charts-nivo (~146 KB gzip)
+          // into the modulepreload graph even though @nivo is only reached through
+          // React.lazy projects. Letting them code-split naturally with their lazy
+          // projects keeps the chart libs out of the initial payload.
         },
       },
     },
