@@ -59,14 +59,36 @@ function BreakEvenCard({ result }) {
   )
 }
 
-function ContributionTable({ perBenefit }) {
+// Re-keying a node by `flashKey` remounts it, replaying the one-shot `data-flash`
+// CSS pulse. flashKey ticks once per settled adjustment (see AiValueModel), so
+// each value pulses green when the model recomputes — visible proof the table is
+// live, even where a figure (Share %) is mathematically unchanged by the input.
+function Flash({ flashKey, className = '', children }) {
+  return (
+    <span key={flashKey} className={`data-flash inline-block rounded ${className}`}>
+      {children}
+    </span>
+  )
+}
+
+function ContributionTable({ perBenefit, flashKey }) {
   if (!perBenefit || perBenefit.length === 0) return null
 
   return (
     <GlassPanel>
-      <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-text-muted">
-        Value Contribution by Benefit
-      </h4>
+      <div className="mb-3 flex items-center justify-between gap-2">
+        <h4 className="text-xs font-semibold uppercase tracking-wider text-text-muted">
+          Value Contribution by Benefit
+        </h4>
+        <span
+          key={flashKey}
+          className="data-flash inline-flex items-center gap-1.5 rounded px-1.5 py-0.5 text-[10px] font-medium text-accent-ink-green"
+          title="Recomputed live in Python on every input change"
+        >
+          <span className="h-1.5 w-1.5 rounded-full bg-accent-green" aria-hidden="true" />
+          Recalculated
+        </span>
+      </div>
       <div className="overflow-x-auto" data-lenis-prevent>
         <table className="w-full text-left text-xs">
           <thead>
@@ -83,16 +105,18 @@ function ContributionTable({ perBenefit }) {
               <tr key={b.id} className="border-b border-border-subtle/50 last:border-0">
                 <td className="py-2 pr-3 font-medium text-text-primary">{b.name}</td>
                 <td className="metric-value py-2 pr-3 text-right text-text-secondary">
-                  {formatCompact(b.direct)}
+                  <Flash flashKey={flashKey} className="px-1">{formatCompact(b.direct)}</Flash>
                 </td>
                 <td className="metric-value py-2 pr-3 text-right text-text-secondary">
-                  {formatCompact(b.indirect)}
+                  <Flash flashKey={flashKey} className="px-1">{formatCompact(b.indirect)}</Flash>
                 </td>
                 <td className="metric-value py-2 pr-3 text-right text-text-primary">
-                  {formatCompact(b.annual_value)}
+                  <Flash flashKey={flashKey} className="px-1">{formatCompact(b.annual_value)}</Flash>
                 </td>
                 <td className="py-2 text-right">
-                  <Badge color="blue">{b.share_pct.toFixed(1)}%</Badge>
+                  <Flash flashKey={flashKey}>
+                    <Badge color="blue">{b.share_pct.toFixed(1)}%</Badge>
+                  </Flash>
                 </td>
               </tr>
             ))}
@@ -240,7 +264,7 @@ export default function RoiResults({ result, flashKey }) {
         )}
       </GlassPanel>
 
-      <ContributionTable perBenefit={result.per_benefit} />
+      <ContributionTable perBenefit={result.per_benefit} flashKey={flashKey} />
       <SensitivityTornado sensitivity={result.sensitivity} base={result.roi_pct ?? 0} />
     </div>
   )
