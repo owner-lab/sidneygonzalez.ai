@@ -4,6 +4,12 @@ import { useLenis } from 'lenis/react'
 
 const HEADER_OFFSET = -80
 const MAX_HASH_TRIES = 20
+// How long to keep a hash target pinned as the page settles after arrival.
+// Covers Pyodide's documented 3–8s cold-load (see Build Log): the live demos
+// keep growing the layout until they finish rendering, so a short window can
+// disconnect before the last shift. Any user scroll bails it early, so a
+// generous ceiling is cheap.
+const SETTLE_MS = 8000
 
 // Per-entry scroll positions, keyed by history entry (location.key). Module-level
 // so it survives Layout/StrictMode remounts and persists for the whole session.
@@ -43,12 +49,56 @@ export default function RouteScrollManager() {
     let rafScroll
     let rafHash
     let tries = 0
+    let stopSettle = null
+
+    // Keep the hash target pinned while the page settles. Home re-mounts fresh
+    // and lazy-loads its project chunks + Pyodide demos AFTER this scroll,
+    // growing the layout by thousands of px ABOVE the target — so a one-shot
+    // scroll lands far short (ask for /#contact, get parked at an earlier
+    // section). Re-pin on each body resize for a bounded window, and bail the
+    // instant the user scrolls so we never fight them.
+    const pinUntilSettled = (el) => {
+      // Immediate (not smooth): a cross-route hash should place instantly, like
+      // a native anchor jump — and an instant placement can't be interrupted by
+      // a re-pin mid-animation. The target then stays visually fixed while the
+      // lazy content loads ABOVE it (off-screen), so the user never sees it move.
+      lenis.scrollTo(el, { offset: HEADER_OFFSET, immediate: true })
+
+      const interactions = ['wheel', 'touchstart', 'keydown', 'pointerdown']
+      let firstObservation = true
+      let ro
+      let timer
+      const stop = () => {
+        ro?.disconnect()
+        clearTimeout(timer)
+        interactions.forEach((e) => window.removeEventListener(e, stop))
+      }
+      ro = new ResizeObserver(() => {
+        // skip the synchronous initial callback (reports current size, no change)
+        if (firstObservation) {
+          firstObservation = false
+          return
+        }
+        if (!cancelled) {
+          lenis.scrollTo(el, { offset: HEADER_OFFSET, immediate: true })
+        }
+      })
+      // Observe <body>, whose box grows with content (it's what makes the page
+      // scroll). NOT <html>, whose box tracks the viewport and wouldn't fire on
+      // below-the-fold growth.
+      ro.observe(document.body)
+      interactions.forEach((e) =>
+        window.addEventListener(e, stop, { passive: true })
+      )
+      timer = setTimeout(stop, SETTLE_MS)
+      return stop
+    }
 
     const scrollToHash = () => {
       if (cancelled) return
       const el = document.querySelector(hash)
       if (el) {
-        lenis.scrollTo(el, { offset: HEADER_OFFSET })
+        stopSettle = pinUntilSettled(el)
       } else if (tries < MAX_HASH_TRIES) {
         tries += 1
         rafHash = requestAnimationFrame(scrollToHash) // section may still be mounting
@@ -70,6 +120,7 @@ export default function RouteScrollManager() {
       cancelled = true
       cancelAnimationFrame(rafScroll)
       cancelAnimationFrame(rafHash)
+      stopSettle?.()
     }
   }, [pathname, hash, key, navType, lenis])
 
