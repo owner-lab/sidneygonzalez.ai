@@ -139,8 +139,10 @@ function SensitivityTornado({ sensitivity, base }) {
           const leftPct = ((s.low - domainMin) / range) * 100
           const widthPct = Math.max(((s.high - s.low) / range) * 100, 1.5)
           return (
-            <div key={s.factor} className="flex items-center gap-3">
-              <span className="w-28 shrink-0 text-xs text-text-secondary">{s.factor}</span>
+            <div key={s.factor} className="flex items-center gap-2 sm:gap-3">
+              <span className="w-24 shrink-0 text-[11px] text-text-secondary sm:w-28 sm:text-xs">
+                {s.factor}
+              </span>
               <div className="relative h-6 flex-1 rounded bg-bg-hover/50">
                 <div
                   className="absolute top-0 h-full w-px bg-text-muted/50"
@@ -153,7 +155,7 @@ function SensitivityTornado({ sensitivity, base }) {
                   title={`${formatRoiPercent(s.low)} → ${formatRoiPercent(s.high)}`}
                 />
               </div>
-              <span className="metric-value w-28 shrink-0 text-right text-[11px] tabular-nums text-text-muted">
+              <span className="metric-value w-20 shrink-0 text-right text-[10px] tabular-nums text-text-muted sm:w-28 sm:text-[11px]">
                 {formatRoiPercent(s.low)} / {formatRoiPercent(s.high)}
               </span>
             </div>

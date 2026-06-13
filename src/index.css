@@ -147,9 +147,11 @@
     @apply bg-gradient-to-r from-accent-green to-accent-blue bg-clip-text text-transparent;
   }
 
-  /* Luminous accent for the /ai page */
+  /* Luminous accent for the /ai page. Uses the theme-aware "ink" tokens so the
+     gradient text meets AA in light mode (dark purple→blue on white) and stays
+     bright in dark mode (the dark-mode ink values are the bright accents). */
   .text-gradient-purple {
-    @apply bg-gradient-to-r from-accent-purple to-accent-blue bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-accent-ink-purple to-accent-ink-blue bg-clip-text text-transparent;
   }
 
   /* Horizontal scroll affordance — right-edge fade mask */

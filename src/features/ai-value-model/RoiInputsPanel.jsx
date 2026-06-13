@@ -120,7 +120,10 @@ export default function RoiInputsPanel({
             value={inputs.annual_cost}
             onChange={(val) => onFieldChange('annual_cost', val)}
           />
+          {/* Full-width on their own rows (sm:col-span-2) so the two tracks
+              never sit side-by-side and read as one dual-handle bar. */}
           <Slider
+            className="sm:col-span-2"
             label="Direct value share"
             value={Math.round(inputs.direct_ratio * 100)}
             min={0}
@@ -131,6 +134,7 @@ export default function RoiInputsPanel({
             showRange
           />
           <Slider
+            className="sm:col-span-2"
             label="Time horizon"
             value={inputs.years}
             min={1}
