@@ -63,13 +63,59 @@ export function formatDate(date, format = 'short') {
  * @returns {string} e.g. "$1.2M", "$450K"
  */
 export function formatCompact(value) {
+  if (value == null || !Number.isFinite(value)) return '—'
   const abs = Math.abs(value)
   const sign = value < 0 ? '-' : ''
 
+  if (abs >= 1_000_000_000_000) return `${sign}$${(abs / 1_000_000_000_000).toFixed(1)}T`
   if (abs >= 1_000_000_000) return `${sign}$${(abs / 1_000_000_000).toFixed(1)}B`
   if (abs >= 1_000_000) return `${sign}$${(abs / 1_000_000).toFixed(1)}M`
   if (abs >= 1_000) return `${sign}$${(abs / 1_000).toFixed(0)}K`
   return `${sign}$${abs.toFixed(0)}`
+}
+
+/**
+ * Accounting-style compact dollars: negatives as red-able parentheses.
+ * e.g. 15044000 -> "$15.0M", -5200000 -> "($5.2M)"
+ */
+export function formatCompactAccounting(value) {
+  if (value == null || !Number.isFinite(value)) return '—'
+  const s = formatCompact(Math.abs(value))
+  return value < 0 ? `(${s})` : s
+}
+
+/**
+ * Scale-proof ROI percentage. Handles null/non-finite, signs the value,
+ * groups thousands, and caps the display so extreme inputs never overflow.
+ * e.g. 152 -> "+152%", 16352.4 -> "+16,352%", null -> "n/a"
+ */
+export function formatRoiPercent(value) {
+  if (value == null || !Number.isFinite(value)) return 'n/a'
+  const CAP = 100_000
+  if (value >= CAP) return '≥ +100,000%'
+  if (value <= -CAP) return '≤ -100,000%'
+  const abs = Math.abs(value)
+  const decimals = abs >= 100 ? 0 : 1
+  const sign = value > 0 ? '+' : value < 0 ? '-' : ''
+  return `${sign}${abs.toLocaleString('en-US', {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  })}%`
+}
+
+/**
+ * Value-to-cost multiple. Adaptive precision, grouped, capped.
+ * e.g. 3.6 -> "3.60×", 164.5 -> "164×", null -> "n/a"
+ */
+export function formatMultiple(value) {
+  if (value == null || !Number.isFinite(value)) return 'n/a'
+  const CAP = 100_000
+  if (value >= CAP) return '≥ 100,000×'
+  const decimals = value >= 100 ? 0 : value >= 10 ? 1 : 2
+  return `${value.toLocaleString('en-US', {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  })}×`
 }
 
 /**
