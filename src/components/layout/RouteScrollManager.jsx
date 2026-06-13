@@ -58,35 +58,33 @@ export default function RouteScrollManager() {
     // section). Re-pin on each body resize for a bounded window, and bail the
     // instant the user scrolls so we never fight them.
     const pinUntilSettled = (el) => {
-      // Immediate (not smooth): a cross-route hash should place instantly, like
-      // a native anchor jump — and an instant placement can't be interrupted by
-      // a re-pin mid-animation. The target then stays visually fixed while the
-      // lazy content loads ABOVE it (off-screen), so the user never sees it move.
-      lenis.scrollTo(el, { offset: HEADER_OFFSET, immediate: true })
-
       const interactions = ['wheel', 'touchstart', 'keydown', 'pointerdown']
-      let firstObservation = true
-      let ro
+      let interval
       let timer
       const stop = () => {
-        ro?.disconnect()
+        clearInterval(interval)
         clearTimeout(timer)
         interactions.forEach((e) => window.removeEventListener(e, stop))
       }
-      ro = new ResizeObserver(() => {
-        // skip the synchronous initial callback (reports current size, no change)
-        if (firstObservation) {
-          firstObservation = false
-          return
-        }
-        if (!cancelled) {
-          lenis.scrollTo(el, { offset: HEADER_OFFSET, immediate: true })
-        }
-      })
-      // Observe <body>, whose box grows with content (it's what makes the page
-      // scroll). NOT <html>, whose box tracks the viewport and wouldn't fire on
-      // below-the-fold growth.
-      ro.observe(document.body)
+
+      const repin = () => {
+        if (cancelled) return stop()
+        // Refresh Lenis's cached dimensions FIRST. Lenis clamps scrollTo to
+        // `this.limit` (= scrollHeight − viewport), which it only recomputes on
+        // its own resize pass. Right after the lazy projects + Pyodide grow the
+        // page, that limit is stale (too small), so scrollTo lands SHORT — at
+        // ≈ the Variance Engine section (the reported symptom). resize() makes
+        // the limit current so the target is reachable.
+        lenis.resize?.()
+        // Immediate (not smooth): a cross-route hash places instantly, like a
+        // native anchor jump. Re-pinning on a short cadence holds the target
+        // steady as content keeps loading ABOVE it (off-screen) over the
+        // Pyodide cold-load window, so the user never sees it drift.
+        lenis.scrollTo(el, { offset: HEADER_OFFSET, immediate: true })
+      }
+
+      repin()
+      interval = setInterval(repin, 120)
       interactions.forEach((e) =>
         window.addEventListener(e, stop, { passive: true })
       )
