@@ -36,7 +36,7 @@ const ESSAY = [
   },
   {
     lead: 'So measure the value, or miss it.',
-    body: "IDC's 2026 framework reframes ROI as value times the probability you actually realize it. That single multiplier is the difference between a forecast you hope for and one you can sign. The model below applies it live — change any assumption and the math recomputes, in real Python, in your browser.",
+    body: "IDC's 2026 framework reframes ROI as value times the probability you actually realize it. That single multiplier is the difference between a forecast you only hope for and one you can defend. The model below applies it live — change any assumption and the math recomputes, in real Python, in your browser.",
   },
 ]
 
@@ -116,8 +116,8 @@ export default function AiValueTest() {
             variants={v || fadeUp}
           >
             A working test of AI&apos;s economics for the people who have to defend
-            it — CIOs, CFOs, and Chief AI Officers. Not a pitch. A risk-adjusted
-            number you can stand behind.
+            it — CIOs, CFOs, and Chief AI Officers. Not a pitch — a risk-adjusted
+            way to pressure-test the number before you stake a budget on it.
           </motion.p>
 
           <motion.div className="mt-8 flex flex-wrap gap-4" variants={v || fadeUp}>
@@ -222,8 +222,8 @@ export default function AiValueTest() {
               Value is earned. Let&apos;s earn yours.
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-text-secondary">
-              If you&apos;re sizing an AI investment and need a number that holds
-              up in the room, that&apos;s the conversation I want to have.
+              If you&apos;re sizing an AI investment and want to pressure-test the
+              number before it goes in the room, that&apos;s the conversation I want to have.
             </p>
             <div className="mt-7 flex justify-center">
               <Link to="/#contact">

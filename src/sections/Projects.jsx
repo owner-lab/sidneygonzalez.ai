@@ -165,18 +165,33 @@ export default function Projects() {
           to="/ai"
           className="group mt-16 block rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
         >
-          <GlassPanel className="relative overflow-hidden border border-accent-purple/30 transition-colors group-hover:border-accent-purple/60">
+          <GlassPanel className="cta-card relative overflow-hidden border border-accent-purple/30 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-accent-purple/70">
+            {/* Ambient luminous glow — top-right, gently breathing to draw the eye */}
             <div
-              className="pointer-events-none absolute inset-0 -z-10 opacity-60"
+              className="cta-glow-breathe pointer-events-none absolute inset-0 -z-10"
               style={{
                 background:
-                  'radial-gradient(120% 140% at 100% 0%, rgb(var(--accent-purple-ink) / 0.16), transparent 60%)',
+                  'radial-gradient(120% 140% at 100% 0%, rgb(var(--cta-glow) / var(--cta-glow-strong)), transparent 60%)',
+              }}
+              aria-hidden="true"
+            />
+            {/* Second glow — bottom-left, blooms in on hover for depth */}
+            <div
+              className="pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+              style={{
+                background:
+                  'radial-gradient(90% 120% at 0% 100%, rgb(var(--cta-glow) / var(--cta-glow-soft)), transparent 55%)',
               }}
               aria-hidden="true"
             />
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div className="max-w-2xl">
-                <span className="text-xs font-semibold uppercase tracking-widest text-accent-ink-purple">
+                <span className="inline-flex items-center text-xs font-semibold uppercase tracking-widest text-accent-ink-purple">
+                  {/* Live "ping" indicator — signals the model on /ai is running */}
+                  <span className="relative mr-2.5 inline-flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-purple opacity-60" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-purple" />
+                  </span>
                   Dedicated page · The AI Value Test
                 </span>
                 <h3 className="mt-2 font-display text-display-sm font-semibold text-text-primary">
@@ -188,9 +203,24 @@ export default function Projects() {
                   live, risk-adjusted ROI model on IDC&apos;s 2026 framework.
                 </p>
               </div>
-              <span className="inline-flex shrink-0 items-center gap-2 self-start rounded-full border border-accent-purple/40 px-4 py-2 text-sm font-medium text-accent-ink-purple transition-transform group-hover:translate-x-0.5 sm:self-center">
-                Take the test
-                <span aria-hidden="true">&rarr;</span>
+
+              {/* Showpiece CTA — fills with a purple→blue gradient, glows,
+                  shimmers, and the arrow beckons on hover. */}
+              <span className="cta-btn relative inline-flex shrink-0 items-center gap-2 self-start overflow-hidden rounded-full border border-accent-purple/40 px-5 py-2.5 text-sm font-semibold text-accent-ink-purple transition-all duration-300 group-hover:scale-[1.04] group-hover:border-transparent group-hover:text-white sm:self-center">
+                {/* Gradient fill — fades in on hover */}
+                <span
+                  className="absolute inset-0 rounded-full bg-gradient-to-r from-[#6A45C7] via-[#5B4FD6] to-[#0057E0] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  aria-hidden="true"
+                />
+                {/* Light sweep — plays once per hover */}
+                <span
+                  className="cta-shimmer pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-0"
+                  aria-hidden="true"
+                />
+                <span className="relative z-10">Take the test</span>
+                <span className="cta-arrow relative z-10" aria-hidden="true">
+                  &rarr;
+                </span>
               </span>
             </div>
           </GlassPanel>

@@ -144,6 +144,22 @@ export default function RoiInputsPanel({
             formatValue={(v) => `${v} yr${v > 1 ? 's' : ''}`}
             showRange
           />
+          <div className="sm:col-span-2">
+            <Slider
+              label="Discount rate (NPV)"
+              value={Math.round((inputs.discount_rate ?? 0) * 100)}
+              min={0}
+              max={20}
+              step={1}
+              onChange={(v) => onFieldChange('discount_rate', v / 100)}
+              formatValue={(v) => (v === 0 ? 'Off (nominal)' : `${v}%`)}
+              showRange
+            />
+            <p className="mt-2 text-xs leading-relaxed text-text-muted">
+              Optional hurdle rate / WACC. Present-values future value and operating cost so
+              the multiple is a true NPV — at 0% the figures stay nominal.
+            </p>
+          </div>
         </div>
 
         {/* Success probability — the risk multiplier that defines IDC's redefined ROI */}

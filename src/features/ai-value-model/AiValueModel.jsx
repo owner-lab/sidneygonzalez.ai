@@ -12,6 +12,7 @@ import { BENEFIT_PARAMS, DEFAULT_INPUTS, FALLBACK_RESULT } from './fallbackData'
 import RoiInputsPanel from './RoiInputsPanel'
 import RoiResults from './RoiResults'
 import IdcCredibilityPanel from './IdcCredibilityPanel'
+import { SOCIAL } from '@/config/constants'
 
 const STATUS_MAP = {
   idle: 'offline',
@@ -31,7 +32,8 @@ const LIMITATIONS = [
   'A sensitivity model, not a forecast — outputs are only as sound as the value and cost assumptions you enter.',
   "The closed-form equation shown is our implementation of IDC's redefined ROI, not a verbatim IDC formula.",
   'Success probability is a single risk multiplier; a production model would decompose it per benefit and per year.',
-  'Value is treated as flat annual recurring × horizon — no ramp curve, discounting, or NPV.',
+  'Value is flat annual recurring with no ramp curve; discounting to NPV is applied at the rate you set (0% = nominal).',
+  'Payback is simple time-to-recover on the initial outlay — undiscounted, even when a discount rate is set.',
   'Illustrative defaults; not investment advice.',
 ]
 
@@ -68,9 +70,9 @@ function splitEngineTabs(code) {
 const ENGINE_TABS = splitEngineTabs(engineCode)
 
 const FORMULAS = [
-  'AI\\ Value\\ Income = \\sum_{t=1}^{Y}\\sum_{i=1}^{9}(Direct_i + Indirect_i)',
-  'Risk\\text{-}adj\\ ROI = \\frac{AI\\ Value\\ Income}{Initial + Annual \\times Y} \\times P_{success}',
-  'Break\\text{-}even\\ P^{*} = \\frac{Initial + Annual \\times Y}{AI\\ Value\\ Income}',
+  'AI\\ Value\\ Income = \\sum_{t=1}^{Y}\\frac{\\sum_{i=1}^{9}(Direct_i + Indirect_i)}{(1+r)^{t}}',
+  'Risk\\text{-}adj\\ ROI = \\frac{AI\\ Value\\ Income}{Initial + \\sum_{t=1}^{Y} Annual/(1+r)^{t}} \\times P_{success}',
+  'Break\\text{-}even\\ P^{*} = \\frac{Initial + PV(Annual)}{AI\\ Value\\ Income}',
 ]
 
 function RoiFormulas() {
@@ -93,7 +95,9 @@ function RoiFormulas() {
       />
       <p className="mt-2 text-[11px] text-text-muted">
         Our implementation of IDC&apos;s redefined AI ROI (IDC FutureScape 2026, &ldquo;Measure or
-        Miss: The AI Value Test&rdquo;). ROI&nbsp;% is expressed as (multiple&nbsp;&minus;&nbsp;1).
+        Miss: The AI Value Test&rdquo;). Value and recurring cost are present-valued at your
+        discount rate <em>r</em> (<em>r</em>&nbsp;=&nbsp;0 &rarr; nominal); ROI&nbsp;% is expressed
+        as (multiple&nbsp;&minus;&nbsp;1).
       </p>
     </div>
   )
@@ -115,6 +119,7 @@ function toPayload(inputs) {
     annual_cost: inputs.annual_cost,
     success_probability: inputs.success_probability,
     years: inputs.years,
+    discount_rate: inputs.discount_rate ?? 0,
   }
 }
 
@@ -134,6 +139,7 @@ export default function AiValueModel({
   const [result, setResult] = useState(FALLBACK_RESULT)
   const [flashKey, setFlashKey] = useState(0)
   const [codeOpen, setCodeOpen] = useState(false)
+  const [engineError, setEngineError] = useState(false)
   const reqRef = useRef(0)
   const lastRunRef = useRef(0)
   const trailingRef = useRef(null)
@@ -153,9 +159,15 @@ export default function AiValueModel({
         params: { inputs_json: JSON.stringify(toPayload(inputs)) },
       })
         .then((res) => {
-          if (res && myId === reqRef.current) setResult(res)
+          if (res && myId === reqRef.current) {
+            setResult(res)
+            setEngineError(false)
+          }
         })
-        .catch((err) => console.error('AI ROI engine failed:', err))
+        .catch((err) => {
+          console.error('AI ROI engine failed:', err)
+          setEngineError(true)
+        })
     }
 
     const THROTTLE_MS = 60
@@ -223,6 +235,21 @@ export default function AiValueModel({
         onReset={onReset}
         pyodideReady={status === 'ready'}
       />
+
+      {(status === 'error' || engineError) && (
+        <div className="mb-4 rounded-lg border border-border-subtle bg-bg-surface px-4 py-3 text-sm text-text-secondary">
+          Live engine unavailable — the figures below are a static example and the sliders are
+          inactive.{' '}
+          <a
+            href={SOCIAL.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent-blue hover:underline"
+          >
+            View source on GitHub
+          </a>
+        </div>
+      )}
 
       <RoiResults result={result} flashKey={flashKey} />
 

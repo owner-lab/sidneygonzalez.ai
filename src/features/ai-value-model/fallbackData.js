@@ -97,6 +97,7 @@ export const DEFAULT_INPUTS = {
   annual_cost: 800_000,
   success_probability: 0.6, // your assumption — odds the value is actually realized
   years: 3,
+  discount_rate: 0.1, // hurdle rate / WACC for NPV — value & cost shown present-valued
 }
 
 // Bulk-set presets (success_probability stored 0..1, direct_ratio 0..1).
@@ -122,6 +123,7 @@ export const PRESETS = [
       annual_cost: 300_000,
       success_probability: 0.4,
       years: 2,
+      discount_rate: 0.08,
     },
   },
   {
@@ -135,6 +137,7 @@ export const PRESETS = [
       annual_cost: 800_000,
       success_probability: 0.6,
       years: 3,
+      discount_rate: 0.1,
     },
   },
   {
@@ -158,6 +161,7 @@ export const PRESETS = [
       annual_cost: 3_200_000,
       success_probability: 0.5,
       years: 5,
+      discount_rate: 0.1,
     },
   },
 ]
@@ -165,18 +169,19 @@ export const PRESETS = [
 // Precomputed result for DEFAULT_INPUTS (mirrors ai_roi_engine.py).
 export const FALLBACK_RESULT = {
   annual_value_income: 8_800_000,
-  value_income: 26_400_000,
-  total_cost: 4_400_000,
+  value_income: 21_884_297.52,
+  total_cost: 3_989_481.59,
   initial_cost: 2_000_000,
   annual_cost: 800_000,
   years: 3,
+  discount_rate: 0.1,
   success_probability: 0.6,
   cost_valid: true,
-  raw_multiple: 6.0,
-  risk_adjusted_multiple: 3.6,
-  roi_pct: 260.0,
-  net_value: 11_440_000,
-  break_even_probability: 0.1667,
+  raw_multiple: 5.485,
+  risk_adjusted_multiple: 3.291,
+  roi_pct: 229.1,
+  net_value: 9_141_096.92,
+  break_even_probability: 0.1823,
   break_even_feasible: true,
   payback_years: 0.45,
   per_benefit: [
@@ -191,11 +196,11 @@ export const FALLBACK_RESULT = {
     { id: 'sustainability', name: 'Sustainability', annual_value: 300_000, direct: 180_000, indirect: 120_000, share_pct: 3.4 },
   ],
   sensitivity: [
-    { factor: 'AI value income', low: 188.0, high: 332.0, swing: 144.0 },
-    { factor: 'Success probability', low: 188.0, high: 332.0, swing: 144.0 },
-    { factor: 'Time horizon', low: 193.3, high: 306.2, swing: 112.8 },
-    { factor: 'Annual cost', low: 224.6, high: 304.1, swing: 79.5 },
-    { factor: 'Initial cost', low: 230.0, high: 296.0, swing: 66.0 },
+    { factor: 'AI value income', low: 163.3, high: 295.0, swing: 131.7 },
+    { factor: 'Success probability', low: 174.3, high: 284.0, swing: 109.7 },
+    { factor: 'Time horizon', low: 170.4, high: 269.0, swing: 98.5 },
+    { factor: 'Initial cost', low: 199.1, high: 265.8, swing: 66.7 },
+    { factor: 'Annual cost', low: 199.3, high: 265.6, swing: 66.3 },
   ],
 }
 

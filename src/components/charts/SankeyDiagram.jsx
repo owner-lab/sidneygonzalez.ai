@@ -77,6 +77,7 @@ export default function SankeyDiagram({
       aria-label="Organizational KPI interdependency network"
       style={{ height: chartHeight }}
       className={isMobile ? 'overflow-x-auto' : ''}
+      data-lenis-prevent={isMobile ? '' : undefined}
     >
       <div style={{ height: chartHeight, minWidth: isMobile ? 700 : 'auto' }}>
         <ResponsiveSankey
