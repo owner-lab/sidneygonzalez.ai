@@ -175,6 +175,68 @@
   animation: data-flash 0.6s ease-out;
 }
 
+/* ── AI Value Test CTA bridge — luminous glow + hover shimmer ──────────────
+   Decorative only. The reduced-motion rule below neutralizes all of these
+   (duration ~0, single iteration), so they degrade gracefully to a static
+   glow with no motion. */
+@keyframes cta-glow-breathe {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.04);
+  }
+}
+.cta-glow-breathe {
+  animation: cta-glow-breathe 5s var(--ease-out-expo) infinite;
+}
+
+@keyframes cta-shimmer {
+  0% {
+    transform: translateX(-160%) skewX(-16deg);
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(280%) skewX(-16deg);
+    opacity: 0;
+  }
+}
+/* Sweeps once each time the card (the .group) is hovered. */
+.group:hover .cta-shimmer {
+  animation: cta-shimmer 0.85s var(--ease-out-expo);
+}
+
+@keyframes cta-arrow {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
+.group:hover .cta-arrow {
+  animation: cta-arrow 0.9s var(--ease-out-expo) infinite;
+}
+
+/* Theme-aware purple glow shadows. Kept in CSS rather than Tailwind arbitrary
+   values because the parser mangles rgb(var(--token) / alpha). */
+.group:hover .cta-card {
+  box-shadow: 0 24px 60px -20px rgb(var(--accent-purple-ink) / 0.5);
+}
+.cta-btn {
+  box-shadow: 0 0 24px -10px rgb(var(--accent-purple-ink) / 0.55);
+}
+.group:hover .cta-btn {
+  box-shadow: 0 12px 34px -6px rgb(var(--accent-purple-ink) / 0.75);
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,
