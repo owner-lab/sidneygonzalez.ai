@@ -171,7 +171,7 @@ export default function Projects() {
               className="cta-glow-breathe pointer-events-none absolute inset-0 -z-10"
               style={{
                 background:
-                  'radial-gradient(120% 140% at 100% 0%, rgb(var(--accent-purple-ink) / 0.22), transparent 60%)',
+                  'radial-gradient(120% 140% at 100% 0%, rgb(var(--cta-glow) / var(--cta-glow-strong)), transparent 60%)',
               }}
               aria-hidden="true"
             />
@@ -180,7 +180,7 @@ export default function Projects() {
               className="pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
               style={{
                 background:
-                  'radial-gradient(90% 120% at 0% 100%, rgb(var(--accent-purple-ink) / 0.18), transparent 55%)',
+                  'radial-gradient(90% 120% at 0% 100%, rgb(var(--cta-glow) / var(--cta-glow-soft)), transparent 55%)',
               }}
               aria-hidden="true"
             />

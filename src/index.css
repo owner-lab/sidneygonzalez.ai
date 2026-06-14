@@ -50,6 +50,18 @@
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     --duration-normal: 0.5s;
     --duration-slow: 0.8s;
+
+    /* AI Value Test CTA — luminous glow, tuned per theme. Light mode uses the
+       BRIGHT purple (not the dark "ink") at a touch more alpha and a tighter
+       spread, so the halo reads as a clean glow on white instead of a muddy
+       dark-violet shadow. Dark mode keeps its original values. */
+    --cta-glow: 167 139 250;
+    --cta-glow-strong: 0.3;
+    --cta-glow-soft: 0.22;
+    --cta-card-shadow: 0 18px 50px -18px rgb(167 139 250 / 0.5);
+    --cta-btn-shadow: 0 0 22px -8px rgb(167 139 250 / 0.5);
+    --cta-btn-shadow-hover: 0 12px 32px -6px rgb(167 139 250 / 0.68);
+
     color-scheme: light;
   }
 
@@ -91,6 +103,16 @@
     --chart-tooltip-text: 226 232 240;
 
     --heatmap-neutral: #1E1E2E;
+
+    /* CTA glow — dark mode keeps the original bright-purple values (the look
+       the owner signed off on); only light mode is retuned above. */
+    --cta-glow: 167 139 250;
+    --cta-glow-strong: 0.22;
+    --cta-glow-soft: 0.18;
+    --cta-card-shadow: 0 24px 60px -20px rgb(167 139 250 / 0.5);
+    --cta-btn-shadow: 0 0 24px -10px rgb(167 139 250 / 0.55);
+    --cta-btn-shadow-hover: 0 12px 34px -6px rgb(167 139 250 / 0.75);
+
     color-scheme: dark;
   }
 
@@ -225,16 +247,17 @@
   animation: cta-arrow 0.9s var(--ease-out-expo) infinite;
 }
 
-/* Theme-aware purple glow shadows. Kept in CSS rather than Tailwind arbitrary
-   values because the parser mangles rgb(var(--token) / alpha). */
+/* Per-theme purple glow shadows (tokens defined in :root / .dark). Kept in CSS
+   rather than Tailwind arbitrary values because the parser mangles
+   rgb(var(--token) / alpha). */
 .group:hover .cta-card {
-  box-shadow: 0 24px 60px -20px rgb(var(--accent-purple-ink) / 0.5);
+  box-shadow: var(--cta-card-shadow);
 }
 .cta-btn {
-  box-shadow: 0 0 24px -10px rgb(var(--accent-purple-ink) / 0.55);
+  box-shadow: var(--cta-btn-shadow);
 }
 .group:hover .cta-btn {
-  box-shadow: 0 12px 34px -6px rgb(var(--accent-purple-ink) / 0.75);
+  box-shadow: var(--cta-btn-shadow-hover);
 }
 
 /* Reduced motion */
