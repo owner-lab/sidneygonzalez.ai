@@ -31,7 +31,8 @@ const LIMITATIONS = [
   'A sensitivity model, not a forecast — outputs are only as sound as the value and cost assumptions you enter.',
   "The closed-form equation shown is our implementation of IDC's redefined ROI, not a verbatim IDC formula.",
   'Success probability is a single risk multiplier; a production model would decompose it per benefit and per year.',
-  'Value is treated as flat annual recurring × horizon — no ramp curve, discounting, or NPV.',
+  'Value is flat annual recurring with no ramp curve; discounting to NPV is applied at the rate you set (0% = nominal).',
+  'Payback is simple time-to-recover on the initial outlay — undiscounted, even when a discount rate is set.',
   'Illustrative defaults; not investment advice.',
 ]
 
@@ -68,9 +69,9 @@ function splitEngineTabs(code) {
 const ENGINE_TABS = splitEngineTabs(engineCode)
 
 const FORMULAS = [
-  'AI\\ Value\\ Income = \\sum_{t=1}^{Y}\\sum_{i=1}^{9}(Direct_i + Indirect_i)',
-  'Risk\\text{-}adj\\ ROI = \\frac{AI\\ Value\\ Income}{Initial + Annual \\times Y} \\times P_{success}',
-  'Break\\text{-}even\\ P^{*} = \\frac{Initial + Annual \\times Y}{AI\\ Value\\ Income}',
+  'AI\\ Value\\ Income = \\sum_{t=1}^{Y}\\frac{\\sum_{i=1}^{9}(Direct_i + Indirect_i)}{(1+r)^{t}}',
+  'Risk\\text{-}adj\\ ROI = \\frac{AI\\ Value\\ Income}{Initial + \\sum_{t=1}^{Y} Annual/(1+r)^{t}} \\times P_{success}',
+  'Break\\text{-}even\\ P^{*} = \\frac{Initial + PV(Annual)}{AI\\ Value\\ Income}',
 ]
 
 function RoiFormulas() {
@@ -93,7 +94,9 @@ function RoiFormulas() {
       />
       <p className="mt-2 text-[11px] text-text-muted">
         Our implementation of IDC&apos;s redefined AI ROI (IDC FutureScape 2026, &ldquo;Measure or
-        Miss: The AI Value Test&rdquo;). ROI&nbsp;% is expressed as (multiple&nbsp;&minus;&nbsp;1).
+        Miss: The AI Value Test&rdquo;). Value and recurring cost are present-valued at your
+        discount rate <em>r</em> (<em>r</em>&nbsp;=&nbsp;0 &rarr; nominal); ROI&nbsp;% is expressed
+        as (multiple&nbsp;&minus;&nbsp;1).
       </p>
     </div>
   )
@@ -115,6 +118,7 @@ function toPayload(inputs) {
     annual_cost: inputs.annual_cost,
     success_probability: inputs.success_probability,
     years: inputs.years,
+    discount_rate: inputs.discount_rate ?? 0,
   }
 }
 

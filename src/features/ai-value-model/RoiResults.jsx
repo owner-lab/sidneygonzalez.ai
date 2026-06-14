@@ -154,8 +154,10 @@ function SensitivityTornado({ sensitivity, base }) {
         What moves the ROI most
       </h4>
       <p className="mb-4 text-xs text-text-muted">
-        ROI swing if each driver alone moves ±20%. The longest bar is the assumption your
-        business case depends on most. Dashed line = current ROI ({formatRoiPercent(base)}).
+        ROI swing as each driver alone moves across a plausible range — value &amp; costs ±20%,
+        ship odds ±10 pts, horizon ±1 yr — holding all else fixed. The longest bar is the
+        assumption your business case depends on most. Dashed line = current ROI (
+        {formatRoiPercent(base)}).
       </p>
 
       <div className="flex flex-col gap-3">
@@ -223,7 +225,7 @@ export default function RoiResults({ result, flashKey }) {
           changeType="neutral"
         />
         <MetricCard
-          label="Net value (risk-adjusted)"
+          label={result.discount_rate > 0 ? 'Net value (NPV, risk-adj.)' : 'Net value (risk-adjusted)'}
           value={
             <span className={netPositive ? 'text-impact-positive' : 'text-impact-negative'}>
               {formatCompactAccounting(result.net_value)}
@@ -253,6 +255,11 @@ export default function RoiResults({ result, flashKey }) {
               {formatMultiple(result.risk_adjusted_multiple)}
             </span>
             <span className="text-text-muted">risk-adjusted</span>
+            {result.discount_rate > 0 && (
+              <span className="rounded bg-bg-hover px-1.5 py-0.5 text-[11px] font-medium text-text-secondary">
+                NPV · discounted at {formatPercent(result.discount_rate * 100, 0)}
+              </span>
+            )}
           </div>
         ) : (
           <p className="text-sm text-text-secondary">
