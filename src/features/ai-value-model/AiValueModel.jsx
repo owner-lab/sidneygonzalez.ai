@@ -12,6 +12,7 @@ import { BENEFIT_PARAMS, DEFAULT_INPUTS, FALLBACK_RESULT } from './fallbackData'
 import RoiInputsPanel from './RoiInputsPanel'
 import RoiResults from './RoiResults'
 import IdcCredibilityPanel from './IdcCredibilityPanel'
+import { SOCIAL } from '@/config/constants'
 
 const STATUS_MAP = {
   idle: 'offline',
@@ -138,6 +139,7 @@ export default function AiValueModel({
   const [result, setResult] = useState(FALLBACK_RESULT)
   const [flashKey, setFlashKey] = useState(0)
   const [codeOpen, setCodeOpen] = useState(false)
+  const [engineError, setEngineError] = useState(false)
   const reqRef = useRef(0)
   const lastRunRef = useRef(0)
   const trailingRef = useRef(null)
@@ -157,9 +159,15 @@ export default function AiValueModel({
         params: { inputs_json: JSON.stringify(toPayload(inputs)) },
       })
         .then((res) => {
-          if (res && myId === reqRef.current) setResult(res)
+          if (res && myId === reqRef.current) {
+            setResult(res)
+            setEngineError(false)
+          }
         })
-        .catch((err) => console.error('AI ROI engine failed:', err))
+        .catch((err) => {
+          console.error('AI ROI engine failed:', err)
+          setEngineError(true)
+        })
     }
 
     const THROTTLE_MS = 60
@@ -227,6 +235,21 @@ export default function AiValueModel({
         onReset={onReset}
         pyodideReady={status === 'ready'}
       />
+
+      {(status === 'error' || engineError) && (
+        <div className="mb-4 rounded-lg border border-border-subtle bg-bg-surface px-4 py-3 text-sm text-text-secondary">
+          Live engine unavailable — the figures below are a static example and the sliders are
+          inactive.{' '}
+          <a
+            href={SOCIAL.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent-blue hover:underline"
+          >
+            View source on GitHub
+          </a>
+        </div>
+      )}
 
       <RoiResults result={result} flashKey={flashKey} />
 

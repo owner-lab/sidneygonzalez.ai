@@ -40,6 +40,7 @@ export default function HeatmapChart({
       aria-label="Budget variance heatmap by department and month"
       style={{ height: chartHeight }}
       className={isMobile ? 'overflow-x-auto' : ''}
+      data-lenis-prevent={isMobile ? '' : undefined}
     >
       <div style={{ height: chartHeight, minWidth: isMobile ? 700 : 'auto' }}>
         <ResponsiveHeatMap
