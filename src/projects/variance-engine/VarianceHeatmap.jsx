@@ -12,7 +12,7 @@ function HeatmapTooltip({ cell }) {
         {isOver ? '+' : ''}{cell.value}% variance
       </p>
       {cell.data.hasAnomaly && (
-        <p className="mt-1 text-accent-red">Anomaly flagged</p>
+        <p className="mt-1 text-accent-ink-red">Anomaly flagged</p>
       )}
     </div>
   )

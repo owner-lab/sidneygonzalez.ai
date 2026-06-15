@@ -6,7 +6,7 @@ export default function TransparencyBanner({
   return (
     <GlassPanel className="border-accent-orange/20 bg-accent-orange/5">
       <p className="text-sm leading-relaxed text-text-secondary">
-        <span className="mr-2 font-semibold text-accent-orange">
+        <span className="mr-2 font-semibold text-accent-ink-orange">
           Transparency
         </span>
         {message}

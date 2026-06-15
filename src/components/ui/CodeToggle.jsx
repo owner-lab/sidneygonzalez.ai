@@ -88,7 +88,7 @@ export default function CodeToggle({ isOpen, onClose, tabs = PIPELINE_TABS, code
                     onClick={() => setActiveTab(tab)}
                     className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
                       activeTab === tab
-                        ? 'bg-accent-blue/10 text-accent-blue'
+                        ? 'bg-accent-blue/10 text-accent-ink-blue'
                         : 'text-text-muted hover:text-text-secondary'
                     }`}
                   >
