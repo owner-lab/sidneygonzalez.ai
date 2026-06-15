@@ -21,7 +21,7 @@ export const SOCIAL = {
   github: 'https://github.com/owner-lab/sidneygonzalez.ai',
   linkedin: 'https://www.linkedin.com/in/sidney-gonzalez-784034158/',
   resume: '/SidneyG_Resume_2026.pdf',
-  email: 'mailto:hello@sidneygonzalez.ai',
+  email: 'mailto:sidneygonzalez.177@gmail.com',
 }
 
 export const HERO = {
