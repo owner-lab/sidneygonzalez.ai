@@ -35,11 +35,14 @@ export default {
           subtle: 'var(--color-border-subtle)',
           medium: 'var(--color-border-medium)',
         },
+        // Impact = financial +/- semantics, rendered as TEXT — point at the
+        // theme-aware ink tokens so accounting figures meet WCAG AA in light
+        // mode while keeping the bright accents on dark surfaces.
         impact: {
-          positive: '#4AF6C3',
-          negative: '#FF433D',
+          positive: 'rgb(var(--accent-green-ink) / <alpha-value>)',
+          negative: 'rgb(var(--accent-red-ink) / <alpha-value>)',
           neutral: 'rgb(var(--color-text-muted) / <alpha-value>)',
-          warning: '#FB8B1E',
+          warning: 'rgb(var(--accent-orange-ink) / <alpha-value>)',
         },
       },
       fontFamily: {

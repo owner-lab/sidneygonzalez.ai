@@ -11,7 +11,7 @@ export default function PyodideFallback({ error }) {
       </p>
       <a
         href={SOCIAL.github}
-        className="mt-4 inline-block text-sm text-accent-blue transition-colors hover:underline"
+        className="mt-4 inline-block text-sm text-accent-ink-blue transition-colors hover:underline"
         target="_blank"
         rel="noopener noreferrer"
       >

@@ -34,8 +34,8 @@ export default function Slider({
     : isZero
       ? 'text-text-muted'
       : isNeg
-        ? 'text-accent-orange'
-        : 'text-accent-blue'
+        ? 'text-accent-ink-orange'
+        : 'text-accent-ink-blue'
 
   // Zero tick only meaningful when 0 is strictly inside the range
   const showZeroTick = hasNegativeRange && zeroPct > 0 && zeroPct < 100

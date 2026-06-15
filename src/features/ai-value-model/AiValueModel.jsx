@@ -244,7 +244,7 @@ export default function AiValueModel({
             href={SOCIAL.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-accent-blue hover:underline"
+            className="text-accent-ink-blue hover:underline"
           >
             View source on GitHub
           </a>
