@@ -27,7 +27,7 @@ export default function ProjectLayout({
       <ScrollReveal>
         {/* Header */}
         <div className="mb-8">
-          <span className="mb-2 block text-sm font-medium text-accent-blue">
+          <span className="mb-2 block text-sm font-medium text-accent-ink-blue">
             Project {number}
           </span>
           <h3 className="font-display text-display-sm font-semibold md:text-display-md">
@@ -70,7 +70,7 @@ export default function ProjectLayout({
             <div className="min-w-0">
               <div className="mb-1 flex items-center gap-2">
                 <svg
-                  className="h-4 w-4 shrink-0 text-accent-blue"
+                  className="h-4 w-4 shrink-0 text-accent-ink-blue"
                   viewBox="0 0 16 16"
                   fill="none"
                   aria-hidden="true"
@@ -107,7 +107,7 @@ export default function ProjectLayout({
                   key={i}
                   className="flex gap-2 text-sm leading-relaxed text-text-secondary"
                 >
-                  <span className="shrink-0 text-accent-blue" aria-hidden="true">
+                  <span className="shrink-0 text-accent-ink-blue" aria-hidden="true">
                     •
                   </span>
                   <span>{item}</span>

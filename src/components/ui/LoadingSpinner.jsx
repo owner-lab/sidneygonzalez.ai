@@ -27,14 +27,14 @@ export default function LoadingSpinner({ progress = 0, label = 'Initializing Pyt
             strokeWidth="3"
             strokeDasharray={`${filled} ${gap}`}
             strokeLinecap="round"
-            className="text-accent-blue transition-all duration-300"
+            className="text-accent-ink-blue transition-all duration-300"
           />
         </svg>
       </div>
       <div className="text-center">
         <p className="text-xs text-text-secondary">{label}</p>
         {progress > 0 && (
-          <p className="metric-value text-xs text-accent-blue">{Math.round(progress)}%</p>
+          <p className="metric-value text-xs text-accent-ink-blue">{Math.round(progress)}%</p>
         )}
       </div>
     </div>

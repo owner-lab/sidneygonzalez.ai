@@ -47,7 +47,7 @@ export default function ScenarioSelector({ scenarios, activeId, onSelect }) {
             <GlassPanel className={`h-full ${borderClass}`}>
               <span
                 className={`mb-1 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider ${
-                  isActive ? 'text-accent-blue' : 'text-text-muted'
+                  isActive ? 'text-accent-ink-blue' : 'text-text-muted'
                 }`}
               >
                 {isCustom && <SlidersIcon />}

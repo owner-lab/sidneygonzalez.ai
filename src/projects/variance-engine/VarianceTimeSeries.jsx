@@ -22,10 +22,10 @@ function CustomTooltip({ active, payload, label }) {
   return (
     <div className="glass-panel rounded-lg px-3 py-2 text-xs">
       <p className="mb-1 font-medium text-text-primary">{label}</p>
-      <p className="text-accent-blue">Budget: {formatCompact(d.budget)}</p>
-      <p className="text-accent-green">Actual: {formatCompact(d.actual)}</p>
+      <p className="text-accent-ink-blue">Budget: {formatCompact(d.budget)}</p>
+      <p className="text-accent-ink-green">Actual: {formatCompact(d.actual)}</p>
       {d.anomaly_count > 0 && (
-        <p className="mt-1 text-accent-red">
+        <p className="mt-1 text-accent-ink-red">
           {d.anomaly_count} anomal{d.anomaly_count === 1 ? 'y' : 'ies'} flagged
         </p>
       )}

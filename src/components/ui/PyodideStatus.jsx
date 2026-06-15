@@ -1,13 +1,13 @@
 const states = {
   loading: {
     label: 'Loading Python...',
-    color: 'text-accent-orange',
+    color: 'text-accent-ink-orange',
     bgColor: 'bg-accent-orange',
     pulse: true,
   },
   live: {
     label: 'Python Live',
-    color: 'text-accent-green',
+    color: 'text-accent-ink-green',
     bgColor: 'bg-accent-green',
     pulse: false,
   },

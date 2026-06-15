@@ -42,9 +42,9 @@ function DataTable({ rows, title, titleColor, highlightIssues = false }) {
                       key={col}
                       className={`whitespace-nowrap px-3 py-1.5 ${
                         isNull && highlightIssues
-                          ? 'bg-accent-orange/10 text-accent-orange'
+                          ? 'bg-accent-orange/10 text-accent-ink-orange'
                           : isVariant
-                            ? 'bg-accent-red/10 text-accent-red'
+                            ? 'bg-accent-red/10 text-accent-ink-red'
                             : 'text-text-secondary'
                       }`}
                     >
@@ -103,16 +103,16 @@ export default function RawDataViewer({ rawSample, cleanSample, validationReport
             </Button>
           </div>
           {activeTab === 'raw' ? (
-            <DataTable rows={rawSample} title="Raw Input" titleColor="text-accent-red" highlightIssues />
+            <DataTable rows={rawSample} title="Raw Input" titleColor="text-accent-ink-red" highlightIssues />
           ) : (
-            <DataTable rows={cleanSample} title="Clean Output" titleColor="text-accent-green" />
+            <DataTable rows={cleanSample} title="Clean Output" titleColor="text-accent-ink-green" />
           )}
         </>
       ) : (
         /* Desktop: side-by-side */
         <div className="flex gap-4">
-          <DataTable rows={rawSample} title="Raw Input" titleColor="text-accent-red" highlightIssues />
-          <DataTable rows={cleanSample} title="Clean Output" titleColor="text-accent-green" />
+          <DataTable rows={rawSample} title="Raw Input" titleColor="text-accent-ink-red" highlightIssues />
+          <DataTable rows={cleanSample} title="Clean Output" titleColor="text-accent-ink-green" />
         </div>
       )}
     </GlassPanel>
