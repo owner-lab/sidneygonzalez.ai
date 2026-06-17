@@ -57,3 +57,15 @@ The site uses Lenis smooth scroll (`<ReactLenis root>` in `App.jsx`), which inte
 ## Data Integrity
 
 All synthetic datasets must pass `validate_realism.py` before being used in any project UI. If data looks fake, the project looks fake. Data generation scripts live in `data-generation/`.
+
+## Design Context
+
+Full spec: `PRODUCT.md` (strategic) · `DESIGN.md` (visual) · `.impeccable/design.json` (token sidecar + component snippets)
+
+- **Register:** Brand — design IS the product. Target: CIO/CFO/CAIO buyers.
+- **North Star:** "The Precision Instrument" — Bloomberg Terminal authority, not agency-site spectacle.
+- **Anti-references:** Over-designed agency site (cursor effects, WebGL, motion over substance); generic AI portfolio (purple gradients, hero-metric cards); startup SaaS landing (warm neutrals, pastel grids).
+- **Principles:** (1) Information is authority. (2) Built for readers, not viewers. (3) Restraint as craft. (4) Distinctly positioned. (5) Financial precision.
+- **Accent colors are semantic:** Blue = action, Green = positive, Red = negative, Orange = warning, Purple = AI/intelligence only. Never decorative.
+- **Glass panels** are data containers and overlays only — not structural layout or marketing sections.
+- **All financial figures** use JetBrains Mono + `font-variant-numeric: tabular-nums`. No exceptions.
