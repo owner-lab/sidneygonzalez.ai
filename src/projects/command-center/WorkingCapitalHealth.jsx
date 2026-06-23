@@ -8,7 +8,7 @@ const LINE_KEYS = [
   { key: 'dso', color: '#0068FF', label: 'DSO' },
   { key: 'dpo', color: '#FB8B1E', label: 'DPO' },
   { key: 'dio', color: '#4AF6C3', label: 'DIO' },
-  { key: 'ccc', color: '#A78BFA', label: 'CCC' },
+  { key: 'ccc', color: '#D4A843', label: 'CCC' },
 ]
 
 const THRESHOLDS = [

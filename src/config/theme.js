@@ -12,6 +12,12 @@ export const accent = {
   purple: '#A78BFA',
 }
 
+// Categorical chart colors — non-semantic, for data series only.
+// Purple is excluded (AI/intelligence semantic per Signal Rule).
+export const chart = {
+  gold: '#D4A843',
+}
+
 export const fonts = {
   display: '"Space Grotesk", system-ui, sans-serif',
   body: '"Inter", system-ui, sans-serif',

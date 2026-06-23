@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-color",
+        "value": "#d4a843",
+        "reason": "5th categorical chart color — non-semantic replacement for Signal-Rule-violating purple",
+        "createdAt": "2026-06-23T23:55:32.623Z"
+      }
+    ]
+  }
+}
