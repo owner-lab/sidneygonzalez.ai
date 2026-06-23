@@ -40,7 +40,7 @@ export default function AnimatedCounter({
   }, [isVisible, target, duration])
 
   return (
-    <span ref={ref} className="metric-value font-display text-2xl font-semibold">
+    <span ref={ref} className="metric-value text-2xl font-semibold">
       {prefix}
       {count.toFixed(decimals)}
       {suffix}

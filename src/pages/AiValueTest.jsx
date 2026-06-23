@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import Section from '@/components/layout/Section'
 import ScrollReveal from '@/components/animation/ScrollReveal'
 import NeuralFlowBackground from '@/components/animation/NeuralFlowBackground'
-import GlassPanel from '@/components/ui/GlassPanel'
 import Button from '@/components/ui/Button'
 import AiValueModel from '@/features/ai-value-model/AiValueModel'
 import useLenisScroll from '@/hooks/useLenisScroll'
@@ -102,7 +101,7 @@ export default function AiValueTest() {
               <motion.span
                 key={i}
                 className={`mr-[0.25em] inline-block ${
-                  word.startsWith('earned') ? 'text-gradient-purple' : ''
+                  word.startsWith('earned') ? 'text-accent-ink-purple' : ''
                 }`}
                 variants={v || wordReveal}
               >
@@ -185,7 +184,7 @@ export default function AiValueTest() {
                 to={s.to}
                 className="group block h-full rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
               >
-                <GlassPanel className="h-full border border-accent-purple/20 transition-colors group-hover:border-accent-purple/50">
+                <div className="h-full rounded-2xl border border-border-subtle bg-bg-surface p-6 transition-colors group-hover:border-accent-purple/50">
                   <span className="text-xs font-semibold uppercase tracking-wider text-accent-ink-purple">
                     {s.role}
                   </span>
@@ -199,7 +198,7 @@ export default function AiValueTest() {
                     See it live
                     <span aria-hidden="true">&rarr;</span>
                   </span>
-                </GlassPanel>
+                </div>
               </Link>
             </ScrollReveal>
           ))}
@@ -209,7 +208,7 @@ export default function AiValueTest() {
       {/* 5 — Final CTA */}
       <Section id="ai-cta" className="relative overflow-hidden">
         <ScrollReveal>
-          <GlassPanel className="relative overflow-hidden border border-accent-purple/30 text-center">
+          <div className="relative overflow-hidden rounded-2xl border border-accent-purple/30 bg-bg-surface p-6 text-center">
             <div
               className="pointer-events-none absolute inset-0 -z-10 opacity-70"
               style={{
@@ -230,7 +229,7 @@ export default function AiValueTest() {
                 <Button>Start a conversation</Button>
               </Link>
             </div>
-          </GlassPanel>
+          </div>
         </ScrollReveal>
       </Section>
     </>

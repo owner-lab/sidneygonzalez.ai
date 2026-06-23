@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import Section from '@/components/layout/Section'
 import ScrollReveal from '@/components/animation/ScrollReveal'
-import GlassPanel from '@/components/ui/GlassPanel'
 import Badge from '@/components/ui/Badge'
 import Button from '@/components/ui/Button'
 import useDocumentMeta from '@/hooks/useDocumentMeta'
@@ -114,7 +113,7 @@ export default function BuildLog() {
                 >
                   {/* Card side */}
                   <div className="md:w-1/2 md:px-6">
-                    <GlassPanel>
+                    <div className="rounded-2xl border border-border-subtle bg-bg-surface p-6">
                       <div className="mb-2 flex items-center justify-between">
                         <h2 className="text-sm font-semibold text-text-primary">
                           {d.title}
@@ -124,7 +123,7 @@ export default function BuildLog() {
                       <p className="text-xs leading-relaxed text-text-secondary">
                         {d.rationale}
                       </p>
-                    </GlassPanel>
+                    </div>
                   </div>
 
                   {/* Spacer side (desktop only) */}

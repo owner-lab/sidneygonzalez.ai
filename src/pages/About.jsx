@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import Section from '@/components/layout/Section'
 import ScrollReveal from '@/components/animation/ScrollReveal'
 import Badge from '@/components/ui/Badge'
-import GlassPanel from '@/components/ui/GlassPanel'
 import Button from '@/components/ui/Button'
 import useDocumentMeta from '@/hooks/useDocumentMeta'
 import { SITE } from '@/config/constants'
@@ -70,7 +69,7 @@ export default function About() {
 
         <div className="lg:col-span-2">
           <ScrollReveal delay={0.2}>
-            <GlassPanel>
+            <div className="rounded-2xl border border-border-subtle bg-bg-surface p-6">
               <h2 className="mb-3 text-xs font-semibold uppercase tracking-wider text-text-muted">
                 Built With
               </h2>
@@ -86,7 +85,7 @@ export default function About() {
                 <p>Zero backend — the code IS the demo</p>
                 <p>Every number is defensible</p>
               </div>
-            </GlassPanel>
+            </div>
           </ScrollReveal>
         </div>
       </div>
