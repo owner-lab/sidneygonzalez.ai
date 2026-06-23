@@ -1,14 +1,13 @@
 import Hero from '@/sections/Hero'
-import About from '@/sections/About'
 import Projects from '@/sections/Projects'
-import BuildLog from '@/sections/BuildLog'
 import Contact from '@/sections/Contact'
 import useDocumentMeta from '@/hooks/useDocumentMeta'
 import { SITE } from '@/config/constants'
 
-// The original single-page scroll body. Chrome (Lenis root, Navbar, Footer)
-// lives in Layout; the live Pyodide demos inside Projects subscribe the
-// usePyodide singleton themselves, so visiting Home still warms Pyodide.
+// The homepage is a single guided story: who (Hero) → the proof (Projects, the
+// live data narrative + the AI Value bridge) → the conversation (Contact).
+// About and the Build Log are deliberately their own routes (/about, /build-log)
+// so this page reads as one goal-directed scroll, not a wall of sections.
 export default function Home() {
   useDocumentMeta({
     title: SITE.title,
@@ -19,9 +18,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <About />
       <Projects />
-      <BuildLog />
       <Contact />
     </>
   )

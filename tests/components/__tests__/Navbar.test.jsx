@@ -9,9 +9,7 @@ function renderNavbar(initialEntries = ['/'], withSections = false) {
       {withSections && (
         <>
           <div id="hero" />
-          <div id="about" />
           <div id="projects" />
-          <div id="build-log" />
           <div id="contact" />
         </>
       )}
@@ -26,22 +24,28 @@ describe('Navbar route-awareness', () => {
     IntersectionObserver.disconnectCount = 0
   })
 
-  it('renders the AI Value route link and in-page anchors on Home', () => {
+  it('renders route links and in-page anchors on Home', () => {
     renderNavbar(['/'])
+    // route entries point at their absolute path…
     expect(screen.getByRole('link', { name: 'AI Value' })).toHaveAttribute('href', '/ai')
-    expect(screen.getByRole('link', { name: 'About' })).toHaveAttribute('href', '#about')
+    expect(screen.getByRole('link', { name: 'About' })).toHaveAttribute('href', '/about')
+    expect(screen.getByRole('link', { name: 'Build Log' })).toHaveAttribute('href', '/build-log')
+    // …while the remaining Home sections stay in-page anchors
+    expect(screen.getByRole('link', { name: 'Projects' })).toHaveAttribute('href', '#projects')
   })
 
-  it('routes anchors through Home and marks the AI link active when off Home', () => {
+  it('routes anchors through Home and marks the active route off Home', () => {
     renderNavbar(['/ai'])
-    // hrefless route entry must not crash render, and anchors become /#section
-    expect(screen.getByRole('link', { name: 'About' })).toHaveAttribute('href', '/#about')
+    // in-page anchors become /#section so they route back to Home then scroll
+    expect(screen.getByRole('link', { name: 'Projects' })).toHaveAttribute('href', '/#projects')
+    // route entries keep their absolute path regardless of location
+    expect(screen.getByRole('link', { name: 'About' })).toHaveAttribute('href', '/about')
     expect(screen.getByRole('link', { name: 'AI Value' })).toHaveAttribute('aria-current', 'page')
   })
 
   it('re-observes sections after returning to Home (scrollspy survives remount)', () => {
     renderNavbar(['/'], true)
-    expect(IntersectionObserver.observeCount).toBeGreaterThanOrEqual(5)
+    expect(IntersectionObserver.observeCount).toBeGreaterThanOrEqual(3)
 
     // leave Home → scrollspy disconnects
     fireEvent.click(screen.getByRole('link', { name: 'AI Value' }))
