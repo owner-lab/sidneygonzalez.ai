@@ -177,28 +177,33 @@ export default function AiValueTest() {
           </p>
         </ScrollReveal>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
+        {/* A numbered sequence, not a 3-up marketing grid — these systems are a
+            pipeline (See → Model → Find), and the list reads as one. */}
+        <div className="mt-10 border-t border-border-subtle">
           {SYSTEMS.map((s, i) => (
             <ScrollReveal key={s.title} delay={i * 0.08}>
               <Link
                 to={s.to}
-                className="group block h-full rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
+                className="group flex items-start gap-5 border-b border-border-subtle py-6 transition-colors hover:bg-bg-surface/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple/60 sm:gap-8"
               >
-                <div className="h-full rounded-2xl border border-border-subtle bg-bg-surface p-6 transition-colors group-hover:border-accent-purple/50">
+                <span className="metric-value shrink-0 text-sm leading-7 tabular-nums text-text-muted">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <div className="flex-1">
                   <span className="text-xs font-semibold uppercase tracking-wider text-accent-ink-purple">
                     {s.role}
                   </span>
-                  <h3 className="mt-2 font-display text-display-sm font-semibold text-text-primary">
+                  <h3 className="mt-1 font-display text-display-sm font-semibold text-text-primary">
                     {s.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-text-secondary">
+                  <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-text-secondary">
                     {s.blurb}
                   </p>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent-ink-purple transition-transform group-hover:translate-x-0.5">
-                    See it live
-                    <span aria-hidden="true">&rarr;</span>
-                  </span>
                 </div>
+                <span className="hidden shrink-0 items-center gap-1.5 self-center text-sm font-medium text-accent-ink-purple transition-transform group-hover:translate-x-0.5 sm:inline-flex">
+                  See it live
+                  <span aria-hidden="true">&rarr;</span>
+                </span>
               </Link>
             </ScrollReveal>
           ))}
