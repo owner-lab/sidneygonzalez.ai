@@ -17,11 +17,12 @@ vi.mock('@/python/usePyodide', () => ({
 vi.mock('@/projects/command-center/CommandCenterProject', () => ({ default: () => null }))
 vi.mock('@/projects/decision-impact/DecisionImpactProject', () => ({ default: () => null }))
 vi.mock('@/projects/variance-engine/VarianceEngineProject', () => ({ default: () => null }))
+vi.mock('@/projects/order-book/OrderBookProject', () => ({ default: () => null }))
 
 import Projects from '@/sections/Projects'
 
 describe('Projects (Home)', () => {
-  it('renders the three-system stack and the /ai CTA bridge', () => {
+  it('names all four projects in the stack and the /ai CTA bridge', () => {
     const { container } = render(
       <MemoryRouter>
         <Projects />
@@ -30,6 +31,8 @@ describe('Projects (Home)', () => {
     expect(screen.getByText('Command Center')).toBeInTheDocument()
     expect(screen.getByText('Decision Analyzer')).toBeInTheDocument()
     expect(screen.getByText('Variance Engine')).toBeInTheDocument()
+    // Project 4 is announced up front in the stack, not just discovered on scroll.
+    expect(screen.getByText('Order Book Forecaster')).toBeInTheDocument()
     expect(container.querySelector('a[href="/ai"]')).toBeTruthy()
   })
 })

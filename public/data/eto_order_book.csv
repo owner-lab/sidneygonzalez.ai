@@ -1,0 +1,12 @@
+project_id,project_name,customer,market_segment,contract_value,gross_margin_pct,duration_months,order_intake_date,promised_delivery_date,priority,status
+ORD-2401,Offshore module skid,Maasvlakte Terminals,Oil & Gas,6400000,0.18,8,2026-01,2026-11,1,in_progress
+ORD-2402,Refinery heat exchanger,Maasvlakte Terminals,Petrochemical,3100000,0.22,7,2026-01,2026-09,1,in_progress
+ORD-2403,Cryogenic storage tank,Veridian Chemicals,Oil & Gas,3500000,0.19,7,2026-02,2026-12,1,backlog
+ORD-2404,Pressure vessel array,Caspian Energy Group,Petrochemical,2300000,0.21,6,2026-01,2026-11,2,in_progress
+ORD-2405,Modular substation,Caspian Energy Group,Power Generation,2650000,0.2,6,2026-03,2027-01,2,backlog
+ORD-2406,Turbine enclosure,Alpine Process Tech,Power Generation,1500000,0.24,5,2026-02,2026-12,2,backlog
+ORD-2407,Marine propulsion frame,Adriatic Offshore,Marine,1050000,0.27,4,2026-01,2026-10,2,in_progress
+ORD-2408,Flare stack package,Donau Industrial,Oil & Gas,1200000,0.26,4,2026-03,2027-01,3,backlog
+ORD-2409,Reactor internals,Caspian Energy Group,Petrochemical,4700000,0.17,8,2026-04,2027-05,1,backlog
+ORD-2410,Pipe rack & valve skid,Adriatic Offshore,Oil & Gas,780000,0.3,3,2026-02,2026-11,3,backlog
+ORD-2411,Heat recovery unit,Baltic Power Systems,Power Generation,2050000,0.21,6,2026-05,2027-03,2,backlog

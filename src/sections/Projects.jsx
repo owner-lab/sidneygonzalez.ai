@@ -19,6 +19,9 @@ const DecisionImpactProject = lazy(
 const VarianceEngineProject = lazy(
   () => import('@/projects/variance-engine/VarianceEngineProject')
 )
+const OrderBookProject = lazy(
+  () => import('@/projects/order-book/OrderBookProject')
+)
 
 function ProjectFallback({ title }) {
   return (
@@ -60,6 +63,13 @@ const STACK_ITEMS = [
     color: 'text-accent-ink-red',
     border: 'border-accent-red/30',
   },
+  {
+    number: '04',
+    title: 'Order Book Forecaster',
+    subtitle: 'Forecast the book',
+    color: 'text-accent-ink-orange',
+    border: 'border-accent-orange/30',
+  },
 ]
 
 export default function Projects() {
@@ -72,6 +82,7 @@ export default function Projects() {
       import('@/projects/command-center/CommandCenterProject')
       import('@/projects/decision-impact/DecisionImpactProject')
       import('@/projects/variance-engine/VarianceEngineProject')
+      import('@/projects/order-book/OrderBookProject')
     }
     if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
       const id = window.requestIdleCallback(preload, { timeout: 2000 })
@@ -116,7 +127,7 @@ export default function Projects() {
           <p className="mb-4 text-center text-xs font-semibold uppercase tracking-widest text-text-muted">
             Corporate Intelligence Stack
           </p>
-          <div className="grid gap-3 sm:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {STACK_ITEMS.map((item) => (
               <GlassPanel
                 key={item.number}
@@ -134,11 +145,11 @@ export default function Projects() {
               </GlassPanel>
             ))}
           </div>
-          {/* Connectors (desktop only) */}
-          <div className="mt-3 hidden items-center sm:flex">
-            <div className="h-px flex-1 bg-gradient-to-r from-accent-blue/40 to-accent-green/40" />
+          {/* Connectors (desktop only) — See → Model → Find → Forecast */}
+          <div className="mt-3 hidden items-center lg:flex">
+            <div className="h-px flex-1 bg-gradient-to-r from-accent-blue/40 via-accent-green/40 to-accent-red/40" />
             <span className="mx-3 text-[10px] text-text-muted">data flows →</span>
-            <div className="h-px flex-1 bg-gradient-to-r from-accent-green/40 to-accent-red/40" />
+            <div className="h-px flex-1 bg-gradient-to-r from-accent-red/40 to-accent-orange/40" />
           </div>
         </div>
       </ScrollReveal>
@@ -158,8 +169,13 @@ export default function Projects() {
         <VarianceEngineProject />
       </Suspense>
 
-      {/* Bridge to the dedicated AI page — the three systems above are what
-          AI-first automates; /ai puts a price on automating them. */}
+      {/* Project 4: Order Book Forecaster — capacity & headcount investment */}
+      <Suspense fallback={<ProjectFallback title="Order Book Forecaster" />}>
+        <OrderBookProject />
+      </Suspense>
+
+      {/* Bridge to the dedicated AI page — these systems are what AI-first
+          automates; /ai puts a price on automating them. */}
       <ScrollReveal>
         <Link
           to="/ai"
@@ -198,9 +214,9 @@ export default function Projects() {
                   Prove the ROI on your AI investment.
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-text-secondary">
-                  These three systems are what AI-first automates. The AI Value
-                  Test is where the economics get decided — a manifesto plus a
-                  live, risk-adjusted ROI model on IDC&apos;s 2026 framework.
+                  These systems are what AI-first automates. The AI Value Test is
+                  where the economics get decided — a manifesto plus a live,
+                  risk-adjusted ROI model on IDC&apos;s 2026 framework.
                 </p>
               </div>
 
