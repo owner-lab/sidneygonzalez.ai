@@ -1,7 +1,10 @@
+import { Link } from 'react-router-dom'
 import Section from '@/components/layout/Section'
 import ScrollReveal from '@/components/animation/ScrollReveal'
-import GlassPanel from '@/components/ui/GlassPanel'
 import Badge from '@/components/ui/Badge'
+import Button from '@/components/ui/Button'
+import useDocumentMeta from '@/hooks/useDocumentMeta'
+import { SITE } from '@/config/constants'
 
 const DECISIONS = [
   {
@@ -60,22 +63,43 @@ const DECISIONS = [
     tag: 'shipped',
     tagColor: 'green',
   },
+  {
+    title: 'Why the Order Book Forecaster Models Capacity, Not Demand',
+    rationale:
+      'Forecasting demand order-by-order is a fight you lose in front of a CFO, so the model doesn\'t try. It treats the existing backlog as forward revenue and asks a narrower, defensible question: when one project slips, the queue behind it cascades, and freed capacity refills at the book\'s blended margin. The output is a capacity-slot queue and a present-valued headcount ROI — not a demand oracle. Same instinct as the AI Value Model: a sensitivity instrument that shows which assumption the case rides on, never a number pretending to be certain.',
+    tag: 'shipped',
+    tagColor: 'green',
+  },
 ]
 
+// A dedicated page rather than a Home section: the reasoning behind the build is
+// for the reader who wants to go deeper, not a wall that interrupts the data
+// story on the way to the conversation.
 export default function BuildLog() {
+  useDocumentMeta({
+    title: 'Build Log | Sidney Gonzalez',
+    description:
+      'The reasoning behind every technical choice in these financial-intelligence systems — Pyodide, synthetic data, ML, and a smooth-scroll contract.',
+    canonical: `${SITE.url}/build-log`,
+  })
+
   return (
-    <Section id="build-log">
+    <Section id="build-log" className="pt-28 md:pt-32">
       <ScrollReveal>
-        <h2 className="font-display text-display-md font-semibold">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-text-muted">
           Build Log
-        </h2>
+        </p>
+        <h1 className="mt-4 font-display text-display-md font-semibold md:text-display-lg">
+          The reasoning behind every choice.
+        </h1>
         <p className="mt-4 max-w-2xl text-text-secondary">
-          The reasoning behind every technical choice. Each decision was made
-          to maximize signal for the person reviewing this portfolio.
+          Each decision was made to maximize signal for the person reviewing
+          this portfolio. No choice here is accidental — these are the
+          trade-offs, written down.
         </p>
       </ScrollReveal>
 
-      <div className="relative mt-10">
+      <div className="relative mt-12">
         {/* Timeline spine (desktop only) */}
         <div className="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-border-subtle md:block" />
 
@@ -96,17 +120,17 @@ export default function BuildLog() {
                 >
                   {/* Card side */}
                   <div className="md:w-1/2 md:px-6">
-                    <GlassPanel>
+                    <div className="rounded-2xl border border-border-subtle bg-bg-surface p-6">
                       <div className="mb-2 flex items-center justify-between">
-                        <h3 className="text-sm font-semibold text-text-primary">
+                        <h2 className="text-sm font-semibold text-text-primary">
                           {d.title}
-                        </h3>
+                        </h2>
                         <Badge color={d.tagColor}>{d.tag}</Badge>
                       </div>
                       <p className="text-xs leading-relaxed text-text-secondary">
                         {d.rationale}
                       </p>
-                    </GlassPanel>
+                    </div>
                   </div>
 
                   {/* Spacer side (desktop only) */}
@@ -117,6 +141,18 @@ export default function BuildLog() {
           })}
         </div>
       </div>
+
+      {/* Never a dead end — the decisions built systems; go see them, or talk. */}
+      <ScrollReveal delay={0.1}>
+        <div className="mt-14 flex flex-wrap items-center gap-4 border-t border-border-subtle pt-8">
+          <Link to="/#projects">
+            <Button>See the systems</Button>
+          </Link>
+          <Link to="/#contact">
+            <Button variant="secondary">Start a conversation</Button>
+          </Link>
+        </div>
+      </ScrollReveal>
     </Section>
   )
 }

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import Section from '@/components/layout/Section'
 import ScrollReveal from '@/components/animation/ScrollReveal'
 import NeuralFlowBackground from '@/components/animation/NeuralFlowBackground'
-import GlassPanel from '@/components/ui/GlassPanel'
 import Button from '@/components/ui/Button'
 import AiValueModel from '@/features/ai-value-model/AiValueModel'
 import useLenisScroll from '@/hooks/useLenisScroll'
@@ -40,7 +39,7 @@ const ESSAY = [
   },
 ]
 
-// The three finance systems, framed as what AI-first automates. Anchors land
+// The four finance systems, framed as what AI-first automates. Anchors land
 // back on the Home one-pager.
 const SYSTEMS = [
   {
@@ -60,6 +59,12 @@ const SYSTEMS = [
     role: 'Find the anomaly',
     blurb: 'Anomaly and variance detection — the vigilance an agent runs around the clock.',
     to: '/#variance-engine',
+  },
+  {
+    title: 'Order Book Forecaster',
+    role: 'Forecast the book',
+    blurb: 'Capacity scheduling and headcount ROI — the forward revenue an agent plans against.',
+    to: '/#order-book',
   },
 ]
 
@@ -102,7 +107,7 @@ export default function AiValueTest() {
               <motion.span
                 key={i}
                 className={`mr-[0.25em] inline-block ${
-                  word.startsWith('earned') ? 'text-gradient-purple' : ''
+                  word.startsWith('earned') ? 'text-accent-ink-purple' : ''
                 }`}
                 variants={v || wordReveal}
               >
@@ -173,33 +178,38 @@ export default function AiValueTest() {
           </h2>
           <p className="mt-3 max-w-2xl text-text-secondary">
             The value above isn&apos;t abstract — it accrues on top of systems
-            like these. Three live, Python-backed finance engines on the main
+            like these. Four live, Python-backed finance engines on the main
             site are exactly the work an AI-first layer is built to run.
           </p>
         </ScrollReveal>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
+        {/* A numbered sequence, not a marketing grid — these systems are a
+            pipeline (See → Model → Find → Forecast), and the list reads as one. */}
+        <div className="mt-10 border-t border-border-subtle">
           {SYSTEMS.map((s, i) => (
             <ScrollReveal key={s.title} delay={i * 0.08}>
               <Link
                 to={s.to}
-                className="group block h-full rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
+                className="group flex items-start gap-5 border-b border-border-subtle py-6 transition-colors hover:bg-bg-surface/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple/60 sm:gap-8"
               >
-                <GlassPanel className="h-full border border-accent-purple/20 transition-colors group-hover:border-accent-purple/50">
+                <span className="metric-value shrink-0 text-sm leading-7 tabular-nums text-text-muted">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <div className="flex-1">
                   <span className="text-xs font-semibold uppercase tracking-wider text-accent-ink-purple">
                     {s.role}
                   </span>
-                  <h3 className="mt-2 font-display text-display-sm font-semibold text-text-primary">
+                  <h3 className="mt-1 font-display text-display-sm font-semibold text-text-primary">
                     {s.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-text-secondary">
+                  <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-text-secondary">
                     {s.blurb}
                   </p>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent-ink-purple transition-transform group-hover:translate-x-0.5">
-                    See it live
-                    <span aria-hidden="true">&rarr;</span>
-                  </span>
-                </GlassPanel>
+                </div>
+                <span className="hidden shrink-0 items-center gap-1.5 self-center text-sm font-medium text-accent-ink-purple transition-transform group-hover:translate-x-0.5 sm:inline-flex">
+                  See it live
+                  <span aria-hidden="true">&rarr;</span>
+                </span>
               </Link>
             </ScrollReveal>
           ))}
@@ -209,7 +219,7 @@ export default function AiValueTest() {
       {/* 5 — Final CTA */}
       <Section id="ai-cta" className="relative overflow-hidden">
         <ScrollReveal>
-          <GlassPanel className="relative overflow-hidden border border-accent-purple/30 text-center">
+          <div className="relative overflow-hidden rounded-2xl border border-accent-purple/30 bg-bg-surface p-6 text-center">
             <div
               className="pointer-events-none absolute inset-0 -z-10 opacity-70"
               style={{
@@ -230,7 +240,7 @@ export default function AiValueTest() {
                 <Button>Start a conversation</Button>
               </Link>
             </div>
-          </GlassPanel>
+          </div>
         </ScrollReveal>
       </Section>
     </>

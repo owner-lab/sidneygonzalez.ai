@@ -27,7 +27,7 @@ export default function IdcCredibilityPanel() {
         {CREDIBILITY_STATS.map((s, i) => (
           <div key={i} className="flex flex-col gap-1.5">
             <span
-              className={`metric-value font-display text-2xl font-semibold leading-none tabular-nums ${
+              className={`metric-value text-2xl font-semibold leading-none tabular-nums ${
                 ACCENT_TEXT[s.accent] || 'text-text-primary'
               }`}
             >

@@ -4,7 +4,7 @@ import GroupedBarChart from '@/components/charts/GroupedBarChart'
 const ALL_KEYS = [
   { key: 'Enterprise Software', color: '#0068FF', label: 'Enterprise Software' },
   { key: 'Professional Services', color: '#4AF6C3', label: 'Professional Services' },
-  { key: 'Cloud Infrastructure', color: '#A78BFA', label: 'Cloud Infrastructure' },
+  { key: 'Cloud Infrastructure', color: '#D4A843', label: 'Cloud Infrastructure' },
 ]
 
 export default function DivisionalPnL({ data, selectedDivision, loading }) {

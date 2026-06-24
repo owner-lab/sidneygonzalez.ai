@@ -1,7 +1,10 @@
+import { Link } from 'react-router-dom'
 import Section from '@/components/layout/Section'
 import ScrollReveal from '@/components/animation/ScrollReveal'
 import Badge from '@/components/ui/Badge'
-import GlassPanel from '@/components/ui/GlassPanel'
+import Button from '@/components/ui/Button'
+import useDocumentMeta from '@/hooks/useDocumentMeta'
+import { SITE } from '@/config/constants'
 
 const STACK = [
   { label: 'Python', color: 'green' },
@@ -14,14 +17,29 @@ const STACK = [
   { label: 'Tailwind', color: 'blue' },
 ]
 
+// A dedicated page rather than a Home section: the homepage is the data story,
+// and "who built it" is context the reader chooses to open — never an
+// interruption between the work and the conversation.
 export default function About() {
+  useDocumentMeta({
+    title: 'About | Sidney Gonzalez',
+    description:
+      'Financial analyst building the intelligence layer between raw corporate data and executive decision-making.',
+    canonical: `${SITE.url}/about`,
+  })
+
   return (
-    <Section id="about">
+    <Section id="about" className="pt-28 md:pt-32">
       <ScrollReveal>
-        <h2 className="font-display text-display-md font-semibold">About</h2>
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-text-muted">
+          About
+        </p>
+        <h1 className="mt-4 max-w-3xl font-display text-display-md font-semibold md:text-display-lg">
+          I build the intelligence layer between data and the decision.
+        </h1>
       </ScrollReveal>
 
-      <div className="mt-8 grid gap-8 lg:grid-cols-5">
+      <div className="mt-10 grid gap-8 lg:grid-cols-5">
         <div className="lg:col-span-3">
           <ScrollReveal delay={0.1}>
             <p className="text-lg leading-relaxed text-text-secondary">
@@ -33,11 +51,11 @@ export default function About() {
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
             <p className="mt-4 text-text-secondary">
-              The three projects below are the proof of concept — real financial
-              logic, real data pipelines, real ML running live in your browser.
-              No backend, no mock data, no shortcuts. The same Python code you
-              see in the &ldquo;View Code&rdquo; tabs is executing right now via
-              Pyodide.
+              The projects on this site are the proof of concept — real
+              financial logic, real data pipelines, real ML running live in
+              your browser. No backend, no mock data, no shortcuts. The same
+              Python code you see in the &ldquo;View Code&rdquo; tabs is
+              executing right now via Pyodide.
             </p>
           </ScrollReveal>
           <ScrollReveal delay={0.3}>
@@ -51,10 +69,10 @@ export default function About() {
 
         <div className="lg:col-span-2">
           <ScrollReveal delay={0.2}>
-            <GlassPanel>
-              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-text-muted">
+            <div className="rounded-2xl border border-border-subtle bg-bg-surface p-6">
+              <h2 className="mb-3 text-xs font-semibold uppercase tracking-wider text-text-muted">
                 Built With
-              </h3>
+              </h2>
               <div className="flex flex-wrap gap-2">
                 {STACK.map((s) => (
                   <Badge key={s.label} color={s.color}>
@@ -67,10 +85,22 @@ export default function About() {
                 <p>Zero backend — the code IS the demo</p>
                 <p>Every number is defensible</p>
               </div>
-            </GlassPanel>
+            </div>
           </ScrollReveal>
         </div>
       </div>
+
+      {/* Never a dead end — funnel back to the work, with the reasoning one click away. */}
+      <ScrollReveal delay={0.2}>
+        <div className="mt-12 flex flex-wrap items-center gap-4 border-t border-border-subtle pt-8">
+          <Link to="/#projects">
+            <Button>See the systems</Button>
+          </Link>
+          <Link to="/build-log">
+            <Button variant="secondary">Read the build log</Button>
+          </Link>
+        </div>
+      </ScrollReveal>
     </Section>
   )
 }

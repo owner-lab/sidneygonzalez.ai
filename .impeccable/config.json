@@ -1,0 +1,38 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-color",
+        "value": "#d4a843",
+        "reason": "5th categorical chart color — non-semantic replacement for Signal-Rule-violating purple",
+        "createdAt": "2026-06-23T23:55:32.623Z"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "instrument sans",
+        "reason": "Phase 3 display typeface — replaces Space Grotesk per design audit",
+        "createdAt": "2026-06-24T00:05:53.443Z"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "ibm plex sans",
+        "reason": "Phase 3 body typeface — replaces Inter per design audit",
+        "createdAt": "2026-06-24T00:05:53.805Z"
+      },
+      {
+        "rule": "overused-font",
+        "value": "space grotesk",
+        "reason": "Retired — replaced by Instrument Sans in Phase 3; stale references in cached scans",
+        "createdAt": "2026-06-24T00:05:54.226Z"
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "reason": "Retired — replaced by IBM Plex Sans in Phase 3; stale references in cached scans",
+        "createdAt": "2026-06-24T00:05:54.665Z"
+      }
+    ]
+  }
+}

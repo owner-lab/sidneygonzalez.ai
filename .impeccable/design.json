@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-23T00:00:00Z",
+  "title": "Design System: sidneygonzalez.ai",
+  "extensions": {
+    "colorMeta": {
+      "action": {
+        "role": "primary",
+        "displayName": "System Blue",
+        "canonical": "#0068FF",
+        "tonalRamp": ["#001A70", "#002B9E", "#0042CC", "#0052CC", "#0068FF", "#4D94FF", "#99BBFF", "#CCE0FF"]
+      },
+      "positive": {
+        "role": "semantic-positive",
+        "displayName": "Terminal Green",
+        "canonical": "#4AF6C3",
+        "tonalRamp": ["#002D20", "#004D38", "#007A5A", "#0B7A5A", "#00C896", "#4AF6C3", "#A0FBE3", "#D5FFF3"]
+      },
+      "negative": {
+        "role": "semantic-negative",
+        "displayName": "Alert Red",
+        "canonical": "#FF433D",
+        "tonalRamp": ["#4A0505", "#7A0A0A", "#B01515", "#C81E1E", "#FF433D", "#FF6B66", "#FFA8A5", "#FFD9D8"]
+      },
+      "warning": {
+        "role": "semantic-warning",
+        "displayName": "Amber Warning",
+        "canonical": "#FB8B1E",
+        "tonalRamp": ["#3A1500", "#622300", "#9E5400", "#C46800", "#FB8B1E", "#FCA84E", "#FDD09A", "#FEE8CC"]
+      },
+      "intelligence": {
+        "role": "tertiary",
+        "displayName": "Intelligence Purple",
+        "canonical": "#A78BFA",
+        "tonalRamp": ["#1A0050", "#2D0080", "#5230B0", "#6A45C7", "#8B68F0", "#A78BFA", "#C8B5FC", "#E5DCFE"]
+      },
+      "chart-gold": {
+        "role": "categorical-chart",
+        "displayName": "Chart Gold",
+        "canonical": "#D4A843",
+        "tonalRamp": ["#3A2600", "#5E3F00", "#8A6000", "#B07B00", "#D4A843", "#DFC070", "#EDD9A3", "#F6EDD4"]
+      },
+      "void": {
+        "role": "neutral-bg-dark",
+        "displayName": "Void",
+        "canonical": "#0A0A0F",
+        "tonalRamp": ["#000002", "#020204", "#050508", "#0A0A0F", "#141419", "#1E1E27", "#2C2C38", "#3D3D4F"]
+      },
+      "white": {
+        "role": "neutral-bg-light",
+        "displayName": "Pure White",
+        "canonical": "#FFFFFF",
+        "tonalRamp": ["#E2E8F0", "#EDF2F7", "#F1F5F9", "#F8FAFC", "#FAFCFE", "#FCFDFF", "#FEFEFF", "#FFFFFF"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headings and primary section titles. Maximum visual authority." },
+      "headline": { "displayName": "Headline", "purpose": "Project names, panel titles, card headings." },
+      "title": { "displayName": "Title", "purpose": "Sub-headers within sections and panels." },
+      "body": { "displayName": "Body", "purpose": "All prose. Cap at 65–75ch." },
+      "label": { "displayName": "Label", "purpose": "Metric labels, chart axis labels, badge text. The only place letter-spacing opens up." },
+      "mono": { "displayName": "Mono / Data", "purpose": "All financial figures, code snippets, pipeline views. Always with tabular-nums." }
+    },
+    "shadows": [
+      { "name": "glass-ambient-light", "value": "0 8px 32px rgba(0,0,0,0.08)", "purpose": "Diffuse lift under glass panels in light mode." },
+      { "name": "glass-ambient-dark", "value": "0 8px 32px rgba(0,0,0,0.3)", "purpose": "Stronger ambient separation in dark mode." },
+      { "name": "button-lift", "value": "0 4px 16px rgba(0,104,255,0.25)", "purpose": "Focused drop shadow on primary CTA buttons in the button's hue." },
+      { "name": "cta-card-glow", "value": "0 18px 50px -18px rgb(167 139 250 / 0.5)", "purpose": "Purple halo under AI Value Model entry card on hover." },
+      { "name": "cta-btn-glow", "value": "0 0 22px -8px rgb(167 139 250 / 0.5)", "purpose": "Ambient glow on the AI CTA button at rest." },
+      { "name": "cta-btn-glow-hover", "value": "0 12px 32px -6px rgb(167 139 250 / 0.68)", "purpose": "Elevated purple glow on AI CTA button hover." }
+    ],
+    "motion": [
+      { "name": "ease-out-expo", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Default easing for all state transitions and entrance animations." },
+      { "name": "duration-fast", "value": "200ms", "purpose": "Button and hover state feedback." },
+      { "name": "duration-normal", "value": "500ms", "purpose": "Standard reveal and transition duration." },
+      { "name": "duration-slow", "value": "800ms", "purpose": "Longer reveals and orchestrated sequences." }
+    ],
+    "breakpoints": [
+      { "name": "xs", "value": "375px" },
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "2xl", "value": "1920px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The only CTA that commands. Blue fill, white text, focused shadow in the button's hue.",
+      "html": "<button class=\"ds-btn-primary\">View Project</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; background: #0068FF; color: #fff; font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; padding: 10px 20px; border: none; border-radius: 0.5rem; box-shadow: 0 4px 16px rgba(0,104,255,0.25); cursor: pointer; transition: background 200ms ease-out, box-shadow 200ms ease-out; } .ds-btn-primary:hover { background: rgba(0,104,255,0.9); } .ds-btn-primary:focus-visible { outline: 2px solid rgba(0,104,255,0.5); outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Bordered, transparent. Supporting actions alongside primary.",
+      "html": "<button class=\"ds-btn-secondary\">View Code</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; background: transparent; color: #E2E8F0; font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; padding: 10px 20px; border: 1px solid rgba(255,255,255,0.08); border-radius: 0.5rem; cursor: pointer; transition: background 200ms ease-out, border-color 200ms ease-out; } .ds-btn-secondary:hover { background: rgba(30,30,46,1); } .ds-btn-secondary:focus-visible { outline: 2px solid rgba(0,104,255,0.5); outline-offset: 2px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Low-hierarchy action. Subtle border, secondary text color at rest.",
+      "html": "<button class=\"ds-btn-ghost\">Learn More</button>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; justify-content: center; background: rgba(30,30,46,0.6); color: #94A3B8; font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; padding: 10px 20px; border: 1px solid rgba(255,255,255,0.08); border-radius: 0.5rem; cursor: pointer; transition: background 200ms ease-out, color 200ms ease-out; } .ds-btn-ghost:hover { background: rgba(37,37,56,1); color: #E2E8F0; } .ds-btn-ghost:focus-visible { outline: 2px solid rgba(0,104,255,0.5); outline-offset: 2px; }"
+    },
+    {
+      "name": "Badge — Action Blue",
+      "kind": "chip",
+      "refersTo": "badge-blue",
+      "description": "Semantic tag for tech/action context. Tinted background, ink text, hairline border.",
+      "html": "<span class=\"ds-badge-blue\">Financial Intelligence</span>",
+      "css": ".ds-badge-blue { display: inline-flex; align-items: center; background: rgba(0,104,255,0.1); color: #4D94FF; border: 1px solid rgba(0,104,255,0.2); border-radius: 9999px; font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 0.75rem; font-weight: 500; padding: 4px 12px; }"
+    },
+    {
+      "name": "Badge — Positive Green",
+      "kind": "chip",
+      "refersTo": "badge-green",
+      "description": "Positive/live status indicator.",
+      "html": "<span class=\"ds-badge-green\">Live Python</span>",
+      "css": ".ds-badge-green { display: inline-flex; align-items: center; background: rgba(74,246,195,0.1); color: #4AF6C3; border: 1px solid rgba(74,246,195,0.2); border-radius: 9999px; font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 0.75rem; font-weight: 500; padding: 4px 12px; }"
+    },
+    {
+      "name": "Glass Panel",
+      "kind": "card",
+      "refersTo": "glass-panel",
+      "description": "Signature data container. Frosted glass, used exclusively on dashboards and overlays.",
+      "html": "<div class=\"ds-glass-panel\"><span class=\"ds-glass-label\">Panel Label</span></div>",
+      "css": ".ds-glass-panel { background: rgba(17,17,24,0.6); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); border-radius: 1rem; padding: 1.5rem; transition: background 300ms, border-color 300ms, box-shadow 300ms; } .ds-glass-label { color: #E2E8F0; font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 1rem; }"
+    },
+    {
+      "name": "Metric Card",
+      "kind": "custom",
+      "refersTo": "glass-panel",
+      "description": "KPI display unit built on Glass Panel. Label → mono value → impact change indicator. Tabular-nums always.",
+      "html": "<div class=\"ds-metric-card\"><span class=\"ds-metric-label\">Revenue YTD</span><span class=\"ds-metric-value\">$2,847,392</span><span class=\"ds-metric-change ds-metric-positive\">▲ +12.4%</span></div>",
+      "css": ".ds-metric-card { background: rgba(17,17,24,0.6); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); border-radius: 1rem; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.25rem; } .ds-metric-label { font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: #828FA6; } .ds-metric-value { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; font-size: 1.5rem; font-weight: 600; color: #E2E8F0; line-height: 1.2; } .ds-metric-change { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; font-size: 0.875rem; } .ds-metric-positive { color: #4AF6C3; } .ds-metric-negative { color: #FF6B66; } .ds-metric-neutral { color: #828FA6; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Precision Instrument",
+    "overview": "A visual system built for people who work with numbers for a living. Every element is machined to exact tolerances — not styled. The interface doesn't try to impress; it communicates. A CIO landing on this portfolio should feel the same way they feel when they open a Bloomberg terminal: orientation in seconds, depth on demand, no time wasted.\n\nThe system is dual-theme: dark mode is the primary brand surface (deep navy-blacks that frame financial data with authority), with a light mode that is equally rigorous — clean whites, carefully checked contrast, the same structural discipline in a different register.\n\nWhat this system explicitly rejects: the over-designed agency site where motion and WebGL replace substance; the generic AI portfolio with purple gradients and hero-metric cards; the startup SaaS landing with its warm neutrals and evenly-distributed pastel grid.",
+    "keyCharacteristics": [
+      "Flat structural surfaces with glass reserved for data containers",
+      "Semantic color: every accent means something specific and nothing else",
+      "Two-voice typography: Instrument Sans commands, IBM Plex Sans serves",
+      "Financial-grade numeric rendering with JetBrains Mono + tabular-nums",
+      "Reduced-motion compliant; every animation degrades to a static equivalent",
+      "WCAG AA minimum across all surfaces and themes"
+    ],
+    "rules": [
+      { "name": "The Signal Rule", "body": "Each accent color carries exactly one semantic meaning: blue for interaction, green for positive financial outcomes, red for negative, orange for warnings, purple for AI/intelligence. Never decorative. Chart series needing a 5th categorical use chart-gold (#D4A843) — the only non-semantic color permitted in the palette.", "section": "colors" },
+      { "name": "The Ink/Fill Split Rule", "body": "Bright fills (#0068FF, #4AF6C3, etc.) are for backgrounds and borders. Text uses the ink variant (#0052CC light / #4D94FF dark). The fill colors fail WCAG AA as text on white — the ink variants don't.", "section": "colors" },
+      { "name": "The Two Voices Rule", "body": "Instrument Sans is for headings, metric values, and navigation. IBM Plex Sans is for body copy, descriptions, and helper text. Neither appears in the other's role.", "section": "typography" },
+      { "name": "The Tabular Precision Rule", "body": "Every financial figure — currency, percentage, ratio — renders in JetBrains Mono with font-variant-numeric: tabular-nums. No exceptions.", "section": "typography" },
+      { "name": "The Glass Earns It Rule", "body": "Glass panels appear on data containers and overlaying elements (navbar on scroll, modals). The page background and structural layout sections are flat — no glass.", "section": "elevation" },
+      { "name": "The State-Only Shadow Rule", "body": "Standard flat surfaces have no shadow at rest. Shadows appear on hover and on glass panels. Never as decoration on a resting card.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do render every financial figure in JetBrains Mono with font-variant-numeric: tabular-nums",
+      "Do use accent fill colors only for backgrounds and borders; switch to ink variant for text",
+      "Do verify WCAG AA contrast for any text on a tinted or dark background",
+      "Do add data-lenis-prevent to every scrollable container",
+      "Do use glass panels exclusively on data containers and overlays",
+      "Do write negative financial values in red parentheses — accounting notation",
+      "Do restrict intelligence purple to AI-adjacent features only",
+      "Do cap display heading letter-spacing at -0.02em",
+      "Do use text-wrap: balance on h1–h3",
+      "Do provide a @media (prefers-reduced-motion: reduce) fallback for every animation"
+    ],
+    "donts": [
+      "Don't use gradient text (background-clip: text with a gradient)",
+      "Don't add motion for atmosphere — motion earns its place by serving meaning",
+      "Don't use glass panels on marketing sections or hero backgrounds",
+      "Don't use cursor effects, WebGL backgrounds, or scroll-jacking beyond Lenis",
+      "Don't use purple for anything other than AI/intelligence features",
+      "Don't use border-left greater than 1px as a colored accent stripe on cards",
+      "Don't nest glass panels inside glass panels",
+      "Don't use border-radius greater than 1rem on cards or panels",
+      "Don't deploy the hero-metric template as a portfolio layout pattern",
+      "Don't use identical card grids — vary layout, density, and visual weight"
+    ]
+  }
+}

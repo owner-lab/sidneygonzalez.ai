@@ -2,7 +2,6 @@ import { lazy, Suspense, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Section from '@/components/layout/Section'
 import ScrollReveal from '@/components/animation/ScrollReveal'
-import GlassPanel from '@/components/ui/GlassPanel'
 import PyodideStatus from '@/components/ui/PyodideStatus'
 import LoadingSpinner from '@/components/ui/LoadingSpinner'
 import PyodideFallback from '@/components/ui/PyodideFallback'
@@ -18,6 +17,9 @@ const DecisionImpactProject = lazy(
 )
 const VarianceEngineProject = lazy(
   () => import('@/projects/variance-engine/VarianceEngineProject')
+)
+const OrderBookProject = lazy(
+  () => import('@/projects/order-book/OrderBookProject')
 )
 
 function ProjectFallback({ title }) {
@@ -60,6 +62,13 @@ const STACK_ITEMS = [
     color: 'text-accent-ink-red',
     border: 'border-accent-red/30',
   },
+  {
+    number: '04',
+    title: 'Order Book Forecaster',
+    subtitle: 'Forecast the book',
+    color: 'text-accent-ink-orange',
+    border: 'border-accent-orange/30',
+  },
 ]
 
 export default function Projects() {
@@ -72,6 +81,7 @@ export default function Projects() {
       import('@/projects/command-center/CommandCenterProject')
       import('@/projects/decision-impact/DecisionImpactProject')
       import('@/projects/variance-engine/VarianceEngineProject')
+      import('@/projects/order-book/OrderBookProject')
     }
     if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
       const id = window.requestIdleCallback(preload, { timeout: 2000 })
@@ -116,11 +126,11 @@ export default function Projects() {
           <p className="mb-4 text-center text-xs font-semibold uppercase tracking-widest text-text-muted">
             Corporate Intelligence Stack
           </p>
-          <div className="grid gap-3 sm:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {STACK_ITEMS.map((item) => (
-              <GlassPanel
+              <div
                 key={item.number}
-                className={`border ${item.border} text-center`}
+                className={`rounded-2xl border ${item.border} bg-bg-surface p-6 text-center`}
               >
                 <span className={`text-xs font-bold ${item.color}`}>
                   {item.number}
@@ -131,14 +141,14 @@ export default function Projects() {
                 <p className="mt-0.5 text-xs text-text-muted">
                   {item.subtitle}
                 </p>
-              </GlassPanel>
+              </div>
             ))}
           </div>
-          {/* Connectors (desktop only) */}
-          <div className="mt-3 hidden items-center sm:flex">
-            <div className="h-px flex-1 bg-gradient-to-r from-accent-blue/40 to-accent-green/40" />
+          {/* Connectors (desktop only) — See → Model → Find → Forecast */}
+          <div className="mt-3 hidden items-center lg:flex">
+            <div className="h-px flex-1 bg-text-muted/30" />
             <span className="mx-3 text-[10px] text-text-muted">data flows →</span>
-            <div className="h-px flex-1 bg-gradient-to-r from-accent-green/40 to-accent-red/40" />
+            <div className="h-px flex-1 bg-text-muted/30" />
           </div>
         </div>
       </ScrollReveal>
@@ -158,14 +168,19 @@ export default function Projects() {
         <VarianceEngineProject />
       </Suspense>
 
-      {/* Bridge to the dedicated AI page — the three systems above are what
-          AI-first automates; /ai puts a price on automating them. */}
+      {/* Project 4: Order Book Forecaster — capacity & headcount investment */}
+      <Suspense fallback={<ProjectFallback title="Order Book Forecaster" />}>
+        <OrderBookProject />
+      </Suspense>
+
+      {/* Bridge to the dedicated AI page — these systems are what AI-first
+          automates; /ai puts a price on automating them. */}
       <ScrollReveal>
         <Link
           to="/ai"
           className="group mt-16 block rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
         >
-          <GlassPanel className="cta-card relative overflow-hidden border border-accent-purple/30 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-accent-purple/70">
+          <div className="cta-card relative overflow-hidden rounded-2xl border border-accent-purple/30 bg-bg-surface p-6 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-accent-purple/70">
             {/* Ambient luminous glow — top-right, gently breathing to draw the eye */}
             <div
               className="cta-glow-breathe pointer-events-none absolute inset-0 -z-10"
@@ -175,41 +190,27 @@ export default function Projects() {
               }}
               aria-hidden="true"
             />
-            {/* Second glow — bottom-left, blooms in on hover for depth */}
-            <div
-              className="pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-              style={{
-                background:
-                  'radial-gradient(90% 120% at 0% 100%, rgb(var(--cta-glow) / var(--cta-glow-soft)), transparent 55%)',
-              }}
-              aria-hidden="true"
-            />
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div className="max-w-2xl">
                 <span className="inline-flex items-center text-xs font-semibold uppercase tracking-widest text-accent-ink-purple">
-                  {/* Live "ping" indicator — signals the model on /ai is running */}
-                  <span className="relative mr-2.5 inline-flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-purple opacity-60" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-purple" />
-                  </span>
                   Dedicated page · The AI Value Test
                 </span>
                 <h3 className="mt-2 font-display text-display-sm font-semibold text-text-primary">
                   Prove the ROI on your AI investment.
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-text-secondary">
-                  These three systems are what AI-first automates. The AI Value
-                  Test is where the economics get decided — a manifesto plus a
-                  live, risk-adjusted ROI model on IDC&apos;s 2026 framework.
+                  These systems are what AI-first automates. The AI Value Test is
+                  where the economics get decided — a manifesto plus a live,
+                  risk-adjusted ROI model on IDC&apos;s 2026 framework.
                 </p>
               </div>
 
-              {/* Showpiece CTA — fills with a purple→blue gradient, glows,
-                  shimmers, and the arrow beckons on hover. */}
+              {/* Conversion CTA — a single solid purple fill on hover (AI = purple),
+                  plus the spec-sanctioned one-shot shimmer + breathe glow. */}
               <span className="cta-btn relative inline-flex shrink-0 items-center gap-2 self-start overflow-hidden rounded-full border border-accent-purple/40 px-5 py-2.5 text-sm font-semibold text-accent-ink-purple transition-all duration-300 group-hover:scale-[1.04] group-hover:border-transparent group-hover:text-white sm:self-center">
-                {/* Gradient fill — fades in on hover */}
+                {/* Solid purple fill — fades in on hover (one semantic color) */}
                 <span
-                  className="absolute inset-0 rounded-full bg-gradient-to-r from-[#6A45C7] via-[#5B4FD6] to-[#0057E0] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  className="absolute inset-0 rounded-full bg-accent-purple opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                   aria-hidden="true"
                 />
                 {/* Light sweep — plays once per hover */}
@@ -223,7 +224,7 @@ export default function Projects() {
                 </span>
               </span>
             </div>
-          </GlassPanel>
+          </div>
         </Link>
       </ScrollReveal>
     </Section>
