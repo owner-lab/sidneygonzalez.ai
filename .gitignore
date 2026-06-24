@@ -36,5 +36,11 @@ venv/
 # Data generation intermediate files
 data-generation/**/output/
 
+# Impeccable design skill — local dev tooling only (the PostToolUse hook reads
+# from .claude/skills/impeccable). Vendored bundles aren't app code and tripped
+# `eslint .` in CI; keep them on disk, out of version control.
+.claude/skills/
+.github/skills/
+
 # Cache
 .cache
