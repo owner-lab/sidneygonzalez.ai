@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-06-16T00:00:00Z",
+  "generatedAt": "2026-06-23T00:00:00Z",
   "title": "Design System: sidneygonzalez.ai",
   "extensions": {
     "colorMeta": {
@@ -33,6 +33,12 @@
         "displayName": "Intelligence Purple",
         "canonical": "#A78BFA",
         "tonalRamp": ["#1A0050", "#2D0080", "#5230B0", "#6A45C7", "#8B68F0", "#A78BFA", "#C8B5FC", "#E5DCFE"]
+      },
+      "chart-gold": {
+        "role": "categorical-chart",
+        "displayName": "Chart Gold",
+        "canonical": "#D4A843",
+        "tonalRamp": ["#3A2600", "#5E3F00", "#8A6000", "#B07B00", "#D4A843", "#DFC070", "#EDD9A3", "#F6EDD4"]
       },
       "void": {
         "role": "neutral-bg-dark",
@@ -85,7 +91,7 @@
       "refersTo": "button-primary",
       "description": "The only CTA that commands. Blue fill, white text, focused shadow in the button's hue.",
       "html": "<button class=\"ds-btn-primary\">View Project</button>",
-      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; background: #0068FF; color: #fff; font-family: 'Inter', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; padding: 10px 20px; border: none; border-radius: 0.5rem; box-shadow: 0 4px 16px rgba(0,104,255,0.25); cursor: pointer; transition: background 200ms ease-out, box-shadow 200ms ease-out; } .ds-btn-primary:hover { background: rgba(0,104,255,0.9); } .ds-btn-primary:focus-visible { outline: 2px solid rgba(0,104,255,0.5); outline-offset: 2px; }"
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; background: #0068FF; color: #fff; font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; padding: 10px 20px; border: none; border-radius: 0.5rem; box-shadow: 0 4px 16px rgba(0,104,255,0.25); cursor: pointer; transition: background 200ms ease-out, box-shadow 200ms ease-out; } .ds-btn-primary:hover { background: rgba(0,104,255,0.9); } .ds-btn-primary:focus-visible { outline: 2px solid rgba(0,104,255,0.5); outline-offset: 2px; }"
     },
     {
       "name": "Secondary Button",
@@ -93,7 +99,7 @@
       "refersTo": "button-secondary",
       "description": "Bordered, transparent. Supporting actions alongside primary.",
       "html": "<button class=\"ds-btn-secondary\">View Code</button>",
-      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; background: transparent; color: #E2E8F0; font-family: 'Inter', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; padding: 10px 20px; border: 1px solid rgba(255,255,255,0.08); border-radius: 0.5rem; cursor: pointer; transition: background 200ms ease-out, border-color 200ms ease-out; } .ds-btn-secondary:hover { background: rgba(30,30,46,1); } .ds-btn-secondary:focus-visible { outline: 2px solid rgba(0,104,255,0.5); outline-offset: 2px; }"
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; background: transparent; color: #E2E8F0; font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; padding: 10px 20px; border: 1px solid rgba(255,255,255,0.08); border-radius: 0.5rem; cursor: pointer; transition: background 200ms ease-out, border-color 200ms ease-out; } .ds-btn-secondary:hover { background: rgba(30,30,46,1); } .ds-btn-secondary:focus-visible { outline: 2px solid rgba(0,104,255,0.5); outline-offset: 2px; }"
     },
     {
       "name": "Ghost Button",
@@ -101,7 +107,7 @@
       "refersTo": "button-ghost",
       "description": "Low-hierarchy action. Subtle border, secondary text color at rest.",
       "html": "<button class=\"ds-btn-ghost\">Learn More</button>",
-      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; justify-content: center; background: rgba(30,30,46,0.6); color: #94A3B8; font-family: 'Inter', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; padding: 10px 20px; border: 1px solid rgba(255,255,255,0.08); border-radius: 0.5rem; cursor: pointer; transition: background 200ms ease-out, color 200ms ease-out; } .ds-btn-ghost:hover { background: rgba(37,37,56,1); color: #E2E8F0; } .ds-btn-ghost:focus-visible { outline: 2px solid rgba(0,104,255,0.5); outline-offset: 2px; }"
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; justify-content: center; background: rgba(30,30,46,0.6); color: #94A3B8; font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; padding: 10px 20px; border: 1px solid rgba(255,255,255,0.08); border-radius: 0.5rem; cursor: pointer; transition: background 200ms ease-out, color 200ms ease-out; } .ds-btn-ghost:hover { background: rgba(37,37,56,1); color: #E2E8F0; } .ds-btn-ghost:focus-visible { outline: 2px solid rgba(0,104,255,0.5); outline-offset: 2px; }"
     },
     {
       "name": "Badge — Action Blue",
@@ -109,7 +115,7 @@
       "refersTo": "badge-blue",
       "description": "Semantic tag for tech/action context. Tinted background, ink text, hairline border.",
       "html": "<span class=\"ds-badge-blue\">Financial Intelligence</span>",
-      "css": ".ds-badge-blue { display: inline-flex; align-items: center; background: rgba(0,104,255,0.1); color: #4D94FF; border: 1px solid rgba(0,104,255,0.2); border-radius: 9999px; font-family: 'Inter', system-ui, sans-serif; font-size: 0.75rem; font-weight: 500; padding: 4px 12px; }"
+      "css": ".ds-badge-blue { display: inline-flex; align-items: center; background: rgba(0,104,255,0.1); color: #4D94FF; border: 1px solid rgba(0,104,255,0.2); border-radius: 9999px; font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 0.75rem; font-weight: 500; padding: 4px 12px; }"
     },
     {
       "name": "Badge — Positive Green",
@@ -117,7 +123,7 @@
       "refersTo": "badge-green",
       "description": "Positive/live status indicator.",
       "html": "<span class=\"ds-badge-green\">Live Python</span>",
-      "css": ".ds-badge-green { display: inline-flex; align-items: center; background: rgba(74,246,195,0.1); color: #4AF6C3; border: 1px solid rgba(74,246,195,0.2); border-radius: 9999px; font-family: 'Inter', system-ui, sans-serif; font-size: 0.75rem; font-weight: 500; padding: 4px 12px; }"
+      "css": ".ds-badge-green { display: inline-flex; align-items: center; background: rgba(74,246,195,0.1); color: #4AF6C3; border: 1px solid rgba(74,246,195,0.2); border-radius: 9999px; font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 0.75rem; font-weight: 500; padding: 4px 12px; }"
     },
     {
       "name": "Glass Panel",
@@ -125,7 +131,7 @@
       "refersTo": "glass-panel",
       "description": "Signature data container. Frosted glass, used exclusively on dashboards and overlays.",
       "html": "<div class=\"ds-glass-panel\"><span class=\"ds-glass-label\">Panel Label</span></div>",
-      "css": ".ds-glass-panel { background: rgba(17,17,24,0.6); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); border-radius: 1rem; padding: 1.5rem; transition: background 300ms, border-color 300ms, box-shadow 300ms; } .ds-glass-label { color: #E2E8F0; font-family: 'Inter', system-ui, sans-serif; font-size: 1rem; }"
+      "css": ".ds-glass-panel { background: rgba(17,17,24,0.6); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); border-radius: 1rem; padding: 1.5rem; transition: background 300ms, border-color 300ms, box-shadow 300ms; } .ds-glass-label { color: #E2E8F0; font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 1rem; }"
     },
     {
       "name": "Metric Card",
@@ -133,7 +139,7 @@
       "refersTo": "glass-panel",
       "description": "KPI display unit built on Glass Panel. Label → mono value → impact change indicator. Tabular-nums always.",
       "html": "<div class=\"ds-metric-card\"><span class=\"ds-metric-label\">Revenue YTD</span><span class=\"ds-metric-value\">$2,847,392</span><span class=\"ds-metric-change ds-metric-positive\">▲ +12.4%</span></div>",
-      "css": ".ds-metric-card { background: rgba(17,17,24,0.6); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); border-radius: 1rem; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.25rem; } .ds-metric-label { font-family: 'Inter', system-ui, sans-serif; font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: #828FA6; } .ds-metric-value { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; font-size: 1.5rem; font-weight: 600; color: #E2E8F0; line-height: 1.2; } .ds-metric-change { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; font-size: 0.875rem; } .ds-metric-positive { color: #4AF6C3; } .ds-metric-negative { color: #FF6B66; } .ds-metric-neutral { color: #828FA6; }"
+      "css": ".ds-metric-card { background: rgba(17,17,24,0.6); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); border-radius: 1rem; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.25rem; } .ds-metric-label { font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: #828FA6; } .ds-metric-value { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; font-size: 1.5rem; font-weight: 600; color: #E2E8F0; line-height: 1.2; } .ds-metric-change { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; font-size: 0.875rem; } .ds-metric-positive { color: #4AF6C3; } .ds-metric-negative { color: #FF6B66; } .ds-metric-neutral { color: #828FA6; }"
     }
   ],
   "narrative": {
@@ -142,15 +148,15 @@
     "keyCharacteristics": [
       "Flat structural surfaces with glass reserved for data containers",
       "Semantic color: every accent means something specific and nothing else",
-      "Two-voice typography: Space Grotesk commands, Inter serves",
+      "Two-voice typography: Instrument Sans commands, IBM Plex Sans serves",
       "Financial-grade numeric rendering with JetBrains Mono + tabular-nums",
       "Reduced-motion compliant; every animation degrades to a static equivalent",
       "WCAG AA minimum across all surfaces and themes"
     ],
     "rules": [
-      { "name": "The Signal Rule", "body": "Each accent color carries exactly one semantic meaning: blue for interaction, green for positive financial outcomes, red for negative, orange for warnings, purple for AI/intelligence. Never decorative.", "section": "colors" },
+      { "name": "The Signal Rule", "body": "Each accent color carries exactly one semantic meaning: blue for interaction, green for positive financial outcomes, red for negative, orange for warnings, purple for AI/intelligence. Never decorative. Chart series needing a 5th categorical use chart-gold (#D4A843) — the only non-semantic color permitted in the palette.", "section": "colors" },
       { "name": "The Ink/Fill Split Rule", "body": "Bright fills (#0068FF, #4AF6C3, etc.) are for backgrounds and borders. Text uses the ink variant (#0052CC light / #4D94FF dark). The fill colors fail WCAG AA as text on white — the ink variants don't.", "section": "colors" },
-      { "name": "The Two Voices Rule", "body": "Space Grotesk is for headings, metric values, and navigation. Inter is for body copy, descriptions, and helper text. Neither appears in the other's role.", "section": "typography" },
+      { "name": "The Two Voices Rule", "body": "Instrument Sans is for headings, metric values, and navigation. IBM Plex Sans is for body copy, descriptions, and helper text. Neither appears in the other's role.", "section": "typography" },
       { "name": "The Tabular Precision Rule", "body": "Every financial figure — currency, percentage, ratio — renders in JetBrains Mono with font-variant-numeric: tabular-nums. No exceptions.", "section": "typography" },
       { "name": "The Glass Earns It Rule", "body": "Glass panels appear on data containers and overlaying elements (navbar on scroll, modals). The page background and structural layout sections are flat — no glass.", "section": "elevation" },
       { "name": "The State-Only Shadow Rule", "body": "Standard flat surfaces have no shadow at rest. Shadows appear on hover and on glass panels. Never as decoration on a resting card.", "section": "elevation" }

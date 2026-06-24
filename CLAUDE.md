@@ -27,7 +27,7 @@ Single-page React portfolio at sidneygonzalez.ai demonstrating financial intelli
 
 - React 18 (Vite + SWC) / Tailwind CSS 3.x / Motion v12
 - Lenis smooth scroll / Recharts + Nivo / KaTeX / Pyodide in Web Worker
-- Fonts: Space Grotesk (display), Inter (body), JetBrains Mono (code/data)
+- Fonts: Instrument Sans (display), IBM Plex Sans (body), JetBrains Mono (code/data)
 - Deployed to Cloudflare Pages
 
 ## Design Tokens
