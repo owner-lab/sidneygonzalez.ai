@@ -63,6 +63,13 @@ const DECISIONS = [
     tag: 'shipped',
     tagColor: 'green',
   },
+  {
+    title: 'Why the Order Book Forecaster Models Capacity, Not Demand',
+    rationale:
+      'Forecasting demand order-by-order is a fight you lose in front of a CFO, so the model doesn\'t try. It treats the existing backlog as forward revenue and asks a narrower, defensible question: when one project slips, the queue behind it cascades, and freed capacity refills at the book\'s blended margin. The output is a capacity-slot queue and a present-valued headcount ROI — not a demand oracle. Same instinct as the AI Value Model: a sensitivity instrument that shows which assumption the case rides on, never a number pretending to be certain.',
+    tag: 'shipped',
+    tagColor: 'green',
+  },
 ]
 
 // A dedicated page rather than a Home section: the reasoning behind the build is

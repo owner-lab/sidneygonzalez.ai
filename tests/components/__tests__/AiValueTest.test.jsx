@@ -35,11 +35,12 @@ describe('AiValueTest page', () => {
     expect(screen.getByText('Risk-adjusted ROI')).toBeInTheDocument()
   })
 
-  it('links back to the three Home systems and funnels to Contact', () => {
+  it('links back to the four Home systems and funnels to Contact', () => {
     const { container } = renderPage()
     expect(container.querySelector('a[href="/#command-center"]')).toBeTruthy()
     expect(container.querySelector('a[href="/#decision-impact"]')).toBeTruthy()
     expect(container.querySelector('a[href="/#variance-engine"]')).toBeTruthy()
+    expect(container.querySelector('a[href="/#order-book"]')).toBeTruthy()
     expect(container.querySelector('a[href="/#contact"]')).toBeTruthy()
   })
 })

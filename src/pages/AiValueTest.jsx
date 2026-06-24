@@ -39,7 +39,7 @@ const ESSAY = [
   },
 ]
 
-// The three finance systems, framed as what AI-first automates. Anchors land
+// The four finance systems, framed as what AI-first automates. Anchors land
 // back on the Home one-pager.
 const SYSTEMS = [
   {
@@ -59,6 +59,12 @@ const SYSTEMS = [
     role: 'Find the anomaly',
     blurb: 'Anomaly and variance detection — the vigilance an agent runs around the clock.',
     to: '/#variance-engine',
+  },
+  {
+    title: 'Order Book Forecaster',
+    role: 'Forecast the book',
+    blurb: 'Capacity scheduling and headcount ROI — the forward revenue an agent plans against.',
+    to: '/#order-book',
   },
 ]
 
@@ -172,13 +178,13 @@ export default function AiValueTest() {
           </h2>
           <p className="mt-3 max-w-2xl text-text-secondary">
             The value above isn&apos;t abstract — it accrues on top of systems
-            like these. Three live, Python-backed finance engines on the main
+            like these. Four live, Python-backed finance engines on the main
             site are exactly the work an AI-first layer is built to run.
           </p>
         </ScrollReveal>
 
-        {/* A numbered sequence, not a 3-up marketing grid — these systems are a
-            pipeline (See → Model → Find), and the list reads as one. */}
+        {/* A numbered sequence, not a marketing grid — these systems are a
+            pipeline (See → Model → Find → Forecast), and the list reads as one. */}
         <div className="mt-10 border-t border-border-subtle">
           {SYSTEMS.map((s, i) => (
             <ScrollReveal key={s.title} delay={i * 0.08}>
