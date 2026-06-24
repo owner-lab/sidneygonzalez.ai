@@ -118,7 +118,7 @@
 
   html {
     @apply bg-bg-primary text-text-primary antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
     transition: background-color 0.3s, color 0.3s;
   }
 

@@ -38,31 +38,31 @@ colors:
   intelligence-ink-dark: "#A78BFA"
 typography:
   display:
-    fontFamily: '"Space Grotesk", system-ui, sans-serif'
+    fontFamily: '"Instrument Sans", system-ui, sans-serif'
     fontSize: "clamp(2.5rem, 7vw, 4.5rem)"
     fontWeight: 600
     lineHeight: 1.1
     letterSpacing: "-0.02em"
   headline:
-    fontFamily: '"Space Grotesk", system-ui, sans-serif'
+    fontFamily: '"Instrument Sans", system-ui, sans-serif'
     fontSize: "1.875rem"
     fontWeight: 600
     lineHeight: 1.3
     letterSpacing: "-0.01em"
   title:
-    fontFamily: '"Space Grotesk", system-ui, sans-serif'
+    fontFamily: '"Instrument Sans", system-ui, sans-serif'
     fontSize: "1.25rem"
     fontWeight: 500
     lineHeight: 1.4
     letterSpacing: "0"
   body:
-    fontFamily: '"Inter", system-ui, sans-serif'
+    fontFamily: '"IBM Plex Sans", system-ui, sans-serif'
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.625
     letterSpacing: "0"
   label:
-    fontFamily: '"Inter", system-ui, sans-serif'
+    fontFamily: '"IBM Plex Sans", system-ui, sans-serif'
     fontSize: "0.75rem"
     fontWeight: 500
     lineHeight: 1.4
@@ -176,11 +176,11 @@ Five accent colors. Each has one job. None are decorative.
 
 ## 3. Typography: Two Voices
 
-**Display Font:** Space Grotesk (system-ui, sans-serif fallback)
-**Body Font:** Inter (system-ui, sans-serif fallback)
+**Display Font:** Instrument Sans (system-ui, sans-serif fallback)
+**Body Font:** IBM Plex Sans (system-ui, sans-serif fallback)
 **Data Font:** JetBrains Mono (monospace fallback)
 
-**Character:** Space Grotesk is the voice of authority — it sets headings, project titles, and metric values with geometric precision and deliberate weight. Inter is the voice of clarity — it carries body copy and labels with zero visual friction. They never compete because they never appear at the same visual altitude.
+**Character:** Instrument Sans is the voice of authority — it sets headings, project titles, and metric values with tight, functional letterforms designed for screen precision. IBM Plex Sans is the voice of clarity — it carries body copy and labels with institutional legibility and zero visual friction. They never compete because they never appear at the same visual altitude.
 
 ### Hierarchy
 - **Display** (600 weight, clamp(2.5rem–4.5rem), line-height 1.1, letter-spacing -0.02em): Hero headings and section titles. The maximum. Floors at -0.02em to prevent letters from touching.
@@ -190,7 +190,7 @@ Five accent colors. Each has one job. None are decorative.
 - **Label** (500 weight, 0.75rem, letter-spacing +0.05em, uppercase): Metric labels, chart axis labels, badge text. The only place tracking opens up.
 - **Mono** (400 weight, 0.875rem, line-height 1.5, font-feature: "tnum"): All financial figures, code snippets, pipeline code views.
 
-**The Two Voices Rule.** Space Grotesk is for headings, metric values, and navigation. Inter is for body copy, descriptions, and helper text. Neither appears in the other's role.
+**The Two Voices Rule.** Instrument Sans is for headings, metric values, and navigation. IBM Plex Sans is for body copy, descriptions, and helper text. Neither appears in the other's role.
 
 **The Tabular Precision Rule.** Every financial figure — currency, percentage, ratio — renders in JetBrains Mono with `font-variant-numeric: tabular-nums`. Column alignment is not a nicety; it is how financial readers parse data. No exceptions.
 

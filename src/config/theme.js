@@ -19,7 +19,7 @@ export const chart = {
 }
 
 export const fonts = {
-  display: '"Space Grotesk", system-ui, sans-serif',
-  body: '"Inter", system-ui, sans-serif',
+  display: '"Instrument Sans", system-ui, sans-serif',
+  body: '"IBM Plex Sans", system-ui, sans-serif',
   mono: '"JetBrains Mono", monospace',
 }
