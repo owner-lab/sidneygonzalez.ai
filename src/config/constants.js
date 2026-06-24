@@ -5,15 +5,17 @@ export const SITE = {
   url: 'https://sidneygonzalez.ai',
 }
 
-// Anchor entries scroll within the Home one-pager (href = '#section'). The
-// route entry navigates to a separate page (to = '/path', route: true) and has
-// NO href — the Navbar branches render-vs-route on the `route` flag.
+// Anchor entries scroll within the Home one-pager (href = '#section'). Route
+// entries navigate to a separate page (to = '/path', route: true) and have NO
+// href — the Navbar branches render-vs-route on the `route` flag. About and the
+// Build Log are dedicated pages so the homepage stays a single guided story;
+// only Home / Projects / Contact remain in-page anchors.
 export const NAV_LINKS = [
   { label: 'Home', href: '#hero' },
-  { label: 'About', href: '#about' },
   { label: 'Projects', href: '#projects' },
   { label: 'AI Value', to: '/ai', route: true },
-  { label: 'Build Log', href: '#build-log' },
+  { label: 'About', to: '/about', route: true },
+  { label: 'Build Log', to: '/build-log', route: true },
   { label: 'Contact', href: '#contact' },
 ]
 

@@ -1,12 +1,11 @@
 import useIsDark from '@/hooks/useIsDark'
 
+// A single, quiet tonal radial — depth from a near-surface tone, not a
+// tri-accent wash. Was an animated blue/purple/green mesh: the generic-AI hero
+// background the spec rejects (semantic accents used decoratively + atmospheric
+// motion). Now static and accent-free, so the headline carries the hero.
 export default function MeshGradient({ className = '' }) {
   const isDark = useIsDark()
-
-  // Reduce opacity in light mode to avoid overwhelming the white background
-  const o1 = isDark ? 0.3 : 0.1
-  const o2 = isDark ? 0.2 : 0.07
-  const o3 = isDark ? 0.15 : 0.05
 
   return (
     <div
@@ -14,14 +13,11 @@ export default function MeshGradient({ className = '' }) {
       aria-hidden="true"
     >
       <div
-        className="absolute -top-1/2 -left-1/4 h-[150%] w-[150%]"
+        className="absolute inset-0"
         style={{
-          opacity: isDark ? 0.3 : 0.15,
-          background: `
-            radial-gradient(ellipse at 20% 50%, rgba(0, 104, 255, ${o1}) 0%, transparent 60%),
-            radial-gradient(ellipse at 80% 20%, rgba(167, 139, 250, ${o2}) 0%, transparent 50%),
-            radial-gradient(ellipse at 60% 80%, rgba(74, 246, 195, ${o3}) 0%, transparent 50%)
-          `,
+          background: isDark
+            ? 'radial-gradient(60% 50% at 50% 0%, rgba(255, 255, 255, 0.035) 0%, transparent 65%)'
+            : 'radial-gradient(60% 50% at 50% 0%, rgba(15, 23, 42, 0.035) 0%, transparent 65%)',
         }}
       />
     </div>

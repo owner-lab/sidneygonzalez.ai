@@ -51,14 +51,9 @@ export default function Hero() {
 
   return (
     <Section id="hero" className="relative flex min-h-[85vh] items-center pt-24 sm:min-h-screen">
-      <motion.div
-        className="absolute inset-0 -z-10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: reduced ? 0 : 2 }}
-      >
+      <div className="absolute inset-0 -z-10">
         <MeshGradient />
-      </motion.div>
+      </div>
 
       <motion.div
         variants={v || container}

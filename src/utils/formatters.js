@@ -119,6 +119,19 @@ export function formatMultiple(value) {
 }
 
 /**
+ * Payback period in whole months. Month-native (NOT the years-based payback used
+ * by the AI Value Model). Handles null/undefined (Python None -> JS undefined),
+ * sub-month, and off-scale values.
+ * e.g. 6 -> "6 mo", 0 -> "< 1 mo", null -> "n/a"
+ */
+export function formatPaybackMonths(months) {
+  if (months == null || !Number.isFinite(months)) return 'n/a'
+  if (months <= 0) return '< 1 mo'
+  if (months > 120) return '> 120 mo'
+  return `${Math.round(months)} mo`
+}
+
+/**
  * Format a large count compactly (no currency symbol).
  * @param {number} value
  * @returns {string} e.g. "5.2K", "1.3M"

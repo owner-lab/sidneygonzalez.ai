@@ -69,7 +69,7 @@ export default function ExecutiveSummary({ data, loading }) {
         change={cccMoM.change}
         changeType={cccMoM.type}
       >
-        <SparkLine data={data.ccc_sparkline} color="#A78BFA" />
+        <SparkLine data={data.ccc_sparkline} color="#D4A843" />
       </MetricCard>
     </div>
   )

@@ -46,6 +46,11 @@ def main():
     run("project3/inject_anomalies.py", "P3: Inject Anomalies")
     run("project3/validate_realism.py", "P3: Validate Realism")
 
+    # Project 4: ETO Order Book (capacity / headcount investment)
+    run("project4/generate_order_book.py", "P4: Generate Order Book")
+    run("project4/validate_realism.py", "P4: Validate Realism + Engine Integrity")
+    run("project4/generate_fallback.py", "P4: Generate Fallback")
+
     # Verify outputs
     public_data = os.path.join(ROOT, "..", "public", "data")
     expected_files = [
@@ -56,6 +61,7 @@ def main():
         "scenario_presets.json",
         "budget_fy2025.csv",
         "actuals_fy2025.csv",
+        "eto_order_book.csv",
     ]
 
     print(f"\n{'='*60}")

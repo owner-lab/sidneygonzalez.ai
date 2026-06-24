@@ -5,7 +5,7 @@ import SankeyDiagram from '@/components/charts/SankeyDiagram'
 const DIVISION_COLORS = {
   Sales: '#0068FF',
   Marketing: '#FB8B1E',
-  'Engineering & Product': '#A78BFA',
+  'Engineering & Product': '#D4A843',
   Operations: '#4AF6C3',
   Finance: '#06B6D4',
 }

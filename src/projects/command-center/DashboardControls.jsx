@@ -5,7 +5,7 @@ const DIVISIONS = [
   { key: 'All', label: 'All Divisions', color: null },
   { key: 'Enterprise Software', label: 'Enterprise SW', color: '#0068FF' },
   { key: 'Professional Services', label: 'Prof Services', color: '#4AF6C3' },
-  { key: 'Cloud Infrastructure', label: 'Cloud Infra', color: '#A78BFA' },
+  { key: 'Cloud Infrastructure', label: 'Cloud Infra', color: '#D4A843' },
 ]
 
 const PERIODS = [6, 12, 24]
