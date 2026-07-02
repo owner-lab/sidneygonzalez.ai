@@ -42,5 +42,11 @@ data-generation/**/output/
 .claude/skills/
 .github/skills/
 
+# Research source material — third-party copyrighted PDFs (papers, analyst decks).
+# We cite these in-code (author, year, figures) but must NOT publish the documents
+# themselves. Keep them on disk under docs/research/, out of version control.
+# Markdown notes / our own synthesis in this folder remain committable.
+docs/research/*.pdf
+
 # Cache
 .cache

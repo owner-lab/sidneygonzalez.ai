@@ -11,6 +11,7 @@ import OrderBookEditor from './OrderBookEditor'
 import RevenueTimeline from './RevenueTimeline'
 import CapacityGapPanel from './CapacityGapPanel'
 import HeadcountRoiPanel from './HeadcountRoiPanel'
+import StressPanel from './StressPanel'
 import { SOCIAL } from '@/config/constants'
 
 const STATUS_MAP = {
@@ -30,10 +31,11 @@ const BADGES = [
 
 const LIMITATIONS = [
   'A capacity-slot queue, not a full resource/skills scheduler — one project occupies one delivery team; it does not model shared specialists or sub-trades.',
-  'Margin is recognised straight-line over each project’s duration (percent-of-completion); many businesses bill on milestones instead.',
-  'Revenue realization is a single risk haircut on late and new-order margin; a production model would price each client’s penalty and cancellation terms.',
+  "Margin is recognised straight-line over each project's duration (percent-of-completion); many businesses bill on milestones instead.",
+  "Revenue realization is a single risk haircut on late and new-order margin; a production model would price each client's penalty and cancellation terms.",
   'Throughput is the largest value component and rests on a calibrated fill curve (0.55 + 2.5×growth, saturating near 18% growth), not a booked, order-by-order demand forecast.',
-  'New intake is modelled as freed-capacity fill at the book’s blended margin, not forecast project by project — so very lumpy or seasonal pipelines need a finer model.',
+  'New intake is modelled as freed-capacity fill at the book\'s blended margin, not forecast project by project — so very lumpy or seasonal pipelines need a finer model.',
+  'Fixed overhead is modelled as a flat monthly burn; in practice some overhead is semi-variable and responds to sustained volume changes over 6–12 months.',
   'A sensitivity instrument, not a delivery plan or investment advice.',
 ]
 
@@ -62,10 +64,14 @@ function splitEngineTabs(code) {
 
 const ENGINE_TABS = splitEngineTabs(engineCode)
 
+// Formulas rendered via KaTeX. Ordered: slot scheduling → crew ROI → operating
+// profit (fixed-cost layer) → book coverage (the research-grounded buffer metric).
 const FORMULAS = [
   'start_i = \\max(\\text{crew free},\\ intake_i),\\quad finish_i = start_i + dur_i',
   'ROI = \\frac{\\Delta PV_{margin}}{Initial + \\sum_{t=1}^{H} c_m/(1+r_m)^{t}} - 1',
   'V_{throughput} = \\Delta crews \\cdot \\bar{m} \\cdot u \\cdot AF(r_m, H) \\cdot p,\\ \\ u = \\min(1,\\ 0.55 + 2.5g)',
+  'OP_m = (R_m^{\\text{on\\text{-}time}} + R_m^{\\text{late}} \\cdot p) - F',
+  'C = B_0 \\;/\\; \\bar{R}_{mo},\\quad \\text{amplification} = |\\Delta OP| / |\\Delta Rev|',
 ]
 
 function RoiFormulas() {
@@ -87,18 +93,21 @@ function RoiFormulas() {
       />
       <p className="mt-2 text-[11px] text-text-muted">
         A slipped project pushes everything queued behind it in its crew to the right (the cascade a
-        linear model can&apos;t express). The crew ROI present-values the freed margin and recurring
-        crew cost at your monthly hurdle rate <em>r<sub>m</sub></em>; late and new-order margin are
-        haircut by your realization rate <em>p</em>.
+        linear model can&apos;t express). Operating profit OP<sub>m</sub> subtracts fixed overhead F
+        each month — when the book thins, F holds while margin falls, so operating profit declines
+        faster than revenue. Book coverage C measures how many months of committed pipeline protect
+        against that compression. Kangasluoma (2016): r&nbsp;=&nbsp;0.942 (backlog → revenue),
+        r&nbsp;=&nbsp;0.902 (backlog → operating profit), p&nbsp;&lt;&nbsp;.001, n&nbsp;=&nbsp;18 ETO firms,
+        10 years.
       </p>
     </div>
   )
 }
 
-function toPayload(inputs, backlog) {
+function toPayload(inputs, backlog, runStress) {
   // The order book ships embedded in the payload (engine is pure-stdlib, no CSV mount).
   // Extra backlog keys (customer, segment, status) are ignored by the engine.
-  return { ...inputs, backlog }
+  return { ...inputs, backlog, run_stress: runStress }
 }
 
 function cloneBook(book) {
@@ -110,6 +119,7 @@ export default function OrderBookProject() {
   const [inputs, setInputs] = useState(() => ({ ...DEFAULT_INPUTS }))
   const [backlog, setBacklog] = useState(() => cloneBook(FALLBACK_BACKLOG))
   const [result, setResult] = useState(FALLBACK_RESULT)
+  const [stressMode, setStressMode] = useState(false)
   const [activePresetId, setActivePresetId] = useState('manufacturer')
   const nextIdRef = useRef(1)
   const [flashKey, setFlashKey] = useState(0)
@@ -122,7 +132,7 @@ export default function OrderBookProject() {
   // Live recompute, throttled (~60ms) so the cards and curve track the sliders as
   // you drag — still 100% real Python. Out-of-order worker results are dropped via a
   // request id, the prior result stays visible (never blank), and the value flashes
-  // once on settle. Lifted verbatim from the AI Value Model.
+  // once on settle. Stress run is gated by stressMode — no extra cost on normal drags.
   useEffect(() => {
     if (status !== 'ready') return
 
@@ -130,7 +140,7 @@ export default function OrderBookProject() {
       lastRunRef.current = performance.now()
       const myId = ++reqRef.current
       runPython(engineCode, {
-        params: { eto_inputs_json: JSON.stringify(toPayload(inputs, backlog)) },
+        params: { eto_inputs_json: JSON.stringify(toPayload(inputs, backlog, stressMode)) },
       })
         .then((res) => {
           if (res && myId === reqRef.current) {
@@ -157,7 +167,7 @@ export default function OrderBookProject() {
       clearTimeout(trailingRef.current)
       clearTimeout(flashRef.current)
     }
-  }, [status, inputs, backlog, runPython])
+  }, [status, inputs, backlog, stressMode, runPython])
 
   // Editing a lever or the book means the user has left the preset — no card highlighted.
   const onFieldChange = useCallback((field, val) => {
@@ -196,6 +206,7 @@ export default function OrderBookProject() {
     const preset = PRESETS.find((p) => p.id === id)
     if (!preset) return
     setActivePresetId(id)
+    setStressMode(false)
     setInputs({ ...preset.inputs })
     setBacklog(cloneBook(preset.backlog))
     // Seed the preset's precomputed result instantly (offline-correct); the live
@@ -208,12 +219,15 @@ export default function OrderBookProject() {
 
   const onReset = useCallback(() => {
     setActivePresetId('manufacturer')
+    setStressMode(false)
     setInputs({ ...DEFAULT_INPUTS })
     setBacklog(cloneBook(FALLBACK_BACKLOG))
-    // Re-seed the default result instantly (offline-correct) so reset matches preset
-    // selection — FALLBACK_RESULT is the engine output at the default book + inputs.
     setResult(FALLBACK_RESULT)
     setEngineError(false)
+  }, [])
+
+  const onStressToggle = useCallback(() => {
+    setStressMode((prev) => !prev)
   }, [])
 
   return (
@@ -241,6 +255,8 @@ export default function OrderBookProject() {
         onFieldChange={onFieldChange}
         onReset={onReset}
         pyodideReady={status === 'ready'}
+        stressMode={stressMode}
+        onStressToggle={onStressToggle}
       />
 
       {(status === 'error' || engineError) && (
@@ -259,8 +275,13 @@ export default function OrderBookProject() {
       )}
 
       <div className="mt-6 flex flex-col gap-6">
-        <RevenueTimeline timeline={result.timeline} />
+        <RevenueTimeline
+          timeline={result.timeline}
+          stressTimeline={result.stress_timeline}
+          stressMode={stressMode}
+        />
         <HeadcountRoiPanel result={result} flashKey={flashKey} />
+        {stressMode && <StressPanel stressComparison={result.stress_comparison} />}
         <CapacityGapPanel capacityGap={result.capacity_gap} teams={inputs.delivery_teams} />
       </div>
     </ProjectLayout>

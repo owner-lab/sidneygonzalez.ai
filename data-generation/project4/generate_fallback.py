@@ -80,42 +80,57 @@ def main():
 
     # Each preset: a starting book + the lever set ROI is computed under. baseline_teams
     # and ramp_cost_per_team scale with the business, so they live in each preset.
+    # fixed_cost_base_monthly: monthly fixed overhead (rent, G&A, management salaries).
+    # Scaled to each business size so the operating_profit metric is non-trivial from
+    # the first load. Starter is 0 — blank canvas, let the user calibrate their own costs.
+    # run_stress is always False for fallback generation; stress data is computed live.
     PRESETS = [
         {
             "id": "manufacturer", "label": "Manufacturer",
             "description": "Engineered-to-order shop, ~$29M book. Fund the 4th delivery crew?",
             "backlog": MFG,
             "inputs": {**COMMON, "delivery_teams": 4, "baseline_teams": 3,
-                       "order_intake_growth": 0.12, "cost_per_team": 1_000_000, "ramp_cost_per_team": 200_000},
+                       "order_intake_growth": 0.12, "cost_per_team": 1_000_000,
+                       "ramp_cost_per_team": 200_000, "fixed_cost_base_monthly": 150_000,
+                       "run_stress": False},
         },
         {
             "id": "services", "label": "Services Firm",
             "description": "Consultancy / agency, ~$1.4M of engagements growing 16%. Add a 3rd delivery pod?",
             "backlog": SERVICES_BOOK,
             "inputs": {**COMMON, "delivery_teams": 3, "baseline_teams": 2,
-                       "order_intake_growth": 0.16, "cost_per_team": 155_000, "ramp_cost_per_team": 25_000},
+                       "order_intake_growth": 0.16, "cost_per_team": 155_000,
+                       "ramp_cost_per_team": 25_000, "fixed_cost_base_monthly": 25_000,
+                       "run_stress": False},
         },
         {
             "id": "small_shop", "label": "Small Shop",
             "description": "A small fabricator, ~$290K book. Does a 2nd person pay yet at this scale?",
             "backlog": SMALL_SHOP_BOOK,
             "inputs": {**COMMON, "delivery_teams": 2, "baseline_teams": 1,
-                       "order_intake_growth": 0.12, "cost_per_team": 80_000, "ramp_cost_per_team": 8_000},
+                       "order_intake_growth": 0.12, "cost_per_team": 80_000,
+                       "ramp_cost_per_team": 8_000, "fixed_cost_base_monthly": 6_500,
+                       "run_stress": False},
         },
         {
             "id": "squeeze", "label": "Cost Squeeze",
             "description": "The manufacturer, but $1.6M crews and a 2-month flagship slip. Still worth it?",
             "backlog": MFG,
             "inputs": {**COMMON, "delivery_teams": 4, "baseline_teams": 3, "delay_shock_months": 2,
-                       "order_intake_growth": 0.12, "cost_per_team": 1_600_000, "ramp_cost_per_team": 200_000},
+                       "order_intake_growth": 0.12, "cost_per_team": 1_600_000,
+                       "ramp_cost_per_team": 200_000, "fixed_cost_base_monthly": 150_000,
+                       "run_stress": False},
         },
         {
             "id": "starter", "label": "Build Your Own",
             "description": "A blank 3-project canvas — set your own book, crews, and costs, then add a crew to test it.",
             "backlog": STARTER_BOOK,
             # delivery == baseline -> opens neutral (ROI n/a); the user adds a crew to evaluate.
+            # fixed_cost_base_monthly = 0 so op_profit panel is hidden until the user sets overhead.
             "inputs": {**COMMON, "delivery_teams": 1, "baseline_teams": 1,
-                       "order_intake_growth": 0.12, "cost_per_team": 120_000, "ramp_cost_per_team": 10_000},
+                       "order_intake_growth": 0.12, "cost_per_team": 120_000,
+                       "ramp_cost_per_team": 10_000, "fixed_cost_base_monthly": 0,
+                       "run_stress": False},
         },
     ]
 

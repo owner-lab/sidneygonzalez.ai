@@ -143,6 +143,59 @@ def validate():
     ok &= check("Capacity-gap panel is non-trivial (book is short some months)",
                 s["months_capacity_short"] > 0, f"{s['months_capacity_short']} short months")
 
+    print("\n--- Research layer: operating profit, coverage runway, stress ---")
+
+    # Coverage regression guard. A book that fully clears WITHIN the horizon must report a
+    # coverage runway equal to its active delivery span — it must never be silently pegged at
+    # the horizon length. The bug this catches: averaging revenue over the full horizon folds
+    # in the idle months after the book clears, so a book that physically finishes in 7 months
+    # reads as 18 months of runway (and a $290K shop shows the same "18.0 mo" as a $29M book).
+    small_book = [
+        {"id": "S1", "name": "stair", "contract_value": 88_000, "gross_margin_pct": 0.28,
+         "duration_months": 3, "order_intake_date": "2026-01", "promised_delivery_date": "2026-05", "priority": 1},
+        {"id": "S2", "name": "mezz", "contract_value": 52_000, "gross_margin_pct": 0.26,
+         "duration_months": 2, "order_intake_date": "2026-02", "promised_delivery_date": "2026-06", "priority": 2},
+        {"id": "S3", "name": "guard", "contract_value": 34_000, "gross_margin_pct": 0.34,
+         "duration_months": 2, "order_intake_date": "2026-03", "promised_delivery_date": "2026-06", "priority": 3},
+    ]
+    res_s = _run_engine({**DEFAULT_INPUTS, "delivery_teams": 2, "baseline_teams": 1,
+                         "cost_per_team": 80_000, "fixed_cost_base_monthly": 6_500}, small_book)
+    ss = res_s["summary"]
+    tl_s = res_s["timeline"]
+    active_s = sum(1 for r in tl_s if (r["realized"] + r["at_risk"]) > 0)
+    cov = ss["coverage_months_now"]
+    ok &= check("Coverage runway tracks the active delivery span, never pegged at the horizon",
+                cov is not None and cov < DEFAULT_INPUTS["horizon_months"] and abs(cov - active_s) <= 1.0,
+                f"coverage {cov}mo vs {active_s} active months (horizon {DEFAULT_INPUTS['horizon_months']})")
+
+    # Operating profit = risk-adjusted recognised margin − fixed overhead over the horizon.
+    base_recog = ss["realized_total"] + ss["at_risk_total"] * DEFAULT_INPUTS["revenue_realization"]
+    op_expected = base_recog - 6_500 * DEFAULT_INPUTS["horizon_months"]
+    ok &= check("Operating profit == risk-adjusted margin − fixed overhead × horizon",
+                abs(ss["operating_profit_total"] - op_expected) <= 1.0,
+                f"got ${ss['operating_profit_total']:,.0f} expected ${op_expected:,.0f}")
+    ok &= check("Per-month operating profit nets the monthly fixed cost",
+                all(abs(e["operating_profit"]
+                        - (e["realized"] + e["at_risk"] * DEFAULT_INPUTS["revenue_realization"] - 6_500)) <= 1.0
+                    for e in tl_s),
+                "every month subtracts overhead")
+
+    # Stress run: returns a comparison, bites revenue, and amplifies into operating profit.
+    res_st = _run_engine({**DEFAULT_INPUTS, "fixed_cost_base_monthly": 150_000, "run_stress": True}, backlog)
+    sc = res_st["stress_comparison"]
+    ok &= check("run_stress True -> stress_comparison present", sc is not None)
+    ok &= check("Stress cuts recognised revenue (downturn bites)",
+                sc is not None and sc["stress_recognized"] < sc["base_recognized"],
+                f"stress ${sc['stress_recognized']:,.0f} < base ${sc['base_recognized']:,.0f}")
+    ok &= check("Fixed-cost amplification > 1 (operating profit falls faster than revenue)",
+                sc is not None and sc["amplification"] is not None and sc["amplification"] > 1.0,
+                f"{sc['amplification']}x (benchmark {sc['benchmark_amplification']}x)")
+    ok &= check("Stress applies the measured −20.86% backlog contraction (matches its benchmark)",
+                sc is not None and sc["stress_backlog_applied_pct"] == sc["benchmark_backlog_delta_pct"],
+                f"applied {sc['stress_backlog_applied_pct']}% vs benchmark {sc['benchmark_backlog_delta_pct']}%")
+    ok &= check("run_stress False -> no stress payload (no wasted live compute)",
+                res["stress_comparison"] is None and res["stress_timeline"] is None)
+
     print("\n" + "=" * 60)
     print("RESULT:", "ALL CHECKS PASSED" if ok else "SOME CHECKS FAILED")
     print("=" * 60)

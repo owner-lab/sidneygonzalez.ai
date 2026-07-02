@@ -14,6 +14,12 @@ a forecast. The honest non-linearity it captures: projects queue for a finite
 number of delivery crews (slots). A slipped project pushes everything behind it
 in its slot to the right — you cannot start the next until the previous frees
 the crew. A linear coefficient model cannot express that.
+
+Research grounding: Kangasluoma (2016) measured order backlog's correlation
+to future revenue at r=0.942 and to operating profit at r=0.902 across 18 ETO
+manufacturers over a 10-year period (p<.000). The fixed-cost rigidity layer and
+stress scenario in this engine express the mechanism behind those correlations
+live on your own backlog.
 """
 
 import json
@@ -36,6 +42,23 @@ discount_rate = float(data["discount_rate"])              # annual hurdle / WACC
 revenue_realization = float(data["revenue_realization"])  # 0..1 haircut on UNCERTAIN margin
 horizon_months = int(data["horizon_months"])              # 12..18
 anchor_month = data.get("anchor_month", "2026-01")        # 'YYYY-MM' label of month index 0
+
+# Fixed overhead that burns every month regardless of project activity.
+# When crews are underutilised (projects slip or the book thins), gross margin
+# falls but fixed costs hold — operating profit declines faster than revenue.
+# This is the mechanism behind Kangasluoma (2016): −20.86% backlog → −13.33%
+# revenue → −35.4% operating profit across 18 Finnish ETO manufacturers.
+fixed_cost_base_monthly = float(data.get("fixed_cost_base_monthly", 0.0))
+
+# When True, compute a second engine run at Kangasluoma stress parameters and
+# return the comparison alongside the base results.
+run_stress = bool(data.get("run_stress", False))
+
+# Empirical stress-shock magnitudes — the measured 2008→09 figures (Kangasluoma 2016,
+# 18 Finnish ETO firms), applied directly to this book so the "your book" column is a
+# like-for-like response to the same shock the benchmark column reports.
+STRESS_BACKLOG_DELTA_PCT = -20.86   # aggregate order-backlog contraction
+STRESS_FLAGSHIP_DELAY_ADD = 3       # extra months piled onto the flagship project
 
 # monthly discount rate from the annual hurdle (geometric, NOT annual/12)
 r_m = (1.0 + discount_rate) ** (1.0 / 12.0) - 1.0 if discount_rate > 0 else 0.0
@@ -128,16 +151,20 @@ def schedule(book, teams, delay):
 
 def recognize(placed, teams, horizon):
     """Straight-line (percent-of-completion) margin per active month, split into
-    on-time (realized) vs past-promised (at-risk), plus a monotonic backlog burn-down."""
+    on-time (realized) vs past-promised (at-risk), plus a monotonic backlog burn-down.
+    Also tracks recognized_revenue (full contract value, not margin) for coverage math."""
     realized = [0.0] * horizon
     at_risk = [0.0] * horizon
     backlog_value = [0.0] * horizon
     active_slots = [0] * horizon
+    recognized_revenue = [0.0] * horizon   # contract-value recognition rate (not margin)
     for s in placed:
         monthly_margin = (s["value"] * s["margin"]) / s["eff_dur"]
+        monthly_revenue = s["value"] / s["eff_dur"]
         for m in range(s["start"], s["finish"]):
             if 0 <= m < horizon:
                 active_slots[m] += 1
+                recognized_revenue[m] += monthly_revenue
                 if m >= s["promised"]:
                     at_risk[m] += monthly_margin     # recognised AFTER the promised month
                 else:
@@ -160,6 +187,7 @@ def recognize(placed, teams, horizon):
         "realized": realized,
         "at_risk": at_risk,
         "backlog_value": backlog_value,
+        "recognized_revenue": recognized_revenue,
     }
 
 
@@ -284,6 +312,108 @@ def headcount_roi_for(teams, growth, cost, realization, delay):
     }
 
 
+def enrich_timeline(timeline, raw_rec, avg_monthly_revenue):
+    """Add operating_profit and coverage_months to each timeline entry.
+
+    operating_profit: the monthly net after fixed overhead. This is the mechanism
+    Kangasluoma (2016) identifies: when the book thins or projects slip, fixed costs
+    hold while gross margin falls — operating profit declines faster than revenue.
+
+    coverage_months: remaining book value / average monthly revenue recognition rate.
+    Analogous to 'days of inventory' — how long the committed pipeline covers forward
+    revenue at the current recognition pace. The research shows companies with large
+    backlogs entering downturns saw revenue decline only 13% vs 35% operating profit
+    decline; book coverage quantifies that protective buffer.
+    """
+    for m, entry in enumerate(timeline):
+        op = (raw_rec["realized"][m]
+              + raw_rec["at_risk"][m] * revenue_realization
+              - fixed_cost_base_monthly)
+        entry["operating_profit"] = round(op, 2)
+        entry["fixed_cost_monthly"] = round(fixed_cost_base_monthly, 2)
+        entry["coverage_months"] = (
+            round(entry["backlog_value"] / avg_monthly_revenue, 1)
+            if avg_monthly_revenue > 0 else None
+        )
+    return timeline
+
+
+def stress_scenario(base_recognized, base_op_profit_total):
+    """Empirical stress run: Kangasluoma (2016) 2008→2009 benchmarks applied to
+    this book. Contract values cut by the measured backlog contraction
+    (STRESS_BACKLOG_DELTA_PCT = −20.86%) and the flagship slipped a further
+    STRESS_FLAGSHIP_DELAY_ADD (+3) months, on top of the current delay shock.
+
+    Returns stress_timeline (same structure as base timeline) and stress_comparison
+    with base vs stress metrics and the published Finnish ETO benchmarks as anchors.
+
+    The amplification metric shows how many times faster operating profit declines
+    relative to revenue — the research measured 2.66× across 18 companies in 2009.
+    """
+    factor = 1.0 + STRESS_BACKLOG_DELTA_PCT / 100.0   # −20.86% -> 0.7914
+    stressed = [{**p, "value": round(p["value"] * factor, 2)} for p in backlog]
+    s_rec = recognize(
+        schedule(stressed, delivery_teams, delay_shock_months + STRESS_FLAGSHIP_DELAY_ADD),
+        delivery_teams,
+        horizon_months,
+    )
+
+    s_realized_total = sum(s_rec["realized"])
+    s_at_risk_adjusted = sum(s_rec["at_risk"]) * revenue_realization
+    s_recognized = s_realized_total + s_at_risk_adjusted
+    s_op_profit_total = s_recognized - fixed_cost_base_monthly * horizon_months
+
+    s_active_months = sum(1 for r in s_rec["recognized_revenue"] if r > 0)
+    avg_s_rev = sum(s_rec["recognized_revenue"]) / s_active_months if s_active_months > 0 else 0.0
+    stress_tl = []
+    for m, entry in enumerate(s_rec["timeline"]):
+        s_op = (s_rec["realized"][m]
+                + s_rec["at_risk"][m] * revenue_realization
+                - fixed_cost_base_monthly)
+        stress_tl.append({
+            **entry,
+            "operating_profit": round(s_op, 2),
+            "fixed_cost_monthly": round(fixed_cost_base_monthly, 2),
+            "coverage_months": (
+                round(entry["backlog_value"] / avg_s_rev, 1) if avg_s_rev > 0 else None
+            ),
+        })
+
+    def delta_pct(base_val, stress_val):
+        if base_val == 0:
+            return None
+        return round((stress_val - base_val) / abs(base_val) * 100.0, 1)
+
+    rev_delta = delta_pct(base_recognized, s_recognized)
+    op_delta = delta_pct(base_op_profit_total, s_op_profit_total)
+
+    # How many times faster does operating profit decline than revenue?
+    # Benchmark from Kangasluoma (2016): 35.4% / 13.33% = 2.66×
+    amplification = None
+    if (rev_delta is not None and rev_delta < 0
+            and op_delta is not None and op_delta < 0):
+        amplification = round(abs(op_delta) / abs(rev_delta), 2)
+
+    return {
+        "stress_timeline": stress_tl,
+        "stress_comparison": {
+            "base_recognized": round(base_recognized, 2),
+            "base_op_profit": round(base_op_profit_total, 2),
+            "stress_recognized": round(s_recognized, 2),
+            "stress_op_profit": round(s_op_profit_total, 2),
+            "revenue_delta_pct": rev_delta,
+            "op_profit_delta_pct": op_delta,
+            "amplification": amplification,
+            "stress_backlog_applied_pct": STRESS_BACKLOG_DELTA_PCT,
+            # Kangasluoma (2016) — 18 Finnish ETO manufacturers, 2008→2009
+            "benchmark_backlog_delta_pct": -20.86,
+            "benchmark_revenue_delta_pct": -13.33,
+            "benchmark_op_profit_delta_pct": -35.4,
+            "benchmark_amplification": 2.66,
+        },
+    }
+
+
 def compute():
     if not backlog:
         return {
@@ -295,7 +425,12 @@ def compute():
                 "company": "Meridian Technologies", "backlog_projects": 0, "backlog_value": 0.0,
                 "horizon_months": horizon_months, "realized_total": 0.0, "at_risk_total": 0.0,
                 "at_risk_share_pct": 0.0, "months_capacity_short": 0, "backlog_cleared_pct": 0.0,
+                "operating_profit_total": 0.0, "op_margin_pct": 0.0,
+                "coverage_months_now": None, "coverage_warning_month": None,
+                "fixed_cost_base_monthly": round(fixed_cost_base_monthly, 2),
             },
+            "stress_timeline": None,
+            "stress_comparison": None,
         }
 
     rec = recognize(schedule(backlog, delivery_teams, delay_shock_months),
@@ -347,9 +482,44 @@ def compute():
     realized_total = sum(r["realized"] for r in timeline)
     at_risk_total = sum(r["at_risk"] for r in timeline)
     recognized_total = realized_total + at_risk_total
-    bv0 = timeline[0]["backlog_value"]
-    bv_end = timeline[-1]["backlog_value"]
+    base_recognized = realized_total + at_risk_total * revenue_realization
+    base_op_profit_total = base_recognized - fixed_cost_base_monthly * horizon_months
+
+    bv0 = timeline[0]["backlog_value"] if timeline else 0.0
+    bv_end = timeline[-1]["backlog_value"] if timeline else 0.0
     cleared_pct = round(100.0 * (1.0 - bv_end / bv0), 1) if bv0 > 0 else 0.0
+
+    # Coverage: remaining book / average monthly recognized revenue (contract-value basis).
+    # Average over ACTIVE delivery months only. Dividing by the full horizon would fold in
+    # the idle months after the book clears, deflating the rate and pegging coverage at the
+    # horizon length — a book that physically clears in 7 months would read as 18 months of
+    # runway. The active-month pace answers the real question: at the rate work is actually
+    # delivered, how many months of revenue does the committed book represent? (When the book
+    # fully clears in-horizon this equals the active-month count; when it spills past the
+    # horizon it exceeds it. It can no longer be silently pinned to the horizon.)
+    total_recognized_revenue = sum(rec["recognized_revenue"])
+    active_months = sum(1 for r in rec["recognized_revenue"] if r > 0)
+    avg_monthly_revenue = total_recognized_revenue / active_months if active_months > 0 else 0.0
+    coverage_months_now = (
+        round(bv0 / avg_monthly_revenue, 1) if avg_monthly_revenue > 0 else None
+    )
+
+    # Enrich timeline with operating_profit and coverage_months per entry
+    enrich_timeline(timeline, rec, avg_monthly_revenue)
+
+    coverage_warning_month = next(
+        (entry["month"] for entry in timeline
+         if entry["coverage_months"] is not None and entry["coverage_months"] < 6.0),
+        None,
+    )
+
+    op_margin_pct = (
+        round(base_op_profit_total / base_recognized * 100.0, 1)
+        if base_recognized > 0 else 0.0
+    )
+
+    # Stress scenario — only computed on demand to avoid doubling every live slider tick
+    stress_out = stress_scenario(base_recognized, base_op_profit_total) if run_stress else None
 
     return {
         "timeline": timeline,
@@ -366,7 +536,14 @@ def compute():
             "at_risk_share_pct": round(100.0 * at_risk_total / recognized_total, 1) if recognized_total > 0 else 0.0,
             "months_capacity_short": sum(1 for g in capacity_gap if g["gap"] > 0),
             "backlog_cleared_pct": cleared_pct,
+            "operating_profit_total": round(base_op_profit_total, 2),
+            "op_margin_pct": op_margin_pct,
+            "coverage_months_now": coverage_months_now,
+            "coverage_warning_month": coverage_warning_month,
+            "fixed_cost_base_monthly": round(fixed_cost_base_monthly, 2),
         },
+        "stress_timeline": stress_out["stress_timeline"] if stress_out else None,
+        "stress_comparison": stress_out["stress_comparison"] if stress_out else None,
     }
 
 

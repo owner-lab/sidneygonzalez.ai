@@ -122,19 +122,102 @@ function ValueSplit({ roi, flashKey }) {
   )
 }
 
-function SummaryStrip({ summary }) {
-  const items = [
-    { label: 'Order book', value: formatCompact(summary.backlog_value), sub: `${summary.backlog_projects} projects` },
-    { label: 'Cleared in horizon', value: `${summary.backlog_cleared_pct}%`, sub: `${summary.horizon_months}-month view` },
-    { label: 'At-risk share', value: `${summary.at_risk_share_pct}%`, sub: 'recognised late' },
-    { label: 'Capacity-short', value: `${summary.months_capacity_short} mo`, sub: 'book exceeds crews' },
+// Coverage color: green > 12 months (strong buffer), orange 6–12 (moderate), red < 6 (exposed).
+// Research basis: Kangasluoma (2016) found companies with large backlogs entering 2009 saw revenue
+// decline only 13% while operating profit fell 35% — book coverage is the protective mechanism.
+function coverageColor(months) {
+  if (months == null) return 'text-text-muted'
+  if (months >= 12) return 'text-impact-positive'
+  if (months >= 6)  return 'text-impact-warning'
+  return 'text-impact-negative'
+}
+
+function coverageSub(months) {
+  if (months == null) return 'not computed'
+  if (months >= 12) return 'strong downturn buffer'
+  if (months >= 6)  return 'moderate buffer'
+  return 'exposed — low buffer'
+}
+
+function SummaryStrip({ summary, flashKey }) {
+  const coverage = summary.coverage_months_now
+  const hasOpProfit = summary.fixed_cost_base_monthly > 0
+  const opProfit = summary.operating_profit_total
+  const opPositive = opProfit != null && opProfit >= 0
+
+  const baseItems = [
+    {
+      label: 'Order book',
+      value: (
+        <Flash flashKey={flashKey}>{formatCompact(summary.backlog_value)}</Flash>
+      ),
+      sub: `${summary.backlog_projects} projects`,
+    },
+    {
+      label: 'Coverage runway',
+      value: (
+        <Flash flashKey={flashKey}>
+          <span className={coverageColor(coverage)}>
+            {coverage != null ? `${coverage} mo` : '—'}
+          </span>
+        </Flash>
+      ),
+      sub: coverageSub(coverage),
+      title: 'Remaining book ÷ avg monthly revenue — months of forward revenue protected by committed backlog',
+    },
+    {
+      label: 'At-risk share',
+      value: (
+        <Flash flashKey={flashKey}>{`${summary.at_risk_share_pct}%`}</Flash>
+      ),
+      sub: 'recognised late',
+    },
+    {
+      label: 'Cleared in horizon',
+      value: (
+        <Flash flashKey={flashKey}>{`${summary.backlog_cleared_pct}%`}</Flash>
+      ),
+      sub: `${summary.horizon_months}-month view`,
+    },
+    {
+      label: 'Capacity-short',
+      value: (
+        <Flash flashKey={flashKey}>{`${summary.months_capacity_short} mo`}</Flash>
+      ),
+      sub: 'book exceeds crews',
+    },
   ]
+
+  // Operating profit only shown when fixed overhead is non-zero — otherwise it
+  // duplicates the gross margin figure and adds no information.
+  const items = hasOpProfit
+    ? [
+        ...baseItems,
+        {
+          label: 'Op. profit (net overhead)',
+          value: (
+            <Flash flashKey={flashKey}>
+              <span className={opPositive ? 'text-impact-positive' : 'text-impact-negative'}>
+                {formatCompactAccounting(opProfit)}
+              </span>
+            </Flash>
+          ),
+          sub: `over ${summary.horizon_months}-month horizon`,
+          title: 'Total gross margin minus fixed overhead over the horizon — diverges from gross margin when projects slip and fixed costs go unabsorbed',
+        },
+      ]
+    : baseItems
+
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+    <div className={`grid grid-cols-2 gap-3 ${hasOpProfit ? 'sm:grid-cols-3' : 'sm:grid-cols-3 lg:grid-cols-5'}`}>
       {items.map((it) => (
-        <GlassPanel key={it.label} className="flex flex-col gap-0.5">
-          <span className="text-[10px] font-medium uppercase tracking-wider text-text-muted">{it.label}</span>
-          <span className="metric-value text-lg font-semibold tabular-nums text-text-primary">{it.value}</span>
+        <GlassPanel key={it.label} className="flex flex-col gap-0.5" title={it.title}>
+          <span className="text-[10px] font-medium uppercase tracking-wider text-text-muted">
+            {it.label}
+          </span>
+          <span className="metric-value text-lg font-semibold tabular-nums text-text-primary">
+            {it.value}
+          </span>
           <span className="text-[11px] text-text-muted">{it.sub}</span>
         </GlassPanel>
       ))}
@@ -255,7 +338,7 @@ export default function HeadcountRoiPanel({ result, flashKey }) {
       </div>
 
       <ValueSplit roi={roi} flashKey={flashKey} />
-      <SummaryStrip summary={summary} />
+      <SummaryStrip summary={summary} flashKey={flashKey} />
       <SensitivityTornado sensitivity={result.sensitivity} base={roi.roi_pct ?? 0} />
     </div>
   )
