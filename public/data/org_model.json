@@ -282,8 +282,8 @@
       "sigma": 0.05,
       "lag_months": 1,
       "relationship": "inverse",
-      "source": "Derived: $200M revenue / 365 = ~$548K per DSO day",
-      "notes": "Each day of DSO reduction frees ~$548K in working capital"
+      "source": "Working capital released ~ $200M revenue / 365 ~ $0.55M per DSO day; FCF impact modeled as a conservative -0.28 elasticity, not the gross release",
+      "notes": "A 10-day DSO reduction releases ~$5.5M of working capital; the -0.28 elasticity flows ~$0.7M of that to free cash flow within the period (the rest offsets payables/timing)."
     },
     {
       "from_kpi": "free_cash_flow",

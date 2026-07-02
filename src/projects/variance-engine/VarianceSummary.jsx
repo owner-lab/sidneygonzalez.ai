@@ -92,7 +92,7 @@ export default function VarianceSummary({ data, loading }) {
           label="Highest Risk"
           value={data.highest_risk_department}
           change={`${data.highest_risk_pct > 0 ? '+' : ''}${data.highest_risk_pct}% variance`}
-          changeType="negative"
+          changeType={data.highest_risk_pct > 0 ? 'negative' : 'positive'}
         />
       </div>
     </div>

@@ -160,7 +160,9 @@ export const DEFAULT_INPUTS = {
   "baseline_teams": 3,
   "order_intake_growth": 0.12,
   "cost_per_team": 1000000,
-  "ramp_cost_per_team": 200000
+  "ramp_cost_per_team": 200000,
+  "fixed_cost_base_monthly": 150000,
+  "run_stress": false
 }
 
 export const PRESETS = [
@@ -323,7 +325,9 @@ export const PRESETS = [
       "baseline_teams": 3,
       "order_intake_growth": 0.12,
       "cost_per_team": 1000000,
-      "ramp_cost_per_team": 200000
+      "ramp_cost_per_team": 200000,
+      "fixed_cost_base_monthly": 150000,
+      "run_stress": false
     },
     "result": {
       "timeline": [
@@ -333,7 +337,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 29230000.0,
           "active_slots": 2,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 91428.57,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 18.0
         },
         {
           "month": "2026-02",
@@ -341,7 +348,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 27987142.86,
           "active_slots": 3,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 186428.57,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 17.2
         },
         {
           "month": "2026-03",
@@ -349,7 +359,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 26244285.71,
           "active_slots": 3,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 186428.57,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 16.2
         },
         {
           "month": "2026-04",
@@ -357,7 +370,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 24501428.57,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 286303.57,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 15.1
         },
         {
           "month": "2026-05",
@@ -365,7 +381,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 22171071.43,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 286303.57,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 13.7
         },
         {
           "month": "2026-06",
@@ -373,7 +392,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 19840714.29,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 286303.57,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 12.2
         },
         {
           "month": "2026-07",
@@ -381,7 +403,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 17510357.14,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 286303.57,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 10.8
         },
         {
           "month": "2026-08",
@@ -389,7 +414,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 15180000.0,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 259750.0,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 9.3
         },
         {
           "month": "2026-09",
@@ -397,7 +425,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 13030000.0,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 173250.0,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 8.0
         },
         {
           "month": "2026-10",
@@ -405,7 +436,10 @@ export const PRESETS = [
           "at_risk": 70875.0,
           "backlog_value": 11496666.67,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 162618.75,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 7.1
         },
         {
           "month": "2026-11",
@@ -413,7 +447,10 @@ export const PRESETS = [
           "at_risk": 151375.0,
           "backlog_value": 9963333.33,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 150543.75,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 6.1
         },
         {
           "month": "2026-12",
@@ -421,7 +458,10 @@ export const PRESETS = [
           "at_risk": 152500.0,
           "backlog_value": 8430000.0,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 139708.33,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 5.2
         },
         {
           "month": "2027-01",
@@ -429,7 +469,10 @@ export const PRESETS = [
           "at_risk": 240833.33,
           "backlog_value": 6963333.33,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 126458.33,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 4.3
         },
         {
           "month": "2027-02",
@@ -437,7 +480,10 @@ export const PRESETS = [
           "at_risk": 246833.33,
           "backlog_value": 5496666.67,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 131558.33,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 3.4
         },
         {
           "month": "2027-03",
@@ -445,7 +491,10 @@ export const PRESETS = [
           "at_risk": 316083.33,
           "backlog_value": 4070000.0,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 118670.83,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 2.5
         },
         {
           "month": "2027-04",
@@ -453,7 +502,10 @@ export const PRESETS = [
           "at_risk": 316083.33,
           "backlog_value": 2726666.67,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 118670.83,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 1.7
         },
         {
           "month": "2027-05",
@@ -461,7 +513,10 @@ export const PRESETS = [
           "at_risk": 238083.33,
           "backlog_value": 1383333.33,
           "active_slots": 3,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 52370.83,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 0.9
         },
         {
           "month": "2027-06",
@@ -469,7 +524,10 @@ export const PRESETS = [
           "at_risk": 78000.0,
           "backlog_value": 300000.0,
           "active_slots": 1,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": -83700.0,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 0.2
         }
       ],
       "capacity_gap": [
@@ -640,8 +698,15 @@ export const PRESETS = [
         "at_risk_total": 1810666.65,
         "at_risk_share_pct": 30.5,
         "months_capacity_short": 6,
-        "backlog_cleared_pct": 99.0
-      }
+        "backlog_cleared_pct": 99.0,
+        "operating_profit_total": 2959399.97,
+        "op_margin_pct": 52.3,
+        "coverage_months_now": 18.0,
+        "coverage_warning_month": "2026-12",
+        "fixed_cost_base_monthly": 150000.0
+      },
+      "stress_timeline": null,
+      "stress_comparison": null
     }
   },
   {
@@ -740,7 +805,9 @@ export const PRESETS = [
       "baseline_teams": 2,
       "order_intake_growth": 0.16,
       "cost_per_team": 155000,
-      "ramp_cost_per_team": 25000
+      "ramp_cost_per_team": 25000,
+      "fixed_cost_base_monthly": 25000,
+      "run_stress": false
     },
     "result": {
       "timeline": [
@@ -750,7 +817,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 1420000.0,
           "active_slots": 2,
-          "capacity_slots": 3
+          "capacity_slots": 3,
+          "operating_profit": 33400.0,
+          "fixed_cost_monthly": 25000.0,
+          "coverage_months": 12.0
         },
         {
           "month": "2026-02",
@@ -758,7 +828,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 1284000.0,
           "active_slots": 2,
-          "capacity_slots": 3
+          "capacity_slots": 3,
+          "operating_profit": 33400.0,
+          "fixed_cost_monthly": 25000.0,
+          "coverage_months": 10.9
         },
         {
           "month": "2026-03",
@@ -766,7 +839,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 1148000.0,
           "active_slots": 3,
-          "capacity_slots": 3
+          "capacity_slots": 3,
+          "operating_profit": 50500.0,
+          "fixed_cost_monthly": 25000.0,
+          "coverage_months": 9.7
         },
         {
           "month": "2026-04",
@@ -774,7 +850,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 967000.0,
           "active_slots": 3,
-          "capacity_slots": 3
+          "capacity_slots": 3,
+          "operating_profit": 50500.0,
+          "fixed_cost_monthly": 25000.0,
+          "coverage_months": 8.2
         },
         {
           "month": "2026-05",
@@ -782,7 +861,10 @@ export const PRESETS = [
           "at_risk": 22800.0,
           "backlog_value": 786000.0,
           "active_slots": 3,
-          "capacity_slots": 3
+          "capacity_slots": 3,
+          "operating_profit": 33880.0,
+          "fixed_cost_monthly": 25000.0,
+          "coverage_months": 6.6
         },
         {
           "month": "2026-06",
@@ -790,7 +872,10 @@ export const PRESETS = [
           "at_risk": 22800.0,
           "backlog_value": 637500.0,
           "active_slots": 3,
-          "capacity_slots": 3
+          "capacity_slots": 3,
+          "operating_profit": 36680.0,
+          "fixed_cost_monthly": 25000.0,
+          "coverage_months": 5.4
         },
         {
           "month": "2026-07",
@@ -798,7 +883,10 @@ export const PRESETS = [
           "at_risk": 19550.0,
           "backlog_value": 485000.0,
           "active_slots": 3,
-          "capacity_slots": 3
+          "capacity_slots": 3,
+          "operating_profit": 30150.83,
+          "fixed_cost_monthly": 25000.0,
+          "coverage_months": 4.1
         },
         {
           "month": "2026-08",
@@ -806,7 +894,10 @@ export const PRESETS = [
           "at_risk": 58083.33,
           "backlog_value": 355833.33,
           "active_slots": 3,
-          "capacity_slots": 3
+          "capacity_slots": 3,
+          "operating_profit": 24370.83,
+          "fixed_cost_monthly": 25000.0,
+          "coverage_months": 3.0
         },
         {
           "month": "2026-09",
@@ -814,7 +905,10 @@ export const PRESETS = [
           "at_risk": 54133.33,
           "backlog_value": 226666.67,
           "active_slots": 3,
-          "capacity_slots": 3
+          "capacity_slots": 3,
+          "operating_profit": 21013.33,
+          "fixed_cost_monthly": 25000.0,
+          "coverage_months": 1.9
         },
         {
           "month": "2026-10",
@@ -822,7 +916,10 @@ export const PRESETS = [
           "at_risk": 28933.33,
           "backlog_value": 110000.0,
           "active_slots": 2,
-          "capacity_slots": 3
+          "capacity_slots": 3,
+          "operating_profit": -406.67,
+          "fixed_cost_monthly": 25000.0,
+          "coverage_months": 0.9
         },
         {
           "month": "2026-11",
@@ -830,7 +927,10 @@ export const PRESETS = [
           "at_risk": 13333.33,
           "backlog_value": 53333.33,
           "active_slots": 1,
-          "capacity_slots": 3
+          "capacity_slots": 3,
+          "operating_profit": -13666.67,
+          "fixed_cost_monthly": 25000.0,
+          "coverage_months": 0.5
         },
         {
           "month": "2026-12",
@@ -838,7 +938,10 @@ export const PRESETS = [
           "at_risk": 13333.33,
           "backlog_value": 26666.67,
           "active_slots": 1,
-          "capacity_slots": 3
+          "capacity_slots": 3,
+          "operating_profit": -13666.67,
+          "fixed_cost_monthly": 25000.0,
+          "coverage_months": 0.2
         },
         {
           "month": "2027-01",
@@ -846,7 +949,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 3
+          "capacity_slots": 3,
+          "operating_profit": -25000.0,
+          "fixed_cost_monthly": 25000.0,
+          "coverage_months": 0.0
         },
         {
           "month": "2027-02",
@@ -854,7 +960,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 3
+          "capacity_slots": 3,
+          "operating_profit": -25000.0,
+          "fixed_cost_monthly": 25000.0,
+          "coverage_months": 0.0
         },
         {
           "month": "2027-03",
@@ -862,7 +971,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 3
+          "capacity_slots": 3,
+          "operating_profit": -25000.0,
+          "fixed_cost_monthly": 25000.0,
+          "coverage_months": 0.0
         },
         {
           "month": "2027-04",
@@ -870,7 +982,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 3
+          "capacity_slots": 3,
+          "operating_profit": -25000.0,
+          "fixed_cost_monthly": 25000.0,
+          "coverage_months": 0.0
         },
         {
           "month": "2027-05",
@@ -878,7 +993,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 3
+          "capacity_slots": 3,
+          "operating_profit": -25000.0,
+          "fixed_cost_monthly": 25000.0,
+          "coverage_months": 0.0
         },
         {
           "month": "2027-06",
@@ -886,7 +1004,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 3
+          "capacity_slots": 3,
+          "operating_profit": -25000.0,
+          "fixed_cost_monthly": 25000.0,
+          "coverage_months": 0.0
         }
       ],
       "capacity_gap": [
@@ -1057,8 +1178,15 @@ export const PRESETS = [
         "at_risk_total": 232966.65,
         "at_risk_share_pct": 37.5,
         "months_capacity_short": 4,
-        "backlog_cleared_pct": 100.0
-      }
+        "backlog_cleared_pct": 100.0,
+        "operating_profit_total": 136154.98,
+        "op_margin_pct": 23.2,
+        "coverage_months_now": 12.0,
+        "coverage_warning_month": "2026-06",
+        "fixed_cost_base_monthly": 25000.0
+      },
+      "stress_timeline": null,
+      "stress_comparison": null
     }
   },
   {
@@ -1137,7 +1265,9 @@ export const PRESETS = [
       "baseline_teams": 1,
       "order_intake_growth": 0.12,
       "cost_per_team": 80000,
-      "ramp_cost_per_team": 8000
+      "ramp_cost_per_team": 8000,
+      "fixed_cost_base_monthly": 6500,
+      "run_stress": false
     },
     "result": {
       "timeline": [
@@ -1147,7 +1277,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 290000.0,
           "active_slots": 2,
-          "capacity_slots": 2
+          "capacity_slots": 2,
+          "operating_profit": 8913.33,
+          "fixed_cost_monthly": 6500.0,
+          "coverage_months": 7.0
         },
         {
           "month": "2026-02",
@@ -1155,7 +1288,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 236666.67,
           "active_slots": 2,
-          "capacity_slots": 2
+          "capacity_slots": 2,
+          "operating_profit": 8913.33,
+          "fixed_cost_monthly": 6500.0,
+          "coverage_months": 5.7
         },
         {
           "month": "2026-03",
@@ -1163,7 +1299,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 183333.33,
           "active_slots": 2,
-          "capacity_slots": 2
+          "capacity_slots": 2,
+          "operating_profit": 8913.33,
+          "fixed_cost_monthly": 6500.0,
+          "coverage_months": 4.4
         },
         {
           "month": "2026-04",
@@ -1171,7 +1310,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 130000.0,
           "active_slots": 2,
-          "capacity_slots": 2
+          "capacity_slots": 2,
+          "operating_profit": 6040.0,
+          "fixed_cost_monthly": 6500.0,
+          "coverage_months": 3.1
         },
         {
           "month": "2026-05",
@@ -1179,7 +1321,10 @@ export const PRESETS = [
           "at_risk": 5780.0,
           "backlog_value": 87000.0,
           "active_slots": 2,
-          "capacity_slots": 2
+          "capacity_slots": 2,
+          "operating_profit": 5173.0,
+          "fixed_cost_monthly": 6500.0,
+          "coverage_months": 2.1
         },
         {
           "month": "2026-06",
@@ -1187,7 +1332,10 @@ export const PRESETS = [
           "at_risk": 11000.0,
           "backlog_value": 44000.0,
           "active_slots": 2,
-          "capacity_slots": 2
+          "capacity_slots": 2,
+          "operating_profit": 2850.0,
+          "fixed_cost_monthly": 6500.0,
+          "coverage_months": 1.1
         },
         {
           "month": "2026-07",
@@ -1195,7 +1343,10 @@ export const PRESETS = [
           "at_risk": 4160.0,
           "backlog_value": 13000.0,
           "active_slots": 1,
-          "capacity_slots": 2
+          "capacity_slots": 2,
+          "operating_profit": -2964.0,
+          "fixed_cost_monthly": 6500.0,
+          "coverage_months": 0.3
         },
         {
           "month": "2026-08",
@@ -1203,7 +1354,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 2
+          "capacity_slots": 2,
+          "operating_profit": -6500.0,
+          "fixed_cost_monthly": 6500.0,
+          "coverage_months": 0.0
         },
         {
           "month": "2026-09",
@@ -1211,7 +1365,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 2
+          "capacity_slots": 2,
+          "operating_profit": -6500.0,
+          "fixed_cost_monthly": 6500.0,
+          "coverage_months": 0.0
         },
         {
           "month": "2026-10",
@@ -1219,7 +1376,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 2
+          "capacity_slots": 2,
+          "operating_profit": -6500.0,
+          "fixed_cost_monthly": 6500.0,
+          "coverage_months": 0.0
         },
         {
           "month": "2026-11",
@@ -1227,7 +1387,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 2
+          "capacity_slots": 2,
+          "operating_profit": -6500.0,
+          "fixed_cost_monthly": 6500.0,
+          "coverage_months": 0.0
         },
         {
           "month": "2026-12",
@@ -1235,7 +1398,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 2
+          "capacity_slots": 2,
+          "operating_profit": -6500.0,
+          "fixed_cost_monthly": 6500.0,
+          "coverage_months": 0.0
         },
         {
           "month": "2027-01",
@@ -1243,7 +1409,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 2
+          "capacity_slots": 2,
+          "operating_profit": -6500.0,
+          "fixed_cost_monthly": 6500.0,
+          "coverage_months": 0.0
         },
         {
           "month": "2027-02",
@@ -1251,7 +1420,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 2
+          "capacity_slots": 2,
+          "operating_profit": -6500.0,
+          "fixed_cost_monthly": 6500.0,
+          "coverage_months": 0.0
         },
         {
           "month": "2027-03",
@@ -1259,7 +1431,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 2
+          "capacity_slots": 2,
+          "operating_profit": -6500.0,
+          "fixed_cost_monthly": 6500.0,
+          "coverage_months": 0.0
         },
         {
           "month": "2027-04",
@@ -1267,7 +1442,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 2
+          "capacity_slots": 2,
+          "operating_profit": -6500.0,
+          "fixed_cost_monthly": 6500.0,
+          "coverage_months": 0.0
         },
         {
           "month": "2027-05",
@@ -1275,7 +1453,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 2
+          "capacity_slots": 2,
+          "operating_profit": -6500.0,
+          "fixed_cost_monthly": 6500.0,
+          "coverage_months": 0.0
         },
         {
           "month": "2027-06",
@@ -1283,7 +1464,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 2
+          "capacity_slots": 2,
+          "operating_profit": -6500.0,
+          "fixed_cost_monthly": 6500.0,
+          "coverage_months": 0.0
         }
       ],
       "capacity_gap": [
@@ -1454,8 +1638,15 @@ export const PRESETS = [
         "at_risk_total": 20940.0,
         "at_risk_share_pct": 24.2,
         "months_capacity_short": 2,
-        "backlog_cleared_pct": 100.0
-      }
+        "backlog_cleared_pct": 100.0,
+        "operating_profit_total": -33661.01,
+        "op_margin_pct": -40.4,
+        "coverage_months_now": 7.0,
+        "coverage_warning_month": "2026-02",
+        "fixed_cost_base_monthly": 6500.0
+      },
+      "stress_timeline": null,
+      "stress_comparison": null
     }
   },
   {
@@ -1617,7 +1808,9 @@ export const PRESETS = [
       "baseline_teams": 3,
       "order_intake_growth": 0.12,
       "cost_per_team": 1600000,
-      "ramp_cost_per_team": 200000
+      "ramp_cost_per_team": 200000,
+      "fixed_cost_base_monthly": 150000,
+      "run_stress": false
     },
     "result": {
       "timeline": [
@@ -1627,7 +1820,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 29230000.0,
           "active_slots": 2,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 62628.57,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 18.2
         },
         {
           "month": "2026-02",
@@ -1635,7 +1831,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 28147142.86,
           "active_slots": 3,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 157628.57,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 17.5
         },
         {
           "month": "2026-03",
@@ -1643,7 +1842,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 26564285.71,
           "active_slots": 3,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 157628.57,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 16.5
         },
         {
           "month": "2026-04",
@@ -1651,7 +1853,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 24981428.57,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 257503.57,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 15.5
         },
         {
           "month": "2026-05",
@@ -1659,7 +1864,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 22811071.43,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 257503.57,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 14.2
         },
         {
           "month": "2026-06",
@@ -1667,7 +1875,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 20640714.29,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 257503.57,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 12.8
         },
         {
           "month": "2026-07",
@@ -1675,7 +1886,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 18470357.14,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 257503.57,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 11.5
         },
         {
           "month": "2026-08",
@@ -1683,7 +1897,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 16300000.0,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 230950.0,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 10.1
         },
         {
           "month": "2026-09",
@@ -1691,7 +1908,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 14310000.0,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 216450.0,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 8.9
         },
         {
           "month": "2026-10",
@@ -1699,7 +1919,10 @@ export const PRESETS = [
           "at_risk": 70875.0,
           "backlog_value": 12436666.67,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 205818.75,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 7.7
         },
         {
           "month": "2026-11",
@@ -1707,7 +1930,10 @@ export const PRESETS = [
           "at_risk": 151375.0,
           "backlog_value": 10563333.33,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 150543.75,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 6.6
         },
         {
           "month": "2026-12",
@@ -1715,7 +1941,10 @@ export const PRESETS = [
           "at_risk": 152500.0,
           "backlog_value": 9030000.0,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 139708.33,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 5.6
         },
         {
           "month": "2027-01",
@@ -1723,7 +1952,10 @@ export const PRESETS = [
           "at_risk": 240833.33,
           "backlog_value": 7563333.33,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 126458.33,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 4.7
         },
         {
           "month": "2027-02",
@@ -1731,7 +1963,10 @@ export const PRESETS = [
           "at_risk": 240833.33,
           "backlog_value": 6096666.67,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 126458.33,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 3.8
         },
         {
           "month": "2027-03",
@@ -1739,7 +1974,10 @@ export const PRESETS = [
           "at_risk": 310083.33,
           "backlog_value": 4630000.0,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 113570.83,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 2.9
         },
         {
           "month": "2027-04",
@@ -1747,7 +1985,10 @@ export const PRESETS = [
           "at_risk": 316083.33,
           "backlog_value": 3286666.67,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 118670.83,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 2.0
         },
         {
           "month": "2027-05",
@@ -1755,7 +1996,10 @@ export const PRESETS = [
           "at_risk": 316083.33,
           "backlog_value": 1943333.33,
           "active_slots": 4,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": 118670.83,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 1.2
         },
         {
           "month": "2027-06",
@@ -1763,7 +2007,10 @@ export const PRESETS = [
           "at_risk": 78000.0,
           "backlog_value": 600000.0,
           "active_slots": 1,
-          "capacity_slots": 4
+          "capacity_slots": 4,
+          "operating_profit": -83700.0,
+          "fixed_cost_monthly": 150000.0,
+          "coverage_months": 0.4
         }
       ],
       "capacity_gap": [
@@ -1934,8 +2181,15 @@ export const PRESETS = [
         "at_risk_total": 1876666.65,
         "at_risk_share_pct": 32.1,
         "months_capacity_short": 6,
-        "backlog_cleared_pct": 97.9
-      }
+        "backlog_cleared_pct": 97.9,
+        "operating_profit_total": 2871499.97,
+        "op_margin_pct": 51.5,
+        "coverage_months_now": 18.2,
+        "coverage_warning_month": "2026-12",
+        "fixed_cost_base_monthly": 150000.0
+      },
+      "stress_timeline": null,
+      "stress_comparison": null
     }
   },
   {
@@ -1984,7 +2238,9 @@ export const PRESETS = [
       "baseline_teams": 1,
       "order_intake_growth": 0.12,
       "cost_per_team": 120000,
-      "ramp_cost_per_team": 10000
+      "ramp_cost_per_team": 10000,
+      "fixed_cost_base_monthly": 0,
+      "run_stress": false
     },
     "result": {
       "timeline": [
@@ -1994,7 +2250,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 250000.0,
           "active_slots": 1,
-          "capacity_slots": 1
+          "capacity_slots": 1,
+          "operating_profit": 10500.0,
+          "fixed_cost_monthly": 0.0,
+          "coverage_months": 9.0
         },
         {
           "month": "2026-02",
@@ -2002,7 +2261,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 220000.0,
           "active_slots": 1,
-          "capacity_slots": 1
+          "capacity_slots": 1,
+          "operating_profit": 10500.0,
+          "fixed_cost_monthly": 0.0,
+          "coverage_months": 7.9
         },
         {
           "month": "2026-03",
@@ -2010,7 +2272,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 190000.0,
           "active_slots": 1,
-          "capacity_slots": 1
+          "capacity_slots": 1,
+          "operating_profit": 10500.0,
+          "fixed_cost_monthly": 0.0,
+          "coverage_months": 6.8
         },
         {
           "month": "2026-04",
@@ -2018,7 +2283,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 160000.0,
           "active_slots": 1,
-          "capacity_slots": 1
+          "capacity_slots": 1,
+          "operating_profit": 10500.0,
+          "fixed_cost_monthly": 0.0,
+          "coverage_months": 5.8
         },
         {
           "month": "2026-05",
@@ -2026,7 +2294,10 @@ export const PRESETS = [
           "at_risk": 8750.0,
           "backlog_value": 130000.0,
           "active_slots": 1,
-          "capacity_slots": 1
+          "capacity_slots": 1,
+          "operating_profit": 7437.5,
+          "fixed_cost_monthly": 0.0,
+          "coverage_months": 4.7
         },
         {
           "month": "2026-06",
@@ -2034,7 +2305,10 @@ export const PRESETS = [
           "at_risk": 8750.0,
           "backlog_value": 105000.0,
           "active_slots": 1,
-          "capacity_slots": 1
+          "capacity_slots": 1,
+          "operating_profit": 7437.5,
+          "fixed_cost_monthly": 0.0,
+          "coverage_months": 3.8
         },
         {
           "month": "2026-07",
@@ -2042,7 +2316,10 @@ export const PRESETS = [
           "at_risk": 9333.33,
           "backlog_value": 80000.0,
           "active_slots": 1,
-          "capacity_slots": 1
+          "capacity_slots": 1,
+          "operating_profit": 7933.33,
+          "fixed_cost_monthly": 0.0,
+          "coverage_months": 2.9
         },
         {
           "month": "2026-08",
@@ -2050,7 +2327,10 @@ export const PRESETS = [
           "at_risk": 9333.33,
           "backlog_value": 53333.33,
           "active_slots": 1,
-          "capacity_slots": 1
+          "capacity_slots": 1,
+          "operating_profit": 7933.33,
+          "fixed_cost_monthly": 0.0,
+          "coverage_months": 1.9
         },
         {
           "month": "2026-09",
@@ -2058,7 +2338,10 @@ export const PRESETS = [
           "at_risk": 9333.33,
           "backlog_value": 26666.67,
           "active_slots": 1,
-          "capacity_slots": 1
+          "capacity_slots": 1,
+          "operating_profit": 7933.33,
+          "fixed_cost_monthly": 0.0,
+          "coverage_months": 1.0
         },
         {
           "month": "2026-10",
@@ -2066,7 +2349,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 1
+          "capacity_slots": 1,
+          "operating_profit": 0.0,
+          "fixed_cost_monthly": 0.0,
+          "coverage_months": 0.0
         },
         {
           "month": "2026-11",
@@ -2074,7 +2360,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 1
+          "capacity_slots": 1,
+          "operating_profit": 0.0,
+          "fixed_cost_monthly": 0.0,
+          "coverage_months": 0.0
         },
         {
           "month": "2026-12",
@@ -2082,7 +2371,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 1
+          "capacity_slots": 1,
+          "operating_profit": 0.0,
+          "fixed_cost_monthly": 0.0,
+          "coverage_months": 0.0
         },
         {
           "month": "2027-01",
@@ -2090,7 +2382,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 1
+          "capacity_slots": 1,
+          "operating_profit": 0.0,
+          "fixed_cost_monthly": 0.0,
+          "coverage_months": 0.0
         },
         {
           "month": "2027-02",
@@ -2098,7 +2393,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 1
+          "capacity_slots": 1,
+          "operating_profit": 0.0,
+          "fixed_cost_monthly": 0.0,
+          "coverage_months": 0.0
         },
         {
           "month": "2027-03",
@@ -2106,7 +2404,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 1
+          "capacity_slots": 1,
+          "operating_profit": 0.0,
+          "fixed_cost_monthly": 0.0,
+          "coverage_months": 0.0
         },
         {
           "month": "2027-04",
@@ -2114,7 +2415,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 1
+          "capacity_slots": 1,
+          "operating_profit": 0.0,
+          "fixed_cost_monthly": 0.0,
+          "coverage_months": 0.0
         },
         {
           "month": "2027-05",
@@ -2122,7 +2426,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 1
+          "capacity_slots": 1,
+          "operating_profit": 0.0,
+          "fixed_cost_monthly": 0.0,
+          "coverage_months": 0.0
         },
         {
           "month": "2027-06",
@@ -2130,7 +2437,10 @@ export const PRESETS = [
           "at_risk": 0.0,
           "backlog_value": 0.0,
           "active_slots": 0,
-          "capacity_slots": 1
+          "capacity_slots": 1,
+          "operating_profit": 0.0,
+          "fixed_cost_monthly": 0.0,
+          "coverage_months": 0.0
         }
       ],
       "capacity_gap": [
@@ -2277,8 +2587,15 @@ export const PRESETS = [
         "at_risk_total": 45499.99,
         "at_risk_share_pct": 52.0,
         "months_capacity_short": 3,
-        "backlog_cleared_pct": 100.0
-      }
+        "backlog_cleared_pct": 100.0,
+        "operating_profit_total": 80674.99,
+        "op_margin_pct": 100.0,
+        "coverage_months_now": 9.0,
+        "coverage_warning_month": "2026-04",
+        "fixed_cost_base_monthly": 0.0
+      },
+      "stress_timeline": null,
+      "stress_comparison": null
     }
   }
 ]
@@ -2291,7 +2608,10 @@ export const FALLBACK_RESULT = {
       "at_risk": 0.0,
       "backlog_value": 29230000.0,
       "active_slots": 2,
-      "capacity_slots": 4
+      "capacity_slots": 4,
+      "operating_profit": 91428.57,
+      "fixed_cost_monthly": 150000.0,
+      "coverage_months": 18.0
     },
     {
       "month": "2026-02",
@@ -2299,7 +2619,10 @@ export const FALLBACK_RESULT = {
       "at_risk": 0.0,
       "backlog_value": 27987142.86,
       "active_slots": 3,
-      "capacity_slots": 4
+      "capacity_slots": 4,
+      "operating_profit": 186428.57,
+      "fixed_cost_monthly": 150000.0,
+      "coverage_months": 17.2
     },
     {
       "month": "2026-03",
@@ -2307,7 +2630,10 @@ export const FALLBACK_RESULT = {
       "at_risk": 0.0,
       "backlog_value": 26244285.71,
       "active_slots": 3,
-      "capacity_slots": 4
+      "capacity_slots": 4,
+      "operating_profit": 186428.57,
+      "fixed_cost_monthly": 150000.0,
+      "coverage_months": 16.2
     },
     {
       "month": "2026-04",
@@ -2315,7 +2641,10 @@ export const FALLBACK_RESULT = {
       "at_risk": 0.0,
       "backlog_value": 24501428.57,
       "active_slots": 4,
-      "capacity_slots": 4
+      "capacity_slots": 4,
+      "operating_profit": 286303.57,
+      "fixed_cost_monthly": 150000.0,
+      "coverage_months": 15.1
     },
     {
       "month": "2026-05",
@@ -2323,7 +2652,10 @@ export const FALLBACK_RESULT = {
       "at_risk": 0.0,
       "backlog_value": 22171071.43,
       "active_slots": 4,
-      "capacity_slots": 4
+      "capacity_slots": 4,
+      "operating_profit": 286303.57,
+      "fixed_cost_monthly": 150000.0,
+      "coverage_months": 13.7
     },
     {
       "month": "2026-06",
@@ -2331,7 +2663,10 @@ export const FALLBACK_RESULT = {
       "at_risk": 0.0,
       "backlog_value": 19840714.29,
       "active_slots": 4,
-      "capacity_slots": 4
+      "capacity_slots": 4,
+      "operating_profit": 286303.57,
+      "fixed_cost_monthly": 150000.0,
+      "coverage_months": 12.2
     },
     {
       "month": "2026-07",
@@ -2339,7 +2674,10 @@ export const FALLBACK_RESULT = {
       "at_risk": 0.0,
       "backlog_value": 17510357.14,
       "active_slots": 4,
-      "capacity_slots": 4
+      "capacity_slots": 4,
+      "operating_profit": 286303.57,
+      "fixed_cost_monthly": 150000.0,
+      "coverage_months": 10.8
     },
     {
       "month": "2026-08",
@@ -2347,7 +2685,10 @@ export const FALLBACK_RESULT = {
       "at_risk": 0.0,
       "backlog_value": 15180000.0,
       "active_slots": 4,
-      "capacity_slots": 4
+      "capacity_slots": 4,
+      "operating_profit": 259750.0,
+      "fixed_cost_monthly": 150000.0,
+      "coverage_months": 9.3
     },
     {
       "month": "2026-09",
@@ -2355,7 +2696,10 @@ export const FALLBACK_RESULT = {
       "at_risk": 0.0,
       "backlog_value": 13030000.0,
       "active_slots": 4,
-      "capacity_slots": 4
+      "capacity_slots": 4,
+      "operating_profit": 173250.0,
+      "fixed_cost_monthly": 150000.0,
+      "coverage_months": 8.0
     },
     {
       "month": "2026-10",
@@ -2363,7 +2707,10 @@ export const FALLBACK_RESULT = {
       "at_risk": 70875.0,
       "backlog_value": 11496666.67,
       "active_slots": 4,
-      "capacity_slots": 4
+      "capacity_slots": 4,
+      "operating_profit": 162618.75,
+      "fixed_cost_monthly": 150000.0,
+      "coverage_months": 7.1
     },
     {
       "month": "2026-11",
@@ -2371,7 +2718,10 @@ export const FALLBACK_RESULT = {
       "at_risk": 151375.0,
       "backlog_value": 9963333.33,
       "active_slots": 4,
-      "capacity_slots": 4
+      "capacity_slots": 4,
+      "operating_profit": 150543.75,
+      "fixed_cost_monthly": 150000.0,
+      "coverage_months": 6.1
     },
     {
       "month": "2026-12",
@@ -2379,7 +2729,10 @@ export const FALLBACK_RESULT = {
       "at_risk": 152500.0,
       "backlog_value": 8430000.0,
       "active_slots": 4,
-      "capacity_slots": 4
+      "capacity_slots": 4,
+      "operating_profit": 139708.33,
+      "fixed_cost_monthly": 150000.0,
+      "coverage_months": 5.2
     },
     {
       "month": "2027-01",
@@ -2387,7 +2740,10 @@ export const FALLBACK_RESULT = {
       "at_risk": 240833.33,
       "backlog_value": 6963333.33,
       "active_slots": 4,
-      "capacity_slots": 4
+      "capacity_slots": 4,
+      "operating_profit": 126458.33,
+      "fixed_cost_monthly": 150000.0,
+      "coverage_months": 4.3
     },
     {
       "month": "2027-02",
@@ -2395,7 +2751,10 @@ export const FALLBACK_RESULT = {
       "at_risk": 246833.33,
       "backlog_value": 5496666.67,
       "active_slots": 4,
-      "capacity_slots": 4
+      "capacity_slots": 4,
+      "operating_profit": 131558.33,
+      "fixed_cost_monthly": 150000.0,
+      "coverage_months": 3.4
     },
     {
       "month": "2027-03",
@@ -2403,7 +2762,10 @@ export const FALLBACK_RESULT = {
       "at_risk": 316083.33,
       "backlog_value": 4070000.0,
       "active_slots": 4,
-      "capacity_slots": 4
+      "capacity_slots": 4,
+      "operating_profit": 118670.83,
+      "fixed_cost_monthly": 150000.0,
+      "coverage_months": 2.5
     },
     {
       "month": "2027-04",
@@ -2411,7 +2773,10 @@ export const FALLBACK_RESULT = {
       "at_risk": 316083.33,
       "backlog_value": 2726666.67,
       "active_slots": 4,
-      "capacity_slots": 4
+      "capacity_slots": 4,
+      "operating_profit": 118670.83,
+      "fixed_cost_monthly": 150000.0,
+      "coverage_months": 1.7
     },
     {
       "month": "2027-05",
@@ -2419,7 +2784,10 @@ export const FALLBACK_RESULT = {
       "at_risk": 238083.33,
       "backlog_value": 1383333.33,
       "active_slots": 3,
-      "capacity_slots": 4
+      "capacity_slots": 4,
+      "operating_profit": 52370.83,
+      "fixed_cost_monthly": 150000.0,
+      "coverage_months": 0.9
     },
     {
       "month": "2027-06",
@@ -2427,7 +2795,10 @@ export const FALLBACK_RESULT = {
       "at_risk": 78000.0,
       "backlog_value": 300000.0,
       "active_slots": 1,
-      "capacity_slots": 4
+      "capacity_slots": 4,
+      "operating_profit": -83700.0,
+      "fixed_cost_monthly": 150000.0,
+      "coverage_months": 0.2
     }
   ],
   "capacity_gap": [
@@ -2598,6 +2969,13 @@ export const FALLBACK_RESULT = {
     "at_risk_total": 1810666.65,
     "at_risk_share_pct": 30.5,
     "months_capacity_short": 6,
-    "backlog_cleared_pct": 99.0
-  }
+    "backlog_cleared_pct": 99.0,
+    "operating_profit_total": 2959399.97,
+    "op_margin_pct": 52.3,
+    "coverage_months_now": 18.0,
+    "coverage_warning_month": "2026-12",
+    "fixed_cost_base_monthly": 150000.0
+  },
+  "stress_timeline": null,
+  "stress_comparison": null
 }

@@ -125,20 +125,42 @@ cf_monthly = cf.groupby('month').agg({
 cf_monthly['fcf'] = cf_monthly['operating_cash_flow'] + cf_monthly['capex']
 
 # --- Working capital metrics ---
-wc_monthly = wc.groupby('month').agg({
-    'dso': 'mean',
-    'dpo': 'mean',
-    'dio': 'mean',
-    'cash_conversion_cycle': 'mean',
-}).reset_index()
-wc_monthly.columns = ['month', 'dso', 'dpo', 'dio', 'ccc']
+# Company DSO/DIO/DPO are AR/COGS-WEIGHTED across divisions, not a simple cross-division
+# mean — a naive average lets a small, tight-cycle division pull the company figure down
+# and understate it. Textbook: company DSO = total AR / total revenue (so weight division
+# DSO by revenue); DIO and DPO scale with inventory/payables vs COGS (weight by COGS).
+# CCC = DSO + DIO - DPO, computed from the components so the line equals the displayed identity.
+wc_weighted = wc.merge(
+    pnl[['division', 'month', 'revenue', 'cogs']], on=['division', 'month'], how='left'
+)
+
+
+def _wavg(frame, day_col, weight_col):
+    w = frame[weight_col].sum()
+    return (frame[day_col] * frame[weight_col]).sum() / w if w else frame[day_col].mean()
+
+
+wc_rows = []
+for month in sorted(wc_weighted['month'].unique()):
+    g = wc_weighted[wc_weighted['month'] == month]
+    dso = _wavg(g, 'dso', 'revenue')
+    dio = _wavg(g, 'dio', 'cogs')
+    dpo = _wavg(g, 'dpo', 'cogs')
+    wc_rows.append({'month': month, 'dso': dso, 'dpo': dpo, 'dio': dio, 'ccc': dso + dio - dpo})
+wc_monthly = pd.DataFrame(wc_rows)
 
 # --- Summary KPIs ---
 total_revenue = pnl['revenue'].sum()
 total_ebitda = pnl['ebitda'].sum()
 ebitda_margin = (total_ebitda / total_revenue * 100) if total_revenue else 0
 total_fcf = cf_monthly['fcf'].sum()
-avg_ccc = wc_monthly['ccc'].mean()
+# Headline company CCC = AR/COGS-weighted across ALL division-months (the annual company
+# figure: total AR / total revenue, etc.), so a small division can't drag it down. The
+# monthly line uses the same weighting applied per month.
+_co_dso = _wavg(wc_weighted, 'dso', 'revenue')
+_co_dio = _wavg(wc_weighted, 'dio', 'cogs')
+_co_dpo = _wavg(wc_weighted, 'dpo', 'cogs')
+avg_ccc = _co_dso + _co_dio - _co_dpo
 
 # --- Cash flow waterfall (totals) ---
 total_operating = cf['operating_cash_flow'].sum()

@@ -165,7 +165,9 @@ for dept in sorted(merged["department"].unique()):
     cells = []
     for m, label in zip(months, month_labels):
         month_data = dept_data[dept_data["month"] == m]
-        var_pct = float(month_data["variance_pct"].mean()) if len(month_data) > 0 else 0
+        # Dollar-weighted variance, NOT an unweighted mean of line-item percentages.
+        mb = month_data["budget_amount"].sum()
+        var_pct = float(month_data["variance_abs"].sum() / mb * 100) if mb else 0
         has_anomaly = bool(month_data["anomaly_flag"].any()) if len(month_data) > 0 else False
         cells.append({"x": label, "y": round(var_pct, 1), "hasAnomaly": has_anomaly})
     heatmap_data.append({"id": dept, "data": cells})
@@ -194,9 +196,13 @@ total_actual = float(merged["actual"].sum())
 total_variance = total_actual - total_budget
 total_variance_pct = round((total_variance / total_budget * 100) if total_budget else 0, 1)
 
+# Highest-risk = most OVER budget (largest positive variance), not largest |variance|;
+# fall back to max variance only if all departments are under budget; guard zero budget.
 dept_variances = merged.groupby("department")["variance_abs"].sum()
-highest_risk = dept_variances.abs().idxmax()
-highest_risk_pct = round(float(dept_variances[highest_risk] / merged[merged["department"] == highest_risk]["budget_amount"].sum() * 100), 1)
+over_budget = dept_variances[dept_variances > 0]
+highest_risk = over_budget.idxmax() if len(over_budget) > 0 else dept_variances.idxmax()
+hr_budget = merged[merged["department"] == highest_risk]["budget_amount"].sum()
+highest_risk_pct = round(float(dept_variances[highest_risk] / hr_budget * 100) if hr_budget else 0.0, 1)
 
 variance_sparkline = []
 for m in months:

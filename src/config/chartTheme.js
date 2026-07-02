@@ -31,7 +31,7 @@ export function getNivoTheme() {
     grid: { line: { stroke: getCSSVar('--chart-grid') } },
     axis: {
       ticks: { text: { fill: axisColor, fontFamily: '"JetBrains Mono", monospace', fontSize: 11 } },
-      legend: { text: { fill: axisColor, fontFamily: 'Inter', fontSize: 12 } },
+      legend: { text: { fill: axisColor, fontFamily: '"JetBrains Mono", monospace', fontSize: 12 } },
     },
     tooltip: {
       container: {
@@ -61,4 +61,21 @@ export function getGridStroke() {
 
 export function getHeatmapNeutral() {
   return getCSSVar('--heatmap-neutral')
+}
+
+// Maps a bright series hex → the AA-safe ink TEXT class for its legend/tooltip LABEL.
+// The bright hex stays on the swatch/dot/line; only text must clear WCAG AA in light mode
+// (raw series hexes like green #4AF6C3 ≈ 1.4:1 on a white panel). The ink tokens are
+// theme-aware: dark enough for light mode, bright again in dark mode.
+export const INK_CLASS_BY_HEX = {
+  '#0068FF': 'text-accent-ink-blue',
+  '#4AF6C3': 'text-accent-ink-green',
+  '#FF433D': 'text-accent-ink-red',
+  '#FB8B1E': 'text-accent-ink-orange',
+  '#D4A843': 'text-accent-ink-gold',
+  '#A78BFA': 'text-accent-ink-purple',
+}
+
+export function inkClassForHex(hex) {
+  return INK_CLASS_BY_HEX[String(hex || '').toUpperCase()] || 'text-text-secondary'
 }

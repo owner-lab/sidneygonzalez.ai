@@ -153,7 +153,7 @@
           }
         ]
       },
-      "narrative": "Cutting marketing spend by 15% reduces qualified lead flow by approximately 10% within one quarter, contracting the sales pipeline by an estimated $4.4M. While this saves $1.3M in direct marketing costs, the downstream revenue impact is projected to exceed the savings within two quarters. Brand awareness erodes gradually over 3+ months, compounding the pipeline effect."
+      "narrative": "Cutting marketing spend 15% reduces qualified lead flow about 10% within a quarter, contracting the sales pipeline by roughly $2.4M (-5.4%). That saves $1.3M in direct marketing cost, but on this model the pipeline contraction outweighs the saving within two quarters. Brand awareness erodes about 6% over 3+ months; the leaner pipeline even nudges win rate +0.8% as fewer early-stage deals dilute it \u2014 a small second-order effect."
     },
     {
       "id": "delay_engineering_hiring",
@@ -194,7 +194,7 @@
           "kpi": "platform_uptime",
           "baseline": 99.7,
           "change_pct": 0.36,
-          "projected": 100.06,
+          "projected": 100.0,
           "lag_months": 4,
           "sigma": 0.03
         },
@@ -239,7 +239,7 @@
           {
             "kpi": "platform_uptime",
             "change_pct": 0.36,
-            "projected": 100.06
+            "projected": 100.0
           },
           {
             "kpi": "win_rate",
@@ -266,7 +266,7 @@
           {
             "kpi": "platform_uptime",
             "change_pct": 0.36,
-            "projected": 100.06
+            "projected": 100.0
           },
           {
             "kpi": "win_rate",
@@ -275,7 +275,7 @@
           }
         ]
       },
-      "narrative": "Freezing engineering hiring for one quarter slows feature delivery by roughly 30% during the freeze period. Product NPS begins to decline within two quarters as the roadmap falls behind competitors. The win rate impact is modest (~3-4%) but compounds over time. The cost savings from delayed salaries are partially offset by reduced product competitiveness."
+      "narrative": "Freezing engineering hiring for a quarter (~12% fewer engineers) slows feature delivery about 3.6% \u2014 sub-linear, per Brooks's Law. Product NPS slips about 1.4% over two quarters and win rate eases -0.4% as the roadmap falls behind. The salary savings are real but partly offset by reduced product competitiveness."
     },
     {
       "id": "accelerate_collections",
@@ -518,7 +518,7 @@
           }
         ]
       },
-      "narrative": "Reducing DSO by 10 days frees approximately $5.5M in working capital, improving free cash flow and reducing credit line reliance. The freed capital enables incremental reinvestment in engineering and marketing. This is one of the few decisions with predominantly positive cascading effects \u2014 the tradeoff is customer relationship friction from more aggressive collection terms."
+      "narrative": "Reducing DSO by 10 days releases roughly $5.5M of working capital (~$0.55M per DSO day on ~$200M revenue). Modeled conservatively, about $0.7M of that lands in free cash flow within the period (+5.8%), funding incremental engineering and marketing reinvestment. One of the few moves with mostly positive cascades; the trade-off is tighter collection terms with customers."
     },
     {
       "id": "cut_operations_10",
@@ -653,7 +653,7 @@
           }
         ]
       },
-      "narrative": "A 10% operations budget cut degrades fulfillment capacity, pushing the fulfillment rate below 90% within one quarter. Customer satisfaction drops measurably, driving churn up by an estimated 0.7 percentage points. The LTV impact from increased churn exceeds the budget savings within 12 months. Operations cuts have the longest and most damaging cascade of any scenario modeled."
+      "narrative": "A 10% operations budget cut pushes the fulfillment rate to about 89.8% (-7.0%), under the 90% service line. Customer satisfaction slips about 5.6%, and with a two-month lag monthly churn rises roughly +0.05 percentage points (+2.8%). The LTV drag compounds over ~12 months \u2014 operations cuts carry the longest, most damaging cascade modeled here."
     },
     {
       "id": "custom",

@@ -60,8 +60,15 @@ export default function HeatmapChart({
           borderColor="var(--color-border-subtle)"
           enableLabels={true}
           labelTextColor={({ value }) => {
-            if (value === null || value === undefined) return axisColor
-            return Math.abs(value) > 15 ? (isDark ? '#E2E8F0' : '#0F172A') : axisColor
+            // Dark mode keeps its value-dependent behavior (bright cells get light text).
+            if (isDark) {
+              if (value === null || value === undefined) return axisColor
+              return Math.abs(value) > 15 ? '#E2E8F0' : axisColor
+            }
+            // Light mode: near-black clears AA (>=4.5:1) on every cell across the
+            // green→neutral→red scale (12.97 on green, 5.21 on the reddest, 16.3 on
+            // neutral); the old axisColor #64748B dropped to ~3.5 on tinted cells.
+            return '#0F172A'
           }}
           label={({ value }) => {
             if (value === null || value === undefined) return ''

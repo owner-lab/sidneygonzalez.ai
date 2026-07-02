@@ -32,62 +32,62 @@ export const FALLBACK_DATA = {
       "data": [
         {
           "x": "Jan 25",
-          "y": 42.1,
+          "y": 28.6,
           "hasAnomaly": true
         },
         {
           "x": "Feb 25",
-          "y": -1.2,
+          "y": -0.3,
           "hasAnomaly": false
         },
         {
           "x": "Mar 25",
-          "y": 7.5,
+          "y": 1.8,
           "hasAnomaly": true
         },
         {
           "x": "Apr 25",
-          "y": -1.0,
+          "y": -0.8,
           "hasAnomaly": false
         },
         {
           "x": "May 25",
-          "y": -0.1,
+          "y": 1.0,
           "hasAnomaly": false
         },
         {
           "x": "Jun 25",
-          "y": 1.3,
+          "y": 3.7,
           "hasAnomaly": true
         },
         {
           "x": "Jul 25",
-          "y": 1.4,
-          "hasAnomaly": false
-        },
-        {
-          "x": "Aug 25",
           "y": 0.0,
           "hasAnomaly": false
         },
         {
+          "x": "Aug 25",
+          "y": -0.6,
+          "hasAnomaly": false
+        },
+        {
           "x": "Sep 25",
-          "y": 0.6,
+          "y": 0.9,
           "hasAnomaly": false
         },
         {
           "x": "Oct 25",
-          "y": 1.6,
+          "y": 0.0,
           "hasAnomaly": false
         },
         {
           "x": "Nov 25",
-          "y": 6.3,
+          "y": 3.9,
           "hasAnomaly": true
         },
         {
           "x": "Dec 25",
-          "y": 0.7,
+          "y": 1.0,
           "hasAnomaly": false
         }
       ]
@@ -97,62 +97,62 @@ export const FALLBACK_DATA = {
       "data": [
         {
           "x": "Jan 25",
-          "y": 22.8,
+          "y": 8.9,
           "hasAnomaly": true
         },
         {
           "x": "Feb 25",
-          "y": 6.3,
+          "y": 9.5,
           "hasAnomaly": true
         },
         {
           "x": "Mar 25",
-          "y": 45.2,
+          "y": 61.0,
           "hasAnomaly": true
         },
         {
           "x": "Apr 25",
-          "y": -0.4,
+          "y": -1.2,
           "hasAnomaly": false
         },
         {
           "x": "May 25",
-          "y": 22.3,
+          "y": 8.3,
           "hasAnomaly": true
         },
         {
           "x": "Jun 25",
-          "y": 12.9,
+          "y": 13.3,
           "hasAnomaly": true
         },
         {
           "x": "Jul 25",
-          "y": 45.0,
+          "y": 53.6,
           "hasAnomaly": true
         },
         {
           "x": "Aug 25",
-          "y": 26.4,
+          "y": 16.5,
           "hasAnomaly": true
         },
         {
           "x": "Sep 25",
-          "y": 14.6,
+          "y": 14.7,
           "hasAnomaly": true
         },
         {
           "x": "Oct 25",
-          "y": 2.7,
+          "y": 2.1,
           "hasAnomaly": false
         },
         {
           "x": "Nov 25",
-          "y": 23.5,
+          "y": 9.3,
           "hasAnomaly": true
         },
         {
           "x": "Dec 25",
-          "y": 18.3,
+          "y": 16.7,
           "hasAnomaly": true
         }
       ]
@@ -162,62 +162,62 @@ export const FALLBACK_DATA = {
       "data": [
         {
           "x": "Jan 25",
-          "y": 10.7,
+          "y": 10.2,
           "hasAnomaly": true
         },
         {
           "x": "Feb 25",
-          "y": 1.1,
-          "hasAnomaly": false
-        },
-        {
-          "x": "Mar 25",
-          "y": 0.5,
-          "hasAnomaly": false
-        },
-        {
-          "x": "Apr 25",
-          "y": 34.6,
-          "hasAnomaly": true
-        },
-        {
-          "x": "May 25",
-          "y": 6.6,
-          "hasAnomaly": true
-        },
-        {
-          "x": "Jun 25",
-          "y": 5.9,
-          "hasAnomaly": true
-        },
-        {
-          "x": "Jul 25",
-          "y": -0.1,
-          "hasAnomaly": false
-        },
-        {
-          "x": "Aug 25",
-          "y": -0.2,
-          "hasAnomaly": false
-        },
-        {
-          "x": "Sep 25",
-          "y": 8.3,
-          "hasAnomaly": true
-        },
-        {
-          "x": "Oct 25",
           "y": 1.7,
           "hasAnomaly": false
         },
         {
+          "x": "Mar 25",
+          "y": -0.1,
+          "hasAnomaly": false
+        },
+        {
+          "x": "Apr 25",
+          "y": 6.8,
+          "hasAnomaly": true
+        },
+        {
+          "x": "May 25",
+          "y": 3.4,
+          "hasAnomaly": true
+        },
+        {
+          "x": "Jun 25",
+          "y": 6.2,
+          "hasAnomaly": true
+        },
+        {
+          "x": "Jul 25",
+          "y": 0.1,
+          "hasAnomaly": false
+        },
+        {
+          "x": "Aug 25",
+          "y": -0.7,
+          "hasAnomaly": false
+        },
+        {
+          "x": "Sep 25",
+          "y": 11.9,
+          "hasAnomaly": true
+        },
+        {
+          "x": "Oct 25",
+          "y": 2.4,
+          "hasAnomaly": false
+        },
+        {
           "x": "Nov 25",
-          "y": 3.5,
+          "y": 7.9,
           "hasAnomaly": false
         },
         {
           "x": "Dec 25",
-          "y": 7.3,
+          "y": 10.0,
           "hasAnomaly": true
         }
       ]
@@ -227,62 +227,62 @@ export const FALLBACK_DATA = {
       "data": [
         {
           "x": "Jan 25",
-          "y": 14.9,
+          "y": 31.9,
           "hasAnomaly": true
         },
         {
           "x": "Feb 25",
-          "y": 21.1,
+          "y": 38.7,
           "hasAnomaly": true
         },
         {
           "x": "Mar 25",
-          "y": 29.6,
+          "y": 42.5,
           "hasAnomaly": true
         },
         {
           "x": "Apr 25",
-          "y": 15.7,
+          "y": 33.3,
           "hasAnomaly": true
         },
         {
           "x": "May 25",
-          "y": 18.8,
+          "y": 33.4,
           "hasAnomaly": true
         },
         {
           "x": "Jun 25",
-          "y": 24.5,
+          "y": 39.7,
           "hasAnomaly": true
         },
         {
           "x": "Jul 25",
-          "y": 16.0,
+          "y": 29.5,
           "hasAnomaly": true
         },
         {
           "x": "Aug 25",
-          "y": 13.8,
+          "y": 29.5,
           "hasAnomaly": true
         },
         {
           "x": "Sep 25",
-          "y": 24.2,
+          "y": 39.5,
           "hasAnomaly": true
         },
         {
           "x": "Oct 25",
-          "y": 14.1,
+          "y": 33.9,
           "hasAnomaly": true
         },
         {
           "x": "Nov 25",
-          "y": 13.1,
+          "y": 30.8,
           "hasAnomaly": true
         },
         {
           "x": "Dec 25",
-          "y": 26.9,
+          "y": 38.6,
           "hasAnomaly": true
         }
       ]
@@ -292,62 +292,62 @@ export const FALLBACK_DATA = {
       "data": [
         {
           "x": "Jan 25",
-          "y": 0.8,
+          "y": 1.0,
           "hasAnomaly": false
         },
         {
           "x": "Feb 25",
-          "y": 0.2,
+          "y": -0.2,
           "hasAnomaly": false
         },
         {
           "x": "Mar 25",
-          "y": 1.6,
-          "hasAnomaly": false
-        },
-        {
-          "x": "Apr 25",
-          "y": 0.5,
-          "hasAnomaly": false
-        },
-        {
-          "x": "May 25",
-          "y": 1.8,
-          "hasAnomaly": false
-        },
-        {
-          "x": "Jun 25",
-          "y": 1.2,
-          "hasAnomaly": false
-        },
-        {
-          "x": "Jul 25",
-          "y": 5.8,
-          "hasAnomaly": false
-        },
-        {
-          "x": "Aug 25",
           "y": 2.4,
           "hasAnomaly": false
         },
         {
+          "x": "Apr 25",
+          "y": 0.3,
+          "hasAnomaly": false
+        },
+        {
+          "x": "May 25",
+          "y": 0.7,
+          "hasAnomaly": false
+        },
+        {
+          "x": "Jun 25",
+          "y": 0.5,
+          "hasAnomaly": false
+        },
+        {
+          "x": "Jul 25",
+          "y": 3.8,
+          "hasAnomaly": false
+        },
+        {
+          "x": "Aug 25",
+          "y": 0.9,
+          "hasAnomaly": false
+        },
+        {
           "x": "Sep 25",
-          "y": 7.8,
+          "y": 3.4,
           "hasAnomaly": true
         },
         {
           "x": "Oct 25",
-          "y": 6.3,
+          "y": 2.8,
           "hasAnomaly": false
         },
         {
           "x": "Nov 25",
-          "y": 4.8,
+          "y": 2.4,
           "hasAnomaly": false
         },
         {
           "x": "Dec 25",
-          "y": 8.2,
+          "y": 4.9,
           "hasAnomaly": true
         }
       ]

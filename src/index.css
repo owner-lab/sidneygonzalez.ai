@@ -21,6 +21,7 @@
     --accent-red-ink: 200 30 30;
     --accent-orange-ink: 158 84 0;
     --accent-purple-ink: 106 69 199;
+    --accent-gold-ink: 132 96 0; /* #846000 → 5.75:1 on white — gold/CCC series text */
 
     /* Border (full rgba — not split into channels) */
     --color-border-subtle: rgba(0, 0, 0, 0.08);
@@ -88,6 +89,7 @@
     --accent-red-ink: 255 107 102;
     --accent-orange-ink: 251 139 30;
     --accent-purple-ink: 167 139 250;
+    --accent-gold-ink: 212 168 67; /* #D4A843 — bright gold reads on dark surfaces */
 
     --color-border-subtle: rgba(255, 255, 255, 0.08);
     --color-border-medium: rgba(255, 255, 255, 0.15);

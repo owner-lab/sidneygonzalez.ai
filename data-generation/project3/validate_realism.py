@@ -144,6 +144,57 @@ def validate():
                        if_only >= 3,
                        f"{if_only} anomalies caught by IF but not by 15% threshold")
 
+    print("\n--- Engine output integrity (reconciliation, sign, finiteness) ---")
+    import json
+    import re
+    import math
+
+    fb_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+                           "src", "projects", "variance-engine", "fallbackData.js")
+    with open(fb_path) as f:
+        fb = json.loads(re.search(r"export const FALLBACK_DATA = (\{.*\})\s*$", f.read(), re.S).group(1))
+    summ, bd, ts = fb["summary"], fb["by_department"], fb["time_series"]
+
+    recon_dept = sum(d["actual"] - d["budget"] for d in bd)
+    all_pass &= check("by_department reconciles to total_variance",
+                      abs(recon_dept - summ["total_variance"]) < 1.0,
+                      f"sum(dept) ${recon_dept:,.0f} vs total ${summ['total_variance']:,.0f}")
+    recon_ts = sum(t["actual"] - t["budget"] for t in ts)
+    all_pass &= check("time_series reconciles to total_variance",
+                      abs(recon_ts - summ["total_variance"]) < 1.0,
+                      f"sum(months) ${recon_ts:,.0f}")
+
+    hrp = summ["highest_risk_pct"]
+    all_pass &= check("highest_risk_pct is finite (zero-budget guard holds)",
+                      isinstance(hrp, (int, float)) and math.isfinite(hrp), f"{hrp}")
+
+    hr_dept = next(d for d in bd if d["department"] == summ["highest_risk_department"])
+    any_over = any(d["actual"] > d["budget"] for d in bd)
+    hr_over = hr_dept["actual"] > hr_dept["budget"]
+    all_pass &= check("highest-risk department is over budget (a saver is never 'highest risk')",
+                      hr_over if any_over else True,
+                      f"{summ['highest_risk_department']}: actual ${hr_dept['actual']:,.0f} vs budget ${hr_dept['budget']:,.0f}")
+    all_pass &= check("highest_risk_pct sign matches over/under budget",
+                      hrp == 0 or (hrp > 0) == hr_over,
+                      f"pct {hrp}, dept {'over' if hr_over else 'under'} budget")
+
+    all_pass &= check("all heatmap cells finite",
+                      all(math.isfinite(c["y"]) for dept in fb["heatmap"] for c in dept["data"]))
+
+    # Regression guard for the zero-budget Infinity bug: exercise the highest-risk
+    # computation on a synthetic department with a $0 budget and the largest variance.
+    synth = pd.DataFrame({"department": ["A", "A", "Z"],
+                          "budget_amount": [100.0, 200.0, 0.0],
+                          "actual": [150.0, 260.0, 5000.0]})
+    synth["variance_abs"] = synth["actual"] - synth["budget_amount"]
+    dv = synth.groupby("department")["variance_abs"].sum()
+    over = dv[dv > 0]
+    hr = over.idxmax() if len(over) else dv.idxmax()
+    hb = synth[synth["department"] == hr]["budget_amount"].sum()
+    hp = (dv[hr] / hb * 100) if hb else 0.0
+    all_pass &= check("zero-budget department yields a guarded 0%, never Infinity%",
+                      math.isfinite(hp), f"synthetic $0-budget dept -> highest_risk_pct={hp}")
+
     print("\n" + "=" * 60)
     print("RESULT:", "ALL CHECKS PASSED" if all_pass else "SOME CHECKS FAILED")
     print("=" * 60)
