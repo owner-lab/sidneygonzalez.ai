@@ -41,6 +41,8 @@ data-generation/**/output/
 # `eslint .` in CI; keep them on disk, out of version control.
 .claude/skills/
 .github/skills/
+# Local Claude Code permission config — machine-specific paths, not shared repo state.
+.claude/settings.json
 
 # Research source material — third-party copyrighted PDFs (papers, analyst decks).
 # We cite these in-code (author, year, figures) but must NOT publish the documents
