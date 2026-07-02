@@ -13,6 +13,7 @@ import { formatCompact } from '@/utils/formatters'
 import useMediaQuery from '@/hooks/useMediaQuery'
 import ChartContainer from '@/components/charts/ChartContainer'
 import { getRechartsAxisStyle, getGridStroke } from '@/config/chartTheme'
+import AALegend from '@/components/charts/AALegend'
 
 function CustomTooltip({ active, payload, label }) {
   if (!active || !payload?.length) return null
@@ -72,10 +73,7 @@ export default function VarianceTimeSeries({ data, loading }) {
                 width={65}
               />
               <Tooltip content={<CustomTooltip />} />
-              <Legend
-                wrapperStyle={{ fontSize: isMobile ? 9 : 11, fontFamily: 'Inter' }}
-                iconSize={isMobile ? 8 : 14}
-              />
+              <Legend content={<AALegend />} />
               <Line
                 type="monotone"
                 dataKey="budget"

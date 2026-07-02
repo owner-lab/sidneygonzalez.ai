@@ -25,6 +25,7 @@ export default {
           red: 'rgb(var(--accent-red-ink) / <alpha-value>)',
           orange: 'rgb(var(--accent-orange-ink) / <alpha-value>)',
           purple: 'rgb(var(--accent-purple-ink) / <alpha-value>)',
+          gold: 'rgb(var(--accent-gold-ink) / <alpha-value>)',
         },
         text: {
           primary: 'rgb(var(--color-text-primary) / <alpha-value>)',

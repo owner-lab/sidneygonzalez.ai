@@ -10,7 +10,8 @@ import {
   ReferenceLine,
 } from 'recharts'
 import useMediaQuery from '@/hooks/useMediaQuery'
-import { getRechartsAxisStyle, getGridStroke } from '@/config/chartTheme'
+import { getRechartsAxisStyle, getGridStroke, inkClassForHex } from '@/config/chartTheme'
+import AALegend from '@/components/charts/AALegend'
 
 function CustomTooltip({ active, payload, label, unit }) {
   if (!active || !payload?.length) return null
@@ -18,8 +19,15 @@ function CustomTooltip({ active, payload, label, unit }) {
     <div className="glass-panel rounded-lg px-3 py-2 text-xs">
       <p className="mb-1 font-medium text-text-primary">{label}</p>
       {payload.map((entry) => (
-        <p key={entry.dataKey} style={{ color: entry.color }}>
-          {entry.name}: {entry.value?.toFixed(1)}{unit}
+        <p key={entry.dataKey} className="flex items-center gap-1.5">
+          <span
+            className="inline-block h-2 w-2 shrink-0 rounded-sm"
+            style={{ backgroundColor: entry.color }}
+            aria-hidden="true"
+          />
+          <span className={inkClassForHex(entry.color)}>
+            {entry.name}: {entry.value?.toFixed(1)}{unit}
+          </span>
         </p>
       ))}
     </div>
@@ -72,10 +80,7 @@ export default function MultiLineChart({
             width={45}
           />
           <Tooltip content={<CustomTooltip unit={unit} />} />
-          <Legend
-            wrapperStyle={{ fontSize: isMobile ? 9 : 11, fontFamily: 'Inter' }}
-            iconSize={isMobile ? 8 : 14}
-          />
+          <Legend content={<AALegend />} />
 
           {thresholds.map((t) => (
             <ReferenceLine

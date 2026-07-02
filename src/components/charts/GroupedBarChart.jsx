@@ -10,7 +10,8 @@ import {
 } from 'recharts'
 import { formatCompact } from '@/utils/formatters'
 import useMediaQuery from '@/hooks/useMediaQuery'
-import { getRechartsAxisStyle, getGridStroke } from '@/config/chartTheme'
+import { getRechartsAxisStyle, getGridStroke, inkClassForHex } from '@/config/chartTheme'
+import AALegend from '@/components/charts/AALegend'
 
 function CustomTooltip({ active, payload, label }) {
   if (!active || !payload?.length) return null
@@ -18,8 +19,15 @@ function CustomTooltip({ active, payload, label }) {
     <div className="glass-panel rounded-lg px-3 py-2 text-xs">
       <p className="mb-1 font-medium text-text-primary">{label}</p>
       {payload.map((entry) => (
-        <p key={entry.dataKey} style={{ color: entry.color }}>
-          {entry.name}: {formatCompact(entry.value)}
+        <p key={entry.dataKey} className="flex items-center gap-1.5">
+          <span
+            className="inline-block h-2 w-2 shrink-0 rounded-sm"
+            style={{ backgroundColor: entry.color }}
+            aria-hidden="true"
+          />
+          <span className={inkClassForHex(entry.color)}>
+            {entry.name}: {formatCompact(entry.value)}
+          </span>
         </p>
       ))}
     </div>
@@ -81,10 +89,7 @@ export default function GroupedBarChart({
             width={65}
           />
           <Tooltip content={<CustomTooltip />} />
-          <Legend
-            wrapperStyle={{ fontSize: isMobile ? 9 : 11, fontFamily: 'Inter', paddingTop: 12 }}
-            iconSize={isMobile ? 8 : 14}
-          />
+          <Legend content={<AALegend />} />
           {dataKeys.map(({ key, color, label }) => (
             <Bar
               key={key}

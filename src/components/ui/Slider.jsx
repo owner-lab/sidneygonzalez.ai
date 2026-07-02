@@ -101,10 +101,10 @@ export default function Slider({
 
       {showRange && (
         <div className="flex justify-between" aria-hidden="true">
-          <span className="text-[9px] text-text-muted/60">
+          <span className="text-[9px] text-text-muted">
             {formatValue ? formatValue(min) : min}
           </span>
-          <span className="text-[9px] text-text-muted/60">
+          <span className="text-[9px] text-text-muted">
             {formatValue ? formatValue(max) : max}
           </span>
         </div>
