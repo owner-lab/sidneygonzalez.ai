@@ -16,11 +16,39 @@ from collections import defaultdict, deque
 # org_model_json is passed from JS via Pyodide globals
 model = json.loads(org_model_json)
 
-# Build baseline lookup from all divisions
+# Build baseline + unit lookup from all divisions
 baselines = {}
+units = {}
 for div in model["divisions"].values():
     for kpi in div["kpis"]:
         baselines[kpi["id"]] = kpi["baseline"]
+        units[kpi["id"]] = kpi.get("unit")
+
+
+# Hard domains per KPI unit — a projected value can't leave these (a satisfaction score
+# can't exceed 5, a churn/utilisation percent can't go below 0 or above 100, a headcount
+# can't go negative). Without this, slider-reachable inputs print impossible values like
+# CSAT 5.4/5 or negative churn. Dollar amounts stay unbounded (free cash flow can go negative).
+UNIT_BOUNDS = {
+    "score_1_5": (1.0, 5.0),
+    "percent": (0.0, 100.0),
+    "index_0_100": (0.0, 100.0),
+    "score": (-100.0, 100.0),   # NPS scale
+    "count": (0.0, None),
+    "days": (0.0, None),
+}
+
+
+def clamp_to_unit(value, unit):
+    bounds = UNIT_BOUNDS.get(unit)
+    if not bounds:
+        return value
+    lo, hi = bounds
+    if lo is not None and value < lo:
+        return lo
+    if hi is not None and value > hi:
+        return hi
+    return value
 
 edges = model["interdependencies"]
 
@@ -108,13 +136,9 @@ for node in order:
     if node not in changes:
         continue
     baseline = baselines.get(node, 0)
-    projected = round(baseline * (1 + changes[node]), 2)
-
-    # Clamp values that shouldn't exceed bounds
-    if "uptime" in node and projected > 100:
-        projected = 100.0
-    if "rate" in node and "churn" not in node and projected > 100:
-        projected = 100.0
+    # Clamp to the KPI's unit domain (score 1-5, percent 0-100, count >= 0, …) so a large
+    # slider input can't print an impossible value like CSAT 5.4 or negative churn.
+    projected = clamp_to_unit(round(baseline * (1 + changes[node]), 2), units.get(node))
 
     cascade_results[node] = {
         "kpi": node,

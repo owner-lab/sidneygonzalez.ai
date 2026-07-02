@@ -8,6 +8,31 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 PUBLIC_DATA = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "public", "data")
 
+# Hard domains per KPI unit — kept identical to the live engine (scenario_engine.py) so the
+# committed presets match what Pyodide computes. A score can't exceed 5, a percent stays in
+# [0,100], a count/days can't go negative; dollar amounts are intentionally unbounded.
+UNIT_BOUNDS = {
+    "score_1_5": (1.0, 5.0),
+    "percent": (0.0, 100.0),
+    "index_0_100": (0.0, 100.0),
+    "score": (-100.0, 100.0),
+    "count": (0.0, None),
+    "days": (0.0, None),
+}
+REVENUE_BASIS_M = 200.0  # $M annual revenue — the documented basis for DSO -> working capital
+
+
+def clamp_to_unit(value, unit):
+    bounds = UNIT_BOUNDS.get(unit)
+    if not bounds:
+        return value
+    lo, hi = bounds
+    if lo is not None and value < lo:
+        return lo
+    if hi is not None and value > hi:
+        return hi
+    return value
+
 
 def load_model():
     with open(os.path.join(PUBLIC_DATA, "org_model.json")) as f:
@@ -84,17 +109,23 @@ def propagate(model, baselines, input_changes):
             cumulative_lags[target] = max(cumulative_lags.get(target, 0), new_lag)
             max_sigmas[target] = max(max_sigmas.get(target, 0), edge.get("sigma", 0))
 
+    units = {}
+    for div in model["divisions"].values():
+        for kpi in div["kpis"]:
+            units[kpi["id"]] = kpi.get("unit")
+
     # Build results
     results = {}
     for node in order:
         if node not in changes:
             continue
         baseline = baselines.get(node, 0)
+        projected = clamp_to_unit(round(baseline * (1 + changes[node]), 2), units.get(node))
         results[node] = {
             "kpi": node,
             "baseline": baseline,
             "change_pct": round(changes[node] * 100, 2),
-            "projected": round(baseline * (1 + changes[node]), 2),
+            "projected": projected,
             "lag_months": cumulative_lags.get(node, 0),
             "sigma": max_sigmas.get(node, 0),
         }
@@ -120,41 +151,70 @@ def build_quarterly_cascade(results):
     return quarters
 
 
+def build_narrative(scenario_id, results, baselines, input_changes):
+    """Compose the executive narrative from the ACTUAL propagated cascade, so the prose can
+    never contradict the table beside it — every figure below is read from `results`, not
+    written by hand. (validate_realism.py re-derives these and asserts they still match.)"""
+    def chg(kpi):
+        r = results.get(kpi)
+        return r["change_pct"] if r else 0.0
+
+    if scenario_id == "reduce_marketing_15":
+        mql = chg("mqls_per_month")
+        pipe = results["pipeline_value"]
+        pipe_delta = pipe["projected"] - baselines["pipeline_value"]
+        save = 0.15 * baselines["marketing_spend"]
+        return (
+            f"Cutting marketing spend 15% reduces qualified lead flow about {abs(mql):.0f}% within a "
+            f"quarter, contracting the sales pipeline by roughly ${abs(pipe_delta):.1f}M "
+            f"({pipe['change_pct']:+.1f}%). That saves ${save:.1f}M in direct marketing cost, but on this "
+            f"model the pipeline contraction outweighs the saving within two quarters. Brand awareness "
+            f"erodes about {abs(chg('brand_awareness')):.0f}% over 3+ months; the leaner pipeline even "
+            f"nudges win rate {chg('win_rate'):+.1f}% as fewer early-stage deals dilute it — a small "
+            f"second-order effect."
+        )
+
+    if scenario_id == "delay_engineering_hiring":
+        return (
+            f"Freezing engineering hiring for a quarter (~12% fewer engineers) slows feature delivery "
+            f"about {abs(chg('feature_velocity')):.1f}% — sub-linear, per Brooks's Law. Product NPS slips "
+            f"about {abs(chg('product_nps')):.1f}% over two quarters and win rate eases "
+            f"{chg('win_rate'):+.1f}% as the roadmap falls behind. The salary savings are real but partly "
+            f"offset by reduced product competitiveness."
+        )
+
+    if scenario_id == "accelerate_collections":
+        fcf = results["free_cash_flow"]
+        fcf_delta = fcf["projected"] - baselines["free_cash_flow"]
+        dso_days = abs(input_changes[0]["change_absolute"])
+        wc = dso_days * REVENUE_BASIS_M / 365.0
+        return (
+            f"Reducing DSO by {dso_days:.0f} days releases roughly ${wc:.1f}M of working capital "
+            f"(~${REVENUE_BASIS_M / 365.0:.2f}M per DSO day on ~${REVENUE_BASIS_M:.0f}M revenue). Modeled "
+            f"conservatively, about ${abs(fcf_delta):.1f}M of that lands in free cash flow within the "
+            f"period ({fcf['change_pct']:+.1f}%), funding incremental engineering and marketing "
+            f"reinvestment. One of the few moves with mostly positive cascades; the trade-off is tighter "
+            f"collection terms with customers."
+        )
+
+    if scenario_id == "cut_operations_10":
+        ful = results["fulfillment_rate"]
+        churn = results["churn_rate"]
+        churn_delta = churn["projected"] - baselines["churn_rate"]
+        return (
+            f"A 10% operations budget cut pushes the fulfillment rate to about {ful['projected']:.1f}% "
+            f"({ful['change_pct']:+.1f}%), under the 90% service line. Customer satisfaction slips about "
+            f"{abs(chg('csat')):.1f}%, and with a two-month lag monthly churn rises roughly "
+            f"{churn_delta:+.2f} percentage points ({churn['change_pct']:+.1f}%). The LTV drag compounds "
+            f"over ~12 months — operations cuts carry the longest, most damaging cascade modeled here."
+        )
+
+    return ""
+
+
 def generate_scenarios():
     model = load_model()
     baselines = get_baselines(model)
-
-    # Pre-written executive narratives per scenario (natural language, not debug output)
-    NARRATIVES = {
-        "reduce_marketing_15": (
-            "Cutting marketing spend by 15% reduces qualified lead flow by approximately 10% "
-            "within one quarter, contracting the sales pipeline by an estimated $4.4M. "
-            "While this saves $1.3M in direct marketing costs, the downstream revenue impact "
-            "is projected to exceed the savings within two quarters. Brand awareness erodes "
-            "gradually over 3+ months, compounding the pipeline effect."
-        ),
-        "delay_engineering_hiring": (
-            "Freezing engineering hiring for one quarter slows feature delivery by roughly 30% "
-            "during the freeze period. Product NPS begins to decline within two quarters as "
-            "the roadmap falls behind competitors. The win rate impact is modest (~3-4%) but "
-            "compounds over time. The cost savings from delayed salaries are partially offset "
-            "by reduced product competitiveness."
-        ),
-        "accelerate_collections": (
-            "Reducing DSO by 10 days frees approximately $5.5M in working capital, improving "
-            "free cash flow and reducing credit line reliance. The freed capital enables "
-            "incremental reinvestment in engineering and marketing. This is one of the few "
-            "decisions with predominantly positive cascading effects — the tradeoff is "
-            "customer relationship friction from more aggressive collection terms."
-        ),
-        "cut_operations_10": (
-            "A 10% operations budget cut degrades fulfillment capacity, pushing the fulfillment "
-            "rate below 90% within one quarter. Customer satisfaction drops measurably, driving "
-            "churn up by an estimated 0.7 percentage points. The LTV impact from increased "
-            "churn exceeds the budget savings within 12 months. Operations cuts have the longest "
-            "and most damaging cascade of any scenario modeled."
-        ),
-    }
 
     scenarios_def = [
         {
@@ -188,7 +248,7 @@ def generate_scenarios():
         results = propagate(model, baselines, scenario["input_changes"])
         quarterly = build_quarterly_cascade(results)
 
-        narrative = NARRATIVES.get(scenario["id"], "")
+        narrative = build_narrative(scenario["id"], results, baselines, scenario["input_changes"])
 
         output_scenarios.append({
             "id": scenario["id"],

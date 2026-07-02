@@ -113,6 +113,61 @@ def validate():
     all_pass &= check("Division name variants > 3",
                        unique_names > 3, f"{unique_names} unique names")
 
+    print("\n--- Engine output integrity (reconciliation, identities, finiteness) ---")
+    import json
+    import re
+    import math
+
+    fb_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+                           "src", "projects", "command-center", "fallbackData.js")
+    with open(fb_path) as f:
+        fb = json.loads(re.search(r"export const FALLBACK_DATA = (\{.*\})\s*$", f.read(), re.S).group(1))
+    s, w, wc, pivot = fb["summary"], fb["cashflow_waterfall"], fb["working_capital"], fb["pnl_by_division"]
+
+    all_pass &= check("Cash-flow waterfall reconciles (operating + investing + financing == net)",
+                      abs((w["operating"] + w["investing"] + w["financing"]) - w["net"]) < 1.0,
+                      f"O+I+F ${w['operating'] + w['investing'] + w['financing']:,.0f} vs net ${w['net']:,.0f}")
+
+    all_pass &= check("Free cash flow == sum of its monthly sparkline",
+                      abs(s["free_cash_flow"] - sum(s["fcf_sparkline"])) < 1.0)
+
+    rev_recon = all(
+        abs(sum(v for k, v in row.items() if k != "month" and isinstance(v, (int, float)))
+            - s["revenue_sparkline"][i]) < 1.0
+        for i, row in enumerate(pivot)
+    )
+    all_pass &= check("Per-month division revenues sum to the company revenue sparkline", rev_recon)
+
+    ccc_max_diff = max(abs(r["ccc"] - (r["dso"] + r["dio"] - r["dpo"])) for r in wc)
+    all_pass &= check("CCC equals its displayed identity DSO + DIO - DPO (every month)",
+                      ccc_max_diff < 0.05, f"max |ccc-(dso+dio-dpo)| = {ccc_max_diff:.4f} days")
+
+    # Headline CCC must be AR/COGS-weighted across divisions, not a naive cross-division mean
+    # (which understates the company figure ~19%). Recompute both from clean data: the shipped
+    # figure must track the weighted company CCC and be clearly distinct from the simple mean.
+    _wc = wc_clean.copy()
+    _wc["month"] = pd.to_datetime(_wc["date"]).dt.strftime("%Y-%m")
+    _pn = pnl_clean.copy()
+    _pn["month"] = pd.to_datetime(_pn["date"]).dt.strftime("%Y-%m")
+    mw = _wc.merge(_pn[["division", "month", "revenue", "cogs"]], on=["division", "month"], how="left")
+    w_dso = (mw["dso"] * mw["revenue"]).sum() / mw["revenue"].sum()
+    w_dio = (mw["dio"] * mw["cogs"]).sum() / mw["cogs"].sum()
+    w_dpo = (mw["dpo"] * mw["cogs"]).sum() / mw["cogs"].sum()
+    weighted_ccc = w_dso + w_dio - w_dpo
+    simple_ccc = (mw.groupby("month")[["dso", "dio", "dpo"]].mean()
+                  .pipe(lambda t: (t["dso"] + t["dio"] - t["dpo"]).mean()))
+    all_pass &= check("Headline CCC is AR/COGS-weighted across divisions (not the naive mean)",
+                      abs(s["ccc"] - weighted_ccc) < 0.6 and abs(s["ccc"] - simple_ccc) > 1.0,
+                      f"shipped {s['ccc']} vs weighted {weighted_ccc:.1f} vs simple-mean {simple_ccc:.1f}")
+
+    all_pass &= check("EBITDA margin == ebitda / revenue",
+                      abs(s["ebitda_margin"] - round(s["ebitda"] / s["total_revenue"] * 100, 1)) < 0.11,
+                      f"reported {s['ebitda_margin']}% vs {s['ebitda'] / s['total_revenue'] * 100:.1f}%")
+
+    nums = [s["total_revenue"], s["ebitda"], s["ebitda_margin"], s["free_cash_flow"], s["ccc"]]
+    all_pass &= check("No NaN/Infinity in headline summary metrics",
+                      all(isinstance(x, (int, float)) and math.isfinite(x) for x in nums))
+
     print("\n" + "=" * 60)
     if all_pass:
         print("RESULT: ALL CHECKS PASSED")

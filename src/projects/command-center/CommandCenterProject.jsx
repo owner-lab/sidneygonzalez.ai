@@ -180,7 +180,7 @@ export default function CommandCenterProject() {
           onPeriodChange={setPeriod}
         />
 
-        <ExecutiveSummary data={filteredSummary} loading={isLoading} />
+        <ExecutiveSummary data={filteredSummary} loading={isLoading} division={division} />
 
         <div className="mb-6 grid gap-6 lg:grid-cols-2">
           <DivisionalPnL
