@@ -1,9 +1,16 @@
+// Rendered in place of a value that is missing or not a finite number. These
+// formatters sit directly in the render path of Pyodide-backed components, so a
+// partial or failed engine result must degrade to a dash — never throw (which
+// unmounts the tree and blanks the page) and never print "$NaN".
+const MISSING = '—'
+
 /**
  * Format a number as currency with thousands separators.
  * @param {number} value
  * @returns {string} e.g. "$1,234,567"
  */
 export function formatCurrency(value) {
+  if (value == null || !Number.isFinite(value)) return MISSING
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -19,6 +26,7 @@ export function formatCurrency(value) {
  * @returns {string} e.g. "12.5%"
  */
 export function formatPercent(value, decimals = 1) {
+  if (value == null || !Number.isFinite(value)) return MISSING
   return `${value.toFixed(decimals)}%`
 }
 
@@ -29,6 +37,7 @@ export function formatPercent(value, decimals = 1) {
  * @returns {string}
  */
 export function formatVariance(value) {
+  if (value == null || !Number.isFinite(value)) return MISSING
   const abs = Math.abs(value)
   const formatted = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -49,6 +58,7 @@ export function formatVariance(value) {
  */
 export function formatDate(date, format = 'short') {
   const d = new Date(date)
+  if (Number.isNaN(d.getTime())) return MISSING
   const options = {
     short: { month: 'short', year: 'numeric' },
     long: { month: 'long', day: 'numeric', year: 'numeric' },
@@ -63,7 +73,7 @@ export function formatDate(date, format = 'short') {
  * @returns {string} e.g. "$1.2M", "$450K"
  */
 export function formatCompact(value) {
-  if (value == null || !Number.isFinite(value)) return '—'
+  if (value == null || !Number.isFinite(value)) return MISSING
   const abs = Math.abs(value)
   const sign = value < 0 ? '-' : ''
 
@@ -79,7 +89,7 @@ export function formatCompact(value) {
  * e.g. 15044000 -> "$15.0M", -5200000 -> "($5.2M)"
  */
 export function formatCompactAccounting(value) {
-  if (value == null || !Number.isFinite(value)) return '—'
+  if (value == null || !Number.isFinite(value)) return MISSING
   const s = formatCompact(Math.abs(value))
   return value < 0 ? `(${s})` : s
 }
@@ -137,6 +147,7 @@ export function formatPaybackMonths(months) {
  * @returns {string} e.g. "5.2K", "1.3M"
  */
 export function formatCount(value) {
+  if (value == null || !Number.isFinite(value)) return MISSING
   const abs = Math.abs(value)
   const sign = value < 0 ? '-' : ''
 

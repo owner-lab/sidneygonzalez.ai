@@ -123,7 +123,10 @@ export default function CommandCenterProject() {
     if (!fullData.div_detail || division === 'All') {
       // Company-wide: use precomputed summary, adjust for period
       const s = fullData.summary
-      if (period === 24) return s
+      // Return the falsy value as-is when the engine gave us no summary. Spreading
+      // it would hand ExecutiveSummary a truthy {}, slipping past its `!data`
+      // skeleton guard and into formatters with undefined fields.
+      if (!s || period === 24) return s
       return {
         ...s,
         revenue_sparkline: s.revenue_sparkline?.slice(-period),
@@ -145,16 +148,20 @@ export default function CommandCenterProject() {
     const totalRev = revs.reduce((a, b) => a + b, 0)
     const totalEbitda = ebitdas.reduce((a, b) => a + b, 0)
 
+    // FCF and CCC are company-wide, so they come off the top-level summary — which
+    // a partial engine result may not have. Optional-chain rather than throw; the
+    // formatters render a dash for whatever is missing.
+    const s = fullData.summary
     return {
       total_revenue: totalRev,
       ebitda: totalEbitda,
       ebitda_margin: totalRev ? Math.round((totalEbitda / totalRev) * 1000) / 10 : 0,
-      free_cash_flow: fullData.summary.free_cash_flow, // FCF is company-wide
-      ccc: fullData.summary.ccc,
+      free_cash_flow: s?.free_cash_flow,
+      ccc: s?.ccc,
       revenue_sparkline: revs,
       ebitda_sparkline: ebitdas,
-      fcf_sparkline: fullData.summary.fcf_sparkline?.slice(-period),
-      ccc_sparkline: fullData.summary.ccc_sparkline?.slice(-period),
+      fcf_sparkline: s?.fcf_sparkline?.slice(-period),
+      ccc_sparkline: s?.ccc_sparkline?.slice(-period),
     }
   }, [fullData, division, period])
 

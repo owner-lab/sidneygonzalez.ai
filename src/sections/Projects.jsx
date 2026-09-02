@@ -5,6 +5,7 @@ import ScrollReveal from '@/components/animation/ScrollReveal'
 import PyodideStatus from '@/components/ui/PyodideStatus'
 import LoadingSpinner from '@/components/ui/LoadingSpinner'
 import PyodideFallback from '@/components/ui/PyodideFallback'
+import ProjectErrorBoundary from '@/components/ui/ProjectErrorBoundary'
 import usePyodide from '@/python/usePyodide'
 import useLenisScroll from '@/hooks/useLenisScroll'
 
@@ -194,25 +195,36 @@ export default function Projects() {
         </div>
       </ScrollReveal>
 
+      {/* Each project is boundaried separately: an uncaught throw inside one
+          must not unmount the others (or the whole page) — principle #5. */}
+
       {/* Project 1: Executive Command Center */}
-      <Suspense fallback={<ProjectFallback title="Command Center" />}>
-        <CommandCenterProject />
-      </Suspense>
+      <ProjectErrorBoundary name="Command Center">
+        <Suspense fallback={<ProjectFallback title="Command Center" />}>
+          <CommandCenterProject />
+        </Suspense>
+      </ProjectErrorBoundary>
 
       {/* Project 2: Decision Impact Analyzer */}
-      <Suspense fallback={<ProjectFallback title="Decision Impact Analyzer" />}>
-        <DecisionImpactProject />
-      </Suspense>
+      <ProjectErrorBoundary name="Decision Impact Analyzer">
+        <Suspense fallback={<ProjectFallback title="Decision Impact Analyzer" />}>
+          <DecisionImpactProject />
+        </Suspense>
+      </ProjectErrorBoundary>
 
       {/* Project 3: Variance & Anomaly Engine */}
-      <Suspense fallback={<ProjectFallback title="Variance Engine" />}>
-        <VarianceEngineProject />
-      </Suspense>
+      <ProjectErrorBoundary name="Variance Engine">
+        <Suspense fallback={<ProjectFallback title="Variance Engine" />}>
+          <VarianceEngineProject />
+        </Suspense>
+      </ProjectErrorBoundary>
 
       {/* Project 4: Order Book Forecaster — capacity & headcount investment */}
-      <Suspense fallback={<ProjectFallback title="Order Book Forecaster" />}>
-        <OrderBookProject />
-      </Suspense>
+      <ProjectErrorBoundary name="Order Book Forecaster">
+        <Suspense fallback={<ProjectFallback title="Order Book Forecaster" />}>
+          <OrderBookProject />
+        </Suspense>
+      </ProjectErrorBoundary>
 
       {/* Bridge to the dedicated AI page — these systems are what AI-first
           automates; /ai puts a price on automating them. */}

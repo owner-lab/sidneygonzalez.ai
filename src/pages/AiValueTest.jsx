@@ -5,6 +5,7 @@ import ScrollReveal from '@/components/animation/ScrollReveal'
 import NeuralFlowBackground from '@/components/animation/NeuralFlowBackground'
 import Button from '@/components/ui/Button'
 import AiValueModel from '@/features/ai-value-model/AiValueModel'
+import ProjectErrorBoundary from '@/components/ui/ProjectErrorBoundary'
 import useLenisScroll from '@/hooks/useLenisScroll'
 import useDocumentMeta from '@/hooks/useDocumentMeta'
 import { SITE } from '@/config/constants'
@@ -166,7 +167,9 @@ export default function AiValueTest() {
           </p>
         </ScrollReveal>
         <div className="mt-10">
-          <AiValueModel variant="luminous" />
+          <ProjectErrorBoundary name="The AI Value Test model">
+            <AiValueModel variant="luminous" />
+          </ProjectErrorBoundary>
         </div>
       </Section>
 
