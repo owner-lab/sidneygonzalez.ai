@@ -3,7 +3,7 @@ import Section from '@/components/layout/Section'
 import MeshGradient from '@/components/animation/MeshGradient'
 import Button from '@/components/ui/Button'
 import useLenisScroll from '@/hooks/useLenisScroll'
-import { HERO, SOCIAL } from '@/config/constants'
+import { HERO } from '@/config/constants'
 
 const container = {
   hidden: {},
@@ -97,13 +97,6 @@ export default function Hero() {
           <Button onClick={() => scrollTo('#projects')}>
             Explore Projects
           </Button>
-          <a
-            href={SOCIAL.github}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button variant="secondary">View on GitHub</Button>
-          </a>
         </motion.div>
       </motion.div>
     </Section>

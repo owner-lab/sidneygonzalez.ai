@@ -19,8 +19,10 @@ export const NAV_LINKS = [
   { label: 'Contact', href: '#contact' },
 ]
 
+// No `github` entry by design — the repo is private, so the site must not link
+// to it. Pipeline transparency is served by the in-page "View Code" slide-out
+// (CodeToggle), not by an outbound repo link.
 export const SOCIAL = {
-  github: 'https://github.com/owner-lab/sidneygonzalez.ai',
   linkedin: 'https://www.linkedin.com/in/sidney-gonzalez-784034158/',
   resume: '/SidneyG_Resume_2026.pdf',
   email: 'mailto:sidneygonzalez.177@gmail.com',

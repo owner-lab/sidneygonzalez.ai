@@ -71,17 +71,6 @@ export default function Contact() {
               >
                 LinkedIn
               </a>
-              <span aria-hidden="true" className="text-text-muted">
-                ·
-              </span>
-              <a
-                href={SOCIAL.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline-offset-4 transition-colors hover:text-text-primary hover:underline"
-              >
-                GitHub
-              </a>
             </div>
           </div>
 
