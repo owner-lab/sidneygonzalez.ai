@@ -6,6 +6,7 @@ import PyodideStatus from '@/components/ui/PyodideStatus'
 import LoadingSpinner from '@/components/ui/LoadingSpinner'
 import PyodideFallback from '@/components/ui/PyodideFallback'
 import usePyodide from '@/python/usePyodide'
+import useLenisScroll from '@/hooks/useLenisScroll'
 
 // Lazy-load heavy project bundles (Recharts + Nivo ~226KB gzip) so initial
 // paint is fast. Chunks are preloaded on idle so they're ready before scroll.
@@ -40,39 +41,58 @@ const STATUS_MAP = {
   error: 'offline',
 }
 
+// Each card jumps to its project below. Tailwind needs complete class strings,
+// so the per-item accent is spelled out rather than interpolated.
 const STACK_ITEMS = [
   {
     number: '01',
     title: 'Command Center',
     subtitle: 'See the data',
+    href: '#command-center',
     color: 'text-accent-ink-blue',
     border: 'border-accent-blue/30',
+    borderHover: 'hover:border-accent-blue/70',
+    ring: 'focus-visible:ring-accent-blue/60',
+    colorHover: 'group-hover:text-accent-ink-blue',
   },
   {
     number: '02',
     title: 'Decision Analyzer',
     subtitle: 'Model the decision',
+    href: '#decision-impact',
     color: 'text-accent-ink-green',
     border: 'border-accent-green/30',
+    borderHover: 'hover:border-accent-green/70',
+    ring: 'focus-visible:ring-accent-green/60',
+    colorHover: 'group-hover:text-accent-ink-green',
   },
   {
     number: '03',
     title: 'Variance Engine',
     subtitle: 'Find the anomaly',
+    href: '#variance-engine',
     color: 'text-accent-ink-red',
     border: 'border-accent-red/30',
+    borderHover: 'hover:border-accent-red/70',
+    ring: 'focus-visible:ring-accent-red/60',
+    colorHover: 'group-hover:text-accent-ink-red',
   },
   {
     number: '04',
     title: 'Order Book Forecaster',
     subtitle: 'Forecast the book',
+    href: '#order-book',
     color: 'text-accent-ink-orange',
     border: 'border-accent-orange/30',
+    borderHover: 'hover:border-accent-orange/70',
+    ring: 'focus-visible:ring-accent-orange/60',
+    colorHover: 'group-hover:text-accent-ink-orange',
   },
 ]
 
 export default function Projects() {
   const { status, progress, progressLabel, error } = usePyodide()
+  const scrollTo = useLenisScroll()
 
   // Preload project chunks after initial paint so they're cached by the time
   // the user scrolls down. Uses requestIdleCallback with a setTimeout fallback.
@@ -127,10 +147,22 @@ export default function Projects() {
             Corporate Intelligence Stack
           </p>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Transitions are scoped to the properties hover animates.
+                `transition-all` would include box-shadow, which makes the
+                focus-visible ring fade in from zero — a focus indicator has to
+                be immediate. */}
             {STACK_ITEMS.map((item) => (
-              <div
+              <a
                 key={item.number}
-                className={`rounded-2xl border ${item.border} bg-bg-surface p-6 text-center`}
+                href={item.href}
+                onClick={(e) => {
+                  // Keep the real href for middle-click / copy-link / keyboard,
+                  // but hand the scroll to Lenis so it matches the rest of the
+                  // site instead of jumping.
+                  e.preventDefault()
+                  scrollTo(item.href)
+                }}
+                className={`group block rounded-2xl border ${item.border} ${item.borderHover} bg-bg-surface p-6 text-center transition-[transform,border-color,background-color] duration-300 hover:-translate-y-0.5 hover:bg-bg-hover/40 focus-visible:outline-none focus-visible:ring-2 ${item.ring} focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary`}
               >
                 <span className={`text-xs font-bold ${item.color}`}>
                   {item.number}
@@ -141,7 +173,16 @@ export default function Projects() {
                 <p className="mt-0.5 text-xs text-text-muted">
                   {item.subtitle}
                 </p>
-              </div>
+                {/* Persistent affordance: dim at rest so the card reads as
+                    navigable before hover, brightening and nudging on hover.
+                    Always occupies its space — no layout shift. */}
+                <span
+                  className={`mt-2 block text-xs text-text-muted opacity-40 transition-[transform,opacity,color] duration-300 group-hover:translate-y-0.5 group-hover:opacity-100 ${item.colorHover}`}
+                  aria-hidden="true"
+                >
+                  &darr;
+                </span>
+              </a>
             ))}
           </div>
           {/* Connectors (desktop only) — See → Model → Find → Forecast */}
