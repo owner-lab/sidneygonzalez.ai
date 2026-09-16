@@ -52,3 +52,6 @@ docs/research/*.pdf
 
 # Cache
 .cache
+
+# Graphify knowledge-graph output (local dev tooling, regenerate with `graphify extract`)
+graphify-out/

@@ -13,6 +13,10 @@ export default defineConfig({
     exclude: ['pyodide'],
   },
   build: {
+    // Explicit, not inherited: the repo is private, so the shipped bundle is
+    // the only public artifact. A source map would republish the original
+    // source verbatim and undo that.
+    sourcemap: false,
     rollupOptions: {
       output: {
         manualChunks(id) {

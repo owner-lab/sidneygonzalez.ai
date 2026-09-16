@@ -12,7 +12,8 @@ import { BENEFIT_PARAMS, DEFAULT_INPUTS, FALLBACK_RESULT } from './fallbackData'
 import RoiInputsPanel from './RoiInputsPanel'
 import RoiResults from './RoiResults'
 import IdcCredibilityPanel from './IdcCredibilityPanel'
-import { SOCIAL } from '@/config/constants'
+import EngineErrorBanner from '@/components/ui/EngineErrorBanner'
+import { ProjectCodeContext } from '@/hooks/useProjectCode'
 
 const STATUS_MAP = {
   idle: 'offline',
@@ -202,7 +203,10 @@ export default function AiValueModel({
     setInputs(cloneInputs(DEFAULT_INPUTS))
   }, [])
 
+  const openCode = useCallback(() => setCodeOpen(true), [])
+
   return (
+    <ProjectCodeContext.Provider value={openCode}>
     <div>
       {/* Tech badges + live Pyodide status */}
       <div className="mb-6 flex flex-wrap items-center gap-3">
@@ -237,18 +241,7 @@ export default function AiValueModel({
       />
 
       {(status === 'error' || engineError) && (
-        <div className="mb-4 rounded-lg border border-border-subtle bg-bg-surface px-4 py-3 text-sm text-text-secondary">
-          Live engine unavailable — the figures below are a static example and the sliders are
-          inactive.{' '}
-          <a
-            href={SOCIAL.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-accent-ink-blue hover:underline"
-          >
-            View source on GitHub
-          </a>
-        </div>
+        <EngineErrorBanner className="mb-4" />
       )}
 
       <RoiResults result={result} flashKey={flashKey} />
@@ -317,5 +310,6 @@ export default function AiValueModel({
         codeByTab={ENGINE_TABS}
       />
     </div>
+    </ProjectCodeContext.Provider>
   )
 }

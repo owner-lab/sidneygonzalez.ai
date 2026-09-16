@@ -10,10 +10,20 @@ Single-page React portfolio at sidneygonzalez.ai demonstrating financial intelli
 2. **Mobile-first responsive.** Start at 375px. Test at 375/768/1280/1920px.
 3. **Accessibility baseline.** Semantic HTML, heading hierarchy, focus-visible, aria-labels, reduced-motion fallbacks.
 4. **Financial precision.** Thousands separators, consistent decimals, percentage formatting, negative values in red parentheses (accounting notation). `tabular-nums` on all financial data.
-5. **Error boundaries.** Every Pyodide component has fallback: worker failure shows static preview with GitHub link. Never a blank screen.
+5. **Error boundaries.** Every Pyodide component has fallback: worker failure shows a static preview plus a CTA into that project's "View Code" slide-out. Never a blank screen, never a dead end. The repo is private — the site must not link out to it (see Source Visibility below).
 6. **Pipeline visibility.** "View Code" tabs: Ingest > Clean > Transform > Analyze > Visualize. The engineering is the demo.
 7. **Executive-first hierarchy.** Each project opens with the business insight. Technical details are one click deeper.
 8. **Performance discipline.** Initial JS < 250KB gzipped. Pyodide is non-blocking. Skeleton screens for async content. No layout shifts.
+
+## Source Visibility
+
+The site is public; the repo is **private**. These are deliberately decoupled.
+
+- **Never add an outbound link to the repository** from the site. `SOCIAL` in `src/config/constants.js` has no `github` key by design — don't reintroduce one.
+- Pipeline transparency is served **in-page** by the `CodeToggle` slide-out (curated `codeByTab` snippets), not by sending visitors to the repo. This is what keeps principle #6 ("the engineering is the demo") true under a private repo.
+- Fallbacks reach that slide-out via `ProjectCodeContext` (`src/hooks/useProjectCode.js`). The context is **positional**: a component rendered above the provider reads `null` and silently loses its CTA. Consume it from a child of `ProjectLayout` (or of a component that provides it, like `AiValueModel`) — never from the component that renders the provider.
+- `build.sourcemap` is pinned `false` in `vite.config.js`. The shipped bundle is the only public artifact; a source map would republish the original source verbatim.
+- `scripts/generate-og-github.mjs` is dormant (it generated the repo's social preview card). Its output `public/og-github.png` is retained — it doubles as the LinkedIn Featured image.
 
 ## Git Workflow
 
@@ -69,3 +79,14 @@ Full spec: `PRODUCT.md` (strategic) · `DESIGN.md` (visual) · `.impeccable/desi
 - **Accent colors are semantic:** Blue = action, Green = positive, Red = negative, Orange = warning, Purple = AI/intelligence only. Never decorative.
 - **Glass panels** are data containers and overlays only — not structural layout or marketing sections.
 - **All financial figures** use JetBrains Mono + `font-variant-numeric: tabular-nums`. No exceptions.
+
+## graphify
+
+Machine-local knowledge graph of this repo at `graphify-out/` (gitignored; `graphify` CLI is a global install, not a repo dependency). **If the CLI or `graphify-out/graph.json` is absent — e.g. cloud/CI sessions — skip this section entirely.**
+
+Rules (when present):
+- For codebase questions, orient with `graphify query "<question>"` first — a scoped subgraph, ~50x cheaper than grep-and-read exploration (measured on this repo). Use `graphify path "<A>" "<B>"` for relationships, `graphify explain "<symbol-or-file>"` for one concept, `graphify affected "<symbol>"` for impact analysis.
+- Phrase queries with concrete symbol/file terms — seeding is lexical, so `"chartTheme"` beats `"how does theming work"`.
+- Read raw source only for the specific lines you'll modify or debug; read `graphify-out/GRAPH_REPORT.md` only for broad architecture review.
+- After modifying code, run `graphify update .` to keep the graph current (local AST, no LLM/API cost).
+- Include these rules in any subagent prompt that explores code.

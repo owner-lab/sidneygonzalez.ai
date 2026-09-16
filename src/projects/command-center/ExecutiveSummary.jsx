@@ -71,7 +71,7 @@ export default function ExecutiveSummary({ data, loading, division = 'All' }) {
 
       <MetricCard
         label="Cash Conversion Cycle"
-        value={`${data.ccc} days`}
+        value={Number.isFinite(data.ccc) ? `${data.ccc} days` : '—'}
         change={isDivision ? 'company-wide' : cccMoM.change}
         changeType={isDivision ? 'neutral' : cccMoM.type}
       >

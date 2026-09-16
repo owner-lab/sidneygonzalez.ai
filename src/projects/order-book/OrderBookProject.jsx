@@ -12,7 +12,7 @@ import RevenueTimeline from './RevenueTimeline'
 import CapacityGapPanel from './CapacityGapPanel'
 import HeadcountRoiPanel from './HeadcountRoiPanel'
 import StressPanel from './StressPanel'
-import { SOCIAL } from '@/config/constants'
+import EngineErrorBanner from '@/components/ui/EngineErrorBanner'
 
 const STATUS_MAP = {
   idle: 'offline',
@@ -260,18 +260,7 @@ export default function OrderBookProject() {
       />
 
       {(status === 'error' || engineError) && (
-        <div className="mt-4 rounded-lg border border-border-subtle bg-bg-surface px-4 py-3 text-sm text-text-secondary">
-          Live engine unavailable — the figures below are a static example and the sliders are
-          inactive.{' '}
-          <a
-            href={SOCIAL.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-accent-ink-blue hover:underline"
-          >
-            View source on GitHub
-          </a>
-        </div>
+        <EngineErrorBanner className="mt-4" />
       )}
 
       <div className="mt-6 flex flex-col gap-6">

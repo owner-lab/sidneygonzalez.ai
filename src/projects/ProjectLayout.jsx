@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
+import { ProjectCodeContext } from '@/hooks/useProjectCode'
 import Section from '@/components/layout/Section'
 import ScrollReveal from '@/components/animation/ScrollReveal'
 import GlassPanel from '@/components/ui/GlassPanel'
@@ -21,8 +22,10 @@ export default function ProjectLayout({
   children,
 }) {
   const [codeOpen, setCodeOpen] = useState(false)
+  const openCode = useCallback(() => setCodeOpen(true), [])
 
   return (
+    <ProjectCodeContext.Provider value={openCode}>
     <Section id={id}>
       <ScrollReveal>
         {/* Header */}
@@ -125,5 +128,6 @@ export default function ProjectLayout({
         codeByTab={codeByTab}
       />
     </Section>
+    </ProjectCodeContext.Provider>
   )
 }
