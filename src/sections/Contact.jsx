@@ -17,19 +17,6 @@ export default function Contact() {
             Here&apos;s the conversation.
           </h2>
 
-          <p className="mt-6 text-lg leading-relaxed text-text-secondary">
-            I&apos;m interviewing for{' '}
-            <span className="text-text-primary">
-              corporate finance, FP&amp;A, and finance business-partner roles
-              in Toronto
-            </span>{' '}
-            — open to Montreal, New York, Chicago, and London for the right
-            team. The work I&apos;m looking for is the kind where automating
-            the close, re-platforming variance analysis, or building a
-            driver-based planning model is on the table now, not a nice-to-have
-            in year three.
-          </p>
-
           <div className="mt-8 rounded-xl border border-border-subtle bg-bg-surface/50 p-6">
             <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-accent-ink-blue">
               Working sample, on request
@@ -74,10 +61,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <p className="mt-10 text-xs text-text-muted">
-            Replies within 24 hours. Direct inquiries only — no recruiters or
-            staffing agencies.
-          </p>
+          <p className="mt-10 text-xs text-text-muted">Replies within 24 hours.</p>
         </div>
       </ScrollReveal>
     </Section>
